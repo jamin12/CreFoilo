@@ -2,18 +2,23 @@ package emyo.jamin.jej.crefoilo.security;
 
 import java.io.Serializable;
 
-import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.dto.SessionDto;
+import emyo.jamin.jej.crefoilo.entity.SnsInfo;
+import emyo.jamin.jej.crefoilo.entity.Users;
 import lombok.Getter;
 
+/**
+ * 세션 데이터베이스에 들어갈 정보 직렬화
+ */
 @Getter
 public class SessionUser implements Serializable {
-    private String name;
-    private String email;
-    private String picture;
+    private String snsType;
+    private String snsName;
+    private String userEmail;
 
-    public SessionUser(User user) {
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.picture = user.getPicture();
+    public SessionUser(SessionDto sessionDto) {
+        this.userEmail = sessionDto.getUserEmail();
+        this.snsType = sessionDto.getSnsType();
+        this.snsName = sessionDto.getSnsName();
     }
 }

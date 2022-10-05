@@ -2,9 +2,10 @@ package emyo.jamin.jej.crefoilo.security;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -15,7 +16,12 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import emyo.jamin.jej.crefoilo.entity.User;
+import com.mysql.cj.Session;
+
+import emyo.jamin.jej.crefoilo.dto.SessionDto;
+import emyo.jamin.jej.crefoilo.entity.SnsInfo;
+import emyo.jamin.jej.crefoilo.entity.Users;
+import emyo.jamin.jej.crefoilo.repository.SnsInfoRepository;
 import emyo.jamin.jej.crefoilo.repository.UserRepository;
 
 @Service
@@ -24,6 +30,9 @@ public class CustomOauth2UserService
 
   @Autowired
   private UserRepository userRepository;
+  @Autowired
+  private SnsInfoRepository snsInfoRepository;
+
   @Autowired
   private HttpSession httpSession;
 
@@ -54,10 +63,8 @@ public class CustomOauth2UserService
         userNameAttributeName,
         oAuth2User.getAttributes());
 
-    User user = saveOrUpdate(attributes);
-    httpSession.setAttribute("user", new SessionUser(user));
-
-    System.out.println(attributes.getAttributes());
+    SessionDto toSession = saveOrUpdate(attributes);
+    httpSession.setAttribute("user", new SessionUser(toSession));
     return new DefaultOAuth2User(
         Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
         attributes.getAttributes(),
@@ -65,12 +72,26 @@ public class CustomOauth2UserService
   }
 
   // 혹시 이미 저장된 정보라면, update 처리
-  private User saveOrUpdate(OauthAttributes attributes) {
-    List<User> user = userRepository.getUserByEmail(attributes.getEmail());
+  @Transactional
+  private SessionDto saveOrUpdate(OauthAttributes attributes) {
+    List<Users> user = userRepository.getUserByEmail(attributes.getUserEmail());
+    List<SnsInfo> snsinfo = snsInfoRepository.getUserByEmail(attributes.getUserEmail());
+    SessionDto sessionDto = new SessionDto();
 
     if (user.isEmpty()) {
-      return userRepository.save(attributes.toEntity());
+      Users createdUser = userRepository.save(attributes.toEntity());
+      SnsInfo createdSnsInfo = snsInfoRepository.save(attributes.toEntitySns());
+      sessionDto.setSnsType(createdSnsInfo.getSnsType());
+      sessionDto.setSnsName(createdSnsInfo.getSnsName());
+      sessionDto.setUserEmail(createdUser.getUserEmail());
+      return sessionDto;
     }
-    return userRepository.save(user.get(0).update(attributes.getName(), attributes.getPicture()));
+    Users updatedUser = userRepository.save(user.get(0).update(attributes.getUserEmail()));
+    SnsInfo updatedSnsInfo = snsInfoRepository
+        .save(snsinfo.get(0).update(attributes.getUserEmail(), attributes.getSnsName(), attributes.getSnsImg()));
+    sessionDto.setSnsType(updatedSnsInfo.getSnsType());
+    sessionDto.setSnsName(updatedSnsInfo.getSnsName());
+    sessionDto.setUserEmail(updatedUser.getUserEmail());
+    return sessionDto;
   }
 }

@@ -16,11 +16,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
-        if (user != null) {
-            model.addAttribute("userName", user.getName());
-        }
         return "index";
     }
 
@@ -29,8 +24,8 @@ public class IndexController {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if (user != null) {
-            model.addAttribute("userName", user.getName());
-            System.out.println(user.getName());
+            model.addAttribute("userName", user.getSnsName());
+            System.out.println(user.getUserEmail());
         }
         return "callback";
     }

@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -20,26 +18,20 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity {
+public class Users extends BaseTimeEntity {
     @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id", length = 255)
+    private String id;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String email;
-    private String picture;
+    @Column(nullable = false, name = "user_email")
+    private String userEmail;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
     private Role role;
 
-    public User update(String name, String picture) {
-        this.name = name;
-        this.picture = picture;
-
+    public Users update(String userEmail) {
+        this.userEmail = userEmail;
         return this;
     }
 
