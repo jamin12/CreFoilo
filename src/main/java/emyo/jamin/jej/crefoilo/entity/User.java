@@ -1,5 +1,7 @@
 package emyo.jamin.jej.crefoilo.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,23 +25,17 @@ import lombok.Setter;
 public class User extends BaseTimeEntity {
     @Id
     @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String email;
-    private String picture;
+    @Column(nullable = false, name = "user_email")
+    private String userEmail;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
     private Role role;
 
-    public User update(String name, String picture) {
-        this.name = name;
-        this.picture = picture;
-
+    public User update(String userEmail) {
+        this.userEmail = userEmail;
         return this;
     }
 

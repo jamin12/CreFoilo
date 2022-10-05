@@ -2,9 +2,10 @@ package emyo.jamin.jej.crefoilo.security;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -15,7 +16,9 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import emyo.jamin.jej.crefoilo.entity.SnsInfo;
 import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.repository.SnsInfoRepository;
 import emyo.jamin.jej.crefoilo.repository.UserRepository;
 
 @Service
@@ -24,6 +27,9 @@ public class CustomOauth2UserService
 
   @Autowired
   private UserRepository userRepository;
+  @Autowired
+  private SnsInfoRepository snsInfoRepository;
+
   @Autowired
   private HttpSession httpSession;
 
@@ -56,8 +62,7 @@ public class CustomOauth2UserService
 
     User user = saveOrUpdate(attributes);
     httpSession.setAttribute("user", new SessionUser(user));
-
-    System.out.println(attributes.getAttributes());
+    System.out.println(attributes.toString());
     return new DefaultOAuth2User(
         Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
         attributes.getAttributes(),
@@ -65,12 +70,19 @@ public class CustomOauth2UserService
   }
 
   // 혹시 이미 저장된 정보라면, update 처리
+  @Transactional
   private User saveOrUpdate(OauthAttributes attributes) {
-    List<User> user = userRepository.getUserByEmail(attributes.getEmail());
+    List<User> user = userRepository.getUserByEmail(attributes.getUserEmail());
+    List<SnsInfo> snsinfo = snsInfoRepository.getUserByEmail(attributes.getUserEmail());
 
     if (user.isEmpty()) {
-      return userRepository.save(attributes.toEntity());
+      User createdUser = userRepository.save(attributes.toEntity());
+      snsInfoRepository.save(attributes.toEntitySns());
+      return createdUser;
     }
-    return userRepository.save(user.get(0).update(attributes.getName(), attributes.getPicture()));
+    User updatedUser = userRepository.save(user.get(0).update(attributes.getUserEmail()));
+    snsInfoRepository
+        .save(snsinfo.get(0).update(attributes.getUserEmail(), attributes.getSnsName(), attributes.getSnsImg()));
+    return updatedUser;
   }
 }

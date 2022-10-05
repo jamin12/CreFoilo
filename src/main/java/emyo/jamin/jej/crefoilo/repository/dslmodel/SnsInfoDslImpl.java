@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import emyo.jamin.jej.crefoilo.entity.QUser;
-import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.entity.QSnsInfo;
+import emyo.jamin.jej.crefoilo.entity.SnsInfo;
 
-public class UserDslImpl implements UserDsl {
+public class SnsInfoDslImpl implements SnsInfoDsl {
 
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
 
-    public UserDslImpl(EntityManager em) {
+    public SnsInfoDslImpl(EntityManager em) {
         this.jpaQueryFactory = new JPAQueryFactory(em);
     }
 
     @Override
-    public List<User> getUserByEmail(String email) {
-        QUser quser = QUser.user;
+    public List<SnsInfo> getUserByEmail(String email) {
+        QSnsInfo qsnsInfo = QSnsInfo.snsInfo;
+        return jpaQueryFactory.select(qsnsInfo).from(qsnsInfo).where(qsnsInfo.snsEmail.eq(email)).fetch();
 
-        return jpaQueryFactory.select(quser).from(quser).where(quser.userEmail.eq(email)).fetch();
     }
 
 }
