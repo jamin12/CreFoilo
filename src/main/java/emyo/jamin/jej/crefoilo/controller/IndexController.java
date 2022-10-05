@@ -24,7 +24,7 @@ public class IndexController {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if (user != null) {
-            model.addAttribute("userName", user.getUserEmail());
+            model.addAttribute("userName", user.getSnsName());
             System.out.println(user.getUserEmail());
         }
         return "callback";

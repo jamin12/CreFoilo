@@ -16,6 +16,9 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import com.mysql.cj.Session;
+
+import emyo.jamin.jej.crefoilo.dto.SessionDto;
 import emyo.jamin.jej.crefoilo.entity.SnsInfo;
 import emyo.jamin.jej.crefoilo.entity.Users;
 import emyo.jamin.jej.crefoilo.repository.SnsInfoRepository;
@@ -60,9 +63,8 @@ public class CustomOauth2UserService
         userNameAttributeName,
         oAuth2User.getAttributes());
 
-    Users user = saveOrUpdate(attributes);
-    httpSession.setAttribute("user", new SessionUser(user));
-    System.out.println(attributes.toString());
+    SessionDto toSession = saveOrUpdate(attributes);
+    httpSession.setAttribute("user", new SessionUser(toSession));
     return new DefaultOAuth2User(
         Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
         attributes.getAttributes(),
@@ -71,18 +73,25 @@ public class CustomOauth2UserService
 
   // 혹시 이미 저장된 정보라면, update 처리
   @Transactional
-  private Users saveOrUpdate(OauthAttributes attributes) {
+  private SessionDto saveOrUpdate(OauthAttributes attributes) {
     List<Users> user = userRepository.getUserByEmail(attributes.getUserEmail());
     List<SnsInfo> snsinfo = snsInfoRepository.getUserByEmail(attributes.getUserEmail());
+    SessionDto sessionDto = new SessionDto();
 
     if (user.isEmpty()) {
       Users createdUser = userRepository.save(attributes.toEntity());
-      snsInfoRepository.save(attributes.toEntitySns());
-      return createdUser;
+      SnsInfo createdSnsInfo = snsInfoRepository.save(attributes.toEntitySns());
+      sessionDto.setSnsType(createdSnsInfo.getSnsType());
+      sessionDto.setSnsName(createdSnsInfo.getSnsName());
+      sessionDto.setUserEmail(createdUser.getUserEmail());
+      return sessionDto;
     }
     Users updatedUser = userRepository.save(user.get(0).update(attributes.getUserEmail()));
-    snsInfoRepository
+    SnsInfo updatedSnsInfo = snsInfoRepository
         .save(snsinfo.get(0).update(attributes.getUserEmail(), attributes.getSnsName(), attributes.getSnsImg()));
-    return updatedUser;
+    sessionDto.setSnsType(updatedSnsInfo.getSnsType());
+    sessionDto.setSnsName(updatedSnsInfo.getSnsName());
+    sessionDto.setUserEmail(updatedUser.getUserEmail());
+    return sessionDto;
   }
 }
