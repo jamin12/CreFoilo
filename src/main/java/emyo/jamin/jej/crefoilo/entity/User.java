@@ -1,13 +1,9 @@
 package emyo.jamin.jej.crefoilo.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -24,8 +20,8 @@ import lombok.Setter;
 @Entity
 public class User extends BaseTimeEntity {
     @Id
-    @Column(name = "user_id")
-    private Long id;
+    @Column(name = "user_id", length = 255)
+    private String id;
 
     @Column(nullable = false, name = "user_email")
     private String userEmail;

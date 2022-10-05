@@ -11,6 +11,7 @@ import lombok.Getter;
 @Getter
 public class OauthAttributes {
     private Map<String, Object> attributes;
+    private String userId;
     private String nameAttributeKey;
     private String snsType;
     private String snsName;
@@ -20,13 +21,14 @@ public class OauthAttributes {
     @Builder
     public OauthAttributes(Map<String, Object> attributes,
             String nameAttributeKey, String snsName,
-            String userEmail, String snsImg, String snsType) {
+            String userEmail, String snsImg, String snsType, String userId) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.snsName = snsName;
         this.userEmail = userEmail;
         this.snsImg = snsImg;
         this.snsType = snsType;
+        this.userId = userId;
     }
 
     public static OauthAttributes of(String registrationId,
@@ -38,6 +40,7 @@ public class OauthAttributes {
     private static OauthAttributes ofGoogle(String userNameAttributeName,
             Map<String, Object> attributes) {
         return OauthAttributes.builder()
+                .userId((String) attributes.get("sub"))
                 .snsName((String) attributes.get("name"))
                 .userEmail((String) attributes.get("email"))
                 .snsImg((String) attributes.get("picture"))
@@ -54,6 +57,7 @@ public class OauthAttributes {
      */
     public User toEntity() {
         return User.builder()
+                .id(userId)
                 .userEmail(userEmail)
                 .role(Role.GUEST)
                 .build();
@@ -66,6 +70,7 @@ public class OauthAttributes {
      */
     public SnsInfo toEntitySns() {
         return SnsInfo.builder()
+                .id(userId)
                 .snsName(snsName)
                 .snsType(snsType)
                 .snsImg(snsImg)

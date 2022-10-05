@@ -1,11 +1,7 @@
 package emyo.jamin.jej.crefoilo.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -22,8 +18,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SnsInfo extends BaseTimeEntity {
     @Id
-    @Column(name = "sns_info_id")
-    private Long id;
+    @Column(name = "user_id", length = 255)
+    private String id;
 
     @Column(name = "sns_type", length = 45)
     private String snsType;
