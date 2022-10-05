@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 목록</title>
+
+    <link rel="stylesheet" href="../static/css/portfolioListStyle.css">
+    <!-- fontawesome - 아이콘 -->
+    <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>CreFoilo</h1>
+        <a>로그아웃</a>
+    </header>
+    <content>
+        <div class="content-header">
+            <p>내 포트폴리오 목록</p>
+            <a href="#none"><i class="fa-solid fa-file-circle-plus"></i></a>
+        </div>
+
+        <!-- 여기 div클래스를 데이터를 받아와서 돌리면 됨 -->
+        <div class="portfolio-preview">
+            <i class="fa-solid fa-file-lines"></i>
+
+            <div class="text-box">
+                <a href="#none" class="portfolio-name">임효현의 포트폴리오</a>
+                <p class="date-update">
+                    <span>2022-10-05 15:06</span>
+                    <span>update</span>
+                </p>
+            </div>
+
+            <div class="button-box">
+                <a href="#refernce">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                    <span class="tooltip">수정</span>
+                </a>
+                <a href="#copy">
+                    <i class="fa-regular fa-copy"></i>
+                    <span class="tooltip">복사</span>
+                </a>
+                <a href="#print">
+                    <i class="fa-solid fa-print"></i>
+                    <span class="tooltip">인쇄</span>
+                </a>
+                <a href="#delete">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="tooltip">삭제</span>
+                </a>
+            </div>
+        </div>
+    </content>
+</body>
+</html>
