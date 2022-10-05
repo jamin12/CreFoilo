@@ -5,16 +5,22 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import lombok.Getter;
 
 @Getter
 @MappedSuperclass
 public class BaseTimeEntity {
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = true)
     private LocalDateTime createdDate;
 
-    @Column(name = "updated_at")
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = true)
     private LocalDateTime modifiedDate;
 
 }

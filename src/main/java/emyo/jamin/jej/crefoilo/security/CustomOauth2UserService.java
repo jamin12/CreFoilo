@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import emyo.jamin.jej.crefoilo.entity.SnsInfo;
-import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.entity.Users;
 import emyo.jamin.jej.crefoilo.repository.SnsInfoRepository;
 import emyo.jamin.jej.crefoilo.repository.UserRepository;
 
@@ -60,7 +60,7 @@ public class CustomOauth2UserService
         userNameAttributeName,
         oAuth2User.getAttributes());
 
-    User user = saveOrUpdate(attributes);
+    Users user = saveOrUpdate(attributes);
     httpSession.setAttribute("user", new SessionUser(user));
     System.out.println(attributes.toString());
     return new DefaultOAuth2User(
@@ -71,16 +71,16 @@ public class CustomOauth2UserService
 
   // 혹시 이미 저장된 정보라면, update 처리
   @Transactional
-  private User saveOrUpdate(OauthAttributes attributes) {
-    List<User> user = userRepository.getUserByEmail(attributes.getUserEmail());
+  private Users saveOrUpdate(OauthAttributes attributes) {
+    List<Users> user = userRepository.getUserByEmail(attributes.getUserEmail());
     List<SnsInfo> snsinfo = snsInfoRepository.getUserByEmail(attributes.getUserEmail());
 
     if (user.isEmpty()) {
-      User createdUser = userRepository.save(attributes.toEntity());
+      Users createdUser = userRepository.save(attributes.toEntity());
       snsInfoRepository.save(attributes.toEntitySns());
       return createdUser;
     }
-    User updatedUser = userRepository.save(user.get(0).update(attributes.getUserEmail()));
+    Users updatedUser = userRepository.save(user.get(0).update(attributes.getUserEmail()));
     snsInfoRepository
         .save(snsinfo.get(0).update(attributes.getUserEmail(), attributes.getSnsName(), attributes.getSnsImg()));
     return updatedUser;

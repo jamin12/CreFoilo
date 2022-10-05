@@ -27,7 +27,7 @@ public class SnsInfo extends BaseTimeEntity {
     @Column(name = "sns_name", length = 45)
     private String snsName;
 
-    @Column(name = "sns_img", length = 45)
+    @Column(name = "sns_img", length = 255)
     private String snsImg;
 
     @Column(name = "sns_email", length = 45)

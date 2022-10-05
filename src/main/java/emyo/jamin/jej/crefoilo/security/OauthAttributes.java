@@ -4,7 +4,7 @@ import java.util.Map;
 
 import emyo.jamin.jej.crefoilo.entity.Role;
 import emyo.jamin.jej.crefoilo.entity.SnsInfo;
-import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.entity.Users;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -55,8 +55,8 @@ public class OauthAttributes {
      * 
      * @return {User}
      */
-    public User toEntity() {
-        return User.builder()
+    public Users toEntity() {
+        return Users.builder()
                 .id(userId)
                 .userEmail(userEmail)
                 .role(Role.GUEST)

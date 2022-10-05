@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import emyo.jamin.jej.crefoilo.entity.QUser;
-import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.entity.QUsers;
+import emyo.jamin.jej.crefoilo.entity.Users;
 
 public class UserDslImpl implements UserDsl {
 
@@ -21,8 +21,8 @@ public class UserDslImpl implements UserDsl {
     }
 
     @Override
-    public List<User> getUserByEmail(String email) {
-        QUser quser = QUser.user;
+    public List<Users> getUserByEmail(String email) {
+        QUsers quser = QUsers.users;
 
         return jpaQueryFactory.select(quser).from(quser).where(quser.userEmail.eq(email)).fetch();
     }

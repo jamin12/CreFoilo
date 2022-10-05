@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity {
+public class Users extends BaseTimeEntity {
     @Id
     @Column(name = "user_id", length = 255)
     private String id;
@@ -30,7 +30,7 @@ public class User extends BaseTimeEntity {
     @Column(name = "user_role")
     private Role role;
 
-    public User update(String userEmail) {
+    public Users update(String userEmail) {
         this.userEmail = userEmail;
         return this;
     }
