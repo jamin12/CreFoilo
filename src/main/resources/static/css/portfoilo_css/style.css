@@ -1,0 +1,11 @@
+@import url(../mainStyle.css);
+
+@import url(../portfoilo_css/pfHome.css);
+@import url(../portfoilo_css/pfLanguage.css);
+
+
+section > .main-title{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
