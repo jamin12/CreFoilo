@@ -1,0 +1,39 @@
+package emyo.jamin.jej.crefoilo.entity;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "portfolio")
+public class Portfoilo extends BaseTimeEntity {
+
+    @Id
+    @Column(name = "portfolio_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long portfolioId; // '포트폴리오 ID',
+
+    @Column(name = "user_id", nullable = false, length = 255)
+    private String userId; // '회원 ID',
+
+    @Column(name = "portfoilo_home_type", nullable = false)
+    private Integer portfoiloHomeType; // '홈 화면 type',
+
+    @Column(name = "portfoilo_home_color", nullable = false, length = 124)
+    private String portfoiloHomeColor; // '홈 화면 color',
+
+    @Column(name = "portfoilo_home_text", nullable = false, length = 124)
+    private String portfoiloHomeText; // '홈화면 text',
+}
