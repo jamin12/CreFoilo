@@ -19,8 +19,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "document")
-public class Document extends BaseTimeEntity {
+@Table(name = "document_url")
+public class DocumentUrl extends BaseTimeEntity {
 
     @Id
     @Column(name = "document_id", nullable = false)

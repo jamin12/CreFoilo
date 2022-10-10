@@ -31,6 +31,9 @@ public class Language extends BaseTimeEntity {
     @Column(name = "lang_name", length = 45, nullable = true)
     private String langName; // '언어 이름',
 
-    @Column(name = "lang_introduce", columnDefinition = "TEXT", nullable = true)
-    private String langIntroduce; // '언어 배운점 설명',
+    @Column(name = "lang_detail", columnDefinition = "TEXT", nullable = true)
+    private String langDetail; // '언어 배운점 설명',
+
+    @Column(name = "lang_frequency", nullable = true)
+    private Integer langFrequency; // '언어 배운점 설명',
 }

@@ -13,7 +13,7 @@ public enum ErrorCode {
     /* 401 UNAUTHORIZED : 인증되지 않은 사용자 */
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저 정보를 찾을 수 없습니다"),
-
+    POST_NOT_FOUND(HttpStatus.BAD_REQUEST, "포스트 없음"),
     /* 500 Internal Server Error 서버가 처리 방법을 모르는 상황이 발생했습니다. */
     INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버에러"),
     ;

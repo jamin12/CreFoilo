@@ -32,4 +32,7 @@ public class ProjectImg extends BaseTimeEntity {
 
     @Column(name = "project_img_url", nullable = false, length = 255)
     private String projectImgUrl; // '프로젝트 이미지 url',
+
+    @Column(name = "project_img_sequence", nullable = false)
+    private Integer projectImgSequence; // '프로젝트 이미지 url',
 }
