@@ -1,0 +1,51 @@
+#otherSkill > .contents{
+    transform: translate(-50%, -40%);
+    height: 70vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(minmax(100px, auto));
+    row-gap: 20px;
+    column-gap: 10%;
+    align-content: start;
+    overflow: hidden;
+}
+
+.contents > .others{
+    background-color: var(--gray100);
+}
+.others > h2{
+    font-size: 25px;
+    font-weight: 400;
+    background-color: red;
+    position: relative;
+    display: flex;
+}
+.others > h2::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    height: 120%;
+    width: 4px;
+    background-color: var(--gray800);
+    transform: translateY(-10%);
+}
+
+
+/* 더보기 버튼 */
+.btn-open{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 50px;
+    border: none;
+    background-color: var(--gray50);
+    font-size: 30px;
+    color: var(--blue);
+    transition: 0.3s;
+}
+.btn-open:hover{
+    background-color: var(--blue);
+    color: var(--gray50);
+}
