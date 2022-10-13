@@ -1,4 +1,4 @@
-package emyo.jamin.jej.crefoilo.util;
+package emyo.jamin.jej.crefoilo.utils;
 
 import org.springframework.http.HttpStatus;
 

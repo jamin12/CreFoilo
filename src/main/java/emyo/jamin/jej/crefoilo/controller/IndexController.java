@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import emyo.jamin.jej.crefoilo.security.SessionUser;
-import emyo.jamin.jej.crefoilo.util.CustomException;
-import emyo.jamin.jej.crefoilo.util.ErrorCode;
-import emyo.jamin.jej.crefoilo.util.ErrorResponse;
+import emyo.jamin.jej.crefoilo.utils.CustomException;
+import emyo.jamin.jej.crefoilo.utils.ErrorCode;
+import emyo.jamin.jej.crefoilo.utils.ErrorResponse;
 
 @Controller
 public class IndexController {

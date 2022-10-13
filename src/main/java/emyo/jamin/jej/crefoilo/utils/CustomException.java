@@ -1,4 +1,4 @@
-package emyo.jamin.jej.crefoilo.util;
+package emyo.jamin.jej.crefoilo.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

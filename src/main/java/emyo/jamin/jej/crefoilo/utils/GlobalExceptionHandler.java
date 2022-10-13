@@ -1,4 +1,4 @@
-package emyo.jamin.jej.crefoilo.util;
+package emyo.jamin.jej.crefoilo.utils;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
