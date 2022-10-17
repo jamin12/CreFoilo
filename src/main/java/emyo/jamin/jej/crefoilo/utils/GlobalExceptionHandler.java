@@ -1,7 +1,5 @@
-package emyo.jamin.jej.crefoilo.util;
+package emyo.jamin.jej.crefoilo.utils;
 
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,12 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    // @ExceptionHandler(value = { ConstraintViolationException.class,
-    // DataIntegrityViolationException.class})
-    // protected ResponseEntity<ErrorResponse> handleDataException() {
-    // log.error("handleDataException throw Exception : {}", DUPLICATE_RESOURCE);
-    // return ErrorResponse.toResponseEntity(DUPLICATE_RESOURCE);
-    // }
+    @ExceptionHandler(value = { Exception.class })
+    protected ResponseEntity<ErrorResponse> handleDataException(Exception e) {
+        log.error("handleDataException throw Exception : {}", e.getMessage());
+        throw new CustomException(ErrorCode.INTERNAL_ERROR);
+    }
 
     // 커스텀 에러만 받는 함수
     @ExceptionHandler(value = { CustomException.class })
