@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import emyo.jamin.jej.crefoilo.entity.Language;
+import emyo.jamin.jej.crefoilo.entity.QLangSkill;
 import emyo.jamin.jej.crefoilo.entity.QLanguage;
 import emyo.jamin.jej.crefoilo.entity.QPortfolio;
 
@@ -24,7 +25,7 @@ public class LanguageDslImpl implements LanguageDsl {
      * 포트폴리오 아이디로 lang 조회
      * 
      * @param portfolioId
-     * @return
+     * @return List<Language>
      */
     @Override
     public List<Language> findByPortfolioId(Long portfolioId) {
@@ -35,4 +36,5 @@ public class LanguageDslImpl implements LanguageDsl {
                 .where(qLang.portfolioId.eq(portfolioId))
                 .fetch();
     }
+
 }
