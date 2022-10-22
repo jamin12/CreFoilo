@@ -7,6 +7,6 @@ import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.repository.dslmodel.PortfolioDsl;
 
 @Repository
-public interface PortfolioRepository extends JpaRepository<Portfolio, Long>, PortfolioDsl{
-    
+public interface PortfolioRepository extends JpaRepository<Portfolio, Long>, PortfolioDsl {
+
 }

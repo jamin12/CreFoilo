@@ -13,6 +13,9 @@ import emyo.jamin.jej.crefoilo.entity.QLangSkill;
 import emyo.jamin.jej.crefoilo.entity.QLanguage;
 import emyo.jamin.jej.crefoilo.entity.QPortfolio;
 
+/**
+ * @author 강경민
+ */
 public class LanguageDslImpl implements LanguageDsl {
     @Autowired
     private JPAQueryFactory jpaQueryFactory;

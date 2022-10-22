@@ -5,6 +5,6 @@ import java.util.List;
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
 
 public interface PortfolioDsl {
-    List<Portfolio> ByUserId();
+    List<Portfolio> findByUserId(String userId);
 
 }

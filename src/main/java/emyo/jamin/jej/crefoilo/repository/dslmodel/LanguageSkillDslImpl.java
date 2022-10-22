@@ -12,6 +12,9 @@ import emyo.jamin.jej.crefoilo.entity.LangSkill;
 import emyo.jamin.jej.crefoilo.entity.QLangSkill;
 import emyo.jamin.jej.crefoilo.entity.QLanguage;
 
+/**
+ * @author 강경민
+ */
 public class LanguageSkillDslImpl implements LanguageSkillDsl {
 
     @Autowired

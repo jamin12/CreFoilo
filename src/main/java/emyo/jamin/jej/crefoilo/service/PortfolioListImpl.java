@@ -13,7 +13,6 @@ import emyo.jamin.jej.crefoilo.repository.PortfolioRepository;
 /**
  * @author 강민진
  */
-
 @Service
 public class PortfolioListImpl implements PortfolioList {
 
@@ -21,40 +20,16 @@ public class PortfolioListImpl implements PortfolioList {
     private PortfolioRepository portfolioRepository;
 
     /**
-    * createPortfolio 
-    * @return 
-    */
-    public void createPortfolio(){
-
-    }
-
-    /**
-    * updatePortfolio 
-    * @return 
-    */
-    public void updatePortfolio(){
-
-    }
-
-    /**
-     * deletePortfolio
-     * @return 
-     */
-    public void deletePortfolio(){
-
-    }
-
-    /**
-     * findPortfolioList
+     * 포트폴리오 리스트 조회
+     * 
      * @param portfolio_id 포트폴리오아이디
-     * @return 
+     * @return
      */
-
     public void findPortfolioList() {
-        List<Portfolio> portfolio = portfolioRepository.ByUserId();
+        List<Portfolio> portfolio = portfolioRepository.findByUserId("asdf");
         List<PortfolioDto> portfoliolist = new ArrayList<>();
 
-        for (Portfolio portfolio1 : portfolio){
+        for (Portfolio portfolio1 : portfolio) {
             PortfolioDto portfolioDto = new PortfolioDto();
             portfolioDto.setPortfolioName(portfolio1.getPortfolioName());
             portfoliolist.add(portfolioDto);
@@ -62,7 +37,5 @@ public class PortfolioListImpl implements PortfolioList {
 
         System.out.println();
     }
-        
-        
-    }
 
+}
