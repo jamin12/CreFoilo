@@ -3,6 +3,7 @@ package emyo.jamin.jej.crefoilo.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "sns_info")
 public class SnsInfo extends BaseTimeEntity {
     @Id
     @Column(name = "user_id", length = 255)

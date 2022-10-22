@@ -71,8 +71,8 @@ public class OauthAttributes {
     public SnsInfo toEntitySns() {
         return SnsInfo.builder()
                 .id(userId)
-                .snsName(snsName)
                 .snsType(snsType)
+                .snsName(snsName)
                 .snsImg(snsImg)
                 .snsEmail(userEmail)
                 .build();

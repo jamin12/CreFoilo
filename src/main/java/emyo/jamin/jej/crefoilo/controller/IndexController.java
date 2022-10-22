@@ -14,22 +14,10 @@ import emyo.jamin.jej.crefoilo.utils.ErrorResponse;
 
 @Controller
 public class IndexController {
-    @Autowired
-    private HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model) {
-        return "index";
+        return "login";
     }
 
-    @GetMapping("/test")
-    public String callback(Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
-        if (user != null) {
-            model.addAttribute("userName", user.getSnsName());
-            System.out.println(user.getUserEmail());
-        }
-        return "callback";
-    }
 }
