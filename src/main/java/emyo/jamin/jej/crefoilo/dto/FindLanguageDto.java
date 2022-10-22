@@ -1,5 +1,7 @@
 package emyo.jamin.jej.crefoilo.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindLanguageDto {
-    Long langId;
-    String langName;
-    String langDetail;
-    int langFrequency;
+    private Long langId;
+    private String langName;
+    private String langDetail;
+    private int langFrequency;
+    private List<String> langSkillName;
 }
