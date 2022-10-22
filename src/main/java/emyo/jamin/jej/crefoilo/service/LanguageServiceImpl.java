@@ -54,15 +54,4 @@ public class LanguageServiceImpl implements LanguageService {
         return findedLangDtoList;
     }
 
-    /**
-     * portfolio의 Language 페이지 language Skill 조회
-     * 
-     * @param langId 언어 아이디
-     * @return
-     */
-    @Override
-    public void findLanguageSkill(Long langId) {
-
-    }
-
 }

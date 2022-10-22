@@ -7,6 +7,4 @@ import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 
 public interface LanguageService {
     List<FindLanguageDto> findLanguage(Long portfolioId);
-
-    void findLanguageSkill(Long langId);
 }
