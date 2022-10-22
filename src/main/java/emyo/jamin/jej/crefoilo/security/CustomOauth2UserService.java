@@ -74,13 +74,14 @@ public class CustomOauth2UserService
   // 혹시 이미 저장된 정보라면, update 처리
   @Transactional
   private SessionDto saveOrUpdate(OauthAttributes attributes) {
-    List<Users> user = userRepository.getUserByEmail(attributes.getUserEmail());
-    List<SnsInfo> snsinfo = snsInfoRepository.getUserByEmail(attributes.getUserEmail());
+    List<Users> user = userRepository.findByEmail(attributes.getUserEmail());
+    List<SnsInfo> snsinfo = snsInfoRepository.findByEmail(attributes.getUserEmail());
     SessionDto sessionDto = new SessionDto();
 
     if (user.isEmpty()) {
       Users createdUser = userRepository.save(attributes.toEntity());
       SnsInfo createdSnsInfo = snsInfoRepository.save(attributes.toEntitySns());
+      sessionDto.setUserId(createdUser.getId());
       sessionDto.setSnsType(createdSnsInfo.getSnsType());
       sessionDto.setSnsName(createdSnsInfo.getSnsName());
       sessionDto.setUserEmail(createdUser.getUserEmail());
@@ -89,6 +90,7 @@ public class CustomOauth2UserService
     Users updatedUser = userRepository.save(user.get(0).update(attributes.getUserEmail()));
     SnsInfo updatedSnsInfo = snsInfoRepository
         .save(snsinfo.get(0).update(attributes.getUserEmail(), attributes.getSnsName(), attributes.getSnsImg()));
+    sessionDto.setUserId(updatedUser.getId());
     sessionDto.setSnsType(updatedSnsInfo.getSnsType());
     sessionDto.setSnsName(updatedSnsInfo.getSnsName());
     sessionDto.setUserEmail(updatedUser.getUserEmail());

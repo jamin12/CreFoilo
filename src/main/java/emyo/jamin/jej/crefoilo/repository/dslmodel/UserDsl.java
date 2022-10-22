@@ -5,5 +5,5 @@ import java.util.List;
 import emyo.jamin.jej.crefoilo.entity.Users;
 
 public interface UserDsl {
-    List<Users> getUserByEmail(String email);
+    List<Users> findByEmail(String email);
 }

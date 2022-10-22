@@ -21,7 +21,7 @@ public class UserDslImpl implements UserDsl {
     }
 
     @Override
-    public List<Users> getUserByEmail(String email) {
+    public List<Users> findByEmail(String email) {
         QUsers quser = QUsers.users;
 
         return jpaQueryFactory.select(quser).from(quser).where(quser.userEmail.eq(email)).fetch();

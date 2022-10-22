@@ -1,16 +1,11 @@
 package emyo.jamin.jej.crefoilo.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
 @Builder
@@ -43,15 +39,11 @@ public class Project extends BaseTimeEntity {
     @Column(name = "proejct_intro", nullable = true, length = 124)
     private String proejctIntro; // '프로젝트 한줄 설명',
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "project_str_date", nullable = true)
-    private Date projectStrDate; // '시작 날짜',
+    private String projectStrDate; // '시작 날짜',
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "project_end_date", nullable = true)
-    private Date projectEndDate; // '마감 날짜',
+    private String projectEndDate; // '마감 날짜',
 
     @Column(name = "project_sub_title", nullable = true, length = 45)
     private String projectSubTitle; // '서브 타이틀',

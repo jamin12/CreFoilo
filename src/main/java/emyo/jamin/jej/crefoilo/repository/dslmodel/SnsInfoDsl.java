@@ -5,5 +5,5 @@ import java.util.List;
 import emyo.jamin.jej.crefoilo.entity.SnsInfo;
 
 public interface SnsInfoDsl {
-    List<SnsInfo> getUserByEmail(String email);
+    List<SnsInfo> findByEmail(String email);
 }

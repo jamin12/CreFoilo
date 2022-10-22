@@ -21,7 +21,7 @@ public class SnsInfoDslImpl implements SnsInfoDsl {
     }
 
     @Override
-    public List<SnsInfo> getUserByEmail(String email) {
+    public List<SnsInfo> findByEmail(String email) {
         QSnsInfo qsnsInfo = QSnsInfo.snsInfo;
         return jpaQueryFactory.select(qsnsInfo).from(qsnsInfo).where(qsnsInfo.snsEmail.eq(email)).fetch();
 

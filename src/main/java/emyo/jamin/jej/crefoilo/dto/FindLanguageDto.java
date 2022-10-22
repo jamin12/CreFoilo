@@ -9,9 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SessionDto {
-    private String userId;
-    private String snsType;
-    private String snsName;
-    private String userEmail;
+public class FindLanguageDto {
+    Long langId;
+    String langName;
+    String langDetail;
+    int langFrequency;
 }
