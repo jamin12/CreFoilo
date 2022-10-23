@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import emyo.jamin.jej.crefoilo.entity.Language;
-import emyo.jamin.jej.crefoilo.entity.QLangSkill;
 import emyo.jamin.jej.crefoilo.entity.QLanguage;
 import emyo.jamin.jej.crefoilo.entity.QPortfolio;
 

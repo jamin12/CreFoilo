@@ -16,8 +16,6 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.mysql.cj.Session;
-
 import emyo.jamin.jej.crefoilo.dto.SessionDto;
 import emyo.jamin.jej.crefoilo.entity.SnsInfo;
 import emyo.jamin.jej.crefoilo.entity.Users;
