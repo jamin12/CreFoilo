@@ -17,8 +17,13 @@
         crossorigin="anonymous"></script>
     <!-- fontawesome - 아이콘 -->
     <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
+    <!-- 제이쿼리 -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <link rel="stylesheet" href="../static/css/portfoilo_css/style.css">
+
+    <!-- otherSkill js -->
+    <script src="../static/js/portfolio_js/otherSkill.js"></script>
 </head>
 
 <body>
@@ -53,12 +58,12 @@
         </div>
     </section> -->
 
-    <!-- <section id="languageSkill" style="background-color: var(--gray100);">
+    <section id="languageSkill" style="background-color: var(--gray100);">
         <h1 class="main-title">LANGUAGE SKILL</h1>
 
-        <div class="contents"> -->
+        <div class="contents">
             <!-- pie chart-->
-            <!-- <div id="dChart"></div>
+            <div id="dChart"></div>
 
             <div class="language-info">
                 <h2 class="title">javascript</h2>
@@ -85,12 +90,12 @@
                 </ul>
             </div>
         </div>
-    </section> -->
+    </section>
 
-    <section id="otherSkill">
+    <section id="otherSkill hide">
         <h2 class="main-title">OTHER SKILL</h2>
         
-        <div class="contents">
+        <div class="contents close">    <!-- class가 close면 닫힘 open이면 열림 -->
             <div class="others">
                 <h2>Collaboration, Document</h2>
                 <ul>
@@ -162,6 +167,7 @@
             </div>
 
             <button class="btn-open"><i class="fa-solid fa-angle-down"></i></button>
+            <button class="btn-close"><i class="fa-solid fa-angle-up"></i></button>
         </div>
     </section>
 

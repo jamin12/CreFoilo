@@ -4,10 +4,12 @@
 @import url(../portfoilo_css/pfLanguage.css);
 @import url(../portfoilo_css/phOther.css);
 
+
+
 section{
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 section > .main-title{
@@ -21,7 +23,6 @@ section > .main-title{
 section > .contents{
     width: 90%;
     height: 80vh;
-    /* background-color: yellow; */
     position: absolute;
     top: 50%;
     left: 50%;
