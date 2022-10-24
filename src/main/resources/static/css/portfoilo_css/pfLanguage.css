@@ -8,6 +8,12 @@
     height: 100%;
 }
 
+#dChart ul{
+    list-style: none;
+}
+
+
+
 .language-info{
     background-color: var(--gray50);
     width: 47%;
@@ -49,13 +55,15 @@
 .language-info > .framework-box > p:hover{
     color: var(--blue);
 }
-
 .language-info > .info-box{
-    width: 99%;
-    float: right;
+    /* width: 50%; */
+    /* float: left; */
     max-height: 70%;
     overflow-y: scroll;
     margin: 20px auto 0 auto;
+    display: inline-block;
+    list-style: none;
+    padding-left: 0;
 }
 .info-box::-webkit-scrollbar{
     width: 5px;
@@ -71,7 +79,7 @@
     margin-bottom: 0;
 }
 .info-box > li{
-    margin: 5px 0;
+    margin: 7px 0;
 }
 .info-box > li::before{
     content: '✔️ ';
