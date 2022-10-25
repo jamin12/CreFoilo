@@ -43,5 +43,5 @@ public class Portfolio extends BaseTimeEntity {
     private String portfolioHomeText; // '홈화면 text',
 
     @Column(name = "portfolio_home_img", nullable = true, length = 255)
-    private String portfolioHomeImg; // '홈화면 text',
+    private String portfolioHomeImg; // '홈화면 img',
 }
