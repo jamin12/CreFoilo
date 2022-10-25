@@ -1,2 +1,60 @@
-@import url(../css/mainStyle.css); 
+@import url(../mainStyle.css); 
+
+body{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.ex-templates{
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+}
+
+/* .ex-template1:nth-child(2){
+    background-color: red;
+} */
+
+.ex-templates > div{
+    display: inline-block;
+    place-content: center;
+    position: relative;
+    background-color: wheat;
+    text-align: center;
+    /* height: 100%; */
+    
+}
+
+.ex-template1{
+    background-color: green;
+    text-align: center;
+    margin: 0 auto;
+
+    padding: 200px;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+}
+
+
+button {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    margin: -50px 0 0 -50px;
+    top: 50%;
+    left: 50%;
+}
+.ex-templates > div > p{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    margin: 50px 0 0 -50px;
+    top: 50%;
+    left: 50%;
+}
+
 
