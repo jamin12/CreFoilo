@@ -1,7 +1,6 @@
 package emyo.jamin.jej.crefoilo.repository.dslmodel;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -9,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import emyo.jamin.jej.crefoilo.entity.QUser;
-import emyo.jamin.jej.crefoilo.entity.User;
+import emyo.jamin.jej.crefoilo.entity.QUsers;
+import emyo.jamin.jej.crefoilo.entity.Users;
 
 public class UserDslImpl implements UserDsl {
 
@@ -22,10 +21,10 @@ public class UserDslImpl implements UserDsl {
     }
 
     @Override
-    public List<User> getUserByEmail(String email) {
-        QUser quser = QUser.user;
+    public List<Users> findByEmail(String email) {
+        QUsers quser = QUsers.users;
 
-        return jpaQueryFactory.select(quser).from(quser).where(quser.email.eq(email)).fetch();
+        return jpaQueryFactory.select(quser).from(quser).where(quser.userEmail.eq(email)).fetch();
     }
 
 }
