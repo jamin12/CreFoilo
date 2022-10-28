@@ -18,6 +18,8 @@
     <!-- fontawesome - 아이콘 -->
     <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
 
+    <!-- 제이쿼리 -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <!-- TODO: Spring 실행시에는 static이 시작지점이므로 프론트앤드가 끝나면 ../static은 지워야함 -->
     <link rel="stylesheet" href="../static/css/portfoilo_css/style.css">
@@ -26,10 +28,18 @@
     <script src="../static/js/portfolio_js/otherSkill.js"></script>
 
     <!-- slide slick -->
-    <script src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <script type="text/javascript" src="../static/js/portfolio_js/sliderSlick.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- <script type="text/javascript" src="../static/js/portfolio_js/sliderSlick.js"></script> -->
+    <script>
+        $(document).ready(function () {
+            $('.carousel').slick({
+                centerMode: true,
+                centerPadding: '60px',
+                slidesToShow: 3,
+            });
+        });
+    </script>
 
 </head>
 
@@ -184,8 +194,7 @@
 
         <div class="contents">
             <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
-            <div class="slider">
-
+            <div class="carousel">
                 <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
                 <div class="flip">
                     <div class="card">
@@ -516,12 +525,25 @@
 
 
 
-    <!-- 제이쿼리 -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
     <!--Echart-->
     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
     <script type="text/javascript" src="../static/js/portfolio_js/chartView.js"></script>
 
+    <!-- slick -->
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+        });
+    </script>
 </body>
 
 </html>
