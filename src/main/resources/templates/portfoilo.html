@@ -37,6 +37,12 @@
 </head>
 
 <body>
+    <section id="Home">
+        <h2 class="main-title"></h2>
+
+        <div class="contents">
+        </div>
+    </section>
     <nav class="navbar fixed-top" style="background-color: var(--gray50);">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">EMYO님의 포트폴리오</a>
@@ -54,19 +60,14 @@
             </div>
         </div>
     </nav>
-    <!-- <section id="Home"
-        <h2 class="main-title"></h2>
 
-        <div class="contents">
-        </div>
-    </section> -->
 
-    <!-- <section id="aboutMe1">
+    <section id="aboutMe1">
         <h2 class="main-title">ABOUT ME</>
 
         <div class="contents">
         </div>
-    </section> -->
+    </section>
 
     <section id="languageSkill" style="background-color: var(--gray100);">
         <h1 class="main-title">LANGUAGE SKILL</h1>
@@ -506,12 +507,20 @@
         </div>
     </section>
 
-    <section id="contect">
-        <h2 class="main-title"></h2>
+    <div id="contact">
+        <h2 class="main-title">CONTACT</h2>
 
         <div class="contents">
+            <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
+            <div class="contact-item">
+                <img class="icon" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"/>
+                <!-- TODO(이묘): 서버에서 받은 경로와 같은 경로 집어넣어주면 됩니다. -->
+                <span>
+                    <a href="https://github.com/">https://github.com/</a>
+                </span>
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- 기본 폼 -->
     <!-- <section id="">
