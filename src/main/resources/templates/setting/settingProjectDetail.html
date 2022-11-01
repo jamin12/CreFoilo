@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/setting/settingProjectDetail.css">
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <section id="project">
+        <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
+        <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
+        <div class="card">
+            <!-- 앞면 -->
+            <div id="projectCardFront" class="front">
+                <button class="add_project_representative_img">
+                    <img src="../../static/img/plus.png" alt="project_representative_img">
+                </button>
+                <!-- TODO: 이미지가 들어오면 src와 style을 바꿔줘야함 -->
+                <img src="https://cdn.pixabay.com/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"
+                    alt="project_representative_img">
+                <hr>
+                <input type="text" class="project_title" name="project_title" placeholder="프로젝트 제목" />
+                <textarea class="project_intro" name="project_intro" placeholder="프로젝트 소개"></textarea>
+                <div>
+                    <input type="date" name="start_date" class="project_period">
+                    <input type="date" name="end_date" class="project_period">
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <!-- 뒷면 -->
+            <div class="back">
+                <h4 class="title">나의 기여도</h4>
+                <textarea class="project_contribution" name="project_intro" placeholder="기여도"></textarea>
+                <h4 class="title">기술 스텍</h4>
+                <ul class="stack">
+                    <input type="text" class="technical_stack" name="technical_stack" placeholder="기술 스택 이름" />
+                </ul>
+                <div class="icon-wrap">
+                    <div class="icon-box">
+                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                        <img src="../../static/img/plus.png" alt="porjectImg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="divline">
+        <span>프로젝트 상세 설명</span>
+        <hr>
+    </div>
+    <div class="project_imgs">
+        <div class="add_project_img_card">
+            <!-- TODO: 이미지 추가하기 -->
+            <button class="add_img_btn" onclick="">
+                <img src="../../static/img/plus.png" alt="porjectImg">
+            </button>
+        </div>
+        <div class="project_img_card">
+            <img src="https://cdn.pixabay.com/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"
+                alt="porjectImg">
+        </div>
+        <div class="project_img_card">
+            <img src="https://cdn.pixabay.com/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"
+                alt="porjectImg">
+        </div>
+        <div class="project_img_card">
+            <img src="https://cdn.pixabay.com/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"
+                alt="porjectImg">
+        </div>
+        <div class="project_img_card">
+            <img src="https://cdn.pixabay.com/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"
+                alt="porjectImg">
+        </div>
+    </div>
+    <div id="editor">
+
+    </div>
+    <script>
+        const Editor = toastui.Editor;
+
+        const editor = new Editor({
+            el: document.querySelector('#editor'),
+            height: '500px',
+            initialEditType: 'markdown',
+            previewStyle: 'vertical'
+        });
+
+        editor.getMarkdown();
+    </script>
+    <!-- TODO: 버튼 눌렀을 때 작동하게 form태그 걸어야함 -->
+    <div class="save_button">
+        <button onclick="">저장</button>
+    </div>
+</body>
+
+</html>
