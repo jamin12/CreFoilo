@@ -1,6 +1,7 @@
 @import url(../mainStyle.css);
 
 @import url(../portfoilo_css/pfHome.css);
+@import url(../portfoilo_css/pfAboutme.css);
 @import url(../portfoilo_css/pfLanguage.css);
 @import url(../portfoilo_css/phOther.css);
 @import url(../portfoilo_css/pfProject.css);
@@ -14,7 +15,7 @@ section{
 }
 
 section > .main-title{
-    padding-top: 80px;
+    padding-top: 100px;
     padding-bottom: 20px;
     text-align: center;
     font-size: 30px;
