@@ -1,0 +1,308 @@
+@import url("../mainStyle.css");
+
+body {
+    width: 100%;
+    height: 120%;
+    background-color: white;
+}
+
+#project {
+    position: absolute;
+    top: 45%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    justify-content: space-evenly;
+    width: 80%;
+    height: 56%;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    border-radius: 15px;
+}
+
+.card {
+    width: 300px;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+    margin-left: 5px;
+    transition: .5s;
+    flex-shrink: 0;
+    border: none;
+}
+
+.front,
+.back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--gray200);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.front>img {
+    width: 100%;
+    height: 50%;
+    border: none;
+    object-fit: cover;
+    /* display: none; */
+}
+
+.front>hr {
+    width: 100%;
+    margin-top: 5px;
+    border: solid 1px;
+}
+.add_project_representative_img{
+    width: 60%;
+    height: 40%;
+    background-color: var(--gray200);
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+.add_project_representative_img img{
+    width: 100%;
+    height: 100%;
+}
+.project_title{
+    height: 9%;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin: 5px 0 5px 0;
+}
+.project_intro {
+    height: 33%;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin: 5px 0 5px 0;
+}
+#projectTitle {
+    font-weight: bold;
+    width: 80%;
+    text-align: center;
+    font-size: 23px;
+    margin-top: 5px;
+    text-overflow: ellipsis;
+    /* width넘기면 말줄임표 */
+}
+
+#projectAbout {
+    width: 80%;
+    font-size: 13px;
+    text-align: center;
+    color: var(--gray800);
+    -webkit-line-clamp: 3;
+
+    /* 3번째 줄 까지 보이면서 말줄임표 */
+}
+
+#projectDate {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    color: var(--gray800);
+}
+
+
+
+/**
+    나의 기여도
+*/
+.title{
+    position: relative;
+    top: 20px;
+    right: 90px;
+}
+
+.project_contribution {
+    height: 33%;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin: 30px 0 5px 0;
+}
+
+/**
+    기술 스택
+*/
+.stack {
+    width: 80%;
+    height: 80%;
+    position: relative;
+    overflow: scroll;
+}
+
+.stack button {
+    position: relative;
+    background-color: var(--gray200);
+    width: 10%;
+    height: 10%;
+    left: 50%;
+    border: none;
+    transform: translate(-50%, 0);
+    margin-top: 10px;
+}
+
+.stack img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/**
+    input box 설정
+*/
+
+.technical_stack {
+    height: 9%;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin: 30px 0 5px 0;
+}
+
+
+/**
+    본문 구분선
+*/
+.divline {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 76%;
+    justify-self: flex-start;
+}
+
+.divline>hr {
+    width: 98%;
+    height: 0.2%;
+    background-color: var(--gray200);
+    border: none;
+    position: relative;
+    top: 2.6%;
+}
+
+.divline>span {
+    margin-left: 40px;
+    width: 15%;
+    display: inline;
+    font-size: 25px;
+}
+
+
+
+
+/* 아이콘 */
+.icon-wrap {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid var(--gray600);
+}
+
+.icon-box {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-box i {
+    padding: 5px;
+    margin: 0 10px;
+    color: var(--gray600);
+    transition: 0.3s;
+}
+
+.icon-box i:hover {
+    color: var(--gray900);
+}
+
+.icon-box img {
+    width: 10%;
+}
+
+/**
+    프로젝트 이미지
+*/
+.project_imgs {
+    position: absolute;
+    top: 90%;
+    right: 50%;
+    transform: translate(50%, -15%);
+    justify-content: left;
+    width: 94%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.project_img_card {
+    width: 400px;
+    height: 100%;
+    border: 1px;
+    margin-right: 25px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    transition: .5s;
+    flex-shrink: 0;
+}
+
+.add_project_img_card {
+    width: 230px;
+    height: 100%;
+    border: 1px;
+    margin-right: 40px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    transition: .5s;
+    flex-shrink: 0;
+}
+
+.add_img_btn {
+    width: 230px;
+    height: 100%;
+}
+
+.add_img_btn img{
+    width: 20%;
+    height: 19%;
+    
+
+}
+
+.project_img_card>img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+/**
+    markdown 에디터
+*/
+#editor {
+    position: absolute;
+    width: 100%;
+    top: 130%;
+    background-color: white;
+}
