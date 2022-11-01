@@ -28,18 +28,11 @@
     <script src="../static/js/portfolio_js/otherSkill.js"></script>
 
     <!-- slide slick -->
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <!-- <script type="text/javascript" src="../static/js/portfolio_js/sliderSlick.js"></script> -->
-    <script>
-        $(document).ready(function () {
-            $('.carousel').slick({
-                centerMode: true,
-                centerPadding: '60px',
-                slidesToShow: 3,
-            });
-        });
-    </script>
 
 </head>
 
@@ -513,6 +506,13 @@
         </div>
     </section>
 
+    <section id="contect">
+        <h2 class="main-title"></h2>
+
+        <div class="contents">
+        </div>
+    </section>
+
     <!-- 기본 폼 -->
     <!-- <section id="">
         <h2 class="main-title"></h2>
@@ -530,19 +530,41 @@
     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
     <script type="text/javascript" src="../static/js/portfolio_js/chartView.js"></script>
 
-    <!-- slick -->
-    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+
+    <script>
+        $(function () {
             $('.carousel').slick({
-                dots: true,
-                infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                adaptiveHeight: true
+                slide: 'div',        //슬라이드 되어야 할 태그
+                infinite: true,     //무한 반복 옵션     
+                slidesToShow: 3,        // 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll: 3,        //스크롤 한번에 움직일 컨텐츠 개수
+                speed: 500,     // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows: true,         // 옆으로 이동하는 화살표 표시 여부
+                dots: true,         // 스크롤바 아래 점으로 페이지네이션 여부
+                autoplay: false,            // 자동 스크롤 사용 여부
+                autoplaySpeed: 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                pauseOnHover: true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
+                vertical: false,        // 세로 방향 슬라이드 옵션
+                prevArrow: "<button type='button' class='slick-prev'>Previous</button>",
+                nextArrow: "<button type='button' class='slick-next'>Next</button>",
+                draggable: true,     //드래그 가능 여부 
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 960, //화면 사이즈 960px
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768, //화면 사이즈 768px
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+
             });
-        });
+        })
     </script>
 </body>
 

@@ -3,16 +3,24 @@
 }
 
 .carousel{
-    width: 100%;
-    height: 80%;
-    background-color: red;
+    width: 80%;
+    max-width: 1000px;
+    height: 400px;
+    margin: 0 auto;
 }
 
-
+/* 카드 css */
 .flip{
     width: 250px;
     height: 350px;
     perspective: 1100px;
+}
+.slick-list{
+    margin: 0 -5px;
+}
+.flip.slick-slide{
+    height: 350px;
+    margin: 0 5px;
 }
 .card{
     width: 100%;
