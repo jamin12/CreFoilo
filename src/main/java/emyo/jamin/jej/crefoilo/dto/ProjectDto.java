@@ -1,7 +1,5 @@
 package emyo.jamin.jej.crefoilo.dto;
 
-import java.util.Date;
-
 import emyo.jamin.jej.crefoilo.entity.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,7 +2,6 @@ package emyo.jamin.jej.crefoilo.dto;
 
 import java.time.LocalDateTime;
 
-import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import lombok.Data;
 
 @Data
