@@ -50,4 +50,10 @@ public class Project extends BaseTimeEntity {
 
     @Column(name = "proejct_sub_intro", nullable = true, length = 255)
     private String proejctSubIntro; // '서브 설명',
+
+    @Column(name = "project_md", nullable = true, columnDefinition = "TEXT")
+    private String projectDetailMd; // '프로젝트 md',
+
+    @Column(name = "project_html", nullable = true, columnDefinition = "TEXT")
+    private String projectHtml; // '프로젝트 html',
 }

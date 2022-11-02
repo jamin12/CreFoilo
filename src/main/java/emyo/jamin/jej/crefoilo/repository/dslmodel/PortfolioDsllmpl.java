@@ -2,6 +2,8 @@ package emyo.jamin.jej.crefoilo.repository.dslmodel;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -16,6 +18,10 @@ public class PortfolioDsllmpl implements PortfolioDsl {
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
 
+    public PortfolioDsllmpl(EntityManager em) {
+        this.jpaQueryFactory = new JPAQueryFactory(em);
+    }
+
     /**
      * 유저 아이디로 포트폴리오 목록 조회
      * 
@@ -25,7 +31,7 @@ public class PortfolioDsllmpl implements PortfolioDsl {
     @Override
     public List<Portfolio> findByUserId(String userId) {
         return jpaQueryFactory.selectFrom(QPortfolio.portfolio)
-                .where(QPortfolio.portfolio.userId.eq("152231594592157562165"))
+                .where(QPortfolio.portfolio.userId.eq(userId))
                 .fetch();
     }
 
