@@ -9,6 +9,6 @@ import lombok.Data;
 public class PortfolioDto {
     private String portfolioName;
     private LocalDateTime createdDate;
-    private LocalDateTime updatedDate; 
+    private LocalDateTime updatedDate;
     private Long portfolioId;
 }

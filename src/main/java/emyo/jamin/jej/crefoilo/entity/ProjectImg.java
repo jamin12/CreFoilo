@@ -27,8 +27,8 @@ public class ProjectImg extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long projectImgId; // '프로젝트 이미지 ID',
 
-    @Column(name = "project_detail_id", nullable = false)
-    private Long projectDetailId; // '프로젝트 상세 ID',
+    @Column(name = "project_id", nullable = false)
+    private Long projectId; // '프로젝트 ID',
 
     @Column(name = "project_img_url", nullable = false, length = 255)
     private String projectImgUrl; // '프로젝트 이미지 url',
