@@ -23,6 +23,10 @@ public class LanguageServiceImpl implements LanguageService {
     private LanguageSkillRepository languageReposirtorySkillRepository;
 
     /**
+     * 아래 코드는 view page 작업입니다.
+     */
+
+    /**
      * portfolio의 Language 페이지 language, language skill 조회
      * 
      * @param portfolioId 포트폴리오 아이디
@@ -52,5 +56,9 @@ public class LanguageServiceImpl implements LanguageService {
 
         return findedLangDtoList;
     }
+
+    /**
+     * 아래 코드는 setting page 작업입니다.
+     */
 
 }

@@ -20,6 +20,9 @@ public class OtherSkillServiceImpl implements OtherSkillService {
     private OtherSkillRepository otherSkillRepository;
 
     /**
+     * 아래 코드는 view page 작업입니다.
+     */
+    /**
      * 포트폴리에오 맞는 OtherSKill 리스트 조회
      * 
      * @param portFolioId 포트폴리오 아이디
@@ -50,5 +53,9 @@ public class OtherSkillServiceImpl implements OtherSkillService {
         }
         return otherSkillListDtos;
     }
+
+    /**
+     * 아래 코드는 setting page 작업입니다.
+     */
 
 }
