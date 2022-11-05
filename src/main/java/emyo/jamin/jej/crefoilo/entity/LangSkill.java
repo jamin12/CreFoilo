@@ -24,7 +24,7 @@ public class LangSkill extends BaseTimeEntity {
 
     @Id
     @Column(name = "lang_skill_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long langSkillId; // '언어 기술 ID',
 
     @Column(name = "language_id", nullable = false)

@@ -24,7 +24,7 @@ public class AboutMe extends BaseTimeEntity {
 
     @Id
     @Column(name = "about_me_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long aboutMe_id; // '나의 대해 ID'
 
     @Column(name = "portfolio_id")
