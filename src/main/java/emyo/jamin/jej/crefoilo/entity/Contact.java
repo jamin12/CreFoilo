@@ -24,7 +24,7 @@ public class Contact extends BaseTimeEntity {
 
     @Id
     @Column(name = "contact_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contactId; // '내 컨택트 정보 ID',
 
     @Column(name = "portfolio_id", nullable = false)

@@ -7,6 +7,6 @@ import emyo.jamin.jej.crefoilo.entity.Project;
 import emyo.jamin.jej.crefoilo.repository.dslmodel.ProjectDsl;
 
 @Repository
-public interface ProejctRepository extends JpaRepository<Project, Long>, ProjectDsl {
+public interface ProejectRepository extends JpaRepository<Project, Long>, ProjectDsl {
 
 }

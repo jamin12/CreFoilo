@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import emyo.jamin.jej.crefoilo.dto.OtherSkillListDto;
+import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDto;
+import emyo.jamin.jej.crefoilo.repository.ProejectRepository;
 import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 
@@ -16,12 +18,21 @@ public class testController {
 
     @Autowired
     private OtherSkillService otherSkillService;
+    @Autowired
+    private ProejectRepository proejectRepository;
 
     @Autowired
     private ProjectService projectService;
 
     @GetMapping(value = "/test")
-    public List<ProjectDto> test() {
-        return projectService.findProjectList(3L, "100625979022689944834");
+    public ProjectDetailDto test() {
+        return projectService.findProjectDetail(1L, "100625979022689944834");
+        // return projectService.findProjectList(3L, "100625979022689944834");
+    }
+
+    @GetMapping(value = "/test1")
+    public String test1() {
+        return projectService.deleteProject(23L, "100625979022689944834");
+        // return projectService.findProjectList(3L, "100625979022689944834");
     }
 }

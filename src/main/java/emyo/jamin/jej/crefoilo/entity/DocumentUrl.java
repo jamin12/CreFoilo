@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.ProjectDocumentDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class DocumentUrl extends BaseTimeEntity {
 
     @Id
     @Column(name = "document_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long documentId; // '문서 id',
 
     @Column(name = "project_id", nullable = false)
@@ -35,4 +36,19 @@ public class DocumentUrl extends BaseTimeEntity {
 
     @Column(name = "document_url", nullable = true, length = 255)
     private String documentUrl; // '문서 주소',
+
+    /**
+     * DTO를 entity로 변경
+     * 
+     * @param proejctid
+     * @param projectDocumentDto
+     * @return
+     */
+    public static DocumentUrl toEntity(Long proejctid, ProjectDocumentDto projectDocumentDto) {
+        return DocumentUrl.builder()
+                .projectId(proejctid)
+                .documentImgUrl(projectDocumentDto.getDocumentImgUrl())
+                .documentUrl(projectDocumentDto.getDocumentUrl())
+                .build();
+    }
 }
