@@ -9,7 +9,6 @@ import com.querydsl.core.Tuple;
 
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.entity.QPortfolio;
-import emyo.jamin.jej.crefoilo.entity.QProject;
 import emyo.jamin.jej.crefoilo.repository.PortfolioRepository;
 import emyo.jamin.jej.crefoilo.repository.ProejectRepository;
 
