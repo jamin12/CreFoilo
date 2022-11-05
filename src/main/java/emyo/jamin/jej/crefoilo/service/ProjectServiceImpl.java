@@ -104,6 +104,7 @@ public class ProjectServiceImpl implements ProjectService {
         // stream 문법으로 set -> list 변경
         projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
         projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+        createProject(1L, userId, projectDetailDto);
         return projectDetailDto;
     }
 
@@ -126,6 +127,14 @@ public class ProjectServiceImpl implements ProjectService {
         projectDetailDto.getProjectDocument().forEach(pDoc -> {
             projectDocumentUrlRepository.save(DocumentUrl.toEntity(createdProject.getProjectId(), pDoc));
         });
+        projectDetailDto.setProjectHtml("이건말이여 업데이트 테스트여");
+        List<ProjectImgDto> imgs = new ArrayList<>();
+        ProjectImgDto img = new ProjectImgDto();
+        img.setProjectImgSequence(1);
+        img.setProjectImgUrl("asdfasdf");
+        imgs.add(img);
+        projectDetailDto.setProjectImg(imgs);
+        updateProject(26L, userId, projectDetailDto);
         // TODO: return 수정하기
         return "loginSuccess";
     }
@@ -157,6 +166,8 @@ public class ProjectServiceImpl implements ProjectService {
     public String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto) {
         validation.checkUserHasProject(projectId, userId);
         proejctRepository.save(Project.toUpdateEntity(projectId, projectDetailDto));
+        // TODO: update 안되고 추가되는거 수정
+        // TODO: createAt 초기화 되는거 수정
         projectTechnicalStackRepository.save(
                 TechnicalStack.toEntity(projectId, projectDetailDto.getProejctTechnicalStack()));
         projectDetailDto.getProjectImg().forEach(pImg -> {
