@@ -1,0 +1,59 @@
+@import url(../mainStyle.css); 
+
+body{
+    position: relative;
+    display: flex;
+    width: 100%;
+    /* margin-top: -50px; */
+    height: 100vh;
+}
+
+.ex-templates{
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+}
+
+
+.ex-templates > div{
+    display: inline-block;
+    place-content: center;
+    position: relative;
+    /* background-color: wheat; */
+    text-align: center;
+    
+}
+
+.ex-template1{
+    /* background-color: green; */
+    text-align: center;
+    margin: 0 auto;
+
+    padding: 200px;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+}
+
+
+button {
+    height: 300px;
+    width: 400px;
+    position: absolute;
+    margin: -200px -200px;
+    padding: 100px;
+}
+
+.ex-templates > div > p{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    margin: 100px -50px;
+    top: 50%;
+    left: 50%;
+    /* background-color: black; */
+    padding: 5%;
+}
+
+

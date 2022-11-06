@@ -1,0 +1,12 @@
+@import url("../mainStyle.css");
+
+.setting-header{
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0.4%;
+    margin-left: 0.7%;
+}
+
+.setting-header::before{
+    content: "@";
+}

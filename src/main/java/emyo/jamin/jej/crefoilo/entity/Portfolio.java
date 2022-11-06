@@ -24,7 +24,7 @@ public class Portfolio extends BaseTimeEntity {
 
     @Id
     @Column(name = "portfolio_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long portfolioId; // '포트폴리오 ID',
 
     @Column(name = "user_id", nullable = false, length = 255)
@@ -43,5 +43,5 @@ public class Portfolio extends BaseTimeEntity {
     private String portfolioHomeText; // '홈화면 text',
 
     @Column(name = "portfolio_home_img", nullable = true, length = 255)
-    private String portfolioHomeImg; // '홈화면 text',
+    private String portfolioHomeImg; // '홈화면 img',
 }

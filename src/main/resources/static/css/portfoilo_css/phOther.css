@@ -1,0 +1,74 @@
+#otherSkill{
+    /* min-height: 100vh; */
+    height: auto;
+    background-color: lightblue;
+}
+
+.show {
+    max-height: 100vh;
+}
+.hide{
+    height: 100%;
+}
+
+#otherSkill > .contents{
+    transform: translate(-50%, -40%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(minmax(100px, auto));
+    row-gap: 20px;
+    column-gap: 10%;
+    align-content: start;
+    transition: 0.3s;
+}
+
+.contents > .others{
+    background-color: var(--gray100);
+}
+.others > h2{
+    font-size: 25px;
+    font-weight: 400;
+    position: relative;
+    display: flex;
+    padding-left: 10px;
+}
+.others > h2::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 120%;
+    width: 4px;
+    background-color: var(--gray800);
+    transform: translateY(-10%);
+}
+
+.close{
+    max-height: 450px;
+    overflow: hidden;
+}
+.open{
+    height: 100%;
+    background-color: orange;
+}
+
+
+/* 더보기 버튼 */
+.btn-open{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 40px;
+    border: none;
+    background-color: var(--gray50);
+    font-size: 30px;
+    color: var(--blue);
+    transition: 0.3s;
+}
+.btn-open:hover{
+    background-color: var(--blue);
+    color: var(--gray50);
+}

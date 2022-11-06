@@ -1,5 +1,5 @@
 package emyo.jamin.jej.crefoilo.service;
 
-public interface PortfolioList {
+public interface PortfolioListService {
     void findPortfolioList();
 }

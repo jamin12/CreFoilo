@@ -2,7 +2,6 @@ package emyo.jamin.jej.crefoilo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +21,10 @@ public class LanguageServiceImpl implements LanguageService {
     private LanguageReposirtory languageReposirtory;
     @Autowired
     private LanguageSkillRepository languageReposirtorySkillRepository;
+
+    /**
+     * 아래 코드는 view page 작업입니다.
+     */
 
     /**
      * portfolio의 Language 페이지 language, language skill 조회
@@ -53,5 +56,9 @@ public class LanguageServiceImpl implements LanguageService {
 
         return findedLangDtoList;
     }
+
+    /**
+     * 아래 코드는 setting page 작업입니다.
+     */
 
 }

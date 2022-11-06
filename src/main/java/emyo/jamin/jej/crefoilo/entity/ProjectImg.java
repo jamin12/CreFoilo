@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.ProjectImgDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,15 +25,46 @@ public class ProjectImg extends BaseTimeEntity {
 
     @Id
     @Column(name = "project_img_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectImgId; // '프로젝트 이미지 ID',
 
-    @Column(name = "project_detail_id", nullable = false)
-    private Long projectDetailId; // '프로젝트 상세 ID',
+    @Column(name = "project_id", nullable = false)
+    private Long projectId; // '프로젝트 ID',
 
     @Column(name = "project_img_url", nullable = false, length = 255)
     private String projectImgUrl; // '프로젝트 이미지 url',
 
     @Column(name = "project_img_sequence", nullable = false)
     private Integer projectImgSequence; // '프로젝트 이미지 url',
+
+    /**
+     * DTO를 createEntity로 변경
+     * 
+     * @param proejctId
+     * @param proejectImgDto
+     * @return
+     */
+    public static ProjectImg toCreateEntity(Long proejctId, ProjectImgDto proejectImgDto) {
+        return ProjectImg.builder()
+                .projectId(proejctId)
+                .projectImgUrl(proejectImgDto.getProjectImgUrl())
+                .projectImgSequence(proejectImgDto.getProjectImgSequence())
+                .build();
+    }
+
+    /**
+     * DTO를 updateEntity로 변경
+     * 
+     * @param proejctId
+     * @param proejectImgDto
+     * @return
+     */
+    public static ProjectImg toUpdateEntity(Long proejctId, ProjectImgDto proejectImgDto) {
+        return ProjectImg.builder()
+                .projectImgId(proejectImgDto.getProjectImgId())
+                .projectId(proejctId)
+                .projectImgUrl(proejectImgDto.getProjectImgUrl())
+                .projectImgSequence(proejectImgDto.getProjectImgSequence())
+                .build();
+    }
 }

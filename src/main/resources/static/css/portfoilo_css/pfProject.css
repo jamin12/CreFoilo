@@ -1,0 +1,147 @@
+#project{
+    background-color: var(--gray500);
+}
+
+.carousel{
+    width: 80%;
+    max-width: 1000px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+/* 카드 css */
+.flip{
+    width: 250px;
+    height: 350px;
+    perspective: 1100px;
+}
+.slick-list{
+    margin: 0 -5px;
+}
+.flip.slick-slide{
+    height: 350px;
+    margin: 0 5px;
+}
+.card{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: .5s;
+    transform-style: preserve-3d;
+    background-color: inherit;
+    border: none;
+}
+
+
+.front,
+.back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--gray200);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    backface-visibility: hidden; /*    카드의 뒷면을 안보이게 처리 */
+}
+.front > img{
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+#projectTitle{
+    font-weight: bold;
+    width: 80%;
+    text-align: center;
+    font-size: 23px;
+    margin-top: 5px;
+    text-overflow: ellipsis;    /* width넘기면 말줄임표 */
+}
+#projectAbout{
+    width: 80%;
+    font-size: 13px;
+    text-align: center;
+    color: var(--gray800);
+    -webkit-line-clamp: 3;  /* 3번째 줄 까지 보이면서 말줄임표 */
+}
+#projectDate{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    color: var(--gray500);
+}
+.back .title{
+    width: 100%;
+    margin: 8px 0 10px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray800);
+}
+.contribution-content{
+    width: 80%;
+    max-height: 30%;
+    font-size: 14px;
+    -webkit-line-clamp: 5; 
+}
+
+.back .stack{
+    display: flex;
+    width: 90%;
+    -webkit-padding-start: 0px;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+.back .stack li{
+    list-style: none;
+    background-color: var(--gray400);
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin: 0;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+/* 뒷면 아이콘 */
+.icon-wrap{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid var(--gray600);
+}
+.icon-box{
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.icon-box i{
+    padding: 5px;
+    margin: 0 10px;
+    color: var(--gray600);
+    transition: 0.3s;
+}
+.icon-box i:hover{
+    color: var(--gray900);
+}
+
+/* 
+    180도 돌아가는 효과 
+*/
+.back{
+    transform: rotateY(180deg);
+}
+.flip:hover .card{
+    transform: rotateY(180deg);
+}
