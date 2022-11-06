@@ -15,4 +15,6 @@ public interface ProjectService {
     String deleteProject(Long projectId, String userId);
 
     String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto);
+
+    ProjectDetailDto findProjectDetailView(Long projectId);
 }

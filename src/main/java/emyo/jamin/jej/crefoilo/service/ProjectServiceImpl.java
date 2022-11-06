@@ -57,6 +57,36 @@ public class ProjectServiceImpl implements ProjectService {
      */
 
     /**
+     * view 페이지 프로젝트 상세 정보 조회
+     *
+     * @param projectId
+     */
+    @Override
+    public ProjectDetailDto findProjectDetailView(Long projectId) {
+        QProject qProject = QProject.project;
+        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
+        QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
+        QProjectImg qProjectImg = QProjectImg.projectImg;
+        List<Tuple> findedProjectDetails = proejctRepository.findByProjectId(projectId);
+        if (findedProjectDetails.isEmpty()) {
+            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+        }
+        ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject),
+                findedProjectDetails.get(0).get(qTechnicalStack));
+        // 중복되는 객체들 삭제
+        HashSet<ProjectImgDto> projectImgDtos = new HashSet<>();
+        HashSet<ProjectDocumentDto> projectDocumentDtos = new HashSet<>();
+        for (Tuple projectDetail : findedProjectDetails) {
+            projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
+            projectDocumentDtos.add(new ProjectDocumentDto(projectDetail.get(qDocumentUrl)));
+        }
+        // stream 문법으로 set -> list 변경
+        projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
+        projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+        return projectDetailDto;
+    }
+
+    /**
      * 아래 코드는 setting page 작업입니다.
      */
     /**
@@ -107,7 +137,6 @@ public class ProjectServiceImpl implements ProjectService {
         // stream 문법으로 set -> list 변경
         projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
         projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
-        createProject(1L, userId, projectDetailDto);
         return projectDetailDto;
     }
 
@@ -131,7 +160,6 @@ public class ProjectServiceImpl implements ProjectService {
             projectDocumentUrlRepository.save(DocumentUrl.toCreateEntity(createdProject.getProjectId(), pDoc));
         });
         projectDetailDto.setProjectHtml("이건말이여 업데이트 테스트여");
-        updateProject(7L, userId, projectDetailDto);
         // TODO: return 수정하기
         return "loginSuccess";
     }
