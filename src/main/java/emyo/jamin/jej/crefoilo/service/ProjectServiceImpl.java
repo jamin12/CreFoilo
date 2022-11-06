@@ -91,7 +91,10 @@ public class ProjectServiceImpl implements ProjectService {
         QProjectImg qProjectImg = QProjectImg.projectImg;
         // 유저가 프로젝트를 가지고 있는지 체크
         validation.checkUserHasProject(projectId, userId);
-        List<Tuple> findedProjectDetails = proejctRepository.findByprojectId(projectId);
+        List<Tuple> findedProjectDetails = proejctRepository.findByProjectId(projectId);
+        if (findedProjectDetails.isEmpty()) {
+            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+        }
         ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject),
                 findedProjectDetails.get(0).get(qTechnicalStack));
         // 중복되는 객체들 삭제
@@ -122,19 +125,13 @@ public class ProjectServiceImpl implements ProjectService {
         projectTechnicalStackRepository.save(
                 TechnicalStack.toEntity(createdProject.getProjectId(), projectDetailDto.getProejctTechnicalStack()));
         projectDetailDto.getProjectImg().forEach(pImg -> {
-            projectImgRepository.save(ProjectImg.toEntity(createdProject.getProjectId(), pImg));
+            projectImgRepository.save(ProjectImg.toCreateEntity(createdProject.getProjectId(), pImg));
         });
         projectDetailDto.getProjectDocument().forEach(pDoc -> {
-            projectDocumentUrlRepository.save(DocumentUrl.toEntity(createdProject.getProjectId(), pDoc));
+            projectDocumentUrlRepository.save(DocumentUrl.toCreateEntity(createdProject.getProjectId(), pDoc));
         });
         projectDetailDto.setProjectHtml("이건말이여 업데이트 테스트여");
-        List<ProjectImgDto> imgs = new ArrayList<>();
-        ProjectImgDto img = new ProjectImgDto();
-        img.setProjectImgSequence(1);
-        img.setProjectImgUrl("asdfasdf");
-        imgs.add(img);
-        projectDetailDto.setProjectImg(imgs);
-        updateProject(26L, userId, projectDetailDto);
+        updateProject(7L, userId, projectDetailDto);
         // TODO: return 수정하기
         return "loginSuccess";
     }
@@ -166,15 +163,13 @@ public class ProjectServiceImpl implements ProjectService {
     public String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto) {
         validation.checkUserHasProject(projectId, userId);
         proejctRepository.save(Project.toUpdateEntity(projectId, projectDetailDto));
-        // TODO: update 안되고 추가되는거 수정
-        // TODO: createAt 초기화 되는거 수정
         projectTechnicalStackRepository.save(
                 TechnicalStack.toEntity(projectId, projectDetailDto.getProejctTechnicalStack()));
         projectDetailDto.getProjectImg().forEach(pImg -> {
-            projectImgRepository.save(ProjectImg.toEntity(projectId, pImg));
+            projectImgRepository.save(ProjectImg.toUpdateEntity(projectId, pImg));
         });
         projectDetailDto.getProjectDocument().forEach(pDoc -> {
-            projectDocumentUrlRepository.save(DocumentUrl.toEntity(projectId, pDoc));
+            projectDocumentUrlRepository.save(DocumentUrl.toUpdateEntity(projectId, pDoc));
         });
         // TODO: return 수정하기
         return null;
