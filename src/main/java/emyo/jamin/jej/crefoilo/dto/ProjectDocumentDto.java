@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectDocumentDto {
+    private Long docuemntUrlId;
     private String documentImgUrl;
     private String documentUrl;
 
     public ProjectDocumentDto(@Nullable DocumentUrl documentUrl) {
+        this.docuemntUrlId = documentUrl.getDocumentId();
         this.documentImgUrl = documentUrl.getDocumentImgUrl();
         this.documentUrl = documentUrl.getDocumentUrl();
     }

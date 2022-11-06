@@ -48,7 +48,7 @@ public class ProjectDslImpl implements ProjectDsl {
      * @param projectId
      */
     @Override
-    public List<Tuple> findByprojectId(Long projectId) {
+    public List<Tuple> findByProjectId(Long projectId) {
         QProject qProject = QProject.project;
         QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;

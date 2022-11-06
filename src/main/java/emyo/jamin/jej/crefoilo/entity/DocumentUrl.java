@@ -38,14 +38,30 @@ public class DocumentUrl extends BaseTimeEntity {
     private String documentUrl; // '문서 주소',
 
     /**
-     * DTO를 entity로 변경
+     * DTO를 createEntity로 변경
      * 
      * @param proejctid
      * @param projectDocumentDto
      * @return
      */
-    public static DocumentUrl toEntity(Long proejctid, ProjectDocumentDto projectDocumentDto) {
+    public static DocumentUrl toCreateEntity(Long proejctid, ProjectDocumentDto projectDocumentDto) {
         return DocumentUrl.builder()
+                .projectId(proejctid)
+                .documentImgUrl(projectDocumentDto.getDocumentImgUrl())
+                .documentUrl(projectDocumentDto.getDocumentUrl())
+                .build();
+    }
+
+    /**
+     * DTO를 updateEntity로 변경
+     * 
+     * @param proejctid
+     * @param projectDocumentDto
+     * @return
+     */
+    public static DocumentUrl toUpdateEntity(Long proejctid, ProjectDocumentDto projectDocumentDto) {
+        return DocumentUrl.builder()
+                .documentId(projectDocumentDto.getDocuemntUrlId())
                 .projectId(proejctid)
                 .documentImgUrl(projectDocumentDto.getDocumentImgUrl())
                 .documentUrl(projectDocumentDto.getDocumentUrl())

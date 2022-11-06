@@ -38,14 +38,30 @@ public class ProjectImg extends BaseTimeEntity {
     private Integer projectImgSequence; // '프로젝트 이미지 url',
 
     /**
-     * DTO를 entity로 변경
+     * DTO를 createEntity로 변경
      * 
      * @param proejctId
      * @param proejectImgDto
      * @return
      */
-    public static ProjectImg toEntity(Long proejctId, ProjectImgDto proejectImgDto) {
+    public static ProjectImg toCreateEntity(Long proejctId, ProjectImgDto proejectImgDto) {
         return ProjectImg.builder()
+                .projectId(proejctId)
+                .projectImgUrl(proejectImgDto.getProjectImgUrl())
+                .projectImgSequence(proejectImgDto.getProjectImgSequence())
+                .build();
+    }
+
+    /**
+     * DTO를 updateEntity로 변경
+     * 
+     * @param proejctId
+     * @param proejectImgDto
+     * @return
+     */
+    public static ProjectImg toUpdateEntity(Long proejctId, ProjectImgDto proejectImgDto) {
+        return ProjectImg.builder()
+                .projectImgId(proejectImgDto.getProjectImgId())
                 .projectId(proejctId)
                 .projectImgUrl(proejectImgDto.getProjectImgUrl())
                 .projectImgSequence(proejectImgDto.getProjectImgSequence())
