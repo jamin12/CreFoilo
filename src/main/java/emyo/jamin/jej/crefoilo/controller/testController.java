@@ -26,7 +26,7 @@ public class testController {
 
     @GetMapping(value = "/test")
     public ProjectDetailDto test() {
-        return projectService.findProjectDetail(1L, "100625979022689944834");
+        return projectService.findProjectDetail(16L, "100625979022689944834");
         // return projectService.findProjectList(3L, "100625979022689944834");
     }
 
