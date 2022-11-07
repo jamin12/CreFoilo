@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.PortfolioDto;
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.repository.PortfolioRepository;
@@ -14,7 +15,7 @@ import emyo.jamin.jej.crefoilo.repository.PortfolioRepository;
  * @author 강민진
  */
 @Service
-public class PortfolioListServiceImpl implements PortfolioListService {
+public class PortfolioServiceImpl implements PortfolioService {
 
     @Autowired
     private PortfolioRepository portfolioRepository;
@@ -40,6 +41,16 @@ public class PortfolioListServiceImpl implements PortfolioListService {
         }
 
         System.out.println(portfoliolist);
+    }
+
+    /**
+     * home 화면 조회
+     * 
+     * @param portfolioId
+     */
+    @Override
+    public HomeViewDto findPortfolioHome(Long portfolioId) {
+        return new HomeViewDto(portfolioRepository.findHomeByPortfolioId(portfolioId));
     }
 
 }

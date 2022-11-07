@@ -38,7 +38,7 @@ public class PortfolioDslImpl implements PortfolioDsl {
      * @param portfolioId
      */
     @Override
-    public @Nullable Portfolio findByPortfolioId(Long portfolioId) {
+    public @Nullable Portfolio findHomeByPortfolioId(Long portfolioId) {
         QPortfolio qPortfolio = QPortfolio.portfolio;
         return jpaQueryFactory.selectFrom(qPortfolio)
                 .where(qPortfolio.portfolioId.eq(portfolioId))

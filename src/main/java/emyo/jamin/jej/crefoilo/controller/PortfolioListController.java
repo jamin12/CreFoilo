@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import emyo.jamin.jej.crefoilo.service.PortfolioListService;
+import emyo.jamin.jej.crefoilo.service.PortfolioService;
 
 @Controller
 public class PortfolioListController {
 
     @Autowired
-    private PortfolioListService portfolioListService;
+    private PortfolioService portfolioListService;
 
     @GetMapping(value = "/hello")
     public String portfolio() {
