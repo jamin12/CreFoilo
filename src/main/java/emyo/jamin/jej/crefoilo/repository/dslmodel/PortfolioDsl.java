@@ -7,4 +7,5 @@ import emyo.jamin.jej.crefoilo.entity.Portfolio;
 public interface PortfolioDsl {
     List<Portfolio> findByUserId(String userId);
 
+    Portfolio findByPortfolioId(Long portfolioId);
 }

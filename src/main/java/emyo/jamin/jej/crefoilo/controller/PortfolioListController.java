@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import emyo.jamin.jej.crefoilo.repository.dslmodel.PortfolioDsllmpl;
 import emyo.jamin.jej.crefoilo.service.PortfolioListService;
 
 @Controller
 public class PortfolioListController {
-    
+
     @Autowired
     private PortfolioListService portfolioListService;
 
@@ -20,5 +19,5 @@ public class PortfolioListController {
         portfolioListService.findPortfolioList();
         return "login";
     }
-    
+
 }
