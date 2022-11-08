@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ContactDto {
     private Long contactId;
+    private Long portfolioId;
     private String contactImgUrl;
     private String contactInfo;
 
@@ -20,4 +21,11 @@ public class ContactDto {
         this.contactImgUrl = contact.getContactImgUrl();
         this.contactInfo = contact.getContactInfo();
     }
+
+    public ContactDto(Long portfolioId, String contactImgUrl, String contactInfo) {
+        this.portfolioId = portfolioId;
+        this.contactImgUrl = contactImgUrl;
+        this.contactInfo = contactInfo;
+    }
+
 }
