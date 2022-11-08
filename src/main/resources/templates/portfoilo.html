@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
+
+
+
+
 </head>
 
 <body>
@@ -43,8 +47,8 @@
         <div class="contents">
         </div>
     </section>
-    <div>
-        <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50);">
+    <div class="main-contents">
+        <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50); z-index: 900;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#Home">EMYO님의 포트폴리오</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -86,7 +90,7 @@
                         pharetra, nunc, eget. Enim</p>
                 </content>
             </div>
-            
+
             <!-- type2 -->
             <!-- <div class="contents type2">
                 <img src="https://images.unsplash.com/photo-1666934209536-08d839cd0973?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="about Me 이미지">
@@ -131,10 +135,10 @@
             </div>
         </section>
 
-        <section id="otherSkill" class="hide">
+        <section id="otherSkill">
             <h2 class="main-title">OTHER SKILL</h2>
 
-            <div class="contents close">
+            <div class="contents">
                 <!-- class가 close면 닫힘 open이면 열림 -->
                 <div class="others">
                     <h2>Collaboration, Document</h2>
@@ -206,19 +210,50 @@
                     </ul>
                 </div>
 
-                <button class="btn-open"><i class="fa-solid fa-angle-down"></i></button>
-                <button class="btn-close"><i class="fa-solid fa-angle-up"></i></button>
             </div>
         </section>
+
+        <!-- project-detail Modal -->
+        <div class="modal fade" id="PorjectModal" tabindex="-1" aria-labelledby="PorjectModalLable" aria-hidden="true">
+            <div class="project-modal modal-lg modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                <div class="modal-content project-modal">
+                    <!-- 이미지 캐러셀 -->
+                <div class="project-detail-carousel">
+                    <img src='https://images.unsplash.com/photo-1667506057454-87e10fb157d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+                        alt="프로젝트 이미지" />
+                    <img src='https://images.unsplash.com/photo-1667588732543-5c2c989126e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+                        alt="프로젝트 이미지" />
+                    <img src='https://images.unsplash.com/photo-1661347333279-66f30d127efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
+                        alt="프로젝트 이미지" />
+                </div>
+                <div class="indicator">
+                    <i class="prev-arrow fa-solid fa-chevron-left"></i>
+                    <i class="next-arrow fa-solid fa-chevron-right"></i>
+                </div>
+
+                <!-- md파일 내용 -->
+                <div class="md-content">
+                    Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book.
+                </div>
+                </div>
+            </div>
+        </div>
 
         <section id="project">
             <h2 class="main-title">PROJECT</h2>
 
             <div class="contents">
                 <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
+                <i class="prev-arrow fa-solid fa-chevron-left"></i>
                 <div class="carousel">
                     <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
-                    <div class="flip">
+                    <div class="flip" id="1" data-bs-toggle="modal" data-bs-target="#PorjectModal">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -251,7 +286,7 @@
                     </div>
 
                     <!-- TODO(이묘): each문 구현 후에는 이 밑으로는 없애버려야함 -->
-                    <div class="flip">
+                    <div class="flip" id="2">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -282,7 +317,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="3">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -313,7 +348,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="4">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -344,7 +379,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="5">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -375,7 +410,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="6">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -406,7 +441,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="7">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -437,7 +472,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="8">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -468,7 +503,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="9">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -499,7 +534,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="10">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -532,6 +567,7 @@
                     </div>
                     <!-- end -->
                 </div>
+                <i class="next-arrow fa-solid fa-chevron-right"></i>
             </div>
         </section>
 
@@ -560,50 +596,15 @@
     </section> -->
 
 
-
-
-
-
     <!--Echart-->
     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
     <script type="text/javascript" src="../static/js/portfolio_js/chartView.js"></script>
 
+    <!-- carousel -->
+    <script src="../static/js/portfolio_js/slide.js"></script>
 
-    <script>
-        $(function () {
-            $('.carousel').slick({
-                slide: 'div',        //슬라이드 되어야 할 태그
-                infinite: true,     //무한 반복 옵션     
-                slidesToShow: 3,        // 한 화면에 보여질 컨텐츠 개수
-                slidesToScroll: 3,        //스크롤 한번에 움직일 컨텐츠 개수
-                speed: 500,     // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-                arrows: true,         // 옆으로 이동하는 화살표 표시 여부
-                dots: true,         // 스크롤바 아래 점으로 페이지네이션 여부
-                autoplay: false,            // 자동 스크롤 사용 여부
-                autoplaySpeed: 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-                pauseOnHover: true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
-                vertical: false,        // 세로 방향 슬라이드 옵션
-                prevArrow: "<button type='button' class='slick-prev'>Previous</button>",
-                nextArrow: "<button type='button' class='slick-next'>Next</button>",
-                draggable: true,     //드래그 가능 여부 
-                responsive: [ // 반응형 웹 구현 옵션
-                    {
-                        breakpoint: 960, //화면 사이즈 960px
-                        settings: {
-                            slidesToShow: 3
-                        }
-                    },
-                    {
-                        breakpoint: 768, //화면 사이즈 768px
-                        settings: {
-                            slidesToShow: 2
-                        }
-                    }
-                ]
-
-            });
-        })
-    </script>
+    <!-- project -->
+    <script src="../static/js/portfolio_js/projectClick.js"></script>
 </body>
 
 </html>
