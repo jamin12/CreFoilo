@@ -57,6 +57,6 @@ if (option && typeof option === 'object') {
 
 window.addEventListener('resize', myChart.resize);
 
-myChart.on('click', function(params){
+myChart.on('click', function (params) {
     alert(`${params.name}를 눌렀습니다`)
 })

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -22,11 +22,14 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <!-- TODO: Spring 실행시에는 static이 시작지점이므로 프론트앤드가 끝나면 ../static은 지워야함 -->
-    <link rel="stylesheet" href="../static/css/portfoilo_css/style.css">
+    <link th:href="@{/css/portfoilo_css/style.css} " rel="stylesheet">
+
+
 
     <!-- otherSkill js -->
-    <script src="../static/js/portfolio_js/otherSkill.js"></script>
-
+    <script type="text/javascript" th:src="@{/js/portfolio_js/otherSkill.js}"></script>
+    
+    
     <!-- slide slick -->
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -71,22 +74,21 @@
             <!-- TODO(이묘): 이미지 주소 나중에 바꿔넣어줄 것 -->
             <div class="contents type1">
                 <content class="first-content">
-                    <h2>안녕하세요! 프론트엔드 개발자를 꿈꾸고 있는 임효현입니다!!</h2>
-                    <img alt="about me 이미지"
-                        src="https://images.unsplash.com/photo-1526336179256-1347bdb255ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YnV0dGVyZmx5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
+                    <h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
+                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" />
                 </content>
                 <content class="second-content">
-                    <h2>저의 장점은,</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
+                    <h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
+                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
                         pharetra, nunc, eget. Enim</p>
                 </content>
                 <content class="third-content">
-                    <h2>저는 꾸준한 사람입니다.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
+                    <h2 th:text="${aboutme.aboutMeTitle3}">저는 꾸준한 사람입니다.</h2>
+                    <p th:text="${aboutme.aboutMeIntro2}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
                         pharetra, nunc, eget. Enim</p>
                 </content>
             </div>
-            
+
             <!-- type2 -->
             <!-- <div class="contents type2">
                 <img src="https://images.unsplash.com/photo-1666934209536-08d839cd0973?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="about Me 이미지">
@@ -561,15 +563,11 @@
 
 
 
-
-
-
     <!--Echart-->
     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
-    <script type="text/javascript" src="../static/js/portfolio_js/chartView.js"></script>
+    <script type="text/javascript" th:src="@{/js/portfolio_js/chartView.js}"></script>
 
-
-    <script>
+    <script th:inline="javascript">
         $(function () {
             $('.carousel').slick({
                 slide: 'div',        //슬라이드 되어야 할 태그
