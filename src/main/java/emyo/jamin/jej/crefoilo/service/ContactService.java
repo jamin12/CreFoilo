@@ -9,5 +9,5 @@ public interface ContactService {
 
     List<ContactDto> findContact(Long portfolioId, String userId);
 
-    String createAndUpdateContact(Long portfolioId, String userId, List<ContactDto> contactDtoList);
+    String CUDContact(Long portfolioId, String userId, List<ContactDto> contactDtoList);
 }
