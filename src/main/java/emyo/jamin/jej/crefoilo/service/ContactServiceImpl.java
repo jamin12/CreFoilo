@@ -59,23 +59,30 @@ public class ContactServiceImpl implements ContactService {
     }
 
     /**
-     * contact 생성
+     * contact 생성 업데이트 삭제 작업
      * 
      * @param portfolioId
      * @param userId
      * @param contactDtoList
      */
     @Override
-    public String createAndUpdateContact(Long portfolioId, String userId, List<ContactDto> contactDtoList) {
+    public String CUDContact(Long portfolioId, String userId, List<ContactDto> contactDtoList) {
         List<Contact> findedContactList = contactRepository.findByPortfolioId(portfolioId);
-        contactDtoList.forEach((contactDto) -> {
-            findedContactList.forEach((findedContact) -> {
+        for (Contact findedContact : findedContactList) {
+            int flag = 0;
+            for (ContactDto contactDto : contactDtoList) {
                 if (contactDto.getContactId() != null) {
                     if (findedContact.getContactId() == contactDto.getContactId()) {
-
+                        flag = 1;
+                        break;
                     }
                 }
-            });
+            }
+            if (flag == 0) {
+                contactRepository.delete(findedContact);
+            }
+        }
+        contactDtoList.forEach((contactDto) -> {
             contactRepository.save(Contact.createAndUpdateEntity(portfolioId, contactDto));
         });
         return "success";

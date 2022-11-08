@@ -69,6 +69,6 @@ public class testController {
         contacts.add(new ContactDto(1L, "git", "새로 만드렁써 되써용"));
         contacts.add(new ContactDto(1L, "myimg", "새로아하하"));
         contacts.add(new ContactDto(1L, "phone", "이건 새애애애롱"));
-        return contactService.createAndUpdateContact(1L, "100625979022689944834", contacts);
+        return contactService.CUDContact(1L, "100625979022689944834", contacts);
     }
 }
