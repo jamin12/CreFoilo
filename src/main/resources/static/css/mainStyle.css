@@ -40,3 +40,21 @@ a{
     color: var(--gray900);
     text-decoration: none;
 }
+
+.save_button{
+    position: absolute;
+    background-color: initial;
+    border: none;
+    bottom: 20px;
+    right: 20px;
+    width: fit-content;
+}
+
+.save_button>button{
+    width: 100%;
+    height: 100%;
+    padding: 0 50px 0 50px;
+    font-size: 35px;
+    cursor: pointer;
+    border-radius: 20px;
+}

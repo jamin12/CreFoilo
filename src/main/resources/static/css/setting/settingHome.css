@@ -1,0 +1,39 @@
+@import url(../mainStyle.css);
+
+
+.hometpl{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.basic-templates {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    margin: 50PX;
+    padding: 50px;
+
+}
+.basic-templates > div {
+    display: inline-block;
+    align-items: center;
+}
+
+
+.add-templates {
+    text-align: center;
+    margin: 50px;
+    padding: 50px;
+}
+.add-templates > div {
+    display: inline-block;
+    align-items: center;
+}
+
+button {
+    width: 400px;
+    height: 200px;
+}
