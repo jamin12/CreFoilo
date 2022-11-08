@@ -27,6 +27,9 @@ public class PortfolioServiceImpl implements PortfolioService {
     private Validation validation;
 
     /**
+     * 아래 코드는 view page 작업입니다.
+     */
+    /**
      * 포트폴리오 리스트 조회
      * 
      * @param userId 유저 아이디
