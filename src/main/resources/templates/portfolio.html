@@ -37,6 +37,10 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
+
+
+
+
 </head>
 
 <body>
@@ -46,8 +50,8 @@
         <div class="contents">
         </div>
     </section>
-    <div>
-        <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50);">
+    <div class="main-contents">
+        <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50); z-index: 900;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#Home">EMYO님의 포트폴리오</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -88,7 +92,7 @@
                         pharetra, nunc, eget. Enim</p>
                 </content>
             </div>
-
+            
             <!-- type2 -->
             <!-- <div class="contents type2">
                 <img src="https://images.unsplash.com/photo-1666934209536-08d839cd0973?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="about Me 이미지">
@@ -133,10 +137,10 @@
             </div>
         </section>
 
-        <section id="otherSkill" class="hide">
+        <section id="otherSkill">
             <h2 class="main-title">OTHER SKILL</h2>
 
-            <div class="contents close">
+            <div class="contents">
                 <!-- class가 close면 닫힘 open이면 열림 -->
                 <div class="others">
                     <h2>Collaboration, Document</h2>
@@ -208,19 +212,50 @@
                     </ul>
                 </div>
 
-                <button class="btn-open"><i class="fa-solid fa-angle-down"></i></button>
-                <button class="btn-close"><i class="fa-solid fa-angle-up"></i></button>
             </div>
         </section>
+
+        <!-- project-detail Modal -->
+        <div class="modal fade" id="PorjectModal" tabindex="-1" aria-labelledby="PorjectModalLable" aria-hidden="true">
+            <div class="project-modal modal-lg modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                <div class="modal-content project-modal">
+                    <!-- 이미지 캐러셀 -->
+                <div class="project-detail-carousel">
+                    <img src='https://images.unsplash.com/photo-1667506057454-87e10fb157d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+                        alt="프로젝트 이미지" />
+                    <img src='https://images.unsplash.com/photo-1667588732543-5c2c989126e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+                        alt="프로젝트 이미지" />
+                    <img src='https://images.unsplash.com/photo-1661347333279-66f30d127efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
+                        alt="프로젝트 이미지" />
+                </div>
+                <div class="indicator">
+                    <i class="prev-arrow fa-solid fa-chevron-left"></i>
+                    <i class="next-arrow fa-solid fa-chevron-right"></i>
+                </div>
+
+                <!-- md파일 내용 -->
+                <div class="md-content">
+                    Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book.
+                </div>
+                </div>
+            </div>
+        </div>
 
         <section id="project">
             <h2 class="main-title">PROJECT</h2>
 
             <div class="contents">
                 <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
+                <i class="prev-arrow fa-solid fa-chevron-left"></i>
                 <div class="carousel">
                     <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
-                    <div class="flip">
+                    <div class="flip" id="1" data-bs-toggle="modal" data-bs-target="#PorjectModal">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -253,7 +288,7 @@
                     </div>
 
                     <!-- TODO(이묘): each문 구현 후에는 이 밑으로는 없애버려야함 -->
-                    <div class="flip">
+                    <div class="flip" id="2">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -284,7 +319,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="3">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -315,7 +350,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="4">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -346,7 +381,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="5">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -377,7 +412,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="6">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -408,7 +443,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="7">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -439,7 +474,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="8">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -470,7 +505,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="9">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -501,7 +536,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip">
+                    <div class="flip" id="10">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
@@ -534,6 +569,7 @@
                     </div>
                     <!-- end -->
                 </div>
+                <i class="next-arrow fa-solid fa-chevron-right"></i>
             </div>
         </section>
 
@@ -560,6 +596,9 @@
         <div class="contents">
         </div>
     </section> -->
+
+
+
 
 
 
