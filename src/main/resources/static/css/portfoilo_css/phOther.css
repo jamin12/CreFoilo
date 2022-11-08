@@ -1,14 +1,6 @@
 #otherSkill{
     /* min-height: 100vh; */
     height: auto;
-    background-color: lightblue;
-}
-
-.show {
-    max-height: 100vh;
-}
-.hide{
-    height: 100%;
 }
 
 #otherSkill > .contents{
@@ -19,7 +11,10 @@
     row-gap: 20px;
     column-gap: 10%;
     align-content: start;
-    transition: 0.3s;
+
+    max-height: 65%;
+    overflow: scroll;
+
 }
 
 .contents > .others{
@@ -44,18 +39,10 @@
     transform: translateY(-10%);
 }
 
-.close{
-    max-height: 450px;
-    overflow: hidden;
-}
-.open{
-    height: 100%;
-    background-color: orange;
-}
-
 
 /* 더보기 버튼 */
 .btn-open{
+    display: flex;
     position: absolute;
     width: 100%;
     left: 50%;
@@ -67,8 +54,13 @@
     font-size: 30px;
     color: var(--blue);
     transition: 0.3s;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
-.btn-open:hover{
-    background-color: var(--blue);
-    color: var(--gray50);
+
+.skills_readmore{
+    animation: 0.7s ease-out -.4s 1 normal both running slide-left;
+    opacity: 1;
 }

@@ -4,14 +4,15 @@
 @import url(../portfoilo_css/pfAboutme.css);
 @import url(../portfoilo_css/pfLanguage.css);
 @import url(../portfoilo_css/phOther.css);
+@import url(../portfoilo_css/pfDetail.css);
 @import url(../portfoilo_css/pfProject.css);
 @import url(../portfoilo_css/pfContext.css);
-
 
 section{
     position: relative;
     width: 100%;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 section > .main-title{
