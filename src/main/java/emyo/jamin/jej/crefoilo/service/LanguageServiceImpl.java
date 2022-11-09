@@ -1,16 +1,15 @@
 package emyo.jamin.jej.crefoilo.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
-import emyo.jamin.jej.crefoilo.entity.LangSkill;
 import emyo.jamin.jej.crefoilo.entity.Language;
 import emyo.jamin.jej.crefoilo.repository.LanguageReposirtory;
-import emyo.jamin.jej.crefoilo.repository.LanguageSkillRepository;
 
 /**
  * @author 강경민
@@ -19,8 +18,6 @@ import emyo.jamin.jej.crefoilo.repository.LanguageSkillRepository;
 public class LanguageServiceImpl implements LanguageService {
     @Autowired
     private LanguageReposirtory languageReposirtory;
-    @Autowired
-    private LanguageSkillRepository languageReposirtorySkillRepository;
 
     /**
      * 아래 코드는 view page 작업입니다.
@@ -38,19 +35,12 @@ public class LanguageServiceImpl implements LanguageService {
         List<FindLanguageDto> findedLangDtoList = new ArrayList<>();
         for (Language findedLang : findedLangs) {
             FindLanguageDto findedLangDto = new FindLanguageDto();
-            List<String> langSkillNames = new ArrayList<>();
 
             findedLangDto.setLangId(findedLang.getLanguageId());
             findedLangDto.setLangName(findedLang.getLangName());
-            findedLangDto.setLangDetail(findedLang.getLangDetail());
+            findedLangDto.setLangDetail(Arrays.asList(findedLang.getLangDetail().split("/n")));
             findedLangDto.setLangFrequency(findedLang.getLangFrequency());
-
-            List<LangSkill> findedLangSkills = languageReposirtorySkillRepository
-                    .findByLangId(findedLang.getLanguageId());
-            for (LangSkill findedLangSkill : findedLangSkills) {
-                langSkillNames.add(findedLangSkill.getLangSkillName());
-            }
-            findedLangDto.setLangSkillName(langSkillNames);
+            findedLangDto.setLangSkillName(Arrays.asList(findedLang.getLangSkillName().split("/n")));
             findedLangDtoList.add(findedLangDto);
         }
 
