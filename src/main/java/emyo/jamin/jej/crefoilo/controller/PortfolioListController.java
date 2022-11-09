@@ -17,8 +17,13 @@ public class PortfolioListController {
 
     @GetMapping(value = "/hello")
     public String portfolio() {
-        portfolioListService.findPortfolioList();
+        portfolioListService.findPortfolioList(null);
         return "login";
+    }
+
+    @GetMapping("/deletePortfolio")
+    public void deletePortfolio(){
+        portfolioListService.deletePortfolio(1L);
     }
     
 }
