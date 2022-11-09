@@ -24,7 +24,7 @@ public class TechnicalStack extends BaseTimeEntity {
 
     @Id
     @Column(name = "technical_stack_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long technicalStackId; // '기술 스택 ID',
 
     @Column(name = "project_id", nullable = false)
@@ -32,5 +32,12 @@ public class TechnicalStack extends BaseTimeEntity {
 
     @Column(name = "technical_stack_name", nullable = false, length = 45)
     private String technicalStackName; // '기술 스택 이름',
+
+    public static TechnicalStack toEntity(Long projectId, String technicalStackName) {
+        return TechnicalStack.builder()
+                .projectId(projectId)
+                .technicalStackName(technicalStackName)
+                .build();
+    }
 
 }

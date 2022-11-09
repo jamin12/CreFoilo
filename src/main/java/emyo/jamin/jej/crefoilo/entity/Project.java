@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Project extends BaseTimeEntity {
 
     @Id
     @Column(name = "project_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectId; // '프로젝트 ID',
 
     @Column(name = "portfolio_id", nullable = false)
@@ -52,8 +53,53 @@ public class Project extends BaseTimeEntity {
     private String proejctSubIntro; // '서브 설명',
 
     @Column(name = "project_md", nullable = true, columnDefinition = "TEXT")
-    private String projectDetailMd; // '프로젝트 md',
+    private String projectMd; // '프로젝트 md',
 
     @Column(name = "project_html", nullable = true, columnDefinition = "TEXT")
     private String projectHtml; // '프로젝트 html',
+
+    /**
+     * DTO를 CreateEntity로 변경
+     * 
+     * @param portfolioId
+     * @param projectDetailDto
+     * @return
+     */
+    public static Project toCreateEntity(Long portfolioId, ProjectDetailDto projectDetailDto) {
+        return Project.builder()
+                .portfolioId(portfolioId)
+                .projectRepresentativeImgUrl(projectDetailDto.getProjectRepresentativeImgUrl())
+                .projectTitle(projectDetailDto.getProjectTitle())
+                .proejctIntro(projectDetailDto.getProejctIntro())
+                .projectStrDate(projectDetailDto.getProjectStrDate())
+                .projectEndDate(projectDetailDto.getProjectEndDate())
+                .projectSubTitle(projectDetailDto.getProjectSubTitle())
+                .proejctSubIntro(projectDetailDto.getProejctSubIntro())
+                .projectHtml(projectDetailDto.getProjectHtml())
+                .projectMd(projectDetailDto.getProjectMd())
+                .build();
+    }
+
+    /**
+     * DTO를 updateEntity로 변경
+     * 
+     * @param projectId
+     * @param projectDetailDto
+     * @return
+     */
+    public static Project toUpdateEntity(Long projectId, ProjectDetailDto projectDetailDto) {
+        return Project.builder()
+                .projectId(projectId)
+                .portfolioId(projectDetailDto.getPortfolioId())
+                .projectRepresentativeImgUrl(projectDetailDto.getProjectRepresentativeImgUrl())
+                .projectTitle(projectDetailDto.getProjectTitle())
+                .proejctIntro(projectDetailDto.getProejctIntro())
+                .projectStrDate(projectDetailDto.getProjectStrDate())
+                .projectEndDate(projectDetailDto.getProjectEndDate())
+                .projectSubTitle(projectDetailDto.getProjectSubTitle())
+                .proejctSubIntro(projectDetailDto.getProejctSubIntro())
+                .projectHtml(projectDetailDto.getProjectHtml())
+                .projectMd(projectDetailDto.getProjectMd())
+                .build();
+    }
 }

@@ -15,11 +15,11 @@ import lombok.Getter;
 public class BaseTimeEntity {
 
     @CreationTimestamp
-    @Column(name = "created_at", nullable = true)
+    @Column(name = "created_at", nullable = true, updatable = false)
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = true)
-    private LocalDateTime modifiedDate;
+    private LocalDateTime modifiedDate = LocalDateTime.now();
 
 }

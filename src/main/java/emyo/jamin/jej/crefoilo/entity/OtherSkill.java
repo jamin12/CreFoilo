@@ -24,7 +24,7 @@ public class OtherSkill extends BaseTimeEntity {
 
     @Id
     @Column(name = "other_skill_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long otherSkillID; // '그 외 스킬 ID',
 
     @Column(name = "base_other_skill_id", nullable = true)

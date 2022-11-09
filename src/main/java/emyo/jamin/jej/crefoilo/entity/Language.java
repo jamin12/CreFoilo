@@ -24,7 +24,7 @@ public class Language extends BaseTimeEntity {
 
     @Id
     @Column(name = "language_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long languageId; // '언어 ID',
 
     @Column(name = "portfolio_id", nullable = false)
@@ -38,4 +38,7 @@ public class Language extends BaseTimeEntity {
 
     @Column(name = "lang_frequency", nullable = true)
     private Integer langFrequency; // '언어 배운점 설명',
+
+    @Column(name = "lang_skill_name", nullable = true, length = 255)
+    private String langSkillName; // '언어 기술 이름',
 }

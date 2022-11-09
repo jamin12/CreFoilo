@@ -24,8 +24,8 @@ public class AboutMe extends BaseTimeEntity {
 
     @Id
     @Column(name = "about_me_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long aboutMe_id; // '나의 대해 ID'
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long aboutMeId; // '나의 대해 ID'
 
     @Column(name = "portfolio_id")
     private Long portfolioId; // '포트폴리오 ID'
@@ -50,6 +50,9 @@ public class AboutMe extends BaseTimeEntity {
 
     @Column(name = "about_me_intro2", columnDefinition = "TEXT", nullable = true)
     private String aboutMeIntro2; // '소개2'
+
+    @Column(name = "about_me_img", columnDefinition = "TEXT", nullable = true)
+    private String aboutMeImg; // '소개2'
 
     @Column(name = "about_me_intro_color", length = 124, nullable = false)
     private String aboutMeIntroColor; // '소개 Color'

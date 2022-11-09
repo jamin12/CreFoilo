@@ -14,7 +14,7 @@ import lombok.Setter;
 public class FindLanguageDto {
     private Long langId;
     private String langName;
-    private String langDetail;
+    private List<String> langDetail;
     private int langFrequency;
     private List<String> langSkillName;
 }

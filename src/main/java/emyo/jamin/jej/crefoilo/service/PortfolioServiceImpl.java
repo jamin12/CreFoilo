@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.PortfolioDto;
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.repository.PortfolioRepository;
@@ -17,7 +18,7 @@ import emyo.jamin.jej.crefoilo.utils.Validation;
  * @author 강민진
  */
 @Service
-public class PortfolioListServiceImpl implements PortfolioListService {
+public class PortfolioServiceImpl implements PortfolioService {
 
     @Autowired
     private PortfolioRepository portfolioRepository;
@@ -25,6 +26,9 @@ public class PortfolioListServiceImpl implements PortfolioListService {
     @Autowired
     private Validation validation;
 
+    /**
+     * 아래 코드는 view page 작업입니다.
+     */
     /**
      * 포트폴리오 리스트 조회
      * 
@@ -54,6 +58,16 @@ public class PortfolioListServiceImpl implements PortfolioListService {
     public void deletePortfolio(Long portfolioId, String userId) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         portfolioRepository.delete(portfolioRepository.findById(portfolioId).get());
+    }
+
+    /**
+     * home 화면 조회
+     * 
+     * @param portfolioId
+     */
+    @Override
+    public HomeViewDto findPortfolioHome(Long portfolioId) {
+        return new HomeViewDto(portfolioRepository.findHomeByPortfolioId(portfolioId));
     }
 
 }

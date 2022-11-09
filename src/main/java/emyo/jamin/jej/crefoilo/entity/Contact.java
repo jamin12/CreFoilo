@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.ContactDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Contact extends BaseTimeEntity {
 
     @Id
     @Column(name = "contact_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contactId; // '내 컨택트 정보 ID',
 
     @Column(name = "portfolio_id", nullable = false)
@@ -35,4 +36,15 @@ public class Contact extends BaseTimeEntity {
 
     @Column(name = "contact_info", nullable = true, length = 255)
     private String contactInfo; // '정보',
+
+    public static Contact createAndUpdateEntity(Long portfolioId, ContactDto contactDto) {
+        ContactBuilder contactBulider = Contact.builder()
+                .portfolioId(portfolioId)
+                .contactImgUrl(contactDto.getContactImgUrl())
+                .contactInfo(contactDto.getContactInfo());
+        if (contactDto.getContactId() != null) {
+            contactBulider.contactId(contactDto.getContactId());
+        }
+        return contactBulider.build();
+    }
 }
