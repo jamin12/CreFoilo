@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
+import emyo.jamin.jej.crefoilo.service.ContactService;
+import emyo.jamin.jej.crefoilo.service.LanguageService;
+import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
+import emyo.jamin.jej.crefoilo.service.ProjectService;
 
 @Controller
 public class PortfolioController {
@@ -20,9 +24,28 @@ public class PortfolioController {
     @Autowired
     private AboutmeService aboutmeService;
 
+    @Autowired
+    private LanguageService languageskill;
+
+    @Autowired
+    private OtherSkillService otherSkillService;
+
+    @Autowired
+    private ProjectService ProjectService;
+
+    @Autowired
+    private ContactService contactService;
+
     @GetMapping(value = "/portfolio/{portfolioid}")
     public String portfolio(@PathVariable Long portfolioid, Model model) {
+        model.addAttribute("portfolio", portfolioListService.findPortfolioHome(portfolioid));
         model.addAttribute("aboutme", aboutmeService.findAboutme(portfolioid));
+        model.addAttribute("languageskill", languageskill.findLanguage(portfolioid));
+        model.addAttribute("otherskill", otherSkillService.findOtherSkillList(portfolioid));
+        // model.addAttribute("project", ProjectService.fin)
+        model.addAttribute("contact", contactService.findContact(portfolioid));
+
+
         return "portfolio";
     }
 
