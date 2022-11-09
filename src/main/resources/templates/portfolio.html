@@ -597,21 +597,21 @@
         const detail = document.getElementById('languageDetail')
 
         myChart.on('click', function (params) {
+            const titleData = params.data.name
+            const skillData = params.data.skills
+            const detailData = params.data.detail
             // alert(`${params.data.detail}를 눌렀습니다`)
-            console.log(params.data.skills)
 
-            title.innerText = params.data.name
+            title.innerText = titleData;
 
-            for(var i=0; i<params.data.skills.length; i++){
-                skills.innerHTML = `<p>${params.data.skills[i]}</p>`
+            skills.innerHTML = ""
+            for(var i=0; i<skillData.length; i++){
+                skills.innerHTML = skills.innerHTML+`<p>${skillData[i]}</p>`
             }
 
-            //TODO: detail 데이터 타입 list로 바뀜 변경 바람
-            const detailArr = params.data.detail.split("/n");
-            console.log(detailArr)
-            for(var i=0; i<detailArr.length; i++){
-                console.log(detailArr)
-                detail.innerHTML = `<li>${detailArr[i]}</li>`
+            detail.innerHTML = ""
+            for(var i=0; i<detailData.length; i++){
+                detail.innerHTML = detail.innerHTML + `<li>${detailData[i]}</li>`
             }
 
         })
