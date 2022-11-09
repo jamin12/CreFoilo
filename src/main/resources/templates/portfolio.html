@@ -21,15 +21,8 @@
     <!-- 제이쿼리 -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-    <!-- TODO: Spring 실행시에는 static이 시작지점이므로 프론트앤드가 끝나면 ../static은 지워야함 -->
     <link th:href="@{/css/portfoilo_css/style.css} " rel="stylesheet">
 
-
-
-    <!-- otherSkill js -->
-    <script type="text/javascript" th:src="@{/js/portfolio_js/otherSkill.js}"></script>
-    
-    
     <!-- slide slick -->
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -80,34 +73,40 @@
         <section id="aboutMe">
             <h2 class="main-title">ABOUT ME</h2>
             <!-- TODO(이묘): 이미지 주소 나중에 바꿔넣어줄 것 -->
-            <div class="contents type1">
+            <div class="contents type1" th:if="${aboutme.aboutMeType == 1}">
                 <content class="first-content">
                     <h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
                     <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" />
                 </content>
                 <content class="second-content">
                     <h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
-                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
+                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                        etiam pellentesque vitae, curabitur
                         pharetra, nunc, eget. Enim</p>
                 </content>
                 <content class="third-content">
                     <h2 th:text="${aboutme.aboutMeTitle3}">저는 꾸준한 사람입니다.</h2>
-                    <p th:text="${aboutme.aboutMeIntro2}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
+                    <p th:text="${aboutme.aboutMeIntro2}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                        etiam pellentesque vitae, curabitur
                         pharetra, nunc, eget. Enim</p>
                 </content>
             </div>
             
             <!-- type2 -->
-            <!-- <div class="contents type2">
-                <img src="https://images.unsplash.com/photo-1666934209536-08d839cd0973?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="about Me 이미지">
+            <div class="contents type2" th:if="${aboutme.aboutMeType == 0}">
+                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}">
                 <div class="text-box">
-                    <h2>안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
+                    <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
+                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                        etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus
+                        consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
                 </div>
-            </div> -->
+            </div>
         </section>
 
         <!-- 언어 스킬 -->
+        <!-- TODO: 타임리프 작업 아직 진행 못함 -->
         <section id="languageSkill" style="background-color: var(--gray100);">
             <h1 class="main-title">LANGUAGE SKILL</h1>
 
@@ -116,27 +115,14 @@
                 <div id="dChart"></div>
 
                 <div class="language-info">
-                    <h2 class="title">javascript</h2>
+                    <h2 id="languageTitle" class="title"></h2>
 
-                    <div class="framework-box">
-                        <p>react</p>
-                        <p>vue</p>
-                        <p>node JS</p>
-                        <p>node JS</p>
-                        <p>node JS</p>
+                    <div class="framework-box" id="languageSkillsName">
+                        <!-- <p >node JS</p> -->
                     </div>
 
-                    <ul class="info-box">
-                        <li>react의 ~을 사용해서 ~를 할 줄 앎</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
-                        <li>Node JS의 ~~를 사용할 줄 앎</li>
-                        <li>어쩌구 저쩌구</li>
+                    <ul class="info-box" id="languageDetail">
+                        <!-- <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li> -->
                     </ul>
                 </div>
             </div>
@@ -147,113 +133,57 @@
             <h2 class="main-title">OTHER SKILL</h2>
 
             <div class="contents">
-                <!-- class가 close면 닫힘 open이면 열림 -->
-                <div class="others">
-                    <h2>Collaboration, Document</h2>
-                    <ul>
-                        <li>git</li>
-                        <li>slack</li>
-                        <li>Notion</li>
-                        <li>Figma</li>
-                        <li>Power Point</li>
-                        <li>Excel</li>
+                <div class="others" th:each="otherskills : ${otherskill}">
+                    <h2 th:text="${otherskills.baseOtherSkillName}">Collaboration, Document</h2>
+                    <ul th:each="subskill : ${otherskills.subOtherSkillName}">
+                        <li th:text="${subskill}">git</li>
                     </ul>
                 </div>
-
-                <div class="others">
-                    <h2>Collaboration, Document</h2>
-                    <ul>
-                        <li>git</li>
-                        <li>slack</li>
-                        <li>Notion</li>
-                        <li>Figma</li>
-                        <li>Power Point</li>
-                        <li>Excel</li>
-                    </ul>
-                </div>
-
-                <div class="others">
-                    <h2>Collaboration, Document</h2>
-                    <ul>
-                        <li>git</li>
-                        <li>slack</li>
-                        <li>Notion</li>
-                        <li>Figma</li>
-                        <li>Power Point</li>
-                        <li>Excel</li>
-                    </ul>
-                </div>
-
-                <div class="others">
-                    <h2>Collaboration, Document</h2>
-                    <ul>
-                        <li>git</li>
-                        <li>slack</li>
-                        <li>Notion</li>
-                        <li>Figma</li>
-                        <li>Power Point</li>
-                        <li>Excel</li>
-                    </ul>
-                </div>
-                <div class="others">
-                    <h2>Collaboration, Document</h2>
-                    <ul>
-                        <li>git</li>
-                        <li>slack</li>
-                        <li>Notion</li>
-                        <li>Figma</li>
-                        <li>Power Point</li>
-                        <li>Excel</li>
-                    </ul>
-                </div>
-                <div class="others">
-                    <h2>Collaboration, Document</h2>
-                    <ul>
-                        <li>git</li>
-                        <li>slack</li>
-                        <li>Notion</li>
-                        <li>Figma</li>
-                        <li>Power Point</li>
-                        <li>Excel</li>
-                    </ul>
-                </div>
-
             </div>
         </section>
 
         <!-- project-detail Modal -->
+        <!-- TODO: 아직 연결 안됨 -->
         <div class="modal fade" id="PorjectModal" tabindex="-1" aria-labelledby="PorjectModalLable" aria-hidden="true">
-            <div class="project-modal modal-lg modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="project-modal modal-lg modal-dialog modal-dialog-scrollable modal-dialog-centered"
+                role="document">
                 <div class="modal-content project-modal">
                     <!-- 이미지 캐러셀 -->
-                <div class="project-detail-carousel">
-                    <img src='https://images.unsplash.com/photo-1667506057454-87e10fb157d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
-                        alt="프로젝트 이미지" />
-                    <img src='https://images.unsplash.com/photo-1667588732543-5c2c989126e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
-                        alt="프로젝트 이미지" />
-                    <img src='https://images.unsplash.com/photo-1661347333279-66f30d127efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
-                        alt="프로젝트 이미지" />
-                </div>
-                <div class="indicator">
-                    <i class="prev-arrow fa-solid fa-chevron-left"></i>
-                    <i class="next-arrow fa-solid fa-chevron-right"></i>
-                </div>
+                    <div class="project-detail-carousel">
+                        <img src='https://images.unsplash.com/photo-1667506057454-87e10fb157d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+                            alt="프로젝트 이미지" />
+                        <img src='https://images.unsplash.com/photo-1667588732543-5c2c989126e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+                            alt="프로젝트 이미지" />
+                        <img src='https://images.unsplash.com/photo-1661347333279-66f30d127efc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
+                            alt="프로젝트 이미지" />
+                    </div>
+                    <div class="indicator">
+                        <i class="prev-arrow fa-solid fa-chevron-left"></i>
+                        <i class="next-arrow fa-solid fa-chevron-right"></i>
+                    </div>
 
-                <!-- md파일 내용 -->
-                <div class="md-content">
-                    Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.
-                </div>
+                    <!-- md파일 내용 -->
+                    <div class="md-content">
+                        Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has
+                        been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of
+                        type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy떨어지다 text of the
+                        printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of
+                        type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy떨어지다 text of the
+                        printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of
+                        type and scrambled it to make a type specimen book.
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- 프로젝트 캐러셀 -->
+        <!-- TODO: 아직 타임리프 연결 안됨 -->
         <section id="project">
             <h2 class="main-title">PROJECT</h2>
 
@@ -585,34 +515,112 @@
             <h2 class="main-title">CONTACT</h2>
 
             <div class="contents">
-                <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
-                <div class="contact-item">
-                    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
-                    <!-- TODO(이묘): 서버에서 받은 경로와 같은 경로 집어넣어주면 됩니다. -->
+                <div class="contact-item" th:each="contactItem : ${contact}">
+                    <img class="icon" th:src="${contactItem.contactImgUrl}"
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
                     <span>
-                        <a href="https://github.com/">https://github.com/</a>
+                        <!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
+                        <a th:href="${contactItem.contactInfo}"
+                            th:text="${contactItem.contactInfo}">https://github.com/</a>
                     </span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 기본 폼 -->
-    <!-- <section id="">
-        <h2 class="main-title"></h2>
-
-        <div class="contents">
-        </div>
-    </section> -->
-
-
-
 
 
 
     <!--Echart-->
     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/portfolio_js/chartView.js}"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var dom = document.getElementById('dChart');
+
+        var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        var app = {};
+
+        var list = [[${languageskill}]]
+        console.log(list)
+        const chartData = list.map(el => {
+            // return [el.langName, el.langFrequency]
+            return {value: el.langFrequency, name: el.langName, id: el.langId, detail: el.langDetail, skills: el.langSkillName }
+            })
+        console.log(chartData)
+        
+
+        var option = {
+            legend: {
+                top: '5%',
+                left: 'left'
+            },
+            series: [
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {    // 차트 부분마다 있는 라인
+                        borderRadius: 10,
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    },
+                    label: {        // text 미리보기 같은거 같은데 꺼놓는 편이 좋을듯
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {     // 부분에 호버하면 크게 보이는 글씨
+                        label: {
+                            show: true,
+                            fontSize: '20',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: chartData
+                }
+            ]
+        };
+
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
+        window.addEventListener('resize', myChart.resize);
+
+        const title = document.getElementById('languageTitle')
+        const skills = document.getElementById('languageSkillsName')
+        const detail = document.getElementById('languageDetail')
+
+        myChart.on('click', function (params) {
+            // alert(`${params.data.detail}를 눌렀습니다`)
+            console.log(params.data.skills)
+
+            title.innerText = params.data.name
+
+            for(var i=0; i<params.data.skills.length; i++){
+                skills.innerHTML = `<p>${params.data.skills[i]}</p>`
+            }
+
+            //TODO: detail 데이터 타입 list로 바뀜 변경 바람
+            const detailArr = params.data.detail.split("/n");
+            console.log(detailArr)
+            for(var i=0; i<detailArr.length; i++){
+                console.log(detailArr)
+                detail.innerHTML = `<li>${detailArr[i]}</li>`
+            }
+
+        })
+        
+        /*]]>*/
+    </script>
 
     <script th:inline="javascript">
         $(function () {
