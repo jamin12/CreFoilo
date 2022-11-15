@@ -22,8 +22,7 @@ public class ContactDto {
         this.contactInfo = contact.getContactInfo();
     }
 
-    public ContactDto(Long portfolioId, String contactImgUrl, String contactInfo) {
-        this.portfolioId = portfolioId;
+    public ContactDto(String contactImgUrl, String contactInfo) {
         this.contactImgUrl = contactImgUrl;
         this.contactInfo = contactInfo;
     }

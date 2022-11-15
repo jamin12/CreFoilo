@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,4 +36,15 @@ public class OtherSkill extends BaseTimeEntity {
 
     @Column(name = "other_skill_name", nullable = true, length = 30)
     private String otherSkillName; // '그 외 스킬 이름',
+
+    public static OtherSkill createAndUpdateEntity(Long portfolioId, OtherSkillDto otherSkillDto) {
+        OtherSkillBuilder otherSkillBulid = OtherSkill.builder()
+                .otherSkillName(otherSkillDto.getOtherSkillName())
+                .baseOtherSkillId(otherSkillDto.getBaseOtherSkillId())
+                .portfolioId(portfolioId);
+        if (otherSkillDto.getOtherSkillID() != null) {
+            otherSkillBulid.otherSkillID(otherSkillDto.getOtherSkillID());
+        }
+        return otherSkillBulid.build();
+    }
 }

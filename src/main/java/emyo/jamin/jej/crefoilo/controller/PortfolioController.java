@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.util.StringUtils;
 
+import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
 
 @RestController
 public class PortfolioController {
+
+    @Autowired
+    private HttpSession httpSession;
 
     @Autowired
     private PortfolioService portfolioService;
@@ -30,12 +35,14 @@ public class PortfolioController {
     }
 
     @GetMapping(value = "/portfolio/d/{portfolioid}")
-    public String deletePortfolio(HttpServletRequest request, @PathVariable Long portfolioid, String userId) {
-        HttpSession session = request.getSession();
+    public String deletePortfolio(@PathVariable Long portfolioid) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        if (userIdInSession == null) {
+            // TODO: 로그인을 하세요
+            return null;
+        }
 
-        String name = (String) session.getAttribute("userId");
-        System.out.println(name);
-        portfolioService.deletePortfolio(portfolioid, name);
+        portfolioService.deletePortfolio(portfolioid, userIdInSession.getUserId());
         return "우와";
     }
 

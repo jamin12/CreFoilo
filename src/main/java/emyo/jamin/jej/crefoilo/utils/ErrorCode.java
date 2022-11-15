@@ -16,6 +16,7 @@ public enum ErrorCode {
     POST_NOT_FOUND(HttpStatus.BAD_REQUEST, "포스트가 없습니다."),
     PROJECT_NOT_FOUND(HttpStatus.BAD_REQUEST, "프로젝트가 없습니다."),
     ABOUT_NOT_FOUND(HttpStatus.BAD_REQUEST, "AboutMe가 없습니다."),
+    BASE_OTHER_SKILL_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "base other skill이 이미 있습니다."),
     /* 500 Internal Server Error 서버가 처리 방법을 모르는 상황이 발생했습니다. */
     INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버에러"),
     ;
