@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import emyo.jamin.jej.crefoilo.dto.ContactDto;
 import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
+import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
 import emyo.jamin.jej.crefoilo.dto.OtherSkillListDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDto;
@@ -65,10 +66,27 @@ public class testController {
     @GetMapping(value = "/test4")
     public String test4() {
         List<ContactDto> contacts = new ArrayList<ContactDto>();
-        contacts.add(new ContactDto(1L, "phone", "새로새로"));
-        contacts.add(new ContactDto(1L, "git", "새로 만드렁써 되써용"));
-        contacts.add(new ContactDto(1L, "myimg", "새로아하하"));
-        contacts.add(new ContactDto(1L, "phone", "이건 새애애애롱"));
+        contacts.add(new ContactDto("phone", "새로새로"));
+        contacts.add(new ContactDto("git", "새로 만드렁써 되써용"));
+        contacts.add(new ContactDto("myimg", "새로아하하"));
+        contacts.add(new ContactDto("phone", "이건 새애애애롱"));
         return contactService.CUDContact(1L, "100625979022689944834", contacts);
+    }
+
+    @GetMapping(value = "/test6")
+    public List<OtherSkillListDto> test6() {
+        return otherSkillService.findOtherSkillList(4L, "110335477341106437565");
+    }
+
+    @GetMapping(value = "/test7")
+    public List<OtherSkillListDto> test7() {
+        List<OtherSkillDto> otherskillDtos = new ArrayList<>();
+        new OtherSkillDto();
+        otherskillDtos.add(OtherSkillDto.builder().otherSkillID(23L).baseOtherSkillId(18L)
+                .otherSkillName("업데이트으으으으으으 스킬 테스트").build());
+        otherskillDtos.add(OtherSkillDto.builder().otherSkillID(24L).otherSkillName("업데이라넹 헤해").build());
+        otherskillDtos.add(OtherSkillDto.builder().otherSkillID(18L).baseOtherSkillId(24L)
+                .otherSkillName("업데이트 스킬이에용 헤해").build());
+        return otherSkillService.CUDOtherSkill(otherskillDtos, 1L, "100625979022689944834");
     }
 }
