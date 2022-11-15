@@ -102,7 +102,7 @@ public class testController {
     }
 
     @GetMapping(value = "/test8")
-    public String test6() {
+    public String test8() {
         AboutmeDto aboutmeDto = AboutmeDto.builder()
                 .portfolioId(1L)
                 .aboutMeId(2L)
