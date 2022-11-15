@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me Setting - template2</title>
-    <link rel="stylesheet" href="../../static/css/setting/settingAboutMeT2.css">
+    <link rel="stylesheet" href="@{/css/setting/settingAboutMeT2.css}">
 
     <!-- fontawesome - 아이콘-->
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<th:block layout:fragment="content">
     <!-- aboutMe 템플릿2-->
     <div class="aboutMeTemplate2">
 
         <!-- 대표 이미지 추가버튼 -->
         <div class="section1">
-            <button class="img" type="button"><img class="btn-img" src="/src/main/resources/static/img/plus.png"></button>
+            <button class="img" type="button"><img class="btn-img"
+                    src="/src/main/resources/static/img/plus.png"></button>
         </div>
 
         <!-- 자기소개1, 1부연설명 -->
@@ -27,5 +30,6 @@
 
     </div>
 
-</body>
+</th:block>
+
 </html>

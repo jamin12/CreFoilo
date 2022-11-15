@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
+<link th:href="@{/css/setting/settingAboutMe.css}" rel="stylesheet">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me SETTING - main</title>
-    <link rel="stylesheet" href="../../static/css/setting/settingAboutMe.css">
+    <link rel="stylesheet" href="@{/css/setting/settingAboutMe.css}">
 
     <!-- fontawesome - 아이콘-->
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
 </head>
-
-<body>
+<th:block layout:fragment="content">
     <!-- aboutME 예시 템플릿 -->
     <div class="ex-templates">
         <!-- 예시 템플릿1 -->
@@ -27,7 +28,6 @@
             <p>예시2</p>
         </div>
     </div>
-
-</body>
+</th:block>
 
 </html>

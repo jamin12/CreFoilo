@@ -18,7 +18,7 @@ import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
 
-@RestController
+@Controller
 public class PortfolioController {
 
     @Autowired
