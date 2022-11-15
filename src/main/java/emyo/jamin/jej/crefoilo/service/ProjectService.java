@@ -17,4 +17,6 @@ public interface ProjectService {
     String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto);
 
     ProjectDetailDto findProjectDetailView(Long projectId);
+
+    List<ProjectDetailDto> findProjectAll(Long portfolioId);
 }

@@ -31,18 +31,18 @@ public class PortfolioController {
     private OtherSkillService otherSkillService;
 
     @Autowired
-    private ProjectService ProjectService;
+    private ProjectService projectService;
 
     @Autowired
     private ContactService contactService;
 
     @GetMapping(value = "/portfolio/{portfolioid}")
-    public String portfolio(@PathVariable Long portfolioid, Model model) {
+    public String portfolio(@PathVariable Long portfolioid, Model model, String userId) {
         model.addAttribute("portfolio", portfolioListService.findPortfolioHome(portfolioid));
         model.addAttribute("aboutme", aboutmeService.findAboutme(portfolioid));
         model.addAttribute("languageskill", languageskill.findLanguage(portfolioid));
         model.addAttribute("otherskill", otherSkillService.findOtherSkillList(portfolioid));
-        // model.addAttribute("project", ProjectService.fin)
+        model.addAttribute("projectDetail", projectService.findProjectAll(portfolioid));
         model.addAttribute("contact", contactService.findContact(portfolioid));
 
 
