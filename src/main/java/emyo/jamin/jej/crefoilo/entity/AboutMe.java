@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,10 +55,50 @@ public class AboutMe extends BaseTimeEntity {
     @Column(name = "about_me_img", columnDefinition = "TEXT", nullable = true)
     private String aboutMeImg; // '소개2'
 
-    @Column(name = "about_me_intro_color", length = 124, nullable = false)
-    private String aboutMeIntroColor; // '소개 Color'
+    /**
+     * DTO를 CreateEntity로 변경
+     * 
+     * @param portfolioId
+     * @param projectDetailDto
+     */
+    public static AboutMe toCreateEntity(Long portfolioId, AboutmeDto aboutmeDto) {
+        AboutMeBuilder aboutMeBulider = AboutMe.builder()
+                .portfolioId(portfolioId)
+                .aboutMeBgColor(aboutmeDto.getAboutMeBgColor())
+                .aboutMeType(aboutmeDto.getAboutMeType())
+                .aboutMeTitle1(aboutmeDto.getAboutMeTitle1())
+                .aboutMeTitle2(aboutmeDto.getAboutMeTitle2())
+                .aboutMeTitle3(aboutmeDto.getAboutMeTitle3())
+                .aboutMeIntro1(aboutmeDto.getAboutMeIntro1())
+                .aboutMeIntro2(aboutmeDto.getAboutMeIntro2())
+                .aboutMeImg(aboutmeDto.getAboutMeImg());
 
-    @Column(name = "about_me_title_color", length = 124, nullable = false)
-    private String aboutMeTitleColor; // '제목 Color'
+        if(aboutmeDto.getAboutMeId() != null){
+            aboutMeBulider.aboutMeId(aboutmeDto.getAboutMeId());
+        }
+
+        return aboutMeBulider.build();
+    }
+
+    /**
+     * DTO를 UpdateEntity로 변경
+     * 
+     * @param aboutMeId
+     * @param aboutMeDto
+     */
+    public static AboutMe toUpdateEntity(Long aboutMeId, AboutmeDto aboutmeDto) {
+        return AboutMe.builder()
+                .aboutMeId(aboutMeId)
+                .portfolioId(aboutmeDto.getPortfolioId())
+                .aboutMeBgColor(aboutmeDto.getAboutMeBgColor())
+                .aboutMeType(aboutmeDto.getAboutMeType())
+                .aboutMeTitle1(aboutmeDto.getAboutMeTitle1())
+                .aboutMeTitle2(aboutmeDto.getAboutMeTitle2())
+                .aboutMeTitle3(aboutmeDto.getAboutMeTitle3())
+                .aboutMeIntro1(aboutmeDto.getAboutMeIntro1())
+                .aboutMeIntro2(aboutmeDto.getAboutMeIntro2())
+                .aboutMeImg(aboutmeDto.getAboutMeImg())
+                .build();
+    }
 
 }
