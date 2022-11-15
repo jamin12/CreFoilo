@@ -1,45 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Setting</title>
-    <link rel="stylesheet" href="../../static/css/setting/settingHome.css">
+    <link rel="stylesheet" th:href="@{/css/setting/settingHome.css}">
 
     <!-- fontawesome - 아이콘-->
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<th:block layout:fragment="content">
     <div class="hometpl">
-    <!--Home 기본 예시 템플릿-->
-    <div class="basic-templates">
-        <!--예시 템플릿 1-->
-        <div class="btpl">
-            <button class="btpl-ex1" type="button"></button>
-            <p>예시 템플릿 1</p>
+        <!--Home 기본 예시 템플릿-->
+        <div class="basic-templates">
+            <!--예시 템플릿 1-->
+            <div class="btpl">
+                <button class="btpl-ex1" type="button"></button>
+                <p>예시 템플릿 1</p>
+            </div>
+
+            <!--예시 템플릿 2-->
+            <div class="btpl">
+                <button class="btpl-ex2" type="button"></button>
+                <p>예시 템플릿 2</p>
+            </div>
+
+            <!--예시 템플릿 3-->
+            <div class="btpl">
+                <button class="btpl-ex3" type="button"></button>
+                <p>예시 템플릿 3</p>
+            </div>
         </div>
 
-        <!--예시 템플릿 2-->
-        <div class="btpl">
-            <button class="btpl-ex2" type="button"></button>
-            <p>예시 템플릿 2</p>
-        </div>
-
-        <!--예시 템플릿 3-->
-        <div class="btpl">
-            <button class="btpl-ex3" type="button"></button>
-            <p>예시 템플릿 3</p>
+        <!-- Home 사용자지정 템플릿 추가-->
+        <div class="add-templates">
+            <div class="atpl">
+                <button class="atpl-1" type="button"></button>
+                <p>사용자 지정</p>
+            </div>
         </div>
     </div>
+</th:block>
 
-    <!-- Home 사용자지정 템플릿 추가-->
-    <div class="add-templates">
-        <div class="atpl">
-            <button class="atpl-1" type="button"></button>
-            <p>사용자 지정</p>
-        </div>
-    </div>
-</div>
-</body>
+
 </html>

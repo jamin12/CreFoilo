@@ -85,6 +85,12 @@
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>3.1.0</version>
+		</dependency>
 
 
 	</dependencies>
@@ -121,12 +127,12 @@
 				</executions>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+			</plugin>
 		</plugins>
 	</build>
-	
+
 
 </project>

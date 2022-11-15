@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../static/css/setting/settingProjectDetail.css">
+    <link rel="stylesheet" th:href="@{/css/setting/settingProjectDetail.css}">
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <title>Document</title>
 </head>
 
-<body>
+<th:block layout:fragment="content">
     <section id="project">
         <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
         <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
@@ -49,7 +50,7 @@
                         <!-- TODO: 링크모달창 만들어주세요 -->
                         <a href="#none"><i class="fa-solid fa-code"></i></a>
                         <a href="#none"><i class="fa-solid fa-tv"></i></a>
-                        <img src="../../static/img/plus.png" alt="porjectImg">
+                        <img th:src="@{/img/plus.png}" alt="porjectImg">
                     </div>
                 </div>
             </div>
@@ -63,7 +64,7 @@
         <div class="add_project_img_card">
             <!-- TODO: 이미지 추가하기 -->
             <button class="add_img_btn" onclick="">
-                <img src="../../static/img/plus.png" alt="porjectImg">
+                <img th:src="@{/img/plus.png}" alt="porjectImg">
             </button>
         </div>
         <div class="project_img_card">
@@ -102,6 +103,6 @@
     <div class="save_button">
         <button onclick="">저장</button>
     </div>
-</body>
+</th:block>
 
 </html>
