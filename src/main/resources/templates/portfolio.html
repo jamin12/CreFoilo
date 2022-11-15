@@ -191,23 +191,25 @@
                 <i class="prev-arrow fa-solid fa-chevron-left"></i>
                 <div class="carousel">
                     <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
-                    <div class="flip" id="1" data-bs-toggle="modal" data-bs-target="#PorjectModal">
+                    <div class="flip" id="1"
+                    th:each="projectDetail : ${projectDetail}" 
+                    data-bs-toggle="modal" data-bs-target="#PorjectModal">
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
                                 <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
                                     alt="porjectImg">
-                                <h3 id="projectTitle">TESTITLE</h3>
-                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
-                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                                <h3 id="projectTitle" th:text="${projectDetail.projectTitle}">TESTITLE</h3>
+                                <p id="projectAbout" th:text="${projectDetail.proejctIntro}">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate"><span th:text="${projectDetail.projectStrDate}"></span th:text="${projectDetail.projectEndDate}"> ~ <span></span></p>
                             </div>
                             <!-- 뒷면 -->
                             <div class="back">
-                                <h4 class="title">나의 기여도</h4>
-                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title" th:text="${projectDetail.projectSubTitle}">나의 기여도</h4>
+                                <p class="contribution-content" th:text="${projectDetail.proejctSubIntro}">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
                                 <h4 class="title">기술 스텍</h4>
-                                <ul class="stack">
-                                    <li>리액트</li>
+                                <ul class="stack" >
+                                    <li tht>리액트</li>
                                     <li>파이썬</li>
                                     <li>파이썬</li>
                                     <li>파이썬</li>
