@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/settingLayout}">
+
+<th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/setting/settingProject.css}">
-    <title>Document</title>
-</head>
+</th:block>
+<th:block layout:fragment="script">
+    <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
+</th:block>
 <th:block layout:fragment="content">
     <section id="project">
         <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
@@ -47,7 +46,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout
 
         <!-- TODO: 클릭 시 edit창으로 넘어가도록 -->
         <div class="card">
-            <img src="../../static/img/plus.png" alt="plus" class="plus">
+            <img th:src="@{/img/plus.png}" alt="plus" class="plus">
         </div>
     </section>
     <!-- TODO: 적용버튼(전부 동일하게 만들어야함) -->

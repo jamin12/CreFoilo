@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me Setting - template1</title>
-    <link rel="stylesheet" th:href="@{/css/setting/settingAboutMeT1.css}">
-
-    <!-- fontawesome - 아이콘-->
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
+<th:block layout:fragment="script">
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
-</head>
+</th:block>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/setting/settingAboutMeT1.css}">
+</th:block>
+
+<!-- fontawesome - 아이콘-->
 <th:block layout:fragment="content">
     <!-- aboutMe 템플릿1-->
     <div class="aboutMeTemplate1">
@@ -20,7 +17,7 @@
         <div class="section1">
             <input id="intro1" type="text" name="intro1">
             <button class="img" type="button"><img class="btn-img"
-                    src="/src/main/resources/static/img/plus.png"></button>
+                    th:src="@{/img/plus.png}"></button>
         </div>
 
         <!-- 자기소개2, 2부연설명 -->

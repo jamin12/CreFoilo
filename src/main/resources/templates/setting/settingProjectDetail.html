@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
+<th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/setting/settingProjectDetail.css}">
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-    <title>Document</title>
-</head>
+</th:block>
 
 <th:block layout:fragment="content">
     <section id="project">
@@ -21,7 +19,7 @@
             <!-- 앞면 -->
             <div id="projectCardFront" class="front">
                 <button class="add_project_representative_img">
-                    <img src="../../static/img/plus.png" alt="project_representative_img">
+                    <img th:src="@{/img/plus.png}" alt="project_representative_img">
                 </button>
                 <!-- TODO: 이미지가 들어오면 src와 style을 바꿔줘야함 -->
                 <img src="https://cdn.pixabay.com/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"

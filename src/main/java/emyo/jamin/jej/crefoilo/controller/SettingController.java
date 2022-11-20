@@ -10,17 +10,27 @@ public class SettingController {
         return "setting/settingAboutMe";
     }
 
-    // @GetMapping(value = "/setting/aboutme")
-    // public String settingHome() {
-    // return "setting/settingAboutMe";
-    // }
+    @GetMapping(value = "/setting/aboutmet1")
+    public String settingAboutMeT1() {
+        return "setting/settingAboutMeT1";
+    }
 
-    // @GetMapping(value = "/setting/aboutme")
-    // public String settingProject() {
-    // return "setting/settingAboutMe";
-    // }
+    @GetMapping(value = "/setting/aboutmet2")
+    public String settingAboutMeT2() {
+        return "setting/settingAboutMeT2";
+    }
 
-    @GetMapping(value = "/setting/settingprojectdetail")
+    @GetMapping(value = "/setting/home")
+    public String settingHome() {
+        return "setting/settingHome";
+    }
+
+    @GetMapping(value = "/setting/project")
+    public String settingProject() {
+        return "setting/settingProject";
+    }
+
+    @GetMapping(value = "/setting/projectdetail")
     public String settingProjectDetail() {
         return "setting/settingProjectDetail";
     }
