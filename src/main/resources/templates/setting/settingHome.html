@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Setting</title>
-    <link rel="stylesheet" th:href="@{/css/setting/settingHome.css}">
+<th:block layout:fragment="css">
+    <link th:href="@{/css/setting/settingHome.css}" rel="stylesheet">
+</th:block>
 
-    <!-- fontawesome - 아이콘-->
+<th:block layout:fragment="script">
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
-</head>
+</th:block>
+
+<!-- fontawesome - 아이콘-->
 <th:block layout:fragment="content">
     <div class="hometpl">
         <!--Home 기본 예시 템플릿-->
