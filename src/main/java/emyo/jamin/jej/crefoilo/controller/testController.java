@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 
-@RestController
+@Controller
 public class testController {
 
     @Autowired
@@ -118,4 +119,10 @@ public class testController {
 
         return aboutmeService.createAboutMe(1L, "100625979022689944834", aboutmeDto);
     }
+
+    @GetMapping(value = "/test9")
+    public String test9() {
+        return "setting/settingLanguageSkill";
+    }
+
 }
