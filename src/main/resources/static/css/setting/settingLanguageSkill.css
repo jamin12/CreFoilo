@@ -7,7 +7,6 @@ body{
 .all {
     /* background-color: beige; */
     display: flex;
-    /* align-items: center; */
     position: absolute;
     top:50%;
     left:50%;
