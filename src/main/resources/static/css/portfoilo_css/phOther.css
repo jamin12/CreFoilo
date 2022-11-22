@@ -13,8 +13,15 @@
     align-content: start;
 
     max-height: 65%;
-    overflow: scroll;
-
+    overflow-y: scroll;
+}
+#otherSkill > .contents::-webkit-scrollbar{
+    background-color: inherit;
+    width: 5px;
+}
+#otherSkill > .contents::-webkit-scrollbar-thumb{
+    background-color: var(--gray400);
+    border-radius: 20px;
 }
 
 .contents > .others{
