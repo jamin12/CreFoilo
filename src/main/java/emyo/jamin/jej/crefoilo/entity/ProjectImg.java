@@ -34,9 +34,6 @@ public class ProjectImg extends BaseTimeEntity {
     @Column(name = "project_img_url", nullable = false, length = 255)
     private String projectImgUrl; // '프로젝트 이미지 url',
 
-    @Column(name = "project_img_sequence", nullable = false)
-    private Integer projectImgSequence; // '프로젝트 이미지 url',
-
     /**
      * DTO를 createEntity로 변경
      * 
@@ -48,7 +45,6 @@ public class ProjectImg extends BaseTimeEntity {
         return ProjectImg.builder()
                 .projectId(proejctId)
                 .projectImgUrl(proejectImgDto.getProjectImgUrl())
-                .projectImgSequence(proejectImgDto.getProjectImgSequence())
                 .build();
     }
 
@@ -60,11 +56,13 @@ public class ProjectImg extends BaseTimeEntity {
      * @return
      */
     public static ProjectImg toUpdateEntity(Long proejctId, ProjectImgDto proejectImgDto) {
-        return ProjectImg.builder()
-                .projectImgId(proejectImgDto.getProjectImgId())
+        ProjectImgBuilder projectImgBuilder = ProjectImg.builder()
                 .projectId(proejctId)
-                .projectImgUrl(proejectImgDto.getProjectImgUrl())
-                .projectImgSequence(proejectImgDto.getProjectImgSequence())
-                .build();
+                .projectImgUrl(proejectImgDto.getProjectImgUrl());
+        if (proejectImgDto.getProjectImgId() != null) {
+            projectImgBuilder.projectImgId(proejectImgDto.getProjectImgId());
+        }
+
+        return projectImgBuilder.build();
     }
 }

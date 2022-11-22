@@ -60,11 +60,13 @@ public class DocumentUrl extends BaseTimeEntity {
      * @return
      */
     public static DocumentUrl toUpdateEntity(Long proejctid, ProjectDocumentDto projectDocumentDto) {
-        return DocumentUrl.builder()
-                .documentId(projectDocumentDto.getDocuemntUrlId())
+        DocumentUrlBuilder docUrlBulid = DocumentUrl.builder()
                 .projectId(proejctid)
                 .documentImgUrl(projectDocumentDto.getDocumentImgUrl())
-                .documentUrl(projectDocumentDto.getDocumentUrl())
-                .build();
+                .documentUrl(projectDocumentDto.getDocumentUrl());
+        if (projectDocumentDto.getDocuemntUrlId() != null) {
+            docUrlBulid.documentId(projectDocumentDto.getDocuemntUrlId());
+        }
+        return docUrlBulid.build();
     }
 }

@@ -36,6 +36,7 @@ public class ProjectDetailDto {
         this.projectId = project.getProjectId();
         this.portfolioId = project.getPortfolioId();
         this.projectTitle = project.getProjectTitle();
+        this.projectRepresentativeImgUrl = project.getProjectRepresentativeImgUrl();
         this.proejctIntro = project.getProejctIntro();
         this.projectSubTitle = project.getProjectSubTitle();
         this.proejctSubIntro = project.getProejctSubIntro();
