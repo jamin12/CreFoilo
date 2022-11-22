@@ -68,6 +68,13 @@
     width: 100%;
     height: 50%;
     object-fit: cover;
+
+    display: flex;
+    text-align: center;
+    font-size: 1.5rem; 
+    font-weight: 900; 
+    background-color: var(--gray100);
+    color: var(--gray400);
 }
 #projectTitle{
     font-weight: bold;
@@ -142,14 +149,14 @@
     display: flex;
     justify-content: space-between;
 }
-.icon-box i{
-    padding: 5px;
+.icon-box img{
+    width: 30px;
+    height: 30px;
     margin: 0 10px;
     color: var(--gray600);
     transition: 0.3s;
-}
-.icon-box i:hover{
-    color: var(--gray900);
+    cursor: pointer;
+    border-radius: 50%;
 }
 
 /* 
@@ -157,7 +164,9 @@
 */
 .back{
     transform: rotateY(180deg);
+    overflow-y: hidden;
 }
 .flip:hover .card{
     transform: rotateY(180deg);
 }
+
