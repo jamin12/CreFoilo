@@ -1,0 +1,49 @@
+@import url(../mainStyle.css);
+
+.allOtherSkill {
+    /* background-color: antiquewhite; */
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: space-between;
+}
+
+.FirstOS {
+    /* background-color: aqua; */
+    place-content: center;
+    position: relative;
+    text-align: center;
+    margin: 50px;
+
+}
+
+.SecondOS {
+    /* background-color: cadetblue; */
+    place-content: center;
+    position: relative;
+    text-align: center;
+    margin: 50px;
+}
+
+.skillplusBtn {
+    /* background-color: bisque; */
+    display: inline-block;
+    place-content: center;
+    position: relative;
+    text-align: center;
+    /* margin: 50px; */
+    align-items: center;
+}
+
+input {
+    background-color: #c9cdd2;
+    margin: 5px;
+}
+
+.mainOtherSkillplusBtn {
+    width:20px;
+    height:20px;
+    margin-top: 55px;
+}
