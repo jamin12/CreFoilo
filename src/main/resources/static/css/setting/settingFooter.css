@@ -14,7 +14,7 @@ footer {
     z-index: 100;
 }
 
-ul {
+.footerul {
     list-style-type: none;
     text-align: center;
     margin: 0;
@@ -24,12 +24,12 @@ ul {
     background-color: var(--gray200);
 }
 
-li {
+.footerli {
     display: inline-block;
     
 }
 
-li a {
+.footerli a {
     display: block;
     color: white;
     text-align: center;

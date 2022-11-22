@@ -15,17 +15,15 @@ import lombok.Setter;
 public class ProjectImgDto {
     private Long projectImgId;
     private String projectImgUrl;
-    private int projectImgSequence;
 
     public ProjectImgDto(@Nullable ProjectImg projectImg) {
         this.projectImgId = projectImg.getProjectImgId();
         this.projectImgUrl = projectImg.getProjectImgUrl();
-        this.projectImgSequence = projectImg.getProjectImgSequence();
     }
 
     @Override
     public int hashCode() {
-        return (this.projectImgUrl + this.projectImgSequence).hashCode();
+        return this.projectImgUrl.hashCode();
     }
 
     @Override
