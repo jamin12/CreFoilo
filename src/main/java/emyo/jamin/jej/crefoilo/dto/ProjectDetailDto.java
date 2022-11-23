@@ -7,12 +7,14 @@ import org.springframework.lang.Nullable;
 import emyo.jamin.jej.crefoilo.entity.Project;
 import emyo.jamin.jej.crefoilo.entity.TechnicalStack;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectDetailDto {

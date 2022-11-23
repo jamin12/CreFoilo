@@ -13,6 +13,7 @@ const editor = new Editor({
   previewStyle: 'vertical',
 });
 const projectId = document.querySelector("#projectId").value;
+const portfolioId = document.querySelector("#portfolioId").value;
 
 /**
 * 기술 스택 리스트에서 문자열로 만들기
@@ -38,9 +39,10 @@ let imgDto = [];
 imginfo.forEach(e => {
   imgDto.push({
     projectImgId: e.querySelector("#imgId").value,
-    projectImgUrl: e.querySelector("#imgId").value
+    projectImgUrl: e.querySelector("#imgUrl").value
   })
 })
+
 const geteditor = document.querySelector('#editor');
 // 에디터 정보 가져오기
 let htmlData = ""
@@ -50,20 +52,46 @@ function setProejctContentsInfo() {
   mdData = editor.getMarkdown();
   htmlData = editor.getHTML();
   var xhr = new XMLHttpRequest();
-  if (projectId === ''){
+  // 새로 만들기
+  if (projectId === '') {
 
-  }else{
-    
+    // 업데이트
+  } else {
+    $.ajax({
+      url: `/setting/projectdetail/${projectId}`,
+      contentType: "application/json; charset=utf-8",
+      type: "POST",
+      data: JSON.stringify(
+        {
+          projectId: projectId,
+          portfolioId: portfolioId,
+          projectRepresentativeImgUrl: representativeImgUrl,
+          projectTitle: projectTitile,
+          proejctIntro: projectIntro,
+          projectStrDate: startDate,
+          projectEndDate: endDate,
+          projectSubTitle: projectSubTitile,
+          proejctSubIntro: projectSubIntro,
+          projectMd: mdData,
+          projectHtml: htmlData,
+          proejctTechnicalStack: thchnicalStack,
+          projectImg: imgDto,
+          projectDocument: projectDocDto
+        }
+      ),
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+      },
+      // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
+      error: function (error) {
+        location.href = error.responseText;
+      },
+    })
   }
-  //요청을 보낼 방식, url, 비동기여부 설정
-  // xhr.open('POST', '/', false);
 
-  //HTTP 요청 헤더 설정
-  // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-  //요청 전송
-  // xhr.send("id=post_ajax");
 }
+
 let documentUrl = document.querySelector
 // 시작 날짜 가져오기
 let startDate = document.querySelector("#projectStrDate").value;
