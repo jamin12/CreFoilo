@@ -1,8 +1,10 @@
 package emyo.jamin.jej.crefoilo.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -201,6 +203,49 @@ public class ProjectServiceImpl implements ProjectService {
         });
         // TODO: return 수정하기
         return null;
+    }
+
+    /**
+     * 아래 코드는 프로젝트 view page의 작업입니다.
+     */
+    @Override
+    public List<ProjectDetailDto> findProjectAll(Long portfolioId) {
+        QProject qProject = QProject.project;
+        QProjectImg qProjectImg = QProjectImg.projectImg;
+        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
+        QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
+
+        List<ProjectDetailDto> findedProjectList = new ArrayList<>();
+        // 받아온 데이터를 dto로 변환?
+        List<Tuple> findedProjectAll = proejctRepository.findProjectAllByPortfolioId(portfolioId);
+
+        Long index = findedProjectAll.get(0).get(qProject).getProjectId();
+
+        ProjectDetailDto projectDetailDto = new ProjectDetailDto();
+        HashSet<ProjectImgDto> projectImgDtos = new HashSet<>();
+        HashSet<ProjectDocumentDto> projectDocumentDtos = new HashSet<>();
+
+        for (Tuple tuple : findedProjectAll) {
+
+            if (tuple.get(qProject).getProjectId() != index) {
+                index = tuple.get(qProject).getProjectId();
+                projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
+                projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+                findedProjectList.add(projectDetailDto);
+
+                projectImgDtos.clear();
+                projectDocumentDtos.clear();
+
+            }
+            projectDetailDto = new ProjectDetailDto(tuple.get(qProject), tuple.get(qTechnicalStack));
+            projectImgDtos.add(new ProjectImgDto(tuple.get(qProjectImg)));
+            projectDocumentDtos.add(new ProjectDocumentDto(tuple.get(qDocumentUrl)));
+        }
+        projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
+        projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+        findedProjectList.add(projectDetailDto);
+
+        return findedProjectList;
     }
 
 }

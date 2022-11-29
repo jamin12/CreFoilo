@@ -29,9 +29,9 @@ public class ProjectDetailDto {
     private String proejctSubIntro; // '서브 설명',
     private String projectMd; // '프로젝트 md',
     private String projectHtml; // '프로젝트 html',
-    private String proejctTechnicalStack;
-    private List<ProjectImgDto> projectImg;
-    private List<ProjectDocumentDto> projectDocument;
+    private String proejctTechnicalStack;   // '기술 스텍'
+    private List<ProjectImgDto> projectImg; // '프로젝트 이미지 리스트'
+    private List<ProjectDocumentDto> projectDocument;   // '프로젝트 링크'
 
     public ProjectDetailDto(@Nullable Project project,
             @Nullable TechnicalStack technicalStack) {

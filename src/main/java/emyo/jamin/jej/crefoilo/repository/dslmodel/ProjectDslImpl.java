@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
 import com.querydsl.core.Tuple;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import emyo.jamin.jej.crefoilo.entity.Project;
@@ -76,6 +77,30 @@ public class ProjectDslImpl implements ProjectDsl {
                 .join(qPortfolio).on(qProject.portfolioId.eq(qPortfolio.portfolioId))
                 .where(qProject.projectId.eq(projectId), qPortfolio.userId.eq(userId))
                 .fetchOne();
+    }
+
+    /**
+     * 프로젝트 아이디로 프로젝트 전부 찾기
+     */
+    @Override
+    public List<Tuple> findProjectAllByPortfolioId(Long portfolioId) {
+
+        // INNER JOIN technical_stack ts
+        // on ts.project_id = p.project_id
+        // INNER JOIN document_url du
+        // on du.project_id = p.project_id
+        // WHERE p.portfolio_id = 1;
+        QProject qProject = QProject.project;
+        QProjectImg qProjectImg = QProjectImg.projectImg;
+        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
+        QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
+        return jpaQueryFactory.select(qProject, qProjectImg, qTechnicalStack, qDocumentUrl)
+                .from(qProject)
+                .join(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
+                .join(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
+                .join(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
+                .where(qProject.portfolioId.eq(portfolioId))
+                .fetch();
     }
 
 }
