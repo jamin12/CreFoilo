@@ -1,10 +1,24 @@
 package emyo.jamin.jej.crefoilo.config;
 
+import java.util.Collections;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.SessionCookieConfig;
+import javax.servlet.SessionTrackingMode;
+
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.HttpStatusRequestRejectedHandler;
+import org.springframework.security.web.firewall.RequestRejectedHandler;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import emyo.jamin.jej.crefoilo.entity.Role;
 import emyo.jamin.jej.crefoilo.security.CustomOauth2UserService;
@@ -14,6 +28,18 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class SecurityConfig {
     private final CustomOauth2UserService customOAuth2UserService;
+
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedSlash(true);
+        return firewall;
+    }
+
+    @Bean
+    RequestRejectedHandler requestRejectedHandler() {
+        return new HttpStatusRequestRejectedHandler();
+    }
 
     @Bean
     public WebSecurityCustomizer confiCustomizer() {
