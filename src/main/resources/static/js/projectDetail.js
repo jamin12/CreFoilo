@@ -109,3 +109,8 @@ projectDoc.forEach(e => {
     documentUrl: e.querySelector("#documentUrl").value
   })
 });
+
+const addImg = (e) => {
+  console.log(e);
+  let imgTag = document.createElement("img");
+}

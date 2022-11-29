@@ -49,6 +49,13 @@ public class SettingController {
         return "setting/settingHome";
     }
 
+    /**
+     * 포트폴리오의 프로젝트리스트 페이지 조회
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param model       모델
+     * @return
+     */
     @GetMapping(value = "/setting/project/{portfolioid}")
     public String settingProject(@PathVariable Long portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
@@ -57,6 +64,13 @@ public class SettingController {
         return "setting/settingProject";
     }
 
+    /**
+     * 프로젝트 세부 정보 조회
+     * 
+     * @param projectid 프로젝트 아이디
+     * @param model     모델
+     * @return
+     */
     @GetMapping(value = { "/setting/projectdetail/{projectid}", "/setting/projectdetail" })
     public String settingProjectDetail(@PathVariable Optional<Long> projectid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
@@ -70,15 +84,17 @@ public class SettingController {
         return "setting/settingProjectDetail";
     }
 
+    /**
+     * 프로젝트 세부정보 저장 수정
+     * 
+     * @param projectDetailDto 프로젝트 세부정보 DTO
+     * @param projectid        프로젝트 아이디
+     * @return
+     */
     @ResponseBody
     @PostMapping(value = { "/setting/projectdetail", "/setting/projectdetail/{projectid}" })
     public String settingProjectDetailPost(@RequestBody ProjectDetailDto projectDetailDto,
             @PathVariable Optional<Long> projectid) {
-        // ProjectDetailDto projectDetailDto = ProjectDetailDto.builder()
-        // .projectId(paramMap.get("projectId"))
-        for (var iterable_element : projectDetailDto.getProjectImg()) {
-            System.out.println(iterable_element.getProjectImgUrl());
-        }
         return "/setting/project/" + projectDetailDto.getPortfolioId().toString();
     }
 }
