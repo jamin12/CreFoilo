@@ -94,7 +94,16 @@ public class SettingController {
     @ResponseBody
     @PostMapping(value = { "/setting/projectdetail", "/setting/projectdetail/{projectid}" })
     public String settingProjectDetailPost(@RequestBody ProjectDetailDto projectDetailDto,
-            @PathVariable Optional<Long> projectid) {
+            @PathVariable Optional<Long> projectid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("name", userIdInSession.getSnsName());
+        if (!projectid.isPresent()) {
+            projectService.createProject(projectDetailDto.getPortfolioId(), userIdInSession.getUserId(),
+                    projectDetailDto);
+            return "/setting/project/" + projectDetailDto.getPortfolioId().toString();
+        }
+        projectService.updateProject(projectid.get(), userIdInSession.getUserId(), projectDetailDto);
         return "/setting/project/" + projectDetailDto.getPortfolioId().toString();
     }
+
 }
