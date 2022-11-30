@@ -1,5 +1,17 @@
-import imgUtil from "/js/utils/ImgUtil.js";
-
+/**
+ * url 만들기
+ * @param {string} startUrl
+ * @param  {string[]} params
+ * @returns
+ */
+const createUrl = (startUrl, params) => {
+  let mainUrl = "http://39.120.8.109:3551/file";
+  mainUrl += startUrl;
+  for (let index = 0; index < params.length; index++) {
+    mainUrl = mainUrl + "/" + params[index];
+  }
+  return mainUrl;
+};
 /**
  * toast ui editor
  */
@@ -68,7 +80,7 @@ function setProejctContentsInfo() {
 
   mdData = editor.getMarkdown();
   htmlData = editor.getHTML();
-  
+
   let data = {
     portfolioId: portfolioId,
     projectRepresentativeImgUrl: representativeImgUrl,
@@ -128,7 +140,7 @@ const addImg = (e) => {
   // axios로 formdata 넣어서 전송
   let imgFile;
   $.ajax({
-    url: imgUtil.createImg(),
+    url: createUrl("",[]),
     type: "POST",
     data: formdata,
     async: false,
@@ -152,9 +164,9 @@ const addImg = (e) => {
 
   imgUrlInput.setAttribute("id", "imgUrl");
   imgUrlInput.setAttribute("type", "hidden");
-  imgUrlInput.value = imgFile;
+  imgUrlInput.value = createUrl("",[imgFile]);
 
-  imgTag.src = imgUtil.getImg(imgFile);
+  imgTag.src = createUrl("",[imgFile]);
 
   imgCard.setAttribute("class", "project_img_card")
   imgCard.appendChild(imgTag);
@@ -164,3 +176,39 @@ const addImg = (e) => {
 
   addImgInputButton.value = '';
 }
+
+const addImgRepresent = (e) => {
+    // formdata에 삽입
+    const formdata = new FormData();
+    formdata.append("file", e[0]);
+    // axios로 formdata 넣어서 전송
+    let imgFile;
+    $.ajax({
+      url: createUrl("",[]),
+      type: "POST",
+      data: formdata,
+      async: false,
+      contentType: false,
+      processData: false,
+      mimeType: 'multipart/form-data',
+      success: function (data) {
+        data = JSON.parse(data);
+        imgFile = data.result_data.fid;
+      },
+      error: function (error) {
+        // TODO: 에러처리
+      }
+    });
+    const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
+    const representImgtag = document.querySelector("#representImgtag")
+    const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
+  
+    representImgInput.value = createUrl("",[imgFile]);
+  
+    representImgtag.src = createUrl("",[imgFile]);
+    
+    addRepresentImgBtn.value = '';
+}
+
+const mdData = document.querySelector("#projectMd").value;
+editor.setMarkdown(mdData);
