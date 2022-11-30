@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
-
-<th:block layout:fragment="css">
-    <link th:href="@{/css/setting/settingAboutMeT2.css}" rel="stylesheet">
-</th:block>
-
 <th:block layout:fragment="script">
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" defer th:src="@{/js/aboutMe.js}"></script>
+</th:block>
+<th:block layout:fragment="css">
+    <link th:href="@{/css/setting/settingAboutMeT2.css}" rel="stylesheet">
 </th:block>
 
 
@@ -16,15 +15,19 @@
 <th:block layout:fragment="content">
     <!-- aboutMe 템플릿2-->
     <div class="aboutMeTemplate2">
+        <input type="hidden" id="aboutMeType" value="2">
+        <input type="hidden" th:filed="${aboutMe.aboutMeId}" >
+        <input type="hidden" th:filed="${aboutMe.portfolioId}">
         <!-- 대표 이미지 추가버튼 -->
-        <div class="section1">
-            <button class="img" type="button"><img class="btn-img"
-                    th:src="@{/img/plus.png}"></button>
+        <div class="section1" th:field="${aboutMe.aboutMeTitle1}">
+            <button class="img" type="button"><img class="btn-img" th:src="@{/img/plus.png}">
+            <input type="hidden" th:field="${aboutMe.aboutMeImg}">
+            </button>
         </div>
         <!-- 자기소개1, 1부연설명 -->
         <div class="section2">
-            <input id="intro1" type="text" name="intro1">
-            <textarea id="detail1" name="detail1"></textarea>
+            <input id="intro1" type="text" name="intro1" th:field="${aboutMe.aboutMeTitle1}">
+            <textarea id="detail1" name="detail1" th:field="${aboutMe.aboutMeIntro1}"></textarea>
         </div>
     </div>
 </th:block>

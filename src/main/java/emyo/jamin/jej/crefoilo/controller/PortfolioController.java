@@ -46,7 +46,7 @@ public class PortfolioController {
 
     @GetMapping(value = "/portfolio/{portfolioid}")
     public String portfolio(@PathVariable Long portfolioid, Model model, String userId) {
-        model.addAttribute("portfolio", portfolioListService.findPortfolioHome(portfolioid));
+        // model.addAttribute("portfolio", portfolioListService.findPortfolioHome(portfolioid));
         model.addAttribute("aboutme", aboutmeService.findAboutme(portfolioid));
         model.addAttribute("languageskill", languageskill.findLanguage(portfolioid));
         model.addAttribute("otherskill", otherSkillService.findOtherSkillList(portfolioid));
