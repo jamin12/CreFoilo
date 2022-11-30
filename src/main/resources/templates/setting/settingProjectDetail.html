@@ -14,26 +14,26 @@
 
 <th:block layout:fragment="content">
     <section id="project">
-        <input type="hidden" th:field="${projectDetail.projectId}">
-        <input type="hidden" th:field="${projectDetail.portfolioId}">
+        <input type="hidden" th:field="${projectDetail?.projectId}">
+        <input type="hidden" th:field="${projectDetail?.portfolioId}">
         <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
         <div class="card">
             <!-- 앞면 -->
             <div id="projectCardFront" class="front">
                 <button class="add_project_representative_img">
                     <img th:src="@{/img/plus.png}" alt="project_reprsentative_img">
-                    <input type="hidden" th:field="${projectDetail.projectRepresentativeImgUrl}">
+                    <input type="hidden" th:field="${projectDetail?.projectRepresentativeImgUrl}">
                 </button>
                 <!-- TODO: 이미지가 들어오면 src와 style을 바꿔줘야함 -->
-                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="project_representative_img">
+                <img th:src="${projectDetail?.projectRepresentativeImgUrl}" alt="project_representative_img">
                 <hr>
                 <input type="text" class="project_title" placeholder="프로젝트 제목"
-                    th:field="${projectDetail.projectTitle}" />
+                    th:field="${projectDetail?.projectTitle}" />
                 <textarea class="project_intro" placeholder="프로젝트 소개"
-                    th:field="${projectDetail.proejctIntro}"></textarea>
+                    th:field="${projectDetail?.proejctIntro}"></textarea>
                 <div>
-                    <input type="date" class="project_period" th:field="${projectDetail.projectStrDate}">
-                    <input type="date" class="project_period" th:field="${projectDetail.projectEndDate}">
+                    <input type="date" class="project_period" th:field="${projectDetail?.projectStrDate}">
+                    <input type="date" class="project_period" th:field="${projectDetail?.projectEndDate}">
                 </div>
             </div>
         </div>
@@ -41,23 +41,23 @@
             <!-- 뒷면 -->
             <div class="back">
                 <input type="text" class="project_title" name="project_sub_title" placeholder="프로젝트 제목"
-                    th:field="${projectDetail.projectSubTitle}" />
+                    th:field="${projectDetail?.projectSubTitle}" />
                 <textarea class="project_contribution" name="project_sub_intro" placeholder="기여도"
-                    th:field="${projectDetail.proejctSubIntro}"></textarea>
+                    th:field="${projectDetail?.proejctSubIntro}"></textarea>
                 <h4 class="title">기술 스텍</h4>
                 <ul class="stack">
-                    <li th:each="tectStack : ${#strings.arraySplit(projectDetail.proejctTechnicalStack, '/n')}"
+                    <li th:each="tectStack : ${#strings.arraySplit(projectDetail?.proejctTechnicalStack, '/n')}"
                         th:text="${tectStack}" class="tectstack"></li>
                     <input type="text" class="technical_stack" name="technical_stack" placeholder="기술 스택 이름" />
                 </ul>
                 <div class="icon-wrap">
                     <div class="icon-box">
                         <!-- TODO: 링크모달창 만들어주세요 -->
-                        <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
+                        <a href="#none" th:each="projectDocs: ${projectDetail?.projectDocument}" class="projectDoc">
                             <i class="fa-solid fa-code"></i>
-                            <input type="hidden" id="docuemntUrlId" th:value="${projectDocs.docuemntUrlId}">
-                            <input type="hidden" id="documentImgUrl" th:value="${projectDocs.documentImgUrl}">
-                            <input type="hidden" id="documentUrl" th:value="${projectDocs.documentUrl}">
+                            <input type="hidden" id="docuemntUrlId" th:value="${projectDocs?.docuemntUrlId}">
+                            <input type="hidden" id="documentImgUrl" th:value="${projectDocs?.documentImgUrl}">
+                            <input type="hidden" id="documentUrl" th:value="${projectDocs?.documentUrl}">
                         </a>
                         <img th:src="@{/img/plus.png}" alt="porjectImg">
                     </div>
@@ -76,8 +76,8 @@
                 <img th:src="@{/img/plus.png}" alt="porjectImg">
             <input/>
         </div>
-        <div class="project_img_card" th:each="projectimg: ${projectDetail.projectImg}">
-            <img th:src="${projectimg.projectImgUrl}" alt="porjectImg">
+        <div class="project_img_card" th:each="projectimg: ${projectDetail?.projectImg}">
+            <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg">
             <input type="hidden" id="imgUrl" th:value="${projectimg.projectImgUrl}">
             <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
         </div>
@@ -93,5 +93,4 @@
 
     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
 </th:block>
-
 </html>

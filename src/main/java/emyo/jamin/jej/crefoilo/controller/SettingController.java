@@ -76,6 +76,7 @@ public class SettingController {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("projectDtoList", projectService.findProjectList(portfolioid, userIdInSession.getUserId()));
+        model.addAttribute("portfolioid", portfolioid.toString());
         return "setting/settingProject";
     }
 
@@ -86,12 +87,13 @@ public class SettingController {
      * @param model     모델
      * @return
      */
-    @GetMapping(value = { "/setting/projectdetail/{projectid}", "/setting/projectdetail" })
-    public String settingProjectDetail(@PathVariable Optional<Long> projectid, Model model) {
+    @GetMapping(value = { "/setting/projectdetail/{portfolioid}/{projectid}", "/setting/projectdetail/{portfolioid}" })
+    public String settingProjectDetail(@PathVariable Long portfolioid, @PathVariable Optional<Long> projectid,
+            Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
-            model.addAttribute("projectDetail", new ProjectDetailDto());
+            model.addAttribute("projectDetail", ProjectDetailDto.builder().portfolioId(portfolioid).build());
             return "setting/settingProjectDetail";
         }
         model.addAttribute("projectDetail",
@@ -107,9 +109,9 @@ public class SettingController {
      * @return
      */
     @ResponseBody
-    @PostMapping(value = { "/setting/projectdetail", "/setting/projectdetail/{projectid}" })
+    @PostMapping(value = { "/setting/projectdetail/{portfolioid}", "/setting/projectdetail/{portfolioid}/{projectid}" })
     public String settingProjectDetailPost(@RequestBody ProjectDetailDto projectDetailDto,
-            @PathVariable Optional<Long> projectid, Model model) {
+            @PathVariable Long portfolioid, @PathVariable Optional<Long> projectid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {

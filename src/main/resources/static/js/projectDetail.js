@@ -1,3 +1,5 @@
+import imgUtil from "/js/utils/ImgUtil.js";
+
 /**
  * toast ui editor
  */
@@ -66,6 +68,7 @@ function setProejctContentsInfo() {
 
   mdData = editor.getMarkdown();
   htmlData = editor.getHTML();
+  
   let data = {
     portfolioId: portfolioId,
     projectRepresentativeImgUrl: representativeImgUrl,
@@ -84,13 +87,14 @@ function setProejctContentsInfo() {
   // 새로 만들기
   if (projectId === '') {
     $.ajax({
-      url: `/setting/projectdetail`,
+      url: `/setting/projectdetail/${portfolioId}`,
       contentType: "application/json; charset=utf-8",
       type: "POST",
       data: JSON.stringify(data),
       dataType: 'json',
       async: false,
       success: function (data) {
+        location.href = data.responseText
       },
       // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
       error: function (error) {
@@ -100,9 +104,8 @@ function setProejctContentsInfo() {
     // 업데이트
   } else {
     data.projectId = projectId;
-    data.projectId = projectId;
     $.ajax({
-      url: `/setting/projectdetail/${projectId}`,
+      url: `/setting/projectdetail/${portfolioId}/${projectId}`,
       contentType: "application/json; charset=utf-8",
       type: "POST",
       data: JSON.stringify(data),
@@ -116,7 +119,6 @@ function setProejctContentsInfo() {
       },
     })
   }
-
 }
 
 const addImg = (e) => {
@@ -126,7 +128,7 @@ const addImg = (e) => {
   // axios로 formdata 넣어서 전송
   let imgFile;
   $.ajax({
-    url: "http://39.120.8.109:3551/file",
+    url: imgUtil.createImg(),
     type: "POST",
     data: formdata,
     async: false,
@@ -152,7 +154,7 @@ const addImg = (e) => {
   imgUrlInput.setAttribute("type", "hidden");
   imgUrlInput.value = imgFile;
 
-  imgTag.src = `http://39.120.8.109:3551/file/${imgFile}`;
+  imgTag.src = imgUtil.getImg(imgFile);
 
   imgCard.setAttribute("class", "project_img_card")
   imgCard.appendChild(imgTag);
