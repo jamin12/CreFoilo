@@ -24,6 +24,9 @@ import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 
+/**
+ * 세팅 페이지 컨트롤러
+ */
 @Controller
 public class SettingController {
     @Autowired
