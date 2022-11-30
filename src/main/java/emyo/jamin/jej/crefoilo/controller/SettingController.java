@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,6 +79,20 @@ public class SettingController {
         model.addAttribute("projectDtoList", projectService.findProjectList(portfolioid, userIdInSession.getUserId()));
         model.addAttribute("portfolioid", portfolioid.toString());
         return "setting/settingProject";
+    }
+
+    /**
+     * 프로젝트 삭제
+     * 
+     * @param projectid 삭제할 프로젝트 아이디
+     * @return
+     */
+    @ResponseBody
+    @DeleteMapping(value = "/setting/project/{projectid}")
+    public String settingProject(@PathVariable Long projectid) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        projectService.deleteProject(projectid, userIdInSession.getUserId());
+        return null;
     }
 
     /**
