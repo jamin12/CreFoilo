@@ -136,6 +136,7 @@ public class ProjectServiceImpl implements ProjectService {
             projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
             projectDocumentDtos.add(new ProjectDocumentDto(projectDetail.get(qDocumentUrl)));
         }
+
         // stream 문법으로 set -> list 변경
         projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
         projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
