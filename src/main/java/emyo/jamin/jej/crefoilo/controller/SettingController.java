@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import antlr.collections.List;
+import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
+import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 
 @Controller
@@ -29,18 +31,31 @@ public class SettingController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private AboutmeService aboutmeService;
+
     @GetMapping(value = "/setting/aboutme")
     public String settingAboutMe() {
         return "setting/settingAboutMe";
     }
 
-    @GetMapping(value = "/setting/aboutmet1")
-    public String settingAboutMeT1() {
+    @GetMapping(value = "/setting/aboutmet1/{portfolioid}")
+    public String settingAboutMeT1(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
+        model.addAttribute("name", userIdInSession.getSnsName());
+        model.addAttribute("aboutMe", findedAboutme);
+
         return "setting/settingAboutMeT1";
     }
 
-    @GetMapping(value = "/setting/aboutmet2")
-    public String settingAboutMeT2() {
+    @GetMapping(value = "/setting/aboutmet2/{portfolioid}")
+    public String settingAboutMeT2(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
+        model.addAttribute("name", userIdInSession.getSnsName());
+        model.addAttribute("aboutMe", findedAboutme);
+
         return "setting/settingAboutMeT2";
     }
 

@@ -3,6 +3,7 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
 <th:block layout:fragment="script">
     <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" defer th:src="@{/js/aboutMe.js}"></script>
 </th:block>
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/setting/settingAboutMeT1.css}">
@@ -12,27 +13,30 @@
 <th:block layout:fragment="content">
     <!-- aboutMe 템플릿1-->
     <div class="aboutMeTemplate1">
-
+        <input type="hidden" id="aboutMeType" value="1">
+        <input type="hidden" th:filed="${aboutMe.aboutMeId}" >
+        <input type="hidden" th:filed="${aboutMe.portfolioId}">
         <!-- 자기 소개1, 대표 이미지 추가버튼-->
         <div class="section1">
-            <input id="intro1" type="text" name="intro1">
-            <button class="img" type="button"><img class="btn-img"
-                    th:src="@{/img/plus.png}"></button>
+            <input id="intro1" type="text" name="intro1" th:field="${aboutMe.aboutMeTitle1}">
+            <button class="img" type="button"><img class="btn-img" th:src="@{/img/plus.png}">
+            <input type="hidden" th:field="${aboutMe.aboutMeImg}">
+            </button>
         </div>
 
         <!-- 자기소개2, 2부연설명 -->
         <div class="section2">
-            <input id="intro2" type="text" name="intro2">
-            <textarea id="detail2" name="detail2"></textarea>
+            <input id="intro2" type="text" name="intro2" th:field="${aboutMe.aboutMeTitle2}">
+            <textarea id="detail2" name="detail2" th:field="${aboutMe.aboutMeIntro1}"></textarea>
         </div>
 
         <!-- 자기소개3, 3부연설명 -->
         <div class="section3">
-            <input id="intro3" type="text" name="intro3">
-            <textarea id="detail3" name="detail3"></textarea>
+            <input id="intro3" type="text" name="intro3" th:field="${aboutMe.aboutMeTitle3}">
+            <textarea id="detail3" name="detail3" th:field="${aboutMe.aboutMeIntro2}"></textarea>
         </div>
-
     </div>
+    <button onclick="saveAboutMe()">저장</button>
 </th:block>
 
 </html>
