@@ -16,7 +16,8 @@
         <div class="card" th:each="project : ${projectDtoList}">
             <!-- 앞면 -->
             <div id="projectCardFront" class="front">
-                <a th:href="@{/setting/projectdetail/{projectid}(projectid = ${project.projectId})}">
+                <a
+                    th:href="@{/setting/projectdetail/{portfolioid}/{projectid}(projectid = ${project.projectId}, portfolioid = ${portfolioid})}">
                     <img th:src="${project.projectRepresentativeImgUrl}" alt="porjectImg">
                 </a>
                 <h3 id="projectTitle" th:text="${project?.projectTitle}">TESTITLE</h3>
@@ -25,7 +26,7 @@
             </div>
         </div>
         <!-- TODO: 클릭 시 edit창으로 넘어가도록 -->
-        <a class="card" th:href="@{/setting/projectdetail}">
+        <a class="card" th:href="@{/setting/projectdetail/{portfolioid}(portfolioid = ${portfolioid})}">
             <img th:src="@{/img/plus.png}" alt="plus" class="plus">
         </a>
     </section>
