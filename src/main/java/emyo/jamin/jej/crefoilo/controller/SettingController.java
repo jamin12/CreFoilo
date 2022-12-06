@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import antlr.collections.List;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
+import emyo.jamin.jej.crefoilo.service.AboutmeService;
+import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
+import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 
 
@@ -35,6 +37,12 @@ public class SettingController {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private AboutmeService aboutmeService;
+
+    @Autowired
+    private LanguageService languageService;
 
     @GetMapping(value = "/setting/aboutme")
     public String settingAboutMe() {
