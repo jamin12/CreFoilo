@@ -10,54 +10,62 @@
     <title>LanguageSkill setting</title>
     <link rel="stylesheet" href="@{/css/setting/settingLanguageSkill.css}">
 
-    <!-- fontawesome - 아이콘-->
-    <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
+    <!-- 아이콘 -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../static/js/setting/settingLang.js"></script>
 </head>
-
 <body>
-    <!-- 전체 LanguageSkill -->
-    <div class="all">
-        <!-- 첫번째 LanguageSkill - 언어이름, 삭제버튼, 프로그레스바, 태그, 태그추가버튼, 상세기술 -->
-        <div class="FirstLs">
-            <input id="Lang" type="text" name="Lang">
-            <button class="delimg" type="button">
-                <i class="fa-solid fa-x"></i>
+    <section class="main-wrap">
+        <div class="item-wrap">
+            <button class="btn-add-langbox">
+                <ion-icon name="add-circle"></ion-icon>
             </button>
-            <div class="progressBar">
-                <input type="range" value="60" min="0" max="100">
+
+            <!-- language box -->
+            <!-- TODO: 이걸 반복하면 됩니당 id도 기본 주는 id값 받아서 바꿔주세요-->
+            <div class="language-box" id="1">
+                <button class="btn-delete">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+
+                <input type="text" class="input-langname" placeholder="언어 이름을 입력해주세요" />
+
+                <!-- id값은 고유값으로 지정바람 -->
+                <div class="progressbar">
+                    <span id="value">50</span>
+                    <span>%</span>
+                    <input type="range" value="50" min="0" max="100"
+                        oninput="document.getElementById('value').innerHTML=this.value;">
+                </div>
+
+                <div class="lang-framework-box">
+                    <!-- 아이콘 폰트어썸에서 쓰면 계정따라 스크립트 src가 바껴서 다른거 사용함 -->
+                    <button>
+                        <ion-icon name="add-circle"></ion-icon>
+                    </button>
+
+                    <!-- plus버튼 누르면 나타나야할 요소 -->
+                    <!-- <span>
+                        <input type="text" />
+                    </span> -->
+
+                    <!-- TODO: 받아온 프레임워크에 따라서 반복해줘야할 요소 -->
+                    <span>react</span>
+                </div>
+
+                <textarea class="lang-textarea"
+                    placeholder="언어 사용에 대한 내용이나 느낀점을 적주세요.&#13;&#10;엔터 기준으로 분리해주세요."></textarea>
             </div>
-            <input id="tag" type="text" name="tag">
-            <button class="img" type="button">
-                <img src="../../static/img/plus.png" alt="plus" class="plus">
-            </button>
-            <textarea id="detail1" name="detail1" ></textarea>
+
         </div>
 
-        <!-- 두번째 LanguageSkill -->
-        <div class="SecondLs">
-            <input id="Lang" type="text" name="Lang">
-            <button class="delimg" type="button">
-                <i class="fa-solid fa-x"></i>
-            </button>
-            <div class="progressBar">
-                <input type="range" value="60" min="0" max="100">
-            </div>
-            <input id="tag" type="text" name="tag">
-            <button class="img" type="button">
-                <img src="../../static/img/plus.png" alt="plus" class="plus">
-            </button>
-            <textarea id="detail2" name="detail2"></textarea>
-        </div>
 
-        <!-- LanguageSkill 추가 버튼 -->
-        <div class="plusBtn">
-            <button class="img" type="button">
-                <img src="../../static/img/plus.png" alt="plus" class="plus">
-            </button>
-        </div>
-    </div>
 
-    </script>
+    </section>
 </body>
 
 </html>
