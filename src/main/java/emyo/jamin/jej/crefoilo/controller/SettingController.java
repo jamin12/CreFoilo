@@ -1,6 +1,7 @@
 package emyo.jamin.jej.crefoilo.controller;
 
 import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -10,19 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import antlr.collections.List;
-import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
+import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
+import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
+import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 
 /**
  * 세팅 페이지 컨트롤러
@@ -34,6 +36,9 @@ public class SettingController {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private LanguageService languageService;
 
     @Autowired
     private AboutmeService aboutmeService;
@@ -66,6 +71,19 @@ public class SettingController {
     @GetMapping(value = "/setting/home")
     public String settingHome() {
         return "setting/settingHome";
+    }
+
+    @GetMapping(value = "/setting/language")
+    public String settingLanguage() {
+        return "setting/settingLanguageSkill";
+    }
+
+    @PostMapping(value = "/setting/lang/{portfolioid}")
+    public String settingLanguageT1(
+            @RequestBody List<LanguageSettingDto> languageSettingDtoList,
+            @PathVariable Long portfolioid) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        return languageService.CUDLanguage(languageSettingDtoList, portfolioid, userIdInSession.getUserId());
     }
 
     /**
