@@ -16,12 +16,12 @@
 
     <!-- js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../../static/js/setting/settingLang.js"></script>
+    <script type="text/javascript" th:src="@{/js/setting/settingLang.js}"></script>
 </head>
 <body>
     <section class="main-wrap">
         <div class="item-wrap">
-            <button class="btn-add-langbox">
+            <button class="btn-add-langbox" th:onClick="addLangBox(1)">
                 <ion-icon name="add-circle"></ion-icon>
             </button>
 
@@ -49,9 +49,9 @@
                     </button>
 
                     <!-- plus버튼 누르면 나타나야할 요소 -->
-                    <!-- <span>
-                        <input type="text" />
-                    </span> -->
+                    <span>
+                        <input type="text" placeholder="framework" />
+                    </span>
 
                     <!-- TODO: 받아온 프레임워크에 따라서 반복해줘야할 요소 -->
                     <span>react</span>
