@@ -7,7 +7,7 @@ section {
 }
 
 .item-wrap {
-    width: 1300px;
+    width: 1200px;
     /* width: 300px; */
     height: 400px;
 
@@ -51,7 +51,7 @@ section {
 }
 
 .language-box {
-    width: 300px;
+    min-width: 300px;
     height: 100%;
     background-color: var(--gray100);
     position: relative;
@@ -180,6 +180,7 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: transparent;
 }
 
+/* 프레임워크 하나하나 */
 .lang-framework-box>span {
     height: 1.5rem;
     margin-right: 10px;
@@ -198,6 +199,14 @@ input[type="range"]::-webkit-slider-thumb {
 .lang-framework-box>span:hover {
     background-color: var(--gray500);
     background-color: #7dbaff;
+}
+.lang-framework-box>span>input{
+    border: none;
+    width: 75px;
+    background-color: transparent;
+}
+.lang-framework-box>span>input:focus{
+    outline: none;
 }
 
 /* 추가 버튼 */
