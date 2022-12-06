@@ -17,4 +17,5 @@ public class FindLanguageDto {
     private List<String> langDetail;
     private int langFrequency;
     private List<String> langSkillName;
+
 }

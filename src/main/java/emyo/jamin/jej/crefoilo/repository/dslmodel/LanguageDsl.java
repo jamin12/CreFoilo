@@ -7,4 +7,5 @@ import emyo.jamin.jej.crefoilo.entity.Language;
 public interface LanguageDsl {
     List<Language> findByPortfolioId(Long portfolioId);
 
+
 }

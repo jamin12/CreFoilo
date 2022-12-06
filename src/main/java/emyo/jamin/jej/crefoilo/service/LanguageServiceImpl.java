@@ -6,10 +6,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
+import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 import emyo.jamin.jej.crefoilo.entity.Language;
 import emyo.jamin.jej.crefoilo.repository.LanguageReposirtory;
+import emyo.jamin.jej.crefoilo.utils.CustomException;
+import emyo.jamin.jej.crefoilo.utils.ErrorCode;
+import emyo.jamin.jej.crefoilo.utils.Validation;
 
 /**
  * @author 강경민
@@ -18,6 +23,9 @@ import emyo.jamin.jej.crefoilo.repository.LanguageReposirtory;
 public class LanguageServiceImpl implements LanguageService {
     @Autowired
     private LanguageReposirtory languageReposirtory;
+
+    @Autowired
+    private Validation validation;
 
     /**
      * 아래 코드는 view page 작업입니다.
@@ -51,4 +59,56 @@ public class LanguageServiceImpl implements LanguageService {
      * 아래 코드는 setting page 작업입니다.
      */
 
+    /**
+     * language skill 조회
+     */
+    @Override
+    public List<LanguageSettingDto> findLanguageList(Long portfolioId, String userId) {
+        validation.checkUserHasPortfolio(portfolioId, userId);
+        List<Language> findedLanguages = languageReposirtory.findByPortfolioId(portfolioId);
+
+        // if(findedLanguage == null){
+        // return new LanguageSettingDto();
+        // }
+        List<LanguageSettingDto> languageList = new ArrayList<>();
+        findedLanguages.forEach((findedLanguage) -> {
+            languageList.add(new LanguageSettingDto(findedLanguage));
+        });
+
+        return languageList;
+    }
+
+    
+    /**
+     * language skill 추가 수정
+     */
+    @Override
+    @Transactional 
+    public String CUDLanguage(List<LanguageSettingDto> languageSettingDtoList, Long portfolioId, String userId) {
+        validation.checkUserHasPortfolio(portfolioId, userId);
+        List<Language> findedLanguageSkill = languageReposirtory.findByPortfolioId(portfolioId);
+
+        // 있던게 없어지면 삭제처리
+        for (Language language : findedLanguageSkill) {
+            int flag = 0;
+            for (LanguageSettingDto languageSettingDto : languageSettingDtoList) {
+                if(languageSettingDto.getLangId() != null){
+                    if(language.getLanguageId() == languageSettingDto.getLangId()){
+                        flag = 1;
+                        break;
+                    }
+                }
+            }
+            if (flag == 0){
+                languageReposirtory.delete(language);
+            }
+        }
+
+        for (LanguageSettingDto languageSettingDto : languageSettingDtoList) {
+            languageReposirtory.save(Language.toCreateUpdateEntity(portfolioId, languageSettingDto));
+        }
+
+        // TODO: 필요할지 안할지 모르겟어서 일단 null처리
+        return null;
+    }
 }

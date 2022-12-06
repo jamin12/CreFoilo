@@ -28,6 +28,7 @@ font-family: 'Roboto', sans-serif; - 영문 폰트 */
     --red: #E43333;
     --curcer-red: #bf2626;
     --blue: #0078FF;
+    --curcer-blue: #005FCA;
 }
 
 body{
