@@ -133,9 +133,18 @@ public class ProjectServiceImpl implements ProjectService {
         HashSet<ProjectImgDto> projectImgDtos = new HashSet<>();
         HashSet<ProjectDocumentDto> projectDocumentDtos = new HashSet<>();
         for (Tuple projectDetail : findedProjectDetails) {
-            projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
+            if (projectDetail.get(qDocumentUrl) == null) {
+                continue;
+            }
             projectDocumentDtos.add(new ProjectDocumentDto(projectDetail.get(qDocumentUrl)));
         }
+        for (Tuple projectDetail : findedProjectDetails) {
+            if (projectDetail.get(qProjectImg) == null) {
+                continue;
+            }
+            projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
+        }
+
         // stream 문법으로 set -> list 변경
         projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
         projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));

@@ -1,4 +1,18 @@
 /**
+ * url 만들기
+ * @param {string} startUrl
+ * @param  {string[]} params
+ * @returns
+ */
+const createUrl = (startUrl, params) => {
+  let mainUrl = "http://39.120.8.109:3551/file";
+  mainUrl += startUrl;
+  for (let index = 0; index < params.length; index++) {
+    mainUrl = mainUrl + "/" + params[index];
+  }
+  return mainUrl;
+};
+/**
  * toast ui editor
  */
 const Editor = toastui.Editor;
@@ -36,10 +50,10 @@ function setProejctContentsInfo() {
   let imginfo = document.querySelectorAll(".project_img_card");
   // 이미지 정보 삽입
   let imgDto = [];
-  imginfo.forEach(e => {
+  imginfo.forEach(imgInfoElemet => {
     imgDto.push({
-      projectImgId: e.querySelector("#imgId").value,
-      projectImgUrl: e.querySelector("#imgUrl").value
+      projectImgId: imgInfoElemet.querySelector("#imgId")?.value,
+      projectImgUrl: imgInfoElemet.querySelector("#imgUrl").value
     })
   })
   // 시작 날짜 가져오기
@@ -66,8 +80,8 @@ function setProejctContentsInfo() {
 
   mdData = editor.getMarkdown();
   htmlData = editor.getHTML();
+
   let data = {
-    projectId: projectId,
     portfolioId: portfolioId,
     projectRepresentativeImgUrl: representativeImgUrl,
     projectTitle: projectTitile,
@@ -84,11 +98,26 @@ function setProejctContentsInfo() {
   }
   // 새로 만들기
   if (projectId === '') {
-
+    $.ajax({
+      url: `/setting/projectdetail/${portfolioId}`,
+      contentType: "application/json; charset=utf-8",
+      type: "POST",
+      data: JSON.stringify(data),
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        location.href = data.responseText
+      },
+      // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
+      error: function (error) {
+        location.href = error.responseText
+      },
+    })
     // 업데이트
   } else {
+    data.projectId = projectId;
     $.ajax({
-      url: `/setting/projectdetail/${projectId}`,
+      url: `/setting/projectdetail/${portfolioId}/${projectId}`,
       contentType: "application/json; charset=utf-8",
       type: "POST",
       data: JSON.stringify(data),
@@ -98,15 +127,88 @@ function setProejctContentsInfo() {
       },
       // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
       error: function (error) {
-        location.href = error.responseText;
+        location.href = error.responseText
       },
     })
   }
-
 }
-
 
 const addImg = (e) => {
-  console.log(e);
+  // formdata에 삽입
+  const formdata = new FormData();
+  formdata.append("file", e[0]);
+  // axios로 formdata 넣어서 전송
+  let imgFile;
+  $.ajax({
+    url: createUrl("",[]),
+    type: "POST",
+    data: formdata,
+    async: false,
+    contentType: false,
+    processData: false,
+    mimeType: 'multipart/form-data',
+    success: function (data) {
+      data = JSON.parse(data);
+      imgFile = data.result_data.fid;
+    },
+    error: function (error) {
+      // TODO: 에러처리
+    }
+  });
+  const imgs = document.querySelector(".project_imgs")
+  const addImgInputButton = document.querySelector(".add_img_btn")
+
+  const imgCard = document.createElement("div")
   let imgTag = document.createElement("img");
+  let imgUrlInput = document.createElement("input");
+
+  imgUrlInput.setAttribute("id", "imgUrl");
+  imgUrlInput.setAttribute("type", "hidden");
+  imgUrlInput.value = createUrl("",[imgFile]);
+
+  imgTag.src = createUrl("",[imgFile]);
+
+  imgCard.setAttribute("class", "project_img_card")
+  imgCard.appendChild(imgTag);
+  imgCard.appendChild(imgUrlInput);
+
+  imgs.appendChild(imgCard);
+
+  addImgInputButton.value = '';
 }
+
+const addImgRepresent = (e) => {
+    // formdata에 삽입
+    const formdata = new FormData();
+    formdata.append("file", e[0]);
+    // axios로 formdata 넣어서 전송
+    let imgFile;
+    $.ajax({
+      url: createUrl("",[]),
+      type: "POST",
+      data: formdata,
+      async: false,
+      contentType: false,
+      processData: false,
+      mimeType: 'multipart/form-data',
+      success: function (data) {
+        data = JSON.parse(data);
+        imgFile = data.result_data.fid;
+      },
+      error: function (error) {
+        // TODO: 에러처리
+      }
+    });
+    const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
+    const representImgtag = document.querySelector("#representImgtag")
+    const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
+  
+    representImgInput.value = createUrl("",[imgFile]);
+  
+    representImgtag.src = createUrl("",[imgFile]);
+    
+    addRepresentImgBtn.value = '';
+}
+
+const mdData = document.querySelector("#projectMd").value;
+editor.setMarkdown(mdData);

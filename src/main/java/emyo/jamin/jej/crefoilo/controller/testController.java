@@ -122,7 +122,7 @@ public class testController {
 
     @GetMapping(value = "/test9")
     public String test9() {
-        return "setting/settingOtherSkill";
+        return "setting/settingAboutMe";
     }
 
 }

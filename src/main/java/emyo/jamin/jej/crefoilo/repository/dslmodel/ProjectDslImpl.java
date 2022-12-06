@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
 import com.querydsl.core.Tuple;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import emyo.jamin.jej.crefoilo.entity.Project;
@@ -56,9 +55,9 @@ public class ProjectDslImpl implements ProjectDsl {
         return jpaQueryFactory
                 .select(qProject, qTechnicalStack, qDocumentUrl, qProjectImg)
                 .from(qProject)
-                .join(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
-                .join(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
-                .join(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
+                .leftJoin(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
+                .leftJoin(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
+                .leftJoin(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
                 .where(qProject.projectId.eq(projectId))
                 .fetch();
     }
