@@ -3,8 +3,9 @@
 .setting-header{
     font-weight: bold;
     font-size: 50px;
-    margin: 0.4%;
-    margin-left: 0.7%;
+    top: 10px;
+    left: 30px;
+    position: fixed;
 }
 
 .setting-header::before{
