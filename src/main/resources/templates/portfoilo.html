@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 포트폴리오</title>
+
+    <!-- bootstrap -->
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <!-- fontawesome - 아이콘 -->
+    <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
+
+    <!-- 제이쿼리 -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!-- TODO: Spring 실행시에는 static이 시작지점이므로 프론트앤드가 끝나면 ../static은 지워야함 -->
+    <link rel="stylesheet" href="../static/css/portfoilo_css/style.css">
+
+    <!-- otherSkill js -->
+    <script src="../static/js/portfolio_js/otherSkill.js"></script>
+
+    <!-- slide slick -->
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+</head>
+
+<body>
+    <section id="Home">
+        <h2 class="main-title"></h2>
+
+        <div class="contents">
+        </div>
+    </section>
+    <div>
+        <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50);">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#Home">EMYO님의 포트폴리오</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- TODO(이묘): 요소 클릭하면 네비바 닫히도록 -->
+                        <li class="nav-item"><a class="nav-link" href="#aboutMe">About Me</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#languageSkill">Language Skill</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#otherSkill">Other Skill</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#project">Project</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <section id="aboutMe">
+            <h2 class="main-title">ABOUT ME</h2>
+            <!-- TODO(이묘): 이미지 주소 나중에 바꿔넣어줄 것 -->
+            <div class="contents type1">
+                <content class="first-content">
+                    <h2>안녕하세요! 프론트엔드 개발자를 꿈꾸고 있는 임효현입니다!!</h2>
+                    <img alt="about me 이미지"
+                        src="https://images.unsplash.com/photo-1526336179256-1347bdb255ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YnV0dGVyZmx5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
+                </content>
+                <content class="second-content">
+                    <h2>저의 장점은,</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
+                        pharetra, nunc, eget. Enim</p>
+                </content>
+                <content class="third-content">
+                    <h2>저는 꾸준한 사람입니다.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur
+                        pharetra, nunc, eget. Enim</p>
+                </content>
+            </div>
+            
+            <!-- type2 -->
+            <!-- <div class="contents type2">
+                <img src="https://images.unsplash.com/photo-1666934209536-08d839cd0973?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="about Me 이미지">
+                <div class="text-box">
+                    <h2>안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
+                </div>
+            </div> -->
+        </section>
+
+        <section id="languageSkill" style="background-color: var(--gray100);">
+            <h1 class="main-title">LANGUAGE SKILL</h1>
+
+            <div class="contents">
+                <!-- pie chart-->
+                <div id="dChart"></div>
+
+                <div class="language-info">
+                    <h2 class="title">javascript</h2>
+
+                    <div class="framework-box">
+                        <p>react</p>
+                        <p>vue</p>
+                        <p>node JS</p>
+                        <p>node JS</p>
+                        <p>node JS</p>
+                    </div>
+
+                    <ul class="info-box">
+                        <li>react의 ~을 사용해서 ~를 할 줄 앎</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li>
+                        <li>Node JS의 ~~를 사용할 줄 앎</li>
+                        <li>어쩌구 저쩌구</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="otherSkill" class="hide">
+            <h2 class="main-title">OTHER SKILL</h2>
+
+            <div class="contents close">
+                <!-- class가 close면 닫힘 open이면 열림 -->
+                <div class="others">
+                    <h2>Collaboration, Document</h2>
+                    <ul>
+                        <li>git</li>
+                        <li>slack</li>
+                        <li>Notion</li>
+                        <li>Figma</li>
+                        <li>Power Point</li>
+                        <li>Excel</li>
+                    </ul>
+                </div>
+
+                <div class="others">
+                    <h2>Collaboration, Document</h2>
+                    <ul>
+                        <li>git</li>
+                        <li>slack</li>
+                        <li>Notion</li>
+                        <li>Figma</li>
+                        <li>Power Point</li>
+                        <li>Excel</li>
+                    </ul>
+                </div>
+
+                <div class="others">
+                    <h2>Collaboration, Document</h2>
+                    <ul>
+                        <li>git</li>
+                        <li>slack</li>
+                        <li>Notion</li>
+                        <li>Figma</li>
+                        <li>Power Point</li>
+                        <li>Excel</li>
+                    </ul>
+                </div>
+
+                <div class="others">
+                    <h2>Collaboration, Document</h2>
+                    <ul>
+                        <li>git</li>
+                        <li>slack</li>
+                        <li>Notion</li>
+                        <li>Figma</li>
+                        <li>Power Point</li>
+                        <li>Excel</li>
+                    </ul>
+                </div>
+                <div class="others">
+                    <h2>Collaboration, Document</h2>
+                    <ul>
+                        <li>git</li>
+                        <li>slack</li>
+                        <li>Notion</li>
+                        <li>Figma</li>
+                        <li>Power Point</li>
+                        <li>Excel</li>
+                    </ul>
+                </div>
+                <div class="others">
+                    <h2>Collaboration, Document</h2>
+                    <ul>
+                        <li>git</li>
+                        <li>slack</li>
+                        <li>Notion</li>
+                        <li>Figma</li>
+                        <li>Power Point</li>
+                        <li>Excel</li>
+                    </ul>
+                </div>
+
+                <button class="btn-open"><i class="fa-solid fa-angle-down"></i></button>
+                <button class="btn-close"><i class="fa-solid fa-angle-up"></i></button>
+            </div>
+        </section>
+
+        <section id="project">
+            <h2 class="main-title">PROJECT</h2>
+
+            <div class="contents">
+                <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
+                <div class="carousel">
+                    <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TODO(이묘): each문 구현 후에는 이 밑으로는 없애버려야함 -->
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip">
+                        <div class="card">
+                            <!-- 앞면 -->
+                            <div id="projectCardFront" class="front">
+                                <img src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+                                    alt="porjectImg">
+                                <h3 id="projectTitle">TESTITLE</h3>
+                                <p id="projectAbout">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
+                                <p id="projectDate">2022.01.01 ~ 2022.08.08</p>
+                            </div>
+                            <!-- 뒷면 -->
+                            <div class="back">
+                                <h4 class="title">나의 기여도</h4>
+                                <p class="contribution-content">저는 이런거 했구요 저런 것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
+                                <h4 class="title">기술 스텍</h4>
+                                <ul class="stack">
+                                    <li>리액트</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                    <li>파이썬</li>
+                                </ul>
+                                <div class="icon-wrap">
+                                    <div class="icon-box">
+                                        <!-- TODO(이묘): href 백엔드에서 받은 링크로 수정 -->
+                                        <a href="#none"><i class="fa-solid fa-code"></i></a>
+                                        <a href="#none"><i class="fa-solid fa-tv"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end -->
+                </div>
+            </div>
+        </section>
+
+        <div id="contact">
+            <h2 class="main-title">CONTACT</h2>
+
+            <div class="contents">
+                <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
+                <div class="contact-item">
+                    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                    <!-- TODO(이묘): 서버에서 받은 경로와 같은 경로 집어넣어주면 됩니다. -->
+                    <span>
+                        <a href="https://github.com/">https://github.com/</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 기본 폼 -->
+    <!-- <section id="">
+        <h2 class="main-title"></h2>
+
+        <div class="contents">
+        </div>
+    </section> -->
+
+
+
+
+
+
+    <!--Echart-->
+    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="../static/js/portfolio_js/chartView.js"></script>
+
+
+    <script>
+        $(function () {
+            $('.carousel').slick({
+                slide: 'div',        //슬라이드 되어야 할 태그
+                infinite: true,     //무한 반복 옵션     
+                slidesToShow: 3,        // 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll: 3,        //스크롤 한번에 움직일 컨텐츠 개수
+                speed: 500,     // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows: true,         // 옆으로 이동하는 화살표 표시 여부
+                dots: true,         // 스크롤바 아래 점으로 페이지네이션 여부
+                autoplay: false,            // 자동 스크롤 사용 여부
+                autoplaySpeed: 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                pauseOnHover: true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
+                vertical: false,        // 세로 방향 슬라이드 옵션
+                prevArrow: "<button type='button' class='slick-prev'>Previous</button>",
+                nextArrow: "<button type='button' class='slick-next'>Next</button>",
+                draggable: true,     //드래그 가능 여부 
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 960, //화면 사이즈 960px
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768, //화면 사이즈 768px
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+
+            });
+        })
+    </script>
+</body>
+
+</html>

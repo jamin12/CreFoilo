@@ -73,7 +73,7 @@ public class AboutMe extends BaseTimeEntity {
                 .aboutMeIntro2(aboutmeDto.getAboutMeIntro2())
                 .aboutMeImg(aboutmeDto.getAboutMeImg());
 
-        if(aboutmeDto.getAboutMeId() != null){
+        if (aboutmeDto.getAboutMeId() != null) {
             aboutMeBulider.aboutMeId(aboutmeDto.getAboutMeId());
         }
 
