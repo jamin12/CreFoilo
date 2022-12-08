@@ -1,63 +1,47 @@
+tscripscrip
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="layout/settingLayout">
-<link th:href="@{/css/setting/settingLanguageSkill.css}" rel="stylesheet">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LanguageSkill setting</title>
-    <link rel="stylesheet" href="@{/css/setting/settingLanguageSkill.css}">
-
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="~{layout/settingLayout}">
+<th:block layout:fragment="script">
     <!-- fontawesome - 아이콘-->
-    <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous"></script>
-</head>
+    <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous">
+        </script>
+        <script type="text/javascript" defer th:src="@{/js/LanguageSkill.js}"></script>
+</th:block>
+<th: block layout:fragment="css">
+    <link th:href="@{/css/setting/settingLanguageSkill.css}" rel="stylesheet">
+</th:block>
 
-<body>
-    <!-- 전체 LanguageSkill -->
-    <div class="all">
-        <!-- 첫번째 LanguageSkill - 언어이름, 삭제버튼, 프로그레스바, 태그, 태그추가버튼, 상세기술 -->
-        <div class="FirstLs">
-            <input id="Lang" type="text" name="Lang">
-            <button class="delimg" type="button">
-                <i class="fa-solid fa-x"></i>
-            </button>
-            <div class="progressBar">
-                <input type="range" value="60" min="0" max="100">
+    <th:block layout:fragment="content">
+        <!-- 전체 LanguageSkill -->
+        <div class="all">
+            <input type="hidden" th:field="${LanguageSkill.langId}">
+            <input type="hidden" th:field="${LanguageSkill.portfolioId}">
+            <!-- 첫번째 LanguageSkill - 언어이름, 삭제버튼, 프로그레스바, 태그, 태그추가버튼, 상세기술 -->
+            <div class="FirstLs">
+                <input id="Lang" type="text" name="Lang" th:filed="${LanguageSkill.langId}">
+                <button class="delimg" type="button">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+                <div class="progressBar">
+                    <input type="range" value="60" min="0" max="100">
+                </div>
+                <input id="tag" type="text" name="tag">
+                <button class="img" type="button">
+                    <img src="../../static/img/plus.png" alt="plus" class="plus">
+                </button>
+                <textarea id="detail1" name="detail1"></textarea>
             </div>
-            <input id="tag" type="text" name="tag">
-            <button class="img" type="button">
-                <img src="../../static/img/plus.png" alt="plus" class="plus">
-            </button>
-            <textarea id="detail1" name="detail1" ></textarea>
-        </div>
 
-        <!-- 두번째 LanguageSkill -->
-        <div class="SecondLs">
-            <input id="Lang" type="text" name="Lang">
-            <button class="delimg" type="button">
-                <i class="fa-solid fa-x"></i>
-            </button>
-            <div class="progressBar">
-                <input type="range" value="60" min="0" max="100">
+            <!-- LanguageSkill 추가 버튼 -->
+            <div class="plusBtn">
+                <button class="img" type="button">
+                    <img src="../../static/img/plus.png" alt="plus" class="plus">
+                </button>
             </div>
-            <input id="tag" type="text" name="tag">
-            <button class="img" type="button">
-                <img src="../../static/img/plus.png" alt="plus" class="plus">
-            </button>
-            <textarea id="detail2" name="detail2"></textarea>
         </div>
+        <button onclick="saveLaguageSkill()">저장</button>
 
-        <!-- LanguageSkill 추가 버튼 -->
-        <div class="plusBtn">
-            <button class="img" type="button">
-                <img src="../../static/img/plus.png" alt="plus" class="plus">
-            </button>
-        </div>
-    </div>
-
-    </script>
-</body>
+    </th:block>
 
 </html>

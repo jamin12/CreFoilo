@@ -9,19 +9,16 @@
     <link th:href="@{/css/setting/settingAboutMeT2.css}" rel="stylesheet">
 </th:block>
 
-
-
-<!-- fontawesome - 아이콘-->
 <th:block layout:fragment="content">
     <!-- aboutMe 템플릿2-->
     <div class="aboutMeTemplate2">
         <input type="hidden" id="aboutMeType" value="2">
-        <input type="hidden" th:filed="${aboutMe.aboutMeId}" >
+        <input type="hidden" th:filed="${aboutMe.aboutMeId}">
         <input type="hidden" th:filed="${aboutMe.portfolioId}">
         <!-- 대표 이미지 추가버튼 -->
         <div class="section1" th:field="${aboutMe.aboutMeTitle1}">
             <button class="img" type="button"><img class="btn-img" th:src="@{/img/plus.png}">
-            <input type="hidden" th:field="${aboutMe.aboutMeImg}">
+                <input type="hidden" th:field="${aboutMe.aboutMeImg}">
             </button>
         </div>
         <!-- 자기소개1, 1부연설명 -->
@@ -30,6 +27,8 @@
             <textarea id="detail1" name="detail1" th:field="${aboutMe.aboutMeIntro1}"></textarea>
         </div>
     </div>
+    <button onclick="saveAboutMe()">저장</button>
+
 </th:block>
 
 </html>

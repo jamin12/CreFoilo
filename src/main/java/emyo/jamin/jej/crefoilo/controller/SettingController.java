@@ -1,5 +1,6 @@
 package emyo.jamin.jej.crefoilo.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import antlr.collections.List;
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
+import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
+import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 
 @Controller
@@ -33,6 +35,9 @@ public class SettingController {
 
     @Autowired
     private AboutmeService aboutmeService;
+
+    @Autowired
+    private LanguageService laguageService;
 
     @GetMapping(value = "/setting/aboutme")
     public String settingAboutMe() {
@@ -63,6 +68,23 @@ public class SettingController {
     public String settingHome() {
         return "setting/settingHome";
     }
+
+    /**
+     * 언어기술 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+
+    @GetMapping(value = "/setting/language/{portfolioid}")
+    public String settingLanguageSkill(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("name", userIdInSession.getSnsName());
+        model.addAttribute("LanguageSkillList", laguageService.findLanguage(portfolioid));
+
+        return "setting/settingLanguageSkill";
+    }   
 
     /**
      * 포트폴리오의 프로젝트리스트 페이지 조회
