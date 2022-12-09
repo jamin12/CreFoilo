@@ -7,6 +7,7 @@
     <title>포트폴리오 목록</title>
     <link rel="stylesheet" th:href="@{/css/portfolioListStyle.css}">
     <!-- fontawesome - 아이콘 -->
+    <script type="text/javascript" defer th:src="@{/js/portfolioList.js}"></script>
     <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -37,8 +38,9 @@
                     <i class="fa-regular fa-pen-to-square"></i>
                     <span class="tooltip">수정</span>
                 </a>
-                <a href="#copy">
+                <a href="#copy" onclick="copyPortfolioLink(this)">
                     <i class="fa-regular fa-copy"></i>
+                    <input type="hidden" th:value="${pl.portfolioId}"/>
                     <span class="tooltip">링크복사</span>
                 </a>
                 <a href="#delete">
