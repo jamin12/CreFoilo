@@ -56,6 +56,7 @@ public class SettingController {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
         model.addAttribute("aboutMe", findedAboutme);
+        model.addAttribute("portfolioid", portfolioid);
 
         return "setting/settingAboutMeT1";
     }
@@ -67,6 +68,15 @@ public class SettingController {
         model.addAttribute("aboutMe", findedAboutme);
 
         return "setting/settingAboutMeT2";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/setting/aboutme/{portfolioid}")
+    public String createAboutMe(@PathVariable Long portfolioid, @RequestBody AboutmeDto aboutmeDto, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        aboutmeService.createAboutMe(portfolioid, userIdInSession.getUserId(), aboutmeDto);
+
+        return null;
     }
 
     @GetMapping(value = "/setting/home")
@@ -81,11 +91,10 @@ public class SettingController {
      * @param model
      * @return
      */
-
     @GetMapping(value = "/setting/language/{portfolioid}")
     public String settingLanguageSkill(@PathVariable Long portfolioid, Model model) {
         model.addAttribute("LanguageSkillList", laguageService.findLanguage(portfolioid));
-
+        model.addAttribute("portfolioid", portfolioid.toString());
         return "setting/settingLanguageSkill";
     }
 

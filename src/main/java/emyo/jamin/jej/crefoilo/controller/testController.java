@@ -91,7 +91,6 @@ public class testController {
         AboutmeDto aboutmeDto = AboutmeDto.builder()
                 .portfolioId(1L)
                 .aboutMeId(2L)
-                .aboutMeBgColor("#12555")
                 .aboutMeType(1)
                 .aboutMeTitle1("ddd")
                 .aboutMeTitle2("dddd")
