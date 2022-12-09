@@ -76,6 +76,7 @@ public class PortfolioController {
     /**
      * 포트폴리오 리스트 조회
      * 
+     * @param model
      * @return
      */
     @GetMapping(value = "/portfolio/list")
