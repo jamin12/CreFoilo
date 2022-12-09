@@ -20,12 +20,11 @@
         <div class="card">
             <!-- 앞면 -->
             <div id="projectCardFront" class="front">
-                <button class="add_project_representative_img">
-                    <img th:src="@{/img/plus.png}" alt="project_reprsentative_img">
-                    <input type="hidden" th:field="${projectDetail.projectRepresentativeImgUrl}">
-                </button>
                 <!-- TODO: 이미지가 들어오면 src와 style을 바꿔줘야함 -->
-                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="project_representative_img">
+                <input class="add_represent_img_btn" onchange="addImgRepresent(this.files)" type="file">
+                    <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="project_representative_img" id="representImgtag">
+                    <input type="hidden" th:field="${projectDetail.projectRepresentativeImgUrl}">
+                </input>
                 <hr>
                 <input type="text" class="project_title" placeholder="프로젝트 제목"
                     th:field="${projectDetail.projectTitle}" />
@@ -55,9 +54,9 @@
                         <!-- TODO: 링크모달창 만들어주세요 -->
                         <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
                             <i class="fa-solid fa-code"></i>
-                            <input type="hidden" id="docuemntUrlId" th:value="${projectDocs.docuemntUrlId}">
-                            <input type="hidden" id="documentImgUrl" th:value="${projectDocs.documentImgUrl}">
-                            <input type="hidden" id="documentUrl" th:value="${projectDocs.documentUrl}">
+                            <input type="hidden" id="docuemntUrlId" th:value="${projectDocs?.docuemntUrlId}">
+                            <input type="hidden" id="documentImgUrl" th:value="${projectDocs?.documentImgUrl}">
+                            <input type="hidden" id="documentUrl" th:value="${projectDocs?.documentUrl}">
                         </a>
                         <img th:src="@{/img/plus.png}" alt="porjectImg">
                     </div>
@@ -77,14 +76,15 @@
             <input/>
         </div>
         <div class="project_img_card" th:each="projectimg: ${projectDetail.projectImg}">
-            <img th:src="${projectimg.projectImgUrl}" alt="porjectImg">
+            <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg">
             <input type="hidden" id="imgUrl" th:value="${projectimg.projectImgUrl}">
             <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
         </div>
     </div>
     <div id="editor">
-
+        
     </div>
+    <input type="hidden" th:field="${projectDetail.projectMd}">
 
     <!-- TODO: 버튼 눌렀을 때 작동하게 form태그 걸어야함 -->
     <div class="save_button">
@@ -93,5 +93,4 @@
 
     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
 </th:block>
-
 </html>

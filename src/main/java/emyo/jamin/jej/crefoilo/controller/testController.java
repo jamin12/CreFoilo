@@ -54,22 +54,6 @@ public class testController {
         // return projectService.findProjectList(3L, "100625979022689944834");
     }
 
-    @GetMapping(value = "/test1")
-    public List<ContactDto> test1() {
-        return contactService.findContact(1L);
-        // return projectService.findProjectList(3L, "100625979022689944834");
-    }
-
-    @GetMapping(value = "/test2")
-    public HomeViewDto test2() {
-        return portfolioService.findPortfolioHome(1L);
-    }
-
-    @GetMapping(value = "/test3")
-    public List<FindLanguageDto> test3() {
-        return languageService.findLanguage(1L);
-    }
-
     @GetMapping(value = "/test4")
     public String test4() {
         List<ContactDto> contacts = new ArrayList<ContactDto>();

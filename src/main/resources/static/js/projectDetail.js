@@ -1,4 +1,18 @@
 /**
+ * url 만들기
+ * @param {string} startUrl
+ * @param  {string[]} params
+ * @returns
+ */
+const createUrl = (startUrl, params) => {
+  let mainUrl = "http://39.120.8.109:3551/file";
+  mainUrl += startUrl;
+  for (let index = 0; index < params.length; index++) {
+    mainUrl = mainUrl + "/" + params[index];
+  }
+  return mainUrl;
+};
+/**
  * toast ui editor
  */
 const Editor = toastui.Editor;
@@ -66,6 +80,7 @@ function setProejctContentsInfo() {
 
   mdData = editor.getMarkdown();
   htmlData = editor.getHTML();
+
   let data = {
     portfolioId: portfolioId,
     projectRepresentativeImgUrl: representativeImgUrl,
@@ -84,13 +99,14 @@ function setProejctContentsInfo() {
   // 새로 만들기
   if (projectId === '') {
     $.ajax({
-      url: `/setting/projectdetail`,
+      url: `/setting/projectdetail/${portfolioId}`,
       contentType: "application/json; charset=utf-8",
       type: "POST",
       data: JSON.stringify(data),
       dataType: 'json',
       async: false,
       success: function (data) {
+        location.href = data.responseText
       },
       // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
       error: function (error) {
@@ -100,9 +116,8 @@ function setProejctContentsInfo() {
     // 업데이트
   } else {
     data.projectId = projectId;
-    data.projectId = projectId;
     $.ajax({
-      url: `/setting/projectdetail/${projectId}`,
+      url: `/setting/projectdetail/${portfolioId}/${projectId}`,
       contentType: "application/json; charset=utf-8",
       type: "POST",
       data: JSON.stringify(data),
@@ -116,7 +131,6 @@ function setProejctContentsInfo() {
       },
     })
   }
-
 }
 
 const addImg = (e) => {
@@ -126,7 +140,7 @@ const addImg = (e) => {
   // axios로 formdata 넣어서 전송
   let imgFile;
   $.ajax({
-    url: "http://39.120.8.109:3551/file",
+    url: createUrl("",[]),
     type: "POST",
     data: formdata,
     async: false,
@@ -150,9 +164,9 @@ const addImg = (e) => {
 
   imgUrlInput.setAttribute("id", "imgUrl");
   imgUrlInput.setAttribute("type", "hidden");
-  imgUrlInput.value = imgFile;
+  imgUrlInput.value = createUrl("",[imgFile]);
 
-  imgTag.src = `http://39.120.8.109:3551/file/${imgFile}`;
+  imgTag.src = createUrl("",[imgFile]);
 
   imgCard.setAttribute("class", "project_img_card")
   imgCard.appendChild(imgTag);
@@ -162,3 +176,39 @@ const addImg = (e) => {
 
   addImgInputButton.value = '';
 }
+
+const addImgRepresent = (e) => {
+    // formdata에 삽입
+    const formdata = new FormData();
+    formdata.append("file", e[0]);
+    // axios로 formdata 넣어서 전송
+    let imgFile;
+    $.ajax({
+      url: createUrl("",[]),
+      type: "POST",
+      data: formdata,
+      async: false,
+      contentType: false,
+      processData: false,
+      mimeType: 'multipart/form-data',
+      success: function (data) {
+        data = JSON.parse(data);
+        imgFile = data.result_data.fid;
+      },
+      error: function (error) {
+        // TODO: 에러처리
+      }
+    });
+    const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
+    const representImgtag = document.querySelector("#representImgtag")
+    const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
+  
+    representImgInput.value = createUrl("",[imgFile]);
+  
+    representImgtag.src = createUrl("",[imgFile]);
+    
+    addRepresentImgBtn.value = '';
+}
+
+const mdData = document.querySelector("#projectMd").value;
+editor.setMarkdown(mdData);

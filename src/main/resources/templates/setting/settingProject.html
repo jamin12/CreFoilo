@@ -7,16 +7,20 @@
 </th:block>
 <th:block layout:fragment="script">
     <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" defer th:src="@{/js/project.js}"></script>
 </th:block>
 <th:block layout:fragment="content">
     <section id="project">
+        <input type="hidden" th:value="${portfolioid}" id="portfolioId">
         <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
         <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
         <!-- TODO: 클릭 시 edit 창으로 가세요 -->
         <div class="card" th:each="project : ${projectDtoList}">
             <!-- 앞면 -->
             <div id="projectCardFront" class="front">
-                <a th:href="@{/setting/projectdetail/{projectid}(projectid = ${project.projectId})}">
+                <button id="deleteProjectId" onclick="deleteProject(this)" th:value="${project.projectId}">삭제</button>
+                <a
+                th:href="@{/setting/projectdetail/{portfolioid}/{projectid}(projectid = ${project.projectId}, portfolioid = ${portfolioid})}">
                     <img th:src="${project.projectRepresentativeImgUrl}" alt="porjectImg">
                 </a>
                 <h3 id="projectTitle" th:text="${project?.projectTitle}">TESTITLE</h3>
@@ -25,7 +29,7 @@
             </div>
         </div>
         <!-- TODO: 클릭 시 edit창으로 넘어가도록 -->
-        <a class="card" th:href="@{/setting/projectdetail}">
+        <a class="card" th:href="@{/setting/projectdetail/{portfolioid}(portfolioid = ${portfolioid})}">
             <img th:src="@{/img/plus.png}" alt="plus" class="plus">
         </a>
     </section>

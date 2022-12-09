@@ -2,6 +2,7 @@ package emyo.jamin.jej.crefoilo.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -9,10 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +26,12 @@ import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
+import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
+import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 
+/**
+ * 세팅 페이지 컨트롤러
+ */
 @Controller
 public class SettingController {
     @Autowired
@@ -98,7 +105,22 @@ public class SettingController {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("projectDtoList", projectService.findProjectList(portfolioid, userIdInSession.getUserId()));
+        model.addAttribute("portfolioid", portfolioid.toString());
         return "setting/settingProject";
+    }
+
+    /**
+     * 프로젝트 삭제
+     * 
+     * @param projectid 삭제할 프로젝트 아이디
+     * @return
+     */
+    @ResponseBody
+    @DeleteMapping(value = "/setting/project/{projectid}")
+    public String settingProject(@PathVariable Long projectid) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        projectService.deleteProject(projectid, userIdInSession.getUserId());
+        return null;
     }
 
     /**
@@ -108,12 +130,13 @@ public class SettingController {
      * @param model     모델
      * @return
      */
-    @GetMapping(value = { "/setting/projectdetail/{projectid}", "/setting/projectdetail" })
-    public String settingProjectDetail(@PathVariable Optional<Long> projectid, Model model) {
+    @GetMapping(value = { "/setting/projectdetail/{portfolioid}/{projectid}", "/setting/projectdetail/{portfolioid}" })
+    public String settingProjectDetail(@PathVariable Long portfolioid, @PathVariable Optional<Long> projectid,
+            Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
-            model.addAttribute("projectDetail", new ProjectDetailDto());
+            model.addAttribute("projectDetail", ProjectDetailDto.builder().portfolioId(portfolioid).build());
             return "setting/settingProjectDetail";
         }
         model.addAttribute("projectDetail",
@@ -129,9 +152,9 @@ public class SettingController {
      * @return
      */
     @ResponseBody
-    @PostMapping(value = { "/setting/projectdetail", "/setting/projectdetail/{projectid}" })
+    @PostMapping(value = { "/setting/projectdetail/{portfolioid}", "/setting/projectdetail/{portfolioid}/{projectid}" })
     public String settingProjectDetailPost(@RequestBody ProjectDetailDto projectDetailDto,
-            @PathVariable Optional<Long> projectid, Model model) {
+            @PathVariable Long portfolioid, @PathVariable Optional<Long> projectid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
