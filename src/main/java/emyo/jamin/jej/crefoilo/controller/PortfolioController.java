@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 
+import emyo.jamin.jej.crefoilo.dto.PortfolioDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.ContactService;
@@ -70,6 +71,19 @@ public class PortfolioController {
 
         portfolioService.deletePortfolio(portfolioid, userIdInSession.getUserId());
         return "우와";
+    }
+
+    /**
+     * 포트폴리오 리스트 조회
+     * 
+     * @return
+     */
+    @GetMapping(value = "/portfolio/list")
+    public String portfolioList(Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        List<PortfolioDto> findedportFolioList = portfolioService.findPortfolioList(userIdInSession.getUserId());
+        model.addAttribute("portfolioList", findedportFolioList);
+        return "portfoliloList";
     }
 
 }
