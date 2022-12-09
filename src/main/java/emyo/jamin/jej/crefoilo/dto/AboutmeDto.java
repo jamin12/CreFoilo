@@ -22,7 +22,7 @@ public class AboutmeDto {
     private String aboutMeTitle3; // '제목3'
     private String aboutMeIntro1; // '소개1'
     private String aboutMeIntro2; // '소개2'
-    private String aboutMeImg; // '소개2'
+    private String aboutMeImg; // '이미지'
 
     public AboutmeDto(AboutMe aboutMe) {
         this.aboutMeId = aboutMe.getAboutMeId();
