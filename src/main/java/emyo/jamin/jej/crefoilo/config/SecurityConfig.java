@@ -29,6 +29,9 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
     private final CustomOauth2UserService customOAuth2UserService;
 
+    /**
+     * url에 // 등 기호 넣어도 통과되게 한다.
+     */
     @Bean
     public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
         StrictHttpFirewall firewall = new StrictHttpFirewall();
@@ -36,6 +39,9 @@ public class SecurityConfig {
         return firewall;
     }
 
+    /**
+     * url에 // 등 기호 넣어도 통과되게 한다.
+     */
     @Bean
     RequestRejectedHandler requestRejectedHandler() {
         return new HttpStatusRequestRejectedHandler();
@@ -63,7 +69,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/")
                 .and()
                 .oauth2Login() // oauth2 로그인 설정
-                .defaultSuccessUrl("/test", true) // 로그인 성공 시 갈 url
+                .defaultSuccessUrl("/portfolio/list", true) // 로그인 성공 시 갈 url
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
         // customOAuth2UserService에서 처리를 하겠다. 그리고 "/login-success"로 이동하라.

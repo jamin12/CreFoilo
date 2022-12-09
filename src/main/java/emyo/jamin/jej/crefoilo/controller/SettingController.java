@@ -55,7 +55,6 @@ public class SettingController {
     public String settingAboutMeT1(@PathVariable Long portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
-        model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("aboutMe", findedAboutme);
 
         return "setting/settingAboutMeT1";
@@ -65,7 +64,6 @@ public class SettingController {
     public String settingAboutMeT2(@PathVariable Long portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
-        model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("aboutMe", findedAboutme);
 
         return "setting/settingAboutMeT2";
@@ -83,15 +81,25 @@ public class SettingController {
      * @param model
      * @return
      */
-
     @GetMapping(value = "/setting/language/{portfolioid}")
     public String settingLanguageSkill(@PathVariable Long portfolioid, Model model) {
-        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("LanguageSkillList", laguageService.findLanguage(portfolioid));
 
         return "setting/settingLanguageSkill";
-    }   
+    }
+
+    /**
+     * Other Skill 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/other/{portfolioid}")
+    public String settingOtherSkill(@PathVariable Long portfolioid, Model model) {
+
+        return "setting/settingOtherSkill";
+    }
 
     /**
      * 포트폴리오의 프로젝트리스트 페이지 조회
@@ -103,7 +111,6 @@ public class SettingController {
     @GetMapping(value = "/setting/project/{portfolioid}")
     public String settingProject(@PathVariable Long portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("projectDtoList", projectService.findProjectList(portfolioid, userIdInSession.getUserId()));
         model.addAttribute("portfolioid", portfolioid.toString());
         return "setting/settingProject";
@@ -134,7 +141,6 @@ public class SettingController {
     public String settingProjectDetail(@PathVariable Long portfolioid, @PathVariable Optional<Long> projectid,
             Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
             model.addAttribute("projectDetail", ProjectDetailDto.builder().portfolioId(portfolioid).build());
             return "setting/settingProjectDetail";
@@ -156,7 +162,6 @@ public class SettingController {
     public String settingProjectDetailPost(@RequestBody ProjectDetailDto projectDetailDto,
             @PathVariable Long portfolioid, @PathVariable Optional<Long> projectid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
             projectService.createProject(projectDetailDto.getPortfolioId(), userIdInSession.getUserId(),
                     projectDetailDto);
