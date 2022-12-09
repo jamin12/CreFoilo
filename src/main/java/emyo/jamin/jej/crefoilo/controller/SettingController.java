@@ -81,12 +81,24 @@ public class SettingController {
      * @param model
      * @return
      */
-
     @GetMapping(value = "/setting/language/{portfolioid}")
     public String settingLanguageSkill(@PathVariable Long portfolioid, Model model) {
         model.addAttribute("LanguageSkillList", laguageService.findLanguage(portfolioid));
 
         return "setting/settingLanguageSkill";
+    }
+
+    /**
+     * Other Skill 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/other/{portfolioid}")
+    public String settingOtherSkill(@PathVariable Long portfolioid, Model model) {
+
+        return "setting/settingOtherSkill";
     }
 
     /**
