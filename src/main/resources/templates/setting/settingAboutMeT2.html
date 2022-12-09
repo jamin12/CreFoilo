@@ -17,17 +17,22 @@
         <input type="hidden" th:filed="${aboutMe.portfolioId}">
         <!-- 대표 이미지 추가버튼 -->
         <div class="section1" th:field="${aboutMe.aboutMeTitle1}">
-            <button class="img" type="button"><img class="btn-img" th:src="@{/img/plus.png}">
-                <input type="hidden" th:field="${aboutMe.aboutMeImg}">
-            </button>
+        <input id="file-img" type="file"/>
+
+        <label class="btn-change-img" for="file-img">
+            <img class="img-background" th:src="${aboutMe.aboutMeImg}"/>
+            <ion-icon name="add-circle"></ion-icon>
+        </label>
         </div>
         <!-- 자기소개1, 1부연설명 -->
         <div class="section2">
-            <input id="intro1" type="text" name="intro1" th:field="${aboutMe.aboutMeTitle1}">
-            <textarea id="detail1" name="detail1" th:field="${aboutMe.aboutMeIntro1}"></textarea>
+            <input id="intro1" type="text" name="intro1" th:field="${aboutMe.aboutMeTitle1}" placeholder="자기소개 제목을 입력해주세요">
+            <textarea id="detail1" name="detail1" th:field="${aboutMe.aboutMeIntro1}" placeholder="자기소개 내용을 입력해주세요"></textarea>
         </div>
     </div>
-    <button onclick="saveAboutMe()">저장</button>
+
+    <button class="btn-save btn-position-60-100"
+    onclick="saveAboutMe()">저장</button>
 
 </th:block>
 
