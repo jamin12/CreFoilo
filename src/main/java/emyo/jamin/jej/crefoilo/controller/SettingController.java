@@ -99,6 +99,19 @@ public class SettingController {
     }
 
     /**
+     * Other Skill 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/other/{portfolioid}")
+    public String settingOtherSkill(@PathVariable Long portfolioid, Model model) {
+
+        return "setting/settingOtherSkill";
+    }
+
+    /**
      * 포트폴리오의 프로젝트리스트 페이지 조회
      * 
      * @param portfolioid 포트폴리오 아이디

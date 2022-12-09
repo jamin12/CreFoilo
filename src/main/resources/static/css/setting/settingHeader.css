@@ -1,11 +1,18 @@
 @import url("../mainStyle.css");
 
 .setting-header{
-    font-weight: bold;
-    font-size: 50px;
-    top: 10px;
-    left: 30px;
     position: fixed;
+    top: 10px;
+    left: 20px;
+    max-width: calc(100% - 40px);
+
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--gray700);
+    transition: 0.2s;
+}
+.setting-header:hover{
+    color: var(--gray600);
 }
 
 .setting-header::before{
