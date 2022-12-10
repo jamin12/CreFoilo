@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
-<link th:href="@{/css/setting/settingOtherSkill.css}" rel="stylesheet">
+<!-- <link th:href="@{/css/setting/settingOtherSkill.css}" rel="stylesheet"> -->
 
 <th:block layout:fragment="css">
-    <link rel="stylesheet" href="@{/css/setting/settingOtherSkill.css}">
+    <link rel="stylesheet" th:href="@{/css/setting/settingOtherSkill.css}">
 </th:block>
 
 <th:block layout:fragment="script">
@@ -15,28 +15,35 @@
 
 <th:block layout:fragment="content">
     <div class="allOtherSkill">
-        <div class="FirstOS">
-            <input id="MainSkill" type="text" name="MainSkill"><br>
-            <input id="Skill" type="text" name="Skill"><br>
-            <input id="Skill" type="text" name="Skill"><br>
-            <button class="skillplusBtn" type="button">
-                <i class="fa-solid fa-circle-plus"></i>
-            </button>
-        </div>
-    
-        <div class="SecondOS">
-            <input id="MainSkill" type="text" name="MainSkill"><br>
-            <input id="Skill" type="text" name="Skill"><br>
-            <input id="Skill" type="text" name="Skill"><br>
-            <input id="Skill" type="text" name="Skill"><br>
-            <button class="skillplusBtn" type="button">
-                <i class="fa-solid fa-circle-plus"></i>
-            </button>
-        </div>
-    
-        <button class="mainOtherSkillplusBtn" type="button">
-            <i class="fa-solid fa-circle-plus"></i>
+
+        <button class="btn-add-box">
+            <ion-icon name="add-circle-outline"></ion-icon>
         </button>
+
+        <div class="os-wrap">
+
+            <!-- 이걸 반복해주시면 됩니당 -->
+            <div class="os-box">
+
+                <div class="main-skill-box">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                    <input id="mainSkill" type="text" name="MainSkill" autofocus><br>
+                </div>
+
+                <div class="sub-skill-box">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                    <input id="subSkill" type="text" name="Skill"><br>
+                </div>
+
+                <button class="btn-subskill-add" type="button">
+                    <ion-icon name="add-circle"></ion-icon>
+                </button>
+            </div>
+            <!-- 여기까지 -->
+
+        </div>
     </div>
+    <button class="btn-save btn-position-60-100" onclick="saveAboutMe()">SAVE</button>
 </th:block>
+
 </html>
