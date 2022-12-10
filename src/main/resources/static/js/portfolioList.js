@@ -1,5 +1,3 @@
-const baseUrl = "http://127.0.0.1:3000/";
-
 /**
  * 링크 복사
  * 
@@ -7,5 +5,6 @@ const baseUrl = "http://127.0.0.1:3000/";
  */
 const copyPortfolioLink = (e) => {
   const portfolioId = e.childNodes[3].value;
-  navigator.clipboard.writeText(`${baseUrl}portfolio/${portfolioId}`)
+  // TODO: 도메인 적용 시 포트번호 없애기
+  navigator.clipboard.writeText(`${document.location.hostname}:${document.location.port}/portfolio/${portfolioId}`)
 }
