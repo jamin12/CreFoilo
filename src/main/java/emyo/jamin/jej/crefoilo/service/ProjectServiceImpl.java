@@ -71,7 +71,7 @@ public class ProjectServiceImpl implements ProjectService {
         QProjectImg qProjectImg = QProjectImg.projectImg;
         List<Tuple> findedProjectDetails = proejctRepository.findByProjectId(projectId);
         if (findedProjectDetails.isEmpty()) {
-            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+            throw new CustomException(ErrorCode.PORTFOILO_NOT_FOUND);
         }
         ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject),
                 findedProjectDetails.get(0).get(qTechnicalStack));
@@ -125,7 +125,7 @@ public class ProjectServiceImpl implements ProjectService {
         validation.checkUserHasProject(projectId, userId);
         List<Tuple> findedProjectDetails = proejctRepository.findByProjectId(projectId);
         if (findedProjectDetails.isEmpty()) {
-            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+            throw new CustomException(ErrorCode.PORTFOILO_NOT_FOUND);
         }
         ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject),
                 findedProjectDetails.get(0).get(qTechnicalStack));

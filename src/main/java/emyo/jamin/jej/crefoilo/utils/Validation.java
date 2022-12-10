@@ -38,7 +38,7 @@ public class Validation {
             }
         }
         if (!checkFlag) {
-            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+            throw new CustomException(ErrorCode.PORTFOILO_NOT_FOUND);
         }
     }
 
