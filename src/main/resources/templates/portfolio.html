@@ -34,12 +34,32 @@
 
 <body>
     <!-- 홈화면 -->
-    <section id="Home">
-        <h2 class="main-title"></h2>
+    <!-- type1 -->
+    <!-- 이미지와 글자를 넣어줘야함 -->
+    <section id="Home" class="type1">
+        <h2 class="typing-txt main-title">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
+        <h2 class="typing main-title-curcer"></h2>
 
         <div class="contents">
+            <img src="https://images.unsplash.com/photo-1661956602139-ec64991b8b16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60)"
+                alt="사용자 지정 이미지">
         </div>
     </section>
+
+    <!-- type2 -->
+    <!-- 글자만 넣어주면 됨 -->
+    <!-- <section id="Home" class="type2">
+        <h2 class="typing-txt main-title">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+        <h2 class="typing main-title-curcer"></h2>
+    </section> -->
+
+    <!-- type3 -->
+    <!-- 글자와 이미지 넣어줘야함 -->
+    <!-- <section id="Home" class="type3">
+        <h2 class="typing-txt main-title">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+        <h2 class="typing main-title-curcer"></h2>
+        <img src="../static/img/emyo.png" alt="사용자 지정 이미지">
+    </section> -->
 
     <!-- 메인 콘텐츠 -->
     <div class="main-contents">
@@ -87,7 +107,7 @@
                         pharetra, nunc, eget. Enim</p>
                 </content>
             </div>
-            
+
 
             <!-- type2 -->
             <div class="contents type2" th:if="${aboutme.aboutMeType == 0}">
@@ -155,8 +175,10 @@
                         </th:block>
 
                         <!-- md파일 내용 -->
-                        <div class="md-content" th:id="'textBox_' + ${projectD.projectId}" th:utext="${projectD.projectHtml}">
-                            Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has
+                        <div class="md-content" th:id="'textBox_' + ${projectD.projectId}"
+                            th:utext="${projectD.projectHtml}">
+                            Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum
+                            has
                         </div>
                     </div>
                 </div>
@@ -381,6 +403,34 @@
         })
     </script> -->
 
+    <!-- Home Type 글자 타이핑 스크립트 -->
+    <script th:inline="javascript">
+        var typingBool = false;
+        var typingIdx = 0;
+
+        // 타이핑될 텍스트를 가져온다 
+        var typingTxt = $(".typing-txt").text();
+
+        typingTxt = typingTxt.split(""); // 한글자씩 자른다. 
+
+        if (typingBool == false) {
+            // 타이핑이 진행되지 않았다면 
+            typingBool = true;
+            var tyInt = setInterval(typing, 100); // 반복동작 
+        }
+
+        function typing() {
+            if (typingIdx < typingTxt.length) {
+                // 타이핑될 텍스트 길이만큼 반복 
+                $(".typing").append(typingTxt[typingIdx]);
+                // 한글자씩 이어준다. 
+                typingIdx++;
+            } else {
+                //끝나면 반복종료 
+                clearInterval(tyInt);
+            }
+        }  
+    </script>
 </body>
 
 </html>
