@@ -51,6 +51,7 @@
     width: 80%;
     font-size: 1.1rem;
     color: var(--gray50);
+    word-break: keep-all;
 }
 
 .templet-box > button{
