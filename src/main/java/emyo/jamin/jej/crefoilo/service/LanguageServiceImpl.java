@@ -67,9 +67,6 @@ public class LanguageServiceImpl implements LanguageService {
         validation.checkUserHasPortfolio(portfolioId, userId);
         List<Language> findedLanguages = languageReposirtory.findByPortfolioId(portfolioId);
 
-        // if(findedLanguage == null){
-        // return new LanguageSettingDto();
-        // }
         List<LanguageSettingDto> languageList = new ArrayList<>();
         findedLanguages.forEach((findedLanguage) -> {
             languageList.add(new LanguageSettingDto(findedLanguage));
@@ -78,12 +75,11 @@ public class LanguageServiceImpl implements LanguageService {
         return languageList;
     }
 
-    
     /**
      * language skill 추가 수정
      */
     @Override
-    @Transactional 
+    @Transactional
     public String CUDLanguage(List<LanguageSettingDto> languageSettingDtoList, Long portfolioId, String userId) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         List<Language> findedLanguageSkill = languageReposirtory.findByPortfolioId(portfolioId);
@@ -92,14 +88,14 @@ public class LanguageServiceImpl implements LanguageService {
         for (Language language : findedLanguageSkill) {
             int flag = 0;
             for (LanguageSettingDto languageSettingDto : languageSettingDtoList) {
-                if(languageSettingDto.getLangId() != null){
-                    if(language.getLanguageId() == languageSettingDto.getLangId()){
+                if (languageSettingDto.getLangId() != null) {
+                    if (language.getLanguageId() == languageSettingDto.getLangId()) {
                         flag = 1;
                         break;
                     }
                 }
             }
-            if (flag == 0){
+            if (flag == 0) {
                 languageReposirtory.delete(language);
             }
         }

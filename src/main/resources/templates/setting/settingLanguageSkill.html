@@ -14,37 +14,50 @@
     <th:block layout:fragment="content">
         <!-- 전체 LanguageSkill -->
         <section>
-            <div class="item-wrap">
-                <div class="btn-add-langbox">
+            <div class="item-wrap" >
+                <div class="btn-add-langbox" onclick="createLanguageBox(this)">
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </div>
                 
-                <div class="language-box">
-                    <button class="btn-delete">
+                <div class="language-box" th:each="LanguageSkill : ${LanguageSkillList}">
+                    <input type="hidden" th:value="${LanguageSkill.langId}" id="langId">
+                    <button class="btn-delete" onclick="deleteLanguageBox(this)">
                         <ion-icon name="close-outline"></ion-icon>
                     </button>
 
-                    <input type="text" class="input-langname" autofocus/>
+                    <input type="text" class="input-langname" th:value="${LanguageSkill.langName}" autofocus/>
                     <div class="progressbar">
-                        <input type="range" value="50" max="100"/>
+                        <input type="range" th:value="${LanguageSkill.langFrequency}" max="100"/>
                     </div>
 
                     <div class="lang-framework-box">
-                        <button>
+                        <button onclick="addLangFramework(this)">
                             <ion-icon name="add-circle"></ion-icon>
                         </button>
-                        <span><input type="text"/></span>
-                        <span>framework</span>
                     </div>
 
                     <textarea class="lang-textarea">
 
                     </textarea>
+                    <script th:inline = "javascript">
+                        var thLangSkillNameList = [[${LanguageSkill.langSkillName}]].split('/n');
+                        var langFramworkBox = document.querySelectorAll(".lang-framework-box");
+                        thLangSkillNameList.forEach(thLangSkillName => {
+                            var spanTag = document.createElement("span");
+                            spanTag.innerText = thLangSkillName
+                            spanTag.onclick = function() {
+                                this.remove();
+                            }
+                            langFramworkBox[langFramworkBox.length - 1].appendChild(spanTag);
+                        });
+                        var thLangDetailList = [[${LanguageSkill.langDetail}]].split('/n');
+                        var langTextArea = document.querySelectorAll(".lang-textarea");
+                        langTextArea[langFramworkBox.length - 1].innerText = thLangDetailList.join('\n');
+                    </script>
                 </div>
             </div>
             <button class="btn-save btn-position-60-100" onclick="saveLaguageSkill()">저장</button>
         </section>
-
     </th:block>
 
 </html>
