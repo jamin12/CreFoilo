@@ -1,11 +1,10 @@
-tscripscrip
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="~{layout/settingLayout}">
 <th:block layout:fragment="script">
-    <!-- fontawesome - 아이콘-->
-    <script src="https://kit.fontawesome.com/71b0ef762e.js" crossorigin="anonymous">
-        </script>
+    <!-- ion-icon - 아이콘-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script type="text/javascript" defer th:src="@{/js/LanguageSkill.js}"></script>
 </th:block>
 <th: block layout:fragment="css">
@@ -14,33 +13,37 @@ tscripscrip
 
     <th:block layout:fragment="content">
         <!-- 전체 LanguageSkill -->
-        <div class="all">
-            <input type="hidden" th:field="${LanguageSkill.langId}">
-            <input type="hidden" th:field="${LanguageSkill.portfolioId}">
-            <!-- 첫번째 LanguageSkill - 언어이름, 삭제버튼, 프로그레스바, 태그, 태그추가버튼, 상세기술 -->
-            <div class="FirstLs">
-                <input id="Lang" type="text" name="Lang" th:filed="${LanguageSkill.langId}">
-                <button class="delimg" type="button">
-                    <i class="fa-solid fa-x"></i>
-                </button>
-                <div class="progressBar">
-                    <input type="range" value="60" min="0" max="100">
+        <section>
+            <div class="item-wrap">
+                <div class="btn-add-langbox">
+                    <ion-icon name="add-circle-outline"></ion-icon>
                 </div>
-                <input id="tag" type="text" name="tag">
-                <button class="img" type="button">
-                    <img src="../../static/img/plus.png" alt="plus" class="plus">
-                </button>
-                <textarea id="detail1" name="detail1"></textarea>
-            </div>
+                
+                <div class="language-box">
+                    <button class="btn-delete">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
 
-            <!-- LanguageSkill 추가 버튼 -->
-            <div class="plusBtn">
-                <button class="img" type="button">
-                    <img src="../../static/img/plus.png" alt="plus" class="plus">
-                </button>
+                    <input type="text" class="input-langname" autofocus/>
+                    <div class="progressbar">
+                        <input type="range" value="50" max="100"/>
+                    </div>
+
+                    <div class="lang-framework-box">
+                        <button>
+                            <ion-icon name="add-circle"></ion-icon>
+                        </button>
+                        <span><input type="text"/></span>
+                        <span>framework</span>
+                    </div>
+
+                    <textarea class="lang-textarea">
+
+                    </textarea>
+                </div>
             </div>
-        </div>
-        <button onclick="saveLaguageSkill()">저장</button>
+            <button class="btn-save btn-position-60-100" onclick="saveLaguageSkill()">저장</button>
+        </section>
 
     </th:block>
 
