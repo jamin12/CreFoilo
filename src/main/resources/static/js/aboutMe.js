@@ -64,7 +64,7 @@ const saveAboutMe = () => {
         aboutMeImg: aboutMeImg
     }
     // aboutMeType 1일때
-    if (aboutMeType == 1) {
+    if (aboutMeType == 2) {
         // 타이틀 1,2,3 가져오기 html에서 타이틀id는intro 맞음!
         data.aboutMeTitle2 = document.querySelector("#intro2").value;
         data.aboutMeTitle3 = document.querySelector("#intro3").value;
@@ -82,10 +82,9 @@ const saveAboutMe = () => {
         contentType: "application/json; charset=utf-8",
         type: "POST",
         data: JSON.stringify(data),
-        dataType: 'json',
         async: false,
         success: function (data) {
-            // 그 스킬페이지로 이동
+            document.location.href = `/setting/language/${portfolioId}`
         },
         error: function (error) {
         },

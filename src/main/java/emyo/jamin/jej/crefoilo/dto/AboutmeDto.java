@@ -30,7 +30,7 @@ public class AboutmeDto {
         this.aboutMeTitle1 = aboutMe.getAboutMeTitle1();
         this.aboutMeIntro1 = aboutMe.getAboutMeIntro1();
         this.aboutMeImg = aboutMe.getAboutMeImg();
-        if (aboutMe.getAboutMeType() == 1) {
+        if (aboutMe.getAboutMeType() == 2) {
             this.aboutMeTitle2 = aboutMe.getAboutMeTitle2();
             this.aboutMeTitle3 = aboutMe.getAboutMeTitle3();
             this.aboutMeIntro2 = aboutMe.getAboutMeIntro2();
