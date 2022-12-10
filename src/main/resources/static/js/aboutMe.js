@@ -35,15 +35,12 @@ const addImgRepresent = (e) => {
             // TODO: 에러처리
         }
     });
-    const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
-    const representImgtag = document.querySelector("#representImgtag")
-    const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
+    const aboutMeImg = document.querySelector(".img-background")
+    const aboutMeImgtag = document.querySelector("#file-img")
 
-    representImgInput.value = createUrl("", [imgFile]);
 
-    representImgtag.src = createUrl("", [imgFile]);
-
-    addRepresentImgBtn.value = '';
+    aboutMeImg.src = createUrl("", [imgFile]);
+    aboutMeImgtag.value = '';
 }
 
 
@@ -57,7 +54,7 @@ const saveAboutMe = () => {
     // 인트로 1 가져오기
     let aboutMeIntro1 = document.querySelector("#detail1").value;
     //이미지 가져오기
-    let aboutMeImg = document.querySelector(".btn-img").value;
+    let aboutMeImg = document.querySelector(".img-background")?.src;
 
     let data = {
         portfolioId: portfolioId,
