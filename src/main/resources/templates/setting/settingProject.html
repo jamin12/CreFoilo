@@ -11,29 +11,29 @@
 </th:block>
 <th:block layout:fragment="content">
     <section id="project">
+        <a class="btn-add-card" th:href="@{/setting/projectdetail/{portfolioid}(portfolioid = ${portfolioid})}">
+            <ion-icon name="add-circle-outline"></ion-icon>
+        </a>
+
         <input type="hidden" th:value="${portfolioid}" id="portfolioId">
         <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
-        <!-- TODO(이묘): https://ifuwanna.tistory.com/200 참고해서 each 문 넣어놓을 것 -->
-        <!-- TODO: 클릭 시 edit 창으로 가세요 -->
         <div class="card" th:each="project : ${projectDtoList}">
-            <!-- 앞면 -->
             <div id="projectCardFront" class="front">
-                <button id="deleteProjectId" onclick="deleteProject(this)" th:value="${project.projectId}">삭제</button>
-                <a
-                th:href="@{/setting/projectdetail/{portfolioid}/{projectid}(projectid = ${project.projectId}, portfolioid = ${portfolioid})}">
-                    <img th:src="${project.projectRepresentativeImgUrl}" alt="porjectImg">
+                <button id="deleteProjectId" onclick="deleteProject(this)" th:value="${project.projectId}">
+                    <ion-icon name="close-circle"></ion-icon>
+                </button>
+                <a th:href="@{/setting/projectdetail/{portfolioid}/{projectid}(projectid = ${project.projectId}, portfolioid = ${portfolioid})}">
+                    <img th:src="${project.projectRepresentativeImgUrl}" alt="porjectImg"
+                    onerror="this.src='https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg';">
                 </a>
                 <h3 id="projectTitle" th:text="${project?.projectTitle}">TESTITLE</h3>
                 <p id="projectAbout" th:text="${project?.projectIntro}">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
                 <p id="projectDate" th:text="|${project?.projectStartDate} ~ ${project?.projectEndDate}|">2022.01.01</p>
             </div>
         </div>
-        <!-- TODO: 클릭 시 edit창으로 넘어가도록 -->
-        <a class="card" th:href="@{/setting/projectdetail/{portfolioid}(portfolioid = ${portfolioid})}">
-            <img th:src="@{/img/plus.png}" alt="plus" class="plus">
-        </a>
     </section>
-    <!-- TODO: 적용버튼(전부 동일하게 만들어야함) -->
+    <button class="btn-save btn-position-60-100" onclick="saveProject()">저장</button>
+
 </th:block>
 
 </html>
