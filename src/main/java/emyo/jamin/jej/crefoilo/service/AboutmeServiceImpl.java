@@ -35,35 +35,37 @@ public class AboutmeServiceImpl implements AboutmeService {
         }
         return new AboutmeDto(findedAboutMe);
     }
-    
+
     /**
      * setting page 작업입니다.
      * 
      */
     /**
      * Aboutme 페이지 조회
+     * 
      * @param portfolioId
      * @param userId
      * @return AboutmeDto
      */
     @Override
-    public AboutmeDto findAboutme(Long portfolioId, String userId){
+    public AboutmeDto findAboutme(Long portfolioId, String userId) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         AboutMe findedAboutMe = aboutmeRepository.findByPortfolioId(portfolioId);
         if (findedAboutMe == null) {
-            return new AboutmeDto();
+            return null;
         }
         return new AboutmeDto(findedAboutMe);
     }
 
     /**
      * Aboutme 페이지 생성
+     * 
      * @param portfolioId
      * @param userId
      */
     @Override
     @Transactional
-    public String createAboutMe(Long portfolioId, String userId, AboutmeDto aboutMeDto){
+    public String createAboutMe(Long portfolioId, String userId, AboutmeDto aboutMeDto) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         aboutmeRepository.save(AboutMe.toCreateEntity(portfolioId, aboutMeDto));
         // TODO: return 수정하기

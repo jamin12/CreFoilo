@@ -72,9 +72,14 @@ public class OtherSkillServiceImpl implements OtherSkillService {
      * @param userId
      */
     @Override
-    public List<OtherSkillListDto> findOtherSkillList(Long portFolioId, String userId) {
+    public List<OtherSkillDto> findOtherSkillList(Long portFolioId, String userId) {
         validation.checkUserHasPortfolio(portFolioId, userId);
-        return this.findOtherSkillList(portFolioId);
+        List<OtherSkill> findedOtherSkills = otherSkillRepository.findByPortfolioId(portFolioId);
+        List<OtherSkillDto> otherSkillListDtos = new ArrayList<>();
+        findedOtherSkills.forEach((otherSkill) -> {
+            otherSkillListDtos.add(new OtherSkillDto(otherSkill));
+        });
+        return otherSkillListDtos;
     }
 
     /**
