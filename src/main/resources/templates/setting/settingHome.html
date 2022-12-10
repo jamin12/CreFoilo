@@ -9,35 +9,93 @@
 <!-- fontawesome - 아이콘-->
 <th:block layout:fragment="content">
     <div class="hometpl">
-        <!--Home 기본 예시 템플릿-->
-        <div class="basic-templates">
-            <!--예시 템플릿 1-->
-            <div class="btpl">
-                <button class="btpl-ex1" type="button"></button>
-                <p>예시 템플릿 1</p>
-            </div>
-
-            <!--예시 템플릿 2-->
-            <div class="btpl">
-                <button class="btpl-ex2" type="button"></button>
-                <p>예시 템플릿 2</p>
-            </div>
-
-            <!--예시 템플릿 3-->
-            <div class="btpl">
-                <button class="btpl-ex3" type="button"></button>
-                <p>예시 템플릿 3</p>
-            </div>
+        <!--예시 템플릿 1-->
+        <div class="templet-box">
+            <button class="btn-img1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="1">
+                <div class="opacity-box">
+                    <p>배경사진을 선택할 수 있고, 간단한 소개글을 입력할 수 있습니다</p>
+                </div>
+            </button>
+            <p>템플릿 1</p>
         </div>
 
-        <!-- Home 사용자지정 템플릿 추가-->
-        <div class="add-templates">
-            <div class="atpl">
-                <button class="atpl-1" type="button"></button>
-                <p>사용자 지정</p>
+        <!--예시 템플릿 2-->
+        <div class="templet-box">
+            <button class="btn-img2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="2">
+                <div class="opacity-box">
+                    <p>간단한 소개글만 입력할 수 있습니다</p>
+                </div>
+            </button>
+            <p>템플릿 2</p>
+        </div>
+
+        <!--예시 템플릿 3-->
+        <div class="templet-box">
+            <button class="btn-img3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="3">
+                <div class="opacity-box">
+                    <p>소개글 옆에 작은 이미지와 간단한 소개글을 입력할 수 있습니다 <br> 배경이미지는 회색으로 고정입니다.</p>
+                </div>
+            </button>
+            <p>템플릿 3</p>
+        </div>
+    </div>
+
+
+    <!-- 모달창 -->
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">템플릿 1 옵션 선택</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3 modal-select-img-box">
+                        <label for="type-name" class="col-form-label">이미지 넣기</label>
+                        <input type="file" class="form-control" id="img-url">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">제목 입력하기</label>
+                        <input type="text" class="form-control" id="title" placeholder="포트폴리오 제목">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
             </div>
         </div>
     </div>
+
+
+    <script th:inline="javascript">
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+
+            var type = button.getAttribute('data-bs-whatever')
+
+            var modalTitle = exampleModal.querySelector('.modal-title')
+
+            if(type === '2'){
+                exampleModal.querySelector('.modal-select-img-box').style.display = 'none';
+            }
+            else{
+                exampleModal.querySelector('.modal-select-img-box').style.display = 'block';
+            }
+
+            modalTitle.textContent = '예시 템플릿 ' + type + '정보 입력하기'
+        })
+    </script>
+
+
 </th:block>
 
 
