@@ -53,8 +53,8 @@ public class PortfolioServiceImpl implements PortfolioService {
         return portfoliolist;
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void deletePortfolio(Long portfolioId, String userId) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         portfolioRepository.delete(portfolioRepository.findById(portfolioId).get());

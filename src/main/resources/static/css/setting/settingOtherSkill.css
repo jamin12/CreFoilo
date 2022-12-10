@@ -14,6 +14,8 @@
     transform: translate(-50%, -50%);
 }
 
+
+
 .btn-add-box{
     display: flex;
     align-items: center;
@@ -118,4 +120,8 @@ ion-icon[name='close-circle-outline']:hover{
 }
 .btn-subskill-add:hover{
     color: var(--gray600);
+}
+
+input[type="hidden"] {
+    display: none;
 }

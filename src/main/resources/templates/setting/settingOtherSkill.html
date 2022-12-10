@@ -19,31 +19,29 @@
         <button class="btn-add-box">
             <ion-icon name="add-circle-outline"></ion-icon>
         </button>
-
+        <input type="hidden" th:value="${portfolioid}" id="portfolioid">
         <div class="os-wrap">
-
-            <!-- 이걸 반복해주시면 됩니당 -->
-            <div class="os-box">
-
+            <div class="os-box" th:each="otherskill : ${otherskilllist}">
                 <div class="main-skill-box">
-                    <ion-icon name="close-circle-outline"></ion-icon>
-                    <input id="mainSkill" type="text" name="MainSkill" autofocus><br>
+                    <ion-icon name="close-circle-outline" onclick="deleteBaseOtherSkill(this)"></ion-icon>
+                    <input id="mainSkill" type="text" name="MainSkill" th:value="${otherskill.otherSkillBaseName}" autofocus><br>
+                    <input id="mainSkillId" type="hidden" name="mainSkillId" th:value="${otherskill.otherSkillBaseId}">
                 </div>
 
-                <div class="sub-skill-box">
-                    <ion-icon name="close-circle-outline"></ion-icon>
-                    <input id="subSkill" type="text" name="Skill"><br>
+                <div class="sub-skill-box" th:each="subotherskill : ${otherskill.otherSkillSubList}">
+                    <ion-icon name="close-circle-outline" onclick="deleteSubBaseOtherSkill(this)"></ion-icon>
+                    <input id="subSkill" type="text" name="Skill" th:value="${subotherskill.otherSkillSubName}"><br>
+                    <input id="subSkillId" type="hidden" name="subSkillId" th:value="${subotherskill.otherSkillSubId}">
+                    <input id="baseSkillId" type="hidden" name="baseSkillId" th:value="${subotherskill.otherSkillBaseId}">
                 </div>
 
-                <button class="btn-subskill-add" type="button">
+                <button class="btn-subskill-add" type="button" onclick="addSubOtherSkill(this)">
                     <ion-icon name="add-circle"></ion-icon>
                 </button>
             </div>
-            <!-- 여기까지 -->
-
         </div>
     </div>
-    <button class="btn-save btn-position-60-100" onclick="saveAboutMe()">SAVE</button>
+    <button class="btn-save btn-position-60-100" onclick="saveOtherSkill()">SAVE</button>
 </th:block>
 
 </html>
