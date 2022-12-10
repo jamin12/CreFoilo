@@ -1,4 +1,5 @@
 @import url("../mainStyle.css");
+@import url("../setting/settingBtnSave.css");
 
 body {
     width: 100%;
@@ -10,18 +11,65 @@ body {
     position: absolute;
     top: 50%;
     right: 50%;
-    transform: translate(50% , -50%);
-    justify-content: space-around;
-    width: 80%;
-    height: 40%;
+    transform: translate(50%, -50%);
+    width: 1200px;
+    height: 400px;
     display: flex;
-    flex-direction: row;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     border-radius: 15px;
 }
 
+#project::-webkit-scrollbar {
+    height: 8px;
+    background-color: transparent;
+}
+#project::-webkit-scrollbar-thumb {
+    background-color: var(--gray200);
+    border-radius: 50px;
+    height: 8px;
+}
+
+/* 
+    프로젝트 추가 버튼
+*/
+.btn-add-card{
+    min-width: 100px;
+}
+.btn-add-card > ion-icon[name="add-circle-outline"]{
+    width: 100%;
+    height: 100%;
+    transition: .2s;
+}
+
+/*
+    프로젝트 삭제 버튼
+*/
+#deleteProjectId{
+    background-color: transparent;
+    font-size: 2rem;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    color: var(--red);
+    transition: .2s;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#deleteProjectId:hover{
+    color: var(--curcer-red)
+}
+
 .card {
-    width: 250px;
+    min-width: 300px;
     height: 100%;
     display: inline-block;
     position: relative;
@@ -32,28 +80,30 @@ body {
     border: none;
 }
 
-.front {
+.front{
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: var(--gray200);
+    background-color: var(--gray100);
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
-}
-.front a{
-    width: 100%;
+.front > a {
+    width: 300px;
     height: 50%;
-    
 }
+
 .front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #projectTitle {
@@ -72,7 +122,7 @@ body {
     text-align: center;
     color: var(--gray800);
     -webkit-line-clamp: 3;
-    
+
     /* 3번째 줄 까지 보이면서 말줄임표 */
 }
 
@@ -85,20 +135,20 @@ body {
     color: var(--gray800);
 }
 
-.plus{
-    width: 100px;
+.plus {
+    min-width: 100px;
     height: 100px;
     position: absolute;
     top: 50%;
     right: 50%;
-    transform: translate(50% , -50%);
+    transform: translate(50%, -50%);
 }
 
-.plus:hover{
+.plus:hover {
     cursor: pointer;
 }
 
-.colorpick{
+.colorpick {
     position: fixed;
     top: 80%;
     left: 80%;
