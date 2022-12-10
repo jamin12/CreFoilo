@@ -31,15 +31,19 @@ const addSubOtherSkill = (e) => {
   const subOtherSKillName = document.createElement('input');
   const subOtherSKillsBaseId = document.createElement('input');
 
+  // 서브 스킬 틀
   subOtherSKillDiv.className = "sub-skill-box";
 
+  // 서브스킬 input 창
   subOtherSKillName.type = "text";
   subOtherSKillName.id = "subSkill";
 
+  // 서브의 베이스 스킬 
   subOtherSKillsBaseId.type = "hidden";
   subOtherSKillsBaseId.id = "baseSkillId";
   subOtherSKillsBaseId.value = baseOtherSkillId;
 
+  // 서브스킬 삭제 버튼
   subOtherSKillDeleteIcon.setAttribute('name', "close-circle-outline");
   subOtherSKillDeleteIcon.onclick = function () {
     deleteSubBaseOtherSkill(this);
@@ -56,10 +60,6 @@ const addSubOtherSkill = (e) => {
  * other skill 저장기능
  */
 const saveOtherSkill = () => {
-  // otherSkillID
-  // baseOtherSkillId
-  // portfolioId
-  // otherSkillName
   const otherSkillDtos = []
   const mainOtherSkills = document.querySelectorAll('.main-skill-box');
   const subOtherSkills = document.querySelectorAll('.sub-skill-box');

@@ -157,7 +157,9 @@ public class SettingController {
      */
     @GetMapping(value = "/setting/language/{portfolioid}")
     public String settingLanguageSkill(@PathVariable Long portfolioid, Model model) {
-        model.addAttribute("LanguageSkillList", laguageService.findLanguage(portfolioid));
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("LanguageSkillList",
+                laguageService.findLanguageList(portfolioid, userIdInSession.getUserId()));
         model.addAttribute("portfolioid", portfolioid);
         return "setting/settingLanguageSkill";
     }
