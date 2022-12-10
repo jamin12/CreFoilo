@@ -25,9 +25,11 @@ import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.LanguageService;
+import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
+import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
 
 /**
  * 세팅 페이지 컨트롤러
@@ -45,6 +47,9 @@ public class SettingController {
 
     @Autowired
     private LanguageService laguageService;
+
+    @Autowired
+    private OtherSkillService otherSkillService;
 
     @GetMapping(value = "/setting/home")
     public String settingHome() {
@@ -128,7 +133,26 @@ public class SettingController {
      */
     @GetMapping(value = "/setting/other/{portfolioid}")
     public String settingOtherSkill(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("portfolioid", portfolioid);
+        model.addAttribute("otherskilllist",
+                otherSkillService.findOtherSkillList(portfolioid, userIdInSession.getUserId()));
+        return "setting/settingOtherSkill";
+    }
 
+    /**
+     * Other Skill 생성 수정 삭제
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/other/{portfolioid}")
+    public String CUDOtherSkill(@PathVariable Long portfolioid, @RequestBody List<OtherSkillDto> otherSkillDtos,
+            Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        otherSkillService.CUDOtherSkill(otherSkillDtos, portfolioid, userIdInSession.getUserId());
         return "setting/settingOtherSkill";
     }
 
