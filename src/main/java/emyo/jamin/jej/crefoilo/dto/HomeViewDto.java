@@ -17,7 +17,6 @@ public class HomeViewDto {
     private Integer portfolioHomeType;
     private String portfolioHomeImg;
     private String portfolioHomeText;
-    private String portfolioHomeColor;
 
     public HomeViewDto(Portfolio portfolio) {
         this.portfolioId = portfolio.getPortfolioId();

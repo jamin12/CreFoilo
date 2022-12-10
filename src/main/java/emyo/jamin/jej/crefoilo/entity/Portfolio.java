@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import emyo.jamin.jej.crefoilo.dto.PortfolioHomeDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,4 +42,17 @@ public class Portfolio extends BaseTimeEntity {
 
     @Column(name = "portfolio_home_img", nullable = true, length = 255)
     private String portfolioHomeImg; // '홈화면 img',
+
+    public static Portfolio createPortfolioEntity(PortfolioHomeDto portfolioHomeDto, String userId) {
+        PortfolioBuilder portfolioBulider = Portfolio.builder()
+                .userId(userId)
+                .portfolioName(portfolioHomeDto.getPortfolioName())
+                .portfolioHomeType(portfolioHomeDto.getPortfolioType())
+                .portfolioHomeText(portfolioHomeDto.getPortfolioHomeText())
+                .portfolioHomeImg(portfolioHomeDto.getPortfolioImgUrl());
+        if (portfolioHomeDto.getPortfolioId() != null) {
+            portfolioBulider.portfolioId(portfolioHomeDto.getPortfolioId());
+        }
+        return portfolioBulider.build();
+    }
 }

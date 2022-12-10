@@ -21,15 +21,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
+import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
+import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.OtherSkillService;
+import emyo.jamin.jej.crefoilo.service.PortfolioService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
+import emyo.jamin.jej.crefoilo.dto.PortfolioHomeDto;
 
 /**
  * 세팅 페이지 컨트롤러
@@ -51,9 +55,43 @@ public class SettingController {
     @Autowired
     private OtherSkillService otherSkillService;
 
-    @GetMapping(value = "/setting/home")
-    public String settingHome() {
+    @Autowired
+    private PortfolioService portfolioService;
+
+    /**
+     * home 선택 페이지
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = { "/setting/home", "/setting/home/{portfolioid}" })
+    public String settingHome(@PathVariable Optional<Long> portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        if (portfolioid.isPresent()) {
+            model.addAttribute("portfolioHome",
+                    portfolioService.findPortfolioHome(portfolioid.get(), userIdInSession.getUserId()));
+            model.addAttribute("portfolioid", portfolioid.get());
+            return "setting/settingHome";
+        }
+        model.addAttribute("portfolioHome", new HomeViewDto());
+        model.addAttribute("portfolioid", null);
+
         return "setting/settingHome";
+    }
+
+    /**
+     * home 생성 수정
+     * 
+     * @param portfolioHomeDto 포트폴리오 홈 데이터
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/home")
+    public Long createHome(@RequestBody PortfolioHomeDto portfolioHomeDto) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        Portfolio Cuportfolio = portfolioService.CUPortfolioHome(portfolioHomeDto, userIdInSession.getUserId());
+        return Cuportfolio.getPortfolioId();
     }
 
     /**

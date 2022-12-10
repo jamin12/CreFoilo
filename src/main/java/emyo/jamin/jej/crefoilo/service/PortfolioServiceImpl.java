@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.PortfolioDto;
+import emyo.jamin.jej.crefoilo.dto.PortfolioHomeDto;
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.repository.PortfolioRepository;
+import emyo.jamin.jej.crefoilo.utils.CustomException;
+import emyo.jamin.jej.crefoilo.utils.ErrorCode;
 import emyo.jamin.jej.crefoilo.utils.Validation;
 
 /**
@@ -68,6 +71,24 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Override
     public HomeViewDto findPortfolioHome(Long portfolioId) {
         return new HomeViewDto(portfolioRepository.findHomeByPortfolioId(portfolioId));
+    }
+
+    /**
+     * 아래 코드는 setting page 작업입니다.
+     */
+    @Override
+    @Transactional
+    public Portfolio CUPortfolioHome(PortfolioHomeDto portfolioHomeDto, String userId) {
+        return portfolioRepository.save(Portfolio.createPortfolioEntity(portfolioHomeDto, userId));
+    }
+
+    @Override
+    public HomeViewDto findPortfolioHome(Long portfolioId, String userId) {
+        Portfolio findedPortfolio = portfolioRepository.findHomeByPortfolioId(portfolioId);
+        if (findedPortfolio.getUserId().equals(userId)) {
+            return new HomeViewDto(findedPortfolio);
+        }
+        throw new CustomException(ErrorCode.PORTFOILO_NOT_FOUND);
     }
 
 }

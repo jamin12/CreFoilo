@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
-
+<th:block layout:fragment="script">
+    <script type="text/javascript" defer th:src="@{/js/home.js}"></script>
+</th:block>
 <th:block layout:fragment="css">
     <link th:href="@{/css/setting/settingHome.css}" rel="stylesheet">
 </th:block>
 
 <!-- fontawesome - 아이콘-->
 <th:block layout:fragment="content">
+
+    <input type="hidden" th:value="${portfolioid}" id="portfolioid">
+    <input type="hidden" value="" id="typeinput">
     <div class="hometpl">
         <!--예시 템플릿 1-->
         <div class="templet-box">
@@ -56,45 +61,27 @@
                 </div>
 
                 <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">포트폴리오 제목 입력하기</label>
+                        <input type="text" class="form-control" id="title" th:value="${portfolioHome.portfolioName}" placeholder="포트폴리오 제목">
+                    </div>
                     <div class="mb-3 modal-select-img-box">
                         <label for="type-name" class="col-form-label">이미지 넣기</label>
-                        <input type="file" class="form-control" id="img-url">
+                        <input type="file" class="form-control" id="img-url" onchange="addImgRepresent(this.files)">
+                        <input type="hidden" id="home-img-url" th:value="${portfolioHome.portfolioHomeImg}">
                     </div>
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">제목 입력하기</label>
-                        <input type="text" class="form-control" id="title" placeholder="포트폴리오 제목">
+                        <label for="message-text" class="col-form-label">포트폴리오 소개 글 입력하기</label>
+                        <input type="text" class="form-control" id="home-text" th:value="${portfolioHome.portfolioHomeText}" placeholder="포트폴리오 소개 글">
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="savePortfolioHome()">Save</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script th:inline="javascript">
-        var exampleModal = document.getElementById('exampleModal')
-        exampleModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget
-
-            var type = button.getAttribute('data-bs-whatever')
-
-            var modalTitle = exampleModal.querySelector('.modal-title')
-
-            if(type === '2'){
-                exampleModal.querySelector('.modal-select-img-box').style.display = 'none';
-            }
-            else{
-                exampleModal.querySelector('.modal-select-img-box').style.display = 'block';
-            }
-
-            modalTitle.textContent = '예시 템플릿 ' + type + '정보 입력하기'
-        })
-    </script>
-
-
 </th:block>
 
 
