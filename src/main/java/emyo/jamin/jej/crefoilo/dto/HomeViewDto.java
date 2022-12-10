@@ -26,7 +26,6 @@ public class HomeViewDto {
         this.portfolioHomeType = portfolio.getPortfolioHomeType();
         this.portfolioHomeImg = portfolio.getPortfolioHomeImg();
         this.portfolioHomeText = portfolio.getPortfolioHomeText();
-        this.portfolioHomeColor = portfolio.getPortfolioHomeColor();
     }
 
 }

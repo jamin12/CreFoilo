@@ -6,43 +6,30 @@
     <script type="text/javascript" defer th:src="@{/js/aboutMe.js}"></script>
 </th:block>
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/setting/settingAboutMeT1.css}">
+    <link th:href="@{/css/setting/settingAboutMeT2.css}" rel="stylesheet">
 </th:block>
 
-<!-- fontawesome - 아이콘-->
 <th:block layout:fragment="content">
-    <!-- aboutMe 템플릿1-->
-    <div class="aboutMeTemplate1">
-        <input type="hidden" id="aboutMeType" value="1">
-        <input type="hidden" th:value="${aboutMe.aboutMeId}" id="aboutMeId" >
+    <!-- aboutMe 템플릿2-->
+    <div class="aboutMeTemplate2">
+        <input type="hidden" id="aboutMeType" value="2">
+        <input type="hidden" th:value="${aboutMe.aboutMeId}" id="aboutMeId">
         <input type="hidden" th:value="${portfolioid}" id="portfolioid">
-        
-        <!-- section 1-->
+        <!-- 대표 이미지 추가버튼 -->
         <div class="section1" th:field="${aboutMe.aboutMeTitle1}">
-            <input id="intro1" type="text" name="intro1" th:field="${aboutMe.aboutMeTitle1}"
-            placeholder="자기소개 제목을 입력해주세요!">
+            <input id="file-img" type="file" onchange="addImgRepresent(this.files)"/>
 
-            <input id="file-img" type="file" />
-            <label class="btn-change-img" for="file-img">
+            <label class="btn-change-img" for="file-img" >
                 <img class="img-background" th:src="${aboutMe.aboutMeImg}" />
                 <ion-icon name="add-circle"></ion-icon>
             </label>
         </div>
-
-        <!-- 자기소개2, 2부연설명 -->
+        <!-- 자기소개1, 1부연설명 -->
         <div class="section2">
-            <input id="intro2" type="text" name="intro2" th:field="${aboutMe.aboutMeTitle2}"
-            placeholder="자기소개 제목을 입력해주세요!">
-            <textarea id="detail1" name="detail2" th:field="${aboutMe.aboutMeIntro1}"
-            placeholder="당신의 대해서 설명해주세요!"></textarea>
-        </div>
-
-        <!-- 자기소개3, 3부연설명 -->
-        <div class="section3">
-            <input id="intro3" type="text" name="intro3" th:field="${aboutMe.aboutMeTitle3}"
-            placeholder="자기소개 제목을 입력해주세요!">
-            <textarea id="detail2" name="detail3" th:field="${aboutMe.aboutMeIntro2}"
-            placeholder="당신의 대해서 설명해주세요!"></textarea>
+            <input id="intro1" type="text" name="intro1" th:field="${aboutMe.aboutMeTitle1}"
+                placeholder="자기소개 제목을 입력해주세요">
+            <textarea id="detail1" name="detail1" th:field="${aboutMe.aboutMeIntro1}"
+                placeholder="자기소개 내용을 입력해주세요"></textarea>
         </div>
     </div>
 

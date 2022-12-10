@@ -46,56 +46,63 @@ public class SettingController {
     @Autowired
     private LanguageService laguageService;
 
-    @GetMapping(value = "/setting/aboutme")
-    public String settingAboutMe() {
+    @GetMapping(value = "/setting/home")
+    public String settingHome() {
+        return "setting/settingHome";
+    }
+
+    /**
+     * aboutme 타입 선택 페이지
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/aboutme/{portfolioid}")
+    public String settingAboutMe(@PathVariable Long portfolioid, Model model) {
+        model.addAttribute("portfolioid", portfolioid);
         return "setting/settingAboutMe";
     }
-// aboutme타입 별로 리턴하는거 합치기  
-    @GetMapping(value = "/setting/aboutme/{portfolioid}")
-    public String settingAboutMeT(@PathVariable Long portfolioid, Model model) {
+
+    /**
+     * 자신의 aboutMe 조회
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param type        aboutme 타입
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/aboutme/{portfolioid}/{type}")
+    public String settingAboutMeT(@PathVariable Long portfolioid, @PathVariable Integer type, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
+        // 새로 만들 때
+        if (findedAboutme == null) {
+            findedAboutme = new AboutmeDto();
+        }
+        // 기존에 있을 때
+        model.addAttribute("portfolioid", portfolioid);
         model.addAttribute("aboutMe", findedAboutme);
-
-        if(findedAboutme.getAboutMeType() == 1){
+        if (type == 1) {
             return "setting/settingAboutMeT1";
         }
         return "setting/settingAboutMeT2";
     }
 
-
-
-    @GetMapping(value = "/setting/aboutmet1/{portfolioid}")
-    public String settingAboutMeT1(@PathVariable Long portfolioid, Model model) {
-        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
-        model.addAttribute("aboutMe", findedAboutme);
-        model.addAttribute("portfolioid", portfolioid);
-
-        return "setting/settingAboutMeT1";
-    }
-
-    @GetMapping(value = "/setting/aboutmet2/{portfolioid}")
-    public String settingAboutMeT2(@PathVariable Long portfolioid, Model model) {
-        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
-        model.addAttribute("aboutMe", findedAboutme);
-
-        return "setting/settingAboutMeT2";
-    }
-
+    /**
+     * aboutme 수정 저장
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param aboutmeDto  전송받을 aboutme 데이터
+     * @return
+     */
     @ResponseBody
     @PostMapping(value = "/setting/aboutme/{portfolioid}")
-    public String createAboutMe(@PathVariable Long portfolioid, @RequestBody AboutmeDto aboutmeDto, Model model) {
+    public String createAboutMe(@PathVariable Long portfolioid, @RequestBody AboutmeDto aboutmeDto) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         aboutmeService.createAboutMe(portfolioid, userIdInSession.getUserId(), aboutmeDto);
-// 리턴하는 값 : js에 있는ㄷ 데이터 
+        // 리턴하는 값 : js에 있는ㄷ 데이터
         return null;
-    }
-
-    @GetMapping(value = "/setting/home")
-    public String settingHome() {
-        return "setting/settingHome";
     }
 
     /**
