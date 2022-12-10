@@ -12,7 +12,7 @@ const createUrl = (startUrl, params) => {
     }
     return mainUrl;
 };
-
+// 이미지 적용 
 const addImgRepresent = (e) => {
     // formdata에 삽입
     const formdata = new FormData();
@@ -88,7 +88,7 @@ const saveAboutMe = () => {
         dataType: 'json',
         async: false,
         success: function (data) {
-            
+            // 그 스킬페이지로 이동
         },
         error: function (error) {
         },

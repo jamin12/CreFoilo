@@ -50,6 +50,20 @@ public class SettingController {
     public String settingAboutMe() {
         return "setting/settingAboutMe";
     }
+// aboutme타입 별로 리턴하는거 합치기  
+    @GetMapping(value = "/setting/aboutme/{portfolioid}")
+    public String settingAboutMeT(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
+        model.addAttribute("aboutMe", findedAboutme);
+
+        if(findedAboutme.getAboutMeType() == 1){
+            return "setting/settingAboutMeT1";
+        }
+        return "setting/settingAboutMeT2";
+    }
+
+
 
     @GetMapping(value = "/setting/aboutmet1/{portfolioid}")
     public String settingAboutMeT1(@PathVariable Long portfolioid, Model model) {
@@ -75,7 +89,7 @@ public class SettingController {
     public String createAboutMe(@PathVariable Long portfolioid, @RequestBody AboutmeDto aboutmeDto, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         aboutmeService.createAboutMe(portfolioid, userIdInSession.getUserId(), aboutmeDto);
-
+// 리턴하는 값 : js에 있는ㄷ 데이터 
         return null;
     }
 
