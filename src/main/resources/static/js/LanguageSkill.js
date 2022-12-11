@@ -112,6 +112,7 @@ const createLang = () => {
   const langBox = document.querySelectorAll(".language-box");
   const portfolioid = document.querySelector("#portfolioid").value;
   const data = [];
+  let flag = false;
   langBox.forEach(lang => {
     const langName = lang.querySelector(".input-langname").value;
     const langFrameworkList = lang.querySelector(".lang-framework-box").querySelectorAll("span");
@@ -125,6 +126,7 @@ const createLang = () => {
     // 제목이 비었을 때 에러
     if (langName == "") {
       alert("빈칸을 채워주세요");
+      flag = true;
       return;
     }
 
@@ -136,7 +138,9 @@ const createLang = () => {
       langDetail: langDetail,
     });
   });
-
+  if(flag){
+    return;
+  }
   $.ajax({
     url: `/setting/language/${portfolioid}`,
     contentType: "application/json; charset=utf-8",
