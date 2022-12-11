@@ -93,7 +93,7 @@ function setProejctContentsInfo() {
   let startDate = document.querySelector("#projectStrDate")?.value;
   // 마감 날짜 가져오기
   let endDate = document.querySelector("#projectEndDate")?.value;
-  if(endDate === "" || startDate === "" || startDate > endDate){
+  if (endDate === "" || startDate === "" || startDate > endDate) {
     alert("날짜를 바르게 입력해주세요");
     return;
   }
@@ -205,7 +205,10 @@ const addImg = (e) => {
 
   imgTag.src = createUrl("", [imgFile]);
 
-  imgCard.setAttribute("class", "project_img_card")
+  imgCard.onclick = function () {
+    this.remove();
+  }
+  imgCard.setAttribute("class", "project_img_card img-card")
   imgCard.appendChild(imgTag);
   imgCard.appendChild(imgUrlInput);
 
@@ -258,34 +261,37 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var type = button.data('whatever') // Extract info from data-* attributes
   const iconCount = document.getElementById('iconBox')
-  console.log(iconCount.childElementCount)
+  if(iconCount.childElementCount >= 5){
 
-  if(iconCount.childElementCount > 5){
-    document.getElementById('btnAddMyIcon').style.display = 'none'
-  }else{
-    document.getElementById('btnAddMyIcon').style.display = 'flex'
   }
-
-  // 5개가 되면 추가 버튼 없어지는거 구현해야함
-  // 5개가 들어갈 수 있는 최대로 설정해야합니다.
-  // 5개가 되면 플러스 버튼은 없어져야합니다
-  // 아이콘을 클릭하면 모달창에 해당 정보가 나와야합니다
-  
   var modal = $(this)
-  if(type === 'addIcon'){
-    console.log(type)
+  if (type === 'addIcon') {
     modal.find('.modal-title').text('아이콘 추가하기')
-    modal.find('.btn-delete-icon').text('취소')
-  }else{
-    console.log(type)
+    modal.find('.btn-cancle-icon').css("display", "flex")
+    modal.find('.btn-delete-icon').css("display", "none")
+    event.currentTarget.querySelector(".btn-primary").onclick = function (){
+      updateDocLink(event.relatedTarget);
+    }
+  } else {
     modal.find('.modal-title').text('아이콘 수정하기')
-    modal.find('.btn-delete-icon').text('삭제')
+    modal.find('.btn-cancle-icon').css("display", "none")
+    modal.find('.btn-delete-icon').css("display", "flex")
+    event.currentTarget.querySelector(".btn-delete-icon").onclick = function (){
+      deleteIcon(event.relatedTarget);
+    }
+    event.currentTarget.querySelector(".btn-primary").onclick = function (){
+      updateDocLink(event.relatedTarget);
+    }
   }
+})
+
+$('#exampleModal').on('hidden.bs.modal', function (e) {
+  // e.currentTarget.remove();
 })
 
 
 const modalIconDic = {
-  iconName:[
+  iconName: [
     'logo-github',
     "desktop-outline",
     "cloud-outline",
@@ -297,7 +303,7 @@ const modalIconDic = {
     "logo-slack",
     "logo-youtube",
   ],
-  iconValue:[
+  iconValue: [
     'github',
     'desktop',
     "cloud",
@@ -311,10 +317,9 @@ const modalIconDic = {
   ]
 }
 const modalBody = document.querySelector('.modal-body .label-wrap')
-console.log(modalBody)
-for(var i=0; i<modalIconDic.iconName.length; i++){
+for (var i = 0; i < modalIconDic.iconName.length; i++) {
   const iconLabel = document.createElement('label');
-  iconLabel.innerHTML = `<input type="radio" name="select-icon" value="${modalIconDic.iconValue[i]}" />
+  iconLabel.innerHTML = `<input type="radio" name="select-icon" value="${modalIconDic.iconName[i]}" />
                           <div class="icon-radio-box">
                               <ion-icon name="${modalIconDic.iconName[i]}"></ion-icon>
                               <p>${modalIconDic.iconValue[i]}</p>
@@ -324,8 +329,35 @@ for(var i=0; i<modalIconDic.iconName.length; i++){
 }
 
 /**
- * 모달창 아이콘 적용 버튼
+ * 모달창 아이콘 수정
+ * 
+ * @param {Element} e 선택된 엘리먼트
  */
-const onClickAddIcon = () => {
+const updateDocLink = (e) => {
+  var radiovalue = $('input[name=select-icon]:checked').val();
+  const docUrlText = document.querySelector('#docUrlText').value;
+  const docUrlTextInput = e.querySelector('#docUrl');
+  docUrlTextInput.value = docUrlText;
+  e.querySelector("ion-icon").setAttribute("name", radiovalue);
+}
 
+/**
+ * 모달창 아이콘 생성
+ * 
+ * @param {Element} e 선택된 엘리먼트
+ */
+const createDocLink = (e) => {
+  var radiovalue = $('input[name=select-icon]:checked').val();
+  const docUrlText = document.querySelector('#docUrlText').value;
+
+  
+}
+
+/**
+ * Link 삭제
+ * 
+ * @param {Element} e 
+ */
+const deleteIcon = (e) => {
+  e.remove();
 }
