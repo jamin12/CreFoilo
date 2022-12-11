@@ -21,6 +21,8 @@ public class ProjectDocumentDto {
             this.documentImgUrl = documentUrl.getDocumentImgUrl();
             this.documentUrl = documentUrl.getDocumentUrl();
         }
+        this.documentImgUrl = "";
+        this.documentUrl = "";
     }
 
     @Override

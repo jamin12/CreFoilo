@@ -17,8 +17,11 @@ public class ProjectImgDto {
     private String projectImgUrl;
 
     public ProjectImgDto(@Nullable ProjectImg projectImg) {
-        this.projectImgId = projectImg.getProjectImgId();
-        this.projectImgUrl = projectImg.getProjectImgUrl();
+        if (projectImg != null) {
+            this.projectImgId = projectImg.getProjectImgId();
+            this.projectImgUrl = projectImg.getProjectImgUrl();
+        }
+        this.projectImgUrl = "";
     }
 
     @Override
