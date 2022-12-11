@@ -16,81 +16,98 @@
     <section id="project">
         <input type="hidden" th:field="${projectDetail.projectId}">
         <input type="hidden" th:field="${projectDetail.portfolioId}">
-        <!-- 배열 안에 있는 내용들을 집어 넣어서 최종 길이가 되도록 설정해야함 -->
-        <div class="card">
-            <!-- 앞면 -->
-            <div id="projectCardFront" class="front">
-                <!-- TODO: 이미지가 들어오면 src와 style을 바꿔줘야함 -->
-                <input class="add_represent_img_btn" onchange="addImgRepresent(this.files)" type="file">
-                    <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="project_representative_img" id="representImgtag">
-                    <input type="hidden" th:field="${projectDetail.projectRepresentativeImgUrl}">
-                </input>
-                <hr>
-                <input type="text" class="project_title" placeholder="프로젝트 제목"
-                    th:field="${projectDetail.projectTitle}" />
-                <textarea class="project_intro" placeholder="프로젝트 소개"
-                    th:field="${projectDetail.proejctIntro}"></textarea>
-                <div>
-                    <input type="date" class="project_period" th:field="${projectDetail.projectStrDate}">
-                    <input type="date" class="project_period" th:field="${projectDetail.projectEndDate}">
-                </div>
+        <!-- 앞면 -->
+        <div id="projectCardFront" class="front">
+            <input id="btnInputImg" class="add_represent_img_btn" onchange="addImgRepresent(this.files)" type="file">
+            <input type="hidden" th:field="${projectDetail.projectRepresentativeImgUrl}" />
+
+            <label for="btnInputImg">
+                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="project_representative_img"
+                    onerror="this.src='/img/SampleImg.png';" id="representImgtag" class="btn-input-img">
+            </label>
+
+            <input type="text" class="project_title" placeholder="프로젝트 제목" th:field="${projectDetail.projectTitle}" />
+            <textarea class="project_intro" placeholder="프로젝트 소개" th:field="${projectDetail.proejctIntro}"></textarea>
+            <div>
+                <input type="date" class="project_period" th:field="${projectDetail.projectStrDate}">
+                <input type="date" class="project_period" th:field="${projectDetail.projectEndDate}">
             </div>
         </div>
-        <div class="card">
-            <!-- 뒷면 -->
-            <div class="back">
-                <input type="text" class="project_title" name="project_sub_title" placeholder="프로젝트 제목"
-                    th:field="${projectDetail.projectSubTitle}" />
-                <textarea class="project_contribution" name="project_sub_intro" placeholder="기여도"
-                    th:field="${projectDetail.proejctSubIntro}"></textarea>
+        <!-- 뒷면 -->
+        <div class="back">
+            <input type="text" class="project_title" name="project_sub_title" placeholder="ex) 프로젝트 기여도"
+                th:field="${projectDetail.projectSubTitle}" />
+            <textarea class="project_contribution" name="project_sub_intro" placeholder="ex) 저는 ...한 일을 했습니다"
+                th:field="${projectDetail.proejctSubIntro}"></textarea>
+
+            <div class="tactstack-wrap">
                 <h4 class="title">기술 스텍</h4>
-                <ul class="stack">
-                    <li th:each="tectStack : ${#strings.arraySplit(projectDetail.proejctTechnicalStack, '/n')}"
-                        th:text="${tectStack}" class="tectstack"></li>
-                    <input type="text" class="technical_stack" name="technical_stack" placeholder="기술 스택 이름" />
-                </ul>
-                <div class="icon-wrap">
-                    <div class="icon-box">
-                        <!-- TODO: 링크모달창 만들어주세요 -->
-                        <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
-                            <i class="fa-solid fa-code"></i>
-                            <input type="hidden" id="docuemntUrlId" th:value="${projectDocs?.docuemntUrlId}">
-                            <input type="hidden" id="documentImgUrl" th:value="${projectDocs?.documentImgUrl}">
-                            <input type="hidden" id="documentUrl" th:value="${projectDocs?.documentUrl}">
-                        </a>
-                        <img th:src="@{/img/plus.png}" alt="porjectImg">
-                    </div>
+                <div class="stack">
+                    <button class="btn-add-stact">
+                        <ion-icon name="add-circle"></ion-icon>
+                    </button>
+
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕</span>
+                    <span>안녕하십미까</span>
+                    <span>안녕하십미까</span>
+                    <span>안녕하십미까</span>
+                    <span>
+                        <input type="text" placeholder="testStack" />
+                    </span>
+                    <!-- <input type="text" th:each="tectStack : ${#strings.arraySplit(projectDetail.proejctTechnicalStack, '/n')}"
+                        th:value="${tectStack}" class="tectstack" placeholder="tectStack"></input> -->
+                    <!-- <input type="text" class="technical_stack" name="technical_stack" placeholder="tectStack" /> -->
+                </div>
+            </div>
+
+            <div class="icon-wrap">
+                <div class="icon-box">
+                    <!-- TODO: 링크모달창 만들어주세요 -->
+                    <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
+                        <i class="fa-solid fa-code"></i>
+                        <input type="hidden" id="docuemntUrlId" th:value="${projectDocs?.docuemntUrlId}">
+                        <input type="hidden" id="documentImgUrl" th:value="${projectDocs?.documentImgUrl}">
+                        <input type="hidden" id="documentUrl" th:value="${projectDocs?.documentUrl}">
+                    </a>
+                    <img th:src="@{/img/plus.png}" alt="porjectImg">
                 </div>
             </div>
         </div>
     </section>
-    <div class="divline">
+    <section class="divline">
         <span>프로젝트 상세 설명</span>
         <hr>
-    </div>
-    <div class="project_imgs">
-        <div class="add_project_img_card">
-            <!-- TODO: 이미지 추가하기 -->
-            <input class="add_img_btn" onchange="addImg(this.files)" type="file">
+        <div class="project_imgs">
+            <div class="add_project_img_card">
+                <!-- TODO: 이미지 추가하기 -->
+                <input class="add_img_btn" onchange="addImg(this.files)" type="file">
                 <img th:src="@{/img/plus.png}" alt="porjectImg">
-            <input/>
+                <input />
+            </div>
+            <div class="project_img_card" th:each="projectimg: ${projectDetail.projectImg}">
+                <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg">
+                <input type="hidden" id="imgUrl" th:value="${projectimg.projectImgUrl}">
+                <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
+            </div>
         </div>
-        <div class="project_img_card" th:each="projectimg: ${projectDetail.projectImg}">
-            <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg">
-            <input type="hidden" id="imgUrl" th:value="${projectimg.projectImgUrl}">
-            <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
-        </div>
-    </div>
+    </section>
     <div id="editor">
-        
+
     </div>
     <input type="hidden" th:field="${projectDetail.projectMd}">
 
     <!-- TODO: 버튼 눌렀을 때 작동하게 form태그 걸어야함 -->
-    <div class="save_button">
-        <button onclick="setProejctContentsInfo()">저장</button>
-    </div>
+    <button class="save_button btn-save btn-position-60-100" onclick="setProejctContentsInfo()">저장</button>
+
 
     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
 </th:block>
+
 </html>

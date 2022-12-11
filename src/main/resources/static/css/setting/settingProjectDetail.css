@@ -1,97 +1,101 @@
 @import url("../mainStyle.css");
-
-body {
-    width: 100%;
-    height: 120%;
-    background-color: white;
-}
+@import url('../setting/settingBtnSave.css');
 
 #project {
     position: absolute;
-    top: 45%;
+    top: 70px;
     right: 50%;
-    transform: translate(50%, -50%);
+    transform: translateX(50%);
     justify-content: space-evenly;
     width: 80%;
-    height: 56%;
+    height: 400px;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
     border-radius: 15px;
-}
-
-.card {
-    width: 300px;
-    height: 100%;
-    display: inline-block;
-    position: relative;
-    margin-right: 5px;
-    margin-left: 5px;
-    transition: .5s;
-    flex-shrink: 0;
-    border: none;
 }
 
 .front,
 .back {
     position: relative;
-    width: 100%;
+    width: 300px;
     height: 100%;
-    background-color: var(--gray200);
+    background-color: var(--gray100);
     border-radius: 15px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+
+    padding: 10px;
 }
 
-.front>img {
-    width: 100%;
-    height: 50%;
-    border: none;
-    object-fit: cover;
-    /* display: none; */
-}
 
-.front>hr {
-    width: 100%;
-    margin-top: 5px;
-    border: solid 1px;
-}
-.add_project_representative_img{
-    width: 60%;
-    height: 40%;
-    background-color: var(--gray200);
-    border: none;
-    cursor: pointer;
+input[type='file']{
     display: none;
 }
-.add_project_representative_img img{
+
+
+/* 
+    앞면
+*/
+label[for='btnInputImg']{
+    width: 100%;
+    height: 40%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+
+    transition: .2s;
+}
+label[for='btnInputImg'] ion-icon{
+    font-size: 2rem;
+    width: 50%;
+    height: 50%;
+    background-color: transparent;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--blue);
+}
+.front .btn-input-img{
     width: 100%;
     height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    cursor: pointer;
+
+    border-bottom: 2px solid var(--gray400);
 }
-.project_title{
-    height: 9%;
-    width: 90%;
-    border: 2px solid black;
-    border-radius: 1rem;
-    margin: 5px 0 5px 0;
+
+input[type="text"], textarea{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--gray50);
+    resize: none;
+
+    width: 100%;
+    margin: 5px 0;
 }
+input:focus{
+    outline: none;
+    background-color: var(--gray200);
+}
+
+
 .project_intro {
     height: 33%;
-    width: 90%;
-    border: 2px solid black;
-    border-radius: 1rem;
-    margin: 5px 0 5px 0;
 }
-#projectTitle {
+.project_title {
     font-weight: bold;
-    width: 80%;
     text-align: center;
-    font-size: 23px;
-    margin-top: 5px;
+    font-size: 1.2rem;
     text-overflow: ellipsis;
-    /* width넘기면 말줄임표 */
 }
 
 #projectAbout {
@@ -100,7 +104,6 @@ body {
     text-align: center;
     color: var(--gray800);
     -webkit-line-clamp: 3;
-
     /* 3번째 줄 까지 보이면서 말줄임표 */
 }
 
@@ -118,58 +121,108 @@ body {
 /**
     나의 기여도
 */
-.title{
+/* .title{
     position: relative;
     top: 20px;
     right: 90px;
-}
+} */
 
 .project_contribution {
     height: 33%;
-    width: 90%;
-    border: 2px solid black;
-    border-radius: 1rem;
-    margin: 30px 0 5px 0;
 }
 
 /**
     기술 스택
 */
-.stack {
-    width: 80%;
-    height: 80%;
-    position: relative;
-    overflow: scroll;
+.tactstack-wrap{
+    width: 100%;
+    height: 40%;
+    background-color: red;
+}
+.tactstack-wrap > .title{
+    font-weight: bold;
 }
 
-.stack button {
-    position: relative;
-    background-color: var(--gray200);
+.stack{
+    display: flex;
+    width: 100%;
+    height: 30%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+
+    align-items: center;
+}
+.stack::-webkit-scrollbar{
+    width: 10px;
+    background-color:transparent;
+  }
+.stack::-webkit-scrollbar-thumb{
+    background-color: var(--gray600);
+    border-radius: 50px;
+  }
+
+
+.stack > .btn-add-stact{
+    background-color: transparent;
+    color: var(--blue);
+    font-size: 1.2rem;
     width: 10%;
     height: 10%;
-    left: 50%;
     border: none;
-    transform: translate(-50%, 0);
-    margin-top: 10px;
+
+    margin-right: 10px;
+    transition: .3s;
+}
+.stack > .btn-add-stact:hover{
+    color: var(--curcer-blue);
 }
 
-.stack img {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.stack > span{
+    min-width: auto;
+    max-width: 100%;
+    background-color: var(--blue);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    padding: 5px 10px;
+    margin: 2px 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: var(--gray50);
+    cursor: pointer;
+    transition: .3s;
+}
+.stack > span:hover{
+    background-color: var(--curcer-blue);
+}
+.stack input[type="text"]{
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: var(--gray50);
+}
+.stack input[type="text"]:focus{
+    background-color: var(--curcer-blue);
+}
+.stack input[type="text"]:focus span{
+    background-color: var(--curcer-blue);
 }
 
 /**
     input box 설정
 */
-
+/* 
 .technical_stack {
     height: 9%;
     width: 90%;
     border: 2px solid black;
     border-radius: 1rem;
     margin: 30px 0 5px 0;
-}
+} */
 
 
 /**
@@ -205,14 +258,18 @@ body {
 
 /* 아이콘 */
 .icon-wrap {
-    position: absolute;
+    background-color: yellow;
+    width: 100%;
+    height: 8%;
+    padding: 5px 0;
+    /* position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 40px;
     display: flex;
     align-items: center;
-    border-top: 2px solid var(--gray600);
+    border-top: 2px solid var(--gray600); */
 }
 
 .icon-box {
