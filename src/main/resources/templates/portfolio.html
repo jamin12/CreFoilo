@@ -36,30 +36,29 @@
     <!-- 홈화면 -->
     <!-- type1 -->
     <!-- 이미지와 글자를 넣어줘야함 -->
-    <section id="Home" class="type1">
-        <h2 class="typing-txt main-title">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
+    <section id="Home" class="type1" th:if="${portfolio.portfolioHomeType == 1}">
+        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
         <h2 class="typing main-title-curcer"></h2>
 
         <div class="contents">
-            <img src="https://images.unsplash.com/photo-1661956602139-ec64991b8b16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60)"
-                alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
+            <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
         </div>
     </section>
 
     <!-- type2 -->
     <!-- 글자만 넣어주면 됨 -->
-    <!-- <section id="Home" class="type2">
-        <h2 class="typing-txt main-title">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+    <section id="Home" class="type2" th:if="${portfolio.portfolioHomeType == 2}">
+        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
         <h2 class="typing main-title-curcer"></h2>
-    </section> -->
+    </section>
 
     <!-- type3 -->
     <!-- 글자와 이미지 넣어줘야함 -->
-    <!-- <section id="Home" class="type3">
-        <h2 class="typing-txt main-title">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+    <section id="Home" class="type3" th:if="${portfolio.portfolioHomeType == 3}">
+        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
         <h2 class="typing main-title-curcer"></h2>
-        <img src="../static/img/emyo.png" alt="사용자 지정 이미지">
-    </section> -->
+        <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" oimage.pngnerror="this.src='/img/SampleImg.png'">
+    </section>
 
     <!-- 메인 콘텐츠 -->
     <div class="main-contents">
@@ -88,11 +87,23 @@
         <!-- About Me -->
         <section id="aboutMe">
             <h2 class="main-title">ABOUT ME</h2>
-            <!-- TODO(이묘): 이미지 주소 나중에 바꿔넣어줄 것 -->
-            <div class="contents type1" th:if="${aboutme.aboutMeType == 1}">
+            <!-- type1 -->
+            <div class="contents type2" th:if="${aboutme.aboutMeType == 1}">
+                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'">
+                <div class="text-box">
+                    <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
+                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                        etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus
+                        consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
+                </div>
+            </div>
+
+            <!-- type2 -->
+            <div class="contents type1" th:if="${aboutme.aboutMeType == 2}">
                 <content class="first-content">
                     <h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
-                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'"/>
+                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'" />
                 </content>
                 <content class="second-content">
                     <h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
@@ -109,17 +120,7 @@
             </div>
 
 
-            <!-- type2 -->
-            <div class="contents type2" th:if="${aboutme.aboutMeType == 0}">
-                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'">
-                <div class="text-box">
-                    <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
-                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                        etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus
-                        consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
-                </div>
-            </div>
+
         </section>
 
         <!-- 언어 스킬 -->
@@ -168,8 +169,9 @@
                         <!-- 이미지 캐러셀 -->
                         <th:block th:if="${projectD.projectImg != null}">
                             <div class="project-detail-carousel">
-                                <th:block th:each="img : ${projectD.projectImg}" >
-                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지" onerror="this.src='/img/SampleImg.png'"/>
+                                <th:block th:each="img : ${projectD.projectImg}">
+                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지"
+                                        onerror="this.src='/img/SampleImg.png'" />
                                 </th:block>
                             </div>
                         </th:block>
@@ -197,7 +199,8 @@
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
-                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지" onerror="this.src='/img/SampleImg.png'">
+                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지"
+                                    onerror="this.src='/img/SampleImg.png'">
                                 <h3 id="projectTitle" th:text="${projectDetail.projectTitle}">TESTITLE</h3>
                                 <p id="projectAbout" th:text="${projectDetail.proejctIntro}">어떠어떠한 프로젝트를 만들었다는
                                     것을 대략적으로
@@ -221,7 +224,8 @@
                                     <div class="icon-box">
                                         <a th:each="document: ${projectDetail.projectDocument}"
                                             th:href="${document.documentUrl}">
-                                            <img th:src="${document.documentImgUrl}" onerror="this.src='/img/SampleImg.png'">
+                                            <img th:src="${document.documentImgUrl}"
+                                                onerror="this.src='/img/SampleImg.png'">
                                         </a>
                                     </div>
                                 </div>
@@ -239,7 +243,8 @@
             <div class="contents">
                 <div class="contact-item" th:each="contactItem : ${contact}">
                     <img class="icon" th:src="${contactItem.contactImgUrl}"
-                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png" onerror="this.src='/img/SampleImg.png'"/>
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                        onerror="this.src='/img/SampleImg.png'" />
                     <span>
                         <!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
                         <a th:href="${contactItem.contactInfo}"
