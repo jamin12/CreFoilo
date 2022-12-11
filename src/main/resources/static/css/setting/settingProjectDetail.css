@@ -418,3 +418,49 @@ button.btn-position-40-80{
     right: 40px;
     z-index: 999;
 }
+
+
+/* 
+    모달창 아이콘
+*/
+.modal-body{
+    display: flex;
+    flex-direction: column;
+}
+.modal-body .label-wrap{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+}
+.modal-body > label {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label > input[type="radio"]{
+    display: none;
+}
+label > input[type="radio"]:checked+.icon-radio-box{
+    background-color: var(--gray100);
+    border-radius: 20px;
+    color: var(--blue);
+}
+
+.icon-radio-box{
+    width: 80%;
+    height: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.icon-radio-box > ion-icon{
+    font-size: 3rem;
+    margin-top: 10px;
+}
+.icon-radio-box > p{
+    font-size: .7rem;
+}

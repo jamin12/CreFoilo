@@ -140,7 +140,7 @@ const addImg = (e) => {
   // axios로 formdata 넣어서 전송
   let imgFile;
   $.ajax({
-    url: createUrl("",[]),
+    url: createUrl("", []),
     type: "POST",
     data: formdata,
     async: false,
@@ -164,9 +164,9 @@ const addImg = (e) => {
 
   imgUrlInput.setAttribute("id", "imgUrl");
   imgUrlInput.setAttribute("type", "hidden");
-  imgUrlInput.value = createUrl("",[imgFile]);
+  imgUrlInput.value = createUrl("", [imgFile]);
 
-  imgTag.src = createUrl("",[imgFile]);
+  imgTag.src = createUrl("", [imgFile]);
 
   imgCard.setAttribute("class", "project_img_card")
   imgCard.appendChild(imgTag);
@@ -178,37 +178,117 @@ const addImg = (e) => {
 }
 
 const addImgRepresent = (e) => {
-    // formdata에 삽입
-    const formdata = new FormData();
-    formdata.append("file", e[0]);
-    // axios로 formdata 넣어서 전송
-    let imgFile;
-    $.ajax({
-      url: createUrl("",[]),
-      type: "POST",
-      data: formdata,
-      async: false,
-      contentType: false,
-      processData: false,
-      mimeType: 'multipart/form-data',
-      success: function (data) {
-        data = JSON.parse(data);
-        imgFile = data.result_data.fid;
-      },
-      error: function (error) {
-        // TODO: 에러처리
-      }
-    });
-    const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
-    const representImgtag = document.querySelector("#representImgtag")
-    const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
-  
-    representImgInput.value = createUrl("",[imgFile]);
-  
-    representImgtag.src = createUrl("",[imgFile]);
-    
-    addRepresentImgBtn.value = '';
+  // formdata에 삽입
+  const formdata = new FormData();
+  formdata.append("file", e[0]);
+  // axios로 formdata 넣어서 전송
+  let imgFile;
+  $.ajax({
+    url: createUrl("", []),
+    type: "POST",
+    data: formdata,
+    async: false,
+    contentType: false,
+    processData: false,
+    mimeType: 'multipart/form-data',
+    success: function (data) {
+      data = JSON.parse(data);
+      imgFile = data.result_data.fid;
+    },
+    error: function (error) {
+      // TODO: 에러처리
+    }
+  });
+  const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
+  const representImgtag = document.querySelector("#representImgtag")
+  const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
+
+  representImgInput.value = createUrl("", [imgFile]);
+
+  representImgtag.src = createUrl("", [imgFile]);
+
+  addRepresentImgBtn.value = '';
 }
 
 const mdData = document.querySelector("#projectMd").value;
 editor.setMarkdown(mdData);
+
+
+/**
+ * 모달창
+ */
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var type = button.data('whatever') // Extract info from data-* attributes
+  const iconCount = document.getElementById('iconBox')
+  console.log(iconCount.childElementCount)
+
+  if(iconCount.childElementCount > 5){
+    document.getElementById('btnAddMyIcon').style.display = 'none'
+  }else{
+    document.getElementById('btnAddMyIcon').style.display = 'flex'
+  }
+
+  // 5개가 되면 추가 버튼 없어지는거 구현해야함
+  // 5개가 들어갈 수 있는 최대로 설정해야합니다.
+  // 5개가 되면 플러스 버튼은 없어져야합니다
+  // 아이콘을 클릭하면 모달창에 해당 정보가 나와야합니다
+  
+  var modal = $(this)
+  if(type === 'addIcon'){
+    console.log(type)
+    modal.find('.modal-title').text('아이콘 추가하기')
+    modal.find('.btn-delete-icon').text('취소')
+  }else{
+    console.log(type)
+    modal.find('.modal-title').text('아이콘 수정하기')
+    modal.find('.btn-delete-icon').text('삭제')
+  }
+})
+
+
+const modalIconDic = {
+  iconName:[
+    'logo-github',
+    "desktop-outline",
+    "cloud-outline",
+    "document-text-outline",
+    "logo-firebase",
+    "logo-google",
+    "logo-instagram",
+    "logo-facebook",
+    "logo-slack",
+    "logo-youtube",
+  ],
+  iconValue:[
+    'github',
+    'desktop',
+    "cloud",
+    "document",
+    "firebase",
+    "google",
+    "instagram",
+    "facebook",
+    "slack",
+    "youtube",
+  ]
+}
+const modalBody = document.querySelector('.modal-body .label-wrap')
+console.log(modalBody)
+for(var i=0; i<modalIconDic.iconName.length; i++){
+  const iconLabel = document.createElement('label');
+  iconLabel.innerHTML = `<input type="radio" name="select-icon" value="${modalIconDic.iconValue[i]}" />
+                          <div class="icon-radio-box">
+                              <ion-icon name="${modalIconDic.iconName[i]}"></ion-icon>
+                              <p>${modalIconDic.iconValue[i]}</p>
+                          </div>`;
+  modalBody.append(iconLabel)
+
+}
+
+/**
+ * 모달창 아이콘 적용 버튼
+ */
+const onClickAddIcon = () => {
+
+}
