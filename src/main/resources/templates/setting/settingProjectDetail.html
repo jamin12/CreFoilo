@@ -6,15 +6,6 @@
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 </th:block>
 
 <th:block layout:fragment="script">
@@ -22,6 +13,12 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <script type="text/javascript" defer th:src="@{/js/projectDetail.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </th:block>
 
 <th:block layout:fragment="content">
@@ -57,48 +54,24 @@
             <div class="tactstack-wrap">
                 <h4 class="title">기술 스텍</h4>
                 <div class="stack">
-                    <button class="btn-add-stact">
+                    <button class="btn-add-stact" onclick="addTectStack(this)">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
-
-                    <span>
-                        <input type="text" placeholder="testStack" />
-                    </span>
-                    <span>안녕하십미까</span>
-                    <span>안녕하십미까</span>
-                    <!-- <input type="text" th:each="tectStack : ${#strings.arraySplit(projectDetail.proejctTechnicalStack, '/n')}"
-                        th:value="${tectStack}" class="tectstack" placeholder="tectStack"></input> -->
-                    <!-- <input type="text" class="technical_stack" name="technical_stack" placeholder="tectStack" /> -->
                 </div>
             </div>
 
             <div class="icon-wrap">
                 <div class="icon-box" id="iconBox">
-                    <!-- TODO: 링크모달창 만들어주세요 -->
-
-                    <!-- <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
-                        <ion-icon name="add-circle"></ion-icon>
-                        <input type="hidden" id="docuemntUrlId" th:value="${projectDocs?.docuemntUrlId}">
-                        <input type="hidden" id="documentImgUrl" th:value="${projectDocs?.documentImgUrl}">
-                        <input type="hidden" id="documentUrl" th:value="${projectDocs?.documentUrl}">
-                    </a> -->
                     <button id="btnAddMyIcon" class="add-icon" type="button" data-toggle="modal"
                         data-target="#exampleModal" data-whatever="addIcon">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
-                    <button type="button" data-toggle="modal" data-target="#exampleModal"
-                        data-whatever='<ion-icon name="beer-outline"></ion-icon>'>
-                        <ion-icon name="beer-outline"></ion-icon>
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" data-whatever=icon
+                        th:each="projectDoc : ${projectDetail.projectDocument}">
+                        <ion-icon th:name="${projectDoc.documentImgUrl}"></ion-icon>
+                        <input type="hidden" th:value="${projectDoc.docuemntUrlId}" id="docId">
+                        <input type="hidden" th:value="${projectDoc.documentUrl}" id="docUrl">
                     </button>
-                    <button type="button" data-toggle="modal" data-target="#exampleModal"
-                        data-whatever='<ion-icon name="beer-outline"></ion-icon>'>
-                        <ion-icon name="beer-outline"></ion-icon>
-                    </button>
-                    <button type="button" data-toggle="modal" data-target="#exampleModal"
-                        data-whatever='<ion-icon name="beer-outline"></ion-icon>'>
-                        <ion-icon name="beer-outline"></ion-icon>
-                    </button>
-
                 </div>
             </div>
         </div>
@@ -119,12 +92,13 @@
 
                 <div class="modal-body">
                     <div class="label-wrap"></div>
-                    <input type="text" placeholder="http://~~"/>
+                    <input type="text" placeholder="http://~~" id="docUrlText" />
                 </div>
 
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-cancle-icon" data-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-danger btn-delete-icon" data-dismiss="modal">삭제</button>
-                    <button type="button" class="btn btn-primary" onclick="onClickAddIcon()">적용</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">적용</button>
                 </div>
             </div>
         </div>
@@ -143,8 +117,9 @@
                 </label>
             </div>
 
-            <div class="project_img_card img-card" th:each="projectimg: ${projectDetail.projectImg}">
-                <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg">
+            <div class="project_img_card img-card" th:each="projectimg: ${projectDetail.projectImg}"
+                onclick="this.remove()">
+                <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg" onerror="this.src='/img/SampleImg.png';">
                 <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
             </div>
         </div>
