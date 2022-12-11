@@ -24,17 +24,50 @@ const editor = new Editor({
   previewStyle: 'vertical',
 });
 
+/**
+ * 엔터 누를 시 태그 변경
+ * 
+ * @param {KeyboardEvent} e 
+ */
+const completionTectStack = (e) => {
+  if (e.key === "Enter") {
+    e.target.parentElement.onclick = function () {
+      this.remove();
+    }
+    e.target.parentElement.innerText = e.target.value;
+  }
+}
+
+/**
+ * 기술스택 추가 기능
+ * 
+ * @param {Element} e 
+ */
+const addTectStack = (e) => {
+  const langFramewordSpan = document.createElement("span");
+  const langFramewordInput = document.createElement("input");
+
+  // 기술스택 input
+  langFramewordInput.type = 'text';
+  langFramewordInput.addEventListener('keydown', (e) => completionTectStack(e))
+
+  // 기술스택 span
+  langFramewordSpan.appendChild(langFramewordInput);
+
+  e.parentElement.insertBefore(langFramewordSpan, e.nextSibling);
+}
+
 function setProejctContentsInfo() {
 
-  const projectId = document.querySelector("#projectId").value;
+  const projectId = document.querySelector("#projectId")?.value;
   const portfolioId = document.querySelector("#portfolioId").value;
 
   /**
   * 기술 스택 리스트에서 문자열로 만들기
   */
   let thchnicalStack = "";
-  const getTechnicalStack = document.querySelectorAll(".tectstack");
-  getTechnicalStack.forEach(e => {
+  const getTechnicalStack = document.querySelector(".tactstack-wrap");
+  getTechnicalStack.querySelectorAll("span").forEach(e => {
     thchnicalStack = thchnicalStack + e.innerText + "/n";
   });
 
@@ -53,15 +86,19 @@ function setProejctContentsInfo() {
   imginfo.forEach(imgInfoElemet => {
     imgDto.push({
       projectImgId: imgInfoElemet.querySelector("#imgId")?.value,
-      projectImgUrl: imgInfoElemet.querySelector("#imgUrl").value
+      projectImgUrl: imgInfoElemet.querySelector("img").src
     })
   })
   // 시작 날짜 가져오기
-  let startDate = document.querySelector("#projectStrDate").value;
+  let startDate = document.querySelector("#projectStrDate")?.value;
   // 마감 날짜 가져오기
-  let endDate = document.querySelector("#projectEndDate").value;
+  let endDate = document.querySelector("#projectEndDate")?.value;
+  if(endDate === "" || startDate === "" || startDate > endDate){
+    alert("날짜를 바르게 입력해주세요");
+    return;
+  }
   // 대표 이미지 가져오기
-  let representativeImgUrl = document.querySelector("#projectRepresentativeImgUrl").value;
+  let representativeImgUrl = document.querySelector("#projectRepresentativeImgUrl")?.value;
   // 프로젝트 문서 가져오기
   let projectDoc = document.querySelectorAll(".projectDoc");
   let projectDocDto = []
@@ -97,40 +134,40 @@ function setProejctContentsInfo() {
     projectDocument: projectDocDto
   }
   // 새로 만들기
-  if (projectId === '') {
-    $.ajax({
-      url: `/setting/projectdetail/${portfolioId}`,
-      contentType: "application/json; charset=utf-8",
-      type: "POST",
-      data: JSON.stringify(data),
-      dataType: 'json',
-      async: false,
-      success: function (data) {
-        location.href = data.responseText
-      },
-      // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
-      error: function (error) {
-        location.href = error.responseText
-      },
-    })
-    // 업데이트
-  } else {
-    data.projectId = projectId;
-    $.ajax({
-      url: `/setting/projectdetail/${portfolioId}/${projectId}`,
-      contentType: "application/json; charset=utf-8",
-      type: "POST",
-      data: JSON.stringify(data),
-      dataType: 'json',
-      async: false,
-      success: function (data) {
-      },
-      // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
-      error: function (error) {
-        location.href = error.responseText
-      },
-    })
-  }
+  // if (projectId === '') {
+  //   $.ajax({
+  //     url: `/setting/projectdetail/${portfolioId}`,
+  //     contentType: "application/json; charset=utf-8",
+  //     type: "POST",
+  //     data: JSON.stringify(data),
+  //     dataType: 'json',
+  //     async: false,
+  //     success: function (data) {
+  //       location.href = data.responseText
+  //     },
+  //     // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
+  //     error: function (error) {
+  //       location.href = error.responseText
+  //     },
+  //   })
+  //   // 업데이트
+  // } else {
+  //   data.projectId = projectId;
+  //   $.ajax({
+  //     url: `/setting/projectdetail/${portfolioId}/${projectId}`,
+  //     contentType: "application/json; charset=utf-8",
+  //     type: "POST",
+  //     data: JSON.stringify(data),
+  //     dataType: 'json',
+  //     async: false,
+  //     success: function (data) {
+  //     },
+  //     // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
+  //     error: function (error) {
+  //       location.href = error.responseText
+  //     },
+  //   })
+  // }
 }
 
 const addImg = (e) => {
