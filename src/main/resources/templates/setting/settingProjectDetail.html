@@ -7,7 +7,8 @@
 </th:block>
 
 <th:block layout:fragment="script">
-    <script src="https://kit.fontawesome.com/7a1cc41098.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <script type="text/javascript" defer th:src="@{/js/projectDetail.js}"></script>
 </th:block>
@@ -27,9 +28,11 @@
             </label>
 
             <input type="text" class="project_title" placeholder="프로젝트 제목" th:field="${projectDetail.projectTitle}" />
-            <textarea class="project_intro" placeholder="프로젝트 소개" th:field="${projectDetail.proejctIntro}"></textarea>
-            <div>
+            <textarea class="project_intro" placeholder="프로젝트 한 줄 소개"
+                th:field="${projectDetail.proejctIntro}"></textarea>
+            <div class="date-pick-box">
                 <input type="date" class="project_period" th:field="${projectDetail.projectStrDate}">
+                <span>~</span>
                 <input type="date" class="project_period" th:field="${projectDetail.projectEndDate}">
             </div>
         </div>
@@ -47,20 +50,11 @@
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
 
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕</span>
-                    <span>안녕하십미까</span>
-                    <span>안녕하십미까</span>
-                    <span>안녕하십미까</span>
                     <span>
                         <input type="text" placeholder="testStack" />
                     </span>
+                    <span>안녕하십미까</span>
+                    <span>안녕하십미까</span>
                     <!-- <input type="text" th:each="tectStack : ${#strings.arraySplit(projectDetail.proejctTechnicalStack, '/n')}"
                         th:value="${tectStack}" class="tectstack" placeholder="tectStack"></input> -->
                     <!-- <input type="text" class="technical_stack" name="technical_stack" placeholder="tectStack" /> -->
@@ -70,41 +64,54 @@
             <div class="icon-wrap">
                 <div class="icon-box">
                     <!-- TODO: 링크모달창 만들어주세요 -->
-                    <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
-                        <i class="fa-solid fa-code"></i>
+                    <!-- 5개가 들어갈 수 있는 최대로 설정해야합니다.
+                        5개가 되면 플러스 버튼은 없어져야합니다
+                        아이콘을 클릭하면 모달창에 해당 정보가 나와야합니다
+                        모달창에 해당 아이콘 삭제 버튼을 만들어야합니다. -->
+                    <!-- <a href="#none" th:each="projectDocs: ${projectDetail.projectDocument}" class="projectDoc">
+                        <ion-icon name="add-circle"></ion-icon>
                         <input type="hidden" id="docuemntUrlId" th:value="${projectDocs?.docuemntUrlId}">
                         <input type="hidden" id="documentImgUrl" th:value="${projectDocs?.documentImgUrl}">
                         <input type="hidden" id="documentUrl" th:value="${projectDocs?.documentUrl}">
-                    </a>
-                    <img th:src="@{/img/plus.png}" alt="porjectImg">
+                    </a> -->
+                    <button>
+                        <ion-icon name="add-circle"></ion-icon>
+                    </button>
+                    <button>
+                        <ion-icon name="beer-outline"></ion-icon>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="divline">
         <span>프로젝트 상세 설명</span>
-        <hr>
         <div class="project_imgs">
-            <div class="add_project_img_card">
+            <div class="add_project_img_card img-card">
                 <!-- TODO: 이미지 추가하기 -->
-                <input class="add_img_btn" onchange="addImg(this.files)" type="file">
-                <img th:src="@{/img/plus.png}" alt="porjectImg">
-                <input />
+                <input id="BtnAddImg" class="add_img_btn" onchange="addImg(this.files)" type="file">
+                <label for="BtnAddImg">
+                    <ion-icon name="add-outline"></ion-icon>
+                </label>
             </div>
-            <div class="project_img_card" th:each="projectimg: ${projectDetail.projectImg}">
+
+            <div class="project_img_card img-card" th:each="projectimg: ${projectDetail.projectImg}">
                 <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg">
                 <input type="hidden" id="imgUrl" th:value="${projectimg.projectImgUrl}">
                 <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
             </div>
         </div>
     </section>
+
+
     <div id="editor">
 
     </div>
     <input type="hidden" th:field="${projectDetail.projectMd}">
 
     <!-- TODO: 버튼 눌렀을 때 작동하게 form태그 걸어야함 -->
-    <button class="save_button btn-save btn-position-60-100" onclick="setProejctContentsInfo()">저장</button>
+    <button class="btn-save btn-position-40-80 save_button" onclick="setProejctContentsInfo()">저장</button>
 
 
     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
