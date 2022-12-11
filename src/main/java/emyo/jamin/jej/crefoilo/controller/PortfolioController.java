@@ -48,7 +48,7 @@ public class PortfolioController {
     private ContactService contactService;
 
     @GetMapping(value = "/portfolio/{portfolioid}")
-    public String portfolio(@PathVariable Long portfolioid, Model model, String userId) {
+    public String portfolio(@PathVariable Long portfolioid, Model model) {
         model.addAttribute("portfolio", portfolioService.findPortfolioHome(portfolioid));
         model.addAttribute("aboutme", aboutmeService.findAboutme(portfolioid));
         model.addAttribute("languageskill", languageskill.findLanguage(portfolioid));
@@ -63,8 +63,7 @@ public class PortfolioController {
     public String deletePortfolio(@PathVariable Long portfolioid) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         if (userIdInSession == null) {
-            // TODO: 로그인을 하세요
-            return null;
+            return "redirect:/";
         }
         portfolioService.deletePortfolio(portfolioid, userIdInSession.getUserId());
         return "우와";
@@ -76,7 +75,7 @@ public class PortfolioController {
      * @param model
      * @return
      */
-    @GetMapping(value = "/portfolio/list")
+    @GetMapping(value = "/myportfolio/list")
     public String portfolioList(Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         List<PortfolioDto> findedportFolioList = portfolioService.findPortfolioList(userIdInSession.getUserId());
