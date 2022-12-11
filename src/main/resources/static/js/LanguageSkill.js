@@ -74,6 +74,7 @@ const createLanguageBox = (e) => {
   // 언어 프로그래스바 input
   langProgressInput.type = "range";
   langProgressInput.max = 100;
+  langProgressInput.id = "progressbarInput";
 
   // 언어 프로그래스바
   langProgressDiv.className = "progressbar";
@@ -107,3 +108,45 @@ const createLanguageBox = (e) => {
   e.parentElement.insertBefore(langBox, e.nextSibling);
 }
 
+const createLang = () => {
+  const langBox = document.querySelectorAll(".language-box");
+  const portfolioid = document.querySelector("#portfolioid").value;
+  const data = [];
+  langBox.forEach(lang => {
+    const langName = lang.querySelector(".input-langname").value;
+    const langFrameworkList = lang.querySelector(".lang-framework-box").querySelectorAll("span");
+    let strLangFramework = "";
+
+    langFrameworkList.forEach(langFramework => {
+      strLangFramework += `${langFramework.innerText}/n`
+    })
+
+    langDetail = lang.querySelector(".lang-textarea").value.split('\n').join('/n');
+    // 제목이 비었을 때 에러
+    if (langName == "") {
+      alert("빈칸을 채워주세요");
+      return;
+    }
+
+    data.push({
+      langId: lang.querySelector("#langId")?.value,
+      langName: langName,
+      langFrequency: lang.querySelector("#progressbarInput").value,
+      langSkillName: strLangFramework,
+      langDetail: langDetail,
+    });
+  });
+
+  $.ajax({
+    url: `/setting/language/${portfolioid}`,
+    contentType: "application/json; charset=utf-8",
+    type: "POST",
+    data: JSON.stringify(data),
+    async: false,
+    success: function (data) {
+      document.location.href = data
+    },
+    error: function (error) {
+    },
+  })
+}
