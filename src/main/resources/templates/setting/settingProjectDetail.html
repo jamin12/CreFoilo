@@ -28,7 +28,6 @@
         <!-- 앞면 -->
         <div id="projectCardFront" class="front">
             <input id="btnInputImg" class="add_represent_img_btn" onchange="addImgRepresent(this.files)" type="file">
-            <input type="hidden" th:field="${projectDetail.projectRepresentativeImgUrl}" />
 
             <label for="btnInputImg">
                 <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="project_representative_img"
@@ -67,8 +66,8 @@
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
                     <button type="button" data-toggle="modal" data-target="#exampleModal" data-whatever=icon
-                        th:each="projectDoc : ${projectDetail.projectDocument}">
-                        <ion-icon th:name="${projectDoc.documentImgUrl}"></ion-icon>
+                        th:each="projectDoc : ${projectDetail.projectDocument}" class="docInfo">
+                        <ion-icon th:name="${projectDoc.documentImgUrl}" id="documentIconUrl"></ion-icon>
                         <input type="hidden" th:value="${projectDoc.docuemntUrlId}" id="docId">
                         <input type="hidden" th:value="${projectDoc.documentUrl}" id="docUrl">
                     </button>
@@ -136,6 +135,20 @@
 
 
     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+    <script th:inline="javascript">
+        var TechnicalStackList = [[${ projectDetail.proejctTechnicalStack }]].split('/n');
+        var proejctTechnicalStackBox = document.querySelector(".stack");
+        TechnicalStackList.forEach(TechnicalStack => {
+            if(TechnicalStack !== ""){
+                var spanTag = document.createElement("span");
+                spanTag.innerText = TechnicalStack
+                spanTag.onclick = function () {
+                    this.remove();
+                }
+                proejctTechnicalStackBox.appendChild(spanTag);
+            }
+        });
+    </script>
 </th:block>
 
 </html>
