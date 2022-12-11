@@ -2,6 +2,8 @@ package emyo.jamin.jej.crefoilo.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collector;
@@ -134,10 +136,38 @@ public class ProjectServiceImpl implements ProjectService {
             }
             projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
         }
-
+        List<ProjectImgDto> projectImgDtosList = projectImgDtos.stream().collect(Collectors.toList());
+        List<ProjectDocumentDto> projectDocumentDtosList = projectDocumentDtos.stream().collect(Collectors.toList());
+        // 거리순으로 정렬(가까운 순 오름차순 ASC)
+        Comparator<ProjectImgDto> projectImgSortCondtion = new Comparator<ProjectImgDto>() {
+            @Override
+            public int compare(ProjectImgDto o1, ProjectImgDto o2) {
+                Long a = o1.getProjectImgId();
+                Long b = o2.getProjectImgId();
+                if (a > b) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        };
+        Comparator<ProjectDocumentDto> projectDocSortCondtion = new Comparator<ProjectDocumentDto>() {
+            @Override
+            public int compare(ProjectDocumentDto o1, ProjectDocumentDto o2) {
+                Long a = o1.getDocuemntUrlId();
+                Long b = o2.getDocuemntUrlId();
+                if (a > b) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        };
+        Collections.sort(projectImgDtosList, projectImgSortCondtion);
+        Collections.sort(projectDocumentDtosList, projectDocSortCondtion);
         // stream 문법으로 set -> list 변경
-        projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
-        projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+        projectDetailDto.setProjectImg(projectImgDtosList);
+        projectDetailDto.setProjectDocument(projectDocumentDtosList);
         return projectDetailDto;
     }
 
