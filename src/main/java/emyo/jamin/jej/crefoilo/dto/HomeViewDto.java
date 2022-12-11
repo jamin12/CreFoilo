@@ -17,7 +17,6 @@ public class HomeViewDto {
     private Integer portfolioHomeType;
     private String portfolioHomeImg;
     private String portfolioHomeText;
-    private String portfolioHomeColor;
 
     public HomeViewDto(Portfolio portfolio) {
         this.portfolioId = portfolio.getPortfolioId();
@@ -26,7 +25,6 @@ public class HomeViewDto {
         this.portfolioHomeType = portfolio.getPortfolioHomeType();
         this.portfolioHomeImg = portfolio.getPortfolioHomeImg();
         this.portfolioHomeText = portfolio.getPortfolioHomeText();
-        this.portfolioHomeColor = portfolio.getPortfolioHomeColor();
     }
 
 }

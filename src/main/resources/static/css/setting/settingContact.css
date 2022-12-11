@@ -1,0 +1,135 @@
+@import url('../mainStyle.css');
+@import url('./settingBtnSave.css');
+
+section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.main-wrap {
+    width: 1200px;
+    height: 60%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    gap: 15px;
+}
+
+.main-wrap::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+.main-wrap::-webkit-scrollbar-thumb {
+    background-color: var(--gray100);
+    border-radius: 50px;
+}
+
+
+/* 
+    아이템 추가 버튼
+*/
+.btn-add-item {
+    width: 30%;
+    margin: 0 auto;
+    border: none;
+
+    background-color: inherit;
+    color: var(--blue);
+    font-size: 3rem;
+    border-radius: 50px;
+    transition: .2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add-item:hover {
+    color: var(--gray50);
+    background-color: var(--curcer-blue);
+}
+
+
+/* 
+    새로운 요소
+*/
+.item-box {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-box>button {
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+
+    transition: .2s;
+}
+
+.item-box>button:hover {
+    color: var(--blue);
+}
+
+.item-box ion-icon {
+    font-size: 3rem;
+}
+
+.item-box>input[type="text"] {
+    padding: 6px 10px;
+    border-radius: 15px;
+    background-color: var(--gray100);
+
+    border: none;
+}
+
+.item-box>input[type="text"]:focus {
+    outline: none;
+    background-color: var(--gray50);
+}
+
+.label-wrap{
+    background-color: red;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+label > input[type="radio"]{
+    display: none;
+}
+label > input[type="radio"]:checked+.icon-radio-box{
+    background-color: var(--gray100);
+    border-radius: 20px;
+    color: var(--blue);
+}
+
+.icon-radio-box{
+    width: 80%;
+    height: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+.icon-radio-box > ion-icon{
+    font-size: 3rem;
+    margin-top: 10px;
+}
+.icon-radio-box > p{
+    font-size: .7rem;
+}

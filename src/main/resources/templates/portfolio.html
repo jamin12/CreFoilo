@@ -34,11 +34,30 @@
 
 <body>
     <!-- 홈화면 -->
-    <section id="Home">
-        <h2 class="main-title"></h2>
+    <!-- type1 -->
+    <!-- 이미지와 글자를 넣어줘야함 -->
+    <section id="Home" class="type1" th:if="${portfolio.portfolioHomeType == 1}">
+        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
+        <h2 class="typing main-title-curcer"></h2>
 
         <div class="contents">
+            <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
         </div>
+    </section>
+
+    <!-- type2 -->
+    <!-- 글자만 넣어주면 됨 -->
+    <section id="Home" class="type2" th:if="${portfolio.portfolioHomeType == 2}">
+        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+        <h2 class="typing main-title-curcer"></h2>
+    </section>
+
+    <!-- type3 -->
+    <!-- 글자와 이미지 넣어줘야함 -->
+    <section id="Home" class="type3" th:if="${portfolio.portfolioHomeType == 3}">
+        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+        <h2 class="typing main-title-curcer"></h2>
+        <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" oimage.pngnerror="this.src='/img/SampleImg.png'">
     </section>
 
     <!-- 메인 콘텐츠 -->
@@ -68,11 +87,23 @@
         <!-- About Me -->
         <section id="aboutMe">
             <h2 class="main-title">ABOUT ME</h2>
-            <!-- TODO(이묘): 이미지 주소 나중에 바꿔넣어줄 것 -->
-            <div class="contents type1" th:if="${aboutme.aboutMeType == 1}">
+            <!-- type1 -->
+            <div class="contents type2" th:if="${aboutme.aboutMeType == 1}">
+                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'">
+                <div class="text-box">
+                    <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
+                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
+                        etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus
+                        consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
+                </div>
+            </div>
+
+            <!-- type2 -->
+            <div class="contents type1" th:if="${aboutme.aboutMeType == 2}">
                 <content class="first-content">
                     <h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
-                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" />
+                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'" />
                 </content>
                 <content class="second-content">
                     <h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
@@ -87,18 +118,9 @@
                         pharetra, nunc, eget. Enim</p>
                 </content>
             </div>
-            
-            <!-- type2 -->
-            <div class="contents type2" th:if="${aboutme.aboutMeType == 0}">
-                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}">
-                <div class="text-box">
-                    <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
-                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                        etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus
-                        consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
-                </div>
-            </div>
+
+
+
         </section>
 
         <!-- 언어 스킬 -->
@@ -148,14 +170,17 @@
                         <th:block th:if="${projectD.projectImg != null}">
                             <div class="project-detail-carousel">
                                 <th:block th:each="img : ${projectD.projectImg}">
-                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지" />
+                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지"
+                                        onerror="this.src='/img/SampleImg.png'" />
                                 </th:block>
                             </div>
                         </th:block>
 
                         <!-- md파일 내용 -->
-                        <div class="md-content" th:id="'textBox_' + ${projectD.projectId}" th:utext="${projectD.projectHtml}">
-                            Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum has
+                        <div class="md-content" th:id="'textBox_' + ${projectD.projectId}"
+                            th:utext="${projectD.projectHtml}">
+                            Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum
+                            has
                         </div>
                     </div>
                 </div>
@@ -174,7 +199,8 @@
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
-                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지">
+                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지"
+                                    onerror="this.src='/img/SampleImg.png'">
                                 <h3 id="projectTitle" th:text="${projectDetail.projectTitle}">TESTITLE</h3>
                                 <p id="projectAbout" th:text="${projectDetail.proejctIntro}">어떠어떠한 프로젝트를 만들었다는
                                     것을 대략적으로
@@ -198,7 +224,8 @@
                                     <div class="icon-box">
                                         <a th:each="document: ${projectDetail.projectDocument}"
                                             th:href="${document.documentUrl}">
-                                            <img th:src="${document.documentImgUrl}">
+                                            <img th:src="${document.documentImgUrl}"
+                                                onerror="this.src='/img/SampleImg.png'">
                                         </a>
                                     </div>
                                 </div>
@@ -216,7 +243,8 @@
             <div class="contents">
                 <div class="contact-item" th:each="contactItem : ${contact}">
                     <img class="icon" th:src="${contactItem.contactImgUrl}"
-                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                        onerror="this.src='/img/SampleImg.png'" />
                     <span>
                         <!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
                         <a th:href="${contactItem.contactInfo}"
@@ -226,9 +254,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <!--Echart-->
     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
@@ -383,6 +408,34 @@
         })
     </script> -->
 
+    <!-- Home Type 글자 타이핑 스크립트 -->
+    <script th:inline="javascript">
+        var typingBool = false;
+        var typingIdx = 0;
+
+        // 타이핑될 텍스트를 가져온다 
+        var typingTxt = $(".typing-txt").text();
+
+        typingTxt = typingTxt.split(""); // 한글자씩 자른다. 
+
+        if (typingBool == false) {
+            // 타이핑이 진행되지 않았다면 
+            typingBool = true;
+            var tyInt = setInterval(typing, 100); // 반복동작 
+        }
+
+        function typing() {
+            if (typingIdx < typingTxt.length) {
+                // 타이핑될 텍스트 길이만큼 반복 
+                $(".typing").append(typingTxt[typingIdx]);
+                // 한글자씩 이어준다. 
+                typingIdx++;
+            } else {
+                //끝나면 반복종료 
+                clearInterval(tyInt);
+            }
+        }  
+    </script>
 </body>
 
 </html>

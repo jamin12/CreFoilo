@@ -58,6 +58,9 @@ public class Project extends BaseTimeEntity {
     @Column(name = "project_html", nullable = true, columnDefinition = "TEXT")
     private String projectHtml; // '프로젝트 html',
 
+    @Column(name = "technical_stack_name", nullable = true, length = 255)
+    private String technicalStackName; // '기술 스택 이름',
+
     /**
      * DTO를 CreateEntity로 변경
      * 
@@ -77,6 +80,7 @@ public class Project extends BaseTimeEntity {
                 .proejctSubIntro(projectDetailDto.getProejctSubIntro())
                 .projectHtml(projectDetailDto.getProjectHtml())
                 .projectMd(projectDetailDto.getProjectMd())
+                .technicalStackName(projectDetailDto.getProejctTechnicalStack())
                 .build();
     }
 
@@ -100,6 +104,7 @@ public class Project extends BaseTimeEntity {
                 .proejctSubIntro(projectDetailDto.getProejctSubIntro())
                 .projectHtml(projectDetailDto.getProjectHtml())
                 .projectMd(projectDetailDto.getProjectMd())
+                .technicalStackName(projectDetailDto.getProejctTechnicalStack())
                 .build();
     }
 }

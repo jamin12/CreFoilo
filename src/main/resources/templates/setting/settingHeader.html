@@ -2,7 +2,77 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
     <div th:fragment="header">
-        <p class="setting-header" th:text="${name}">name</p>
+        <input type="hidden" th:value="${portfolioid}" id="portfolioid">
+        <div class="navigation">
+            <ul>
+                <li class="toggle" onclick="onClickToggle()">
+                    <a>
+                        <span class="icon"><img class="logo" src="/img/CrefolioLogo.png"></span>
+                        <span class="title" th:text="${name}">userName</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/setting/home/}+${portfolioid}" th:value="${portfolioid}">
+                        <span class="icon">
+                            <ion-icon name="home"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/setting/aboutme/}+${portfolioid}" th:value="${portfolioid}">
+                        <span class="icon">
+                            <ion-icon name="person"></ion-icon>
+                        </span>
+                        <span class="title">About ME</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/setting/language/}+${portfolioid}" th:value="${portfolioid}">
+                        <span class="icon">
+                            <ion-icon name="logo-javascript"></ion-icon>
+                        </span>
+                        <span class="title">Language Skill</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/setting/other/}+${portfolioid}" th:value="${portfolioid}">
+                        <span class="icon">
+                            <ion-icon name="school"></ion-icon>
+                        </span>
+                        <span class="title">Other Skill</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/setting/project/}+${portfolioid}" th:value="${portfolioid}">
+                        <span class="icon">
+                            <ion-icon name="library"></ion-icon>
+                        </span>
+                        <span class="title">Project</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/setting/contact/}+${portfolioid}" th:value="${portfolioid}">
+                        <span class="icon">
+                            <ion-icon name="mail"></ion-icon>
+                        </span>
+                        <span class="title">Contact</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/myportfolio/list}" class="btn-exit">
+                        <span class="icon">
+                            <ion-icon name="exit"></ion-icon>
+                        </span>
+                        <span class="title">메인화면으로</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="background"></div>
+
     </div>
+
 </body>
 </html>

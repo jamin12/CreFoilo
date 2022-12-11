@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>포트폴리오 목록</title>
-
-    <link rel="stylesheet" href="../static/css/portfolioListStyle.css">
+    <link rel="stylesheet" th:href="@{/css/portfolioListStyle.css}">
     <!-- fontawesome - 아이콘 -->
+    <script type="text/javascript" defer th:src="@{/js/portfolioList.js}"></script>
     <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <h1>CreFoilo</h1>
-        <a>로그아웃</a>
+        <form action="/logout" method="post">
+            <button type="submit">로그아웃</button>
+        </form>
     </header>
     <content>
         <div class="content-header">
@@ -22,24 +24,25 @@
         </div>
 
         <!-- 여기 div클래스를 데이터를 받아와서 돌리면 됨 -->
-        <div class="portfolio-preview">
+        <div class="portfolio-preview" th:each="pl : ${portfolioList}">
             <i class="fa-solid fa-file-lines"></i>
 
             <div class="text-box">
-                <a href="#none" class="portfolio-name">임효현의 포트폴리오</a>
+                <a href="#none" class="portfolio-name" th:text="${pl.portfolioName}">임효현의 포트폴리오</a>
                 <p class="date-update">
-                    <span>2022-10-05 15:06</span>
+                    <span th:text="${pl.updatedDate}">2022-10-05 15:06</span>
                     <span>update</span>
                 </p>
             </div>
-
+            
             <div class="button-box">
                 <a href="#refernce">
                     <i class="fa-regular fa-pen-to-square"></i>
                     <span class="tooltip">수정</span>
                 </a>
-                <a href="#copy">
+                <a href="#copy" onclick="copyPortfolioLink(this)">
                     <i class="fa-regular fa-copy"></i>
+                    <input type="hidden" th:value="${pl.portfolioId}"/>
                     <span class="tooltip">링크복사</span>
                 </a>
                 <a href="#delete">

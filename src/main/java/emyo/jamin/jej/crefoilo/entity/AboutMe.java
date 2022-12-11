@@ -31,9 +31,6 @@ public class AboutMe extends BaseTimeEntity {
     @Column(name = "portfolio_id")
     private Long portfolioId; // '포트폴리오 ID'
 
-    @Column(name = "about_me_bg_color", length = 124, nullable = false)
-    private String aboutMeBgColor; // '나에 대해 배경 Color'
-
     @Column(name = "about_me_type", nullable = false)
     private Integer aboutMeType; // '나에 대해 type'
 
@@ -64,7 +61,6 @@ public class AboutMe extends BaseTimeEntity {
     public static AboutMe toCreateEntity(Long portfolioId, AboutmeDto aboutmeDto) {
         AboutMeBuilder aboutMeBulider = AboutMe.builder()
                 .portfolioId(portfolioId)
-                .aboutMeBgColor(aboutmeDto.getAboutMeBgColor())
                 .aboutMeType(aboutmeDto.getAboutMeType())
                 .aboutMeTitle1(aboutmeDto.getAboutMeTitle1())
                 .aboutMeTitle2(aboutmeDto.getAboutMeTitle2())
@@ -90,7 +86,6 @@ public class AboutMe extends BaseTimeEntity {
         return AboutMe.builder()
                 .aboutMeId(aboutMeId)
                 .portfolioId(aboutmeDto.getPortfolioId())
-                .aboutMeBgColor(aboutmeDto.getAboutMeBgColor())
                 .aboutMeType(aboutmeDto.getAboutMeType())
                 .aboutMeTitle1(aboutmeDto.getAboutMeTitle1())
                 .aboutMeTitle2(aboutmeDto.getAboutMeTitle2())

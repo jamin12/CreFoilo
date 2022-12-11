@@ -13,13 +13,15 @@
         <div class="ex-template-wrap">
             <!-- 예시 템플릿1 -->
             <div class="ex-template">
-                <button class="btn-ex1" type="button" th:onclick="|location.href='@{/setting/aboutmet1}'|" ></button>
+                <button class="btn-ex1" type="button"
+                    th:onclick="|location.href='@{/setting/aboutme/{portfolioid}/1(portfolioid = ${portfolioid})}'|"></button>
                 <h4>TYPE 1</h4>
             </div>
-    
+
             <!-- 예시 템플릿2 -->
             <div class="ex-template">
-                <button class="btn-ex2" type="button" th:onclick="|location.href='@{/setting/aboutmet2}'|"></button>
+                <button class="btn-ex2" type="button"
+                    th:onclick="|location.href='@{/setting/aboutme/{portfolioid}/2(portfolioid = ${portfolioid})}'|"></button>
                 <h4>TYPE 2</h4>
             </div>
         </div>

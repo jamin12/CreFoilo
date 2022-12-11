@@ -1,13 +1,117 @@
 @import url("../mainStyle.css");
 
-.setting-header{
-    font-weight: bold;
-    font-size: 50px;
-    top: 10px;
-    left: 30px;
-    position: fixed;
+ol,ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.setting-header::before{
-    content: "@";
+a
+{
+    text-decoration: none;
+    color: var(--gray900);
+}
+a:hover{
+    text-decoration: none;
+}
+
+.logo{
+    width: 70px;
+    height: 70px;
+    /* margin: 5px 0 0 15px ; */
+}
+
+.navigation{
+    position: fixed;
+    inset: 20px;
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    
+    border-radius: 20px;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.05);
+
+    overflow: hidden;
+    transition: height 0.5s, width 0.5s;
+    transition-delay: 0.75s, 0s;
+
+    z-index: 999;
+}
+.navigation.active{
+    width: 300px;
+    height: calc(100% - 40px);
+    transition: height 0.5s, width 0.5s;
+    transition-delay: 0.75s, 0s;
+
+    background-color: var(--gray50);
+}
+
+
+.title{
+    text-decoration: none;
+    text-decoration-line: none;
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+
+ul{
+    width: 100%;
+}
+li{
+    width: 100%;
+    margin-top: 10px;
+    height: 4rem;
+}
+li > a{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    /* background-color: aquamarine; */
+    padding-left: 20px;
+
+    transition: .2s;
+    cursor: pointer;
+}
+li > a:hover{
+    color: var(--blue);
+    background-color: var(--gray100);
+}
+li > a:first-child:hover{
+    background-color: var(--gray50);
+}
+li > a > span{
+    display: flex;
+    align-items: center;
+}
+
+
+.icon{
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.background{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+    opacity: 0;
+    background-color: rgba(0, 0, 0 , .6);
+    width: 100%;
+    height: 100vh;
+
+    z-index: 990;
+    transition: .3s;
+}
+.background.active{
+    display: flex;
+    opacity: 1;
+}
+
+li:last-child{
+    margin-top: 5rem;
 }

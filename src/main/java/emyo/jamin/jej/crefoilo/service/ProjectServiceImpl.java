@@ -23,12 +23,9 @@ import emyo.jamin.jej.crefoilo.entity.ProjectImg;
 import emyo.jamin.jej.crefoilo.entity.QDocumentUrl;
 import emyo.jamin.jej.crefoilo.entity.QProject;
 import emyo.jamin.jej.crefoilo.entity.QProjectImg;
-import emyo.jamin.jej.crefoilo.entity.QTechnicalStack;
-import emyo.jamin.jej.crefoilo.entity.TechnicalStack;
 import emyo.jamin.jej.crefoilo.repository.ProejectRepository;
 import emyo.jamin.jej.crefoilo.repository.ProjectDocumentUrlRepository;
 import emyo.jamin.jej.crefoilo.repository.ProjectImgRepository;
-import emyo.jamin.jej.crefoilo.repository.ProjectTechnicalStackRepository;
 import emyo.jamin.jej.crefoilo.utils.CustomException;
 import emyo.jamin.jej.crefoilo.utils.ErrorCode;
 import emyo.jamin.jej.crefoilo.utils.Validation;
@@ -49,9 +46,6 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectDocumentUrlRepository projectDocumentUrlRepository;
 
     @Autowired
-    private ProjectTechnicalStackRepository projectTechnicalStackRepository;
-
-    @Autowired
     private Validation validation;
 
     /**
@@ -66,15 +60,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectDetailDto findProjectDetailView(Long projectId) {
         QProject qProject = QProject.project;
-        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
         QProjectImg qProjectImg = QProjectImg.projectImg;
         List<Tuple> findedProjectDetails = proejctRepository.findByProjectId(projectId);
         if (findedProjectDetails.isEmpty()) {
-            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+            throw new CustomException(ErrorCode.PORTFOILO_NOT_FOUND);
         }
-        ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject),
-                findedProjectDetails.get(0).get(qTechnicalStack));
+        ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject));
         // 중복되는 객체들 삭제
         HashSet<ProjectImgDto> projectImgDtos = new HashSet<>();
         HashSet<ProjectDocumentDto> projectDocumentDtos = new HashSet<>();
@@ -118,17 +110,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectDetailDto findProjectDetail(Long projectId, String userId) {
         QProject qProject = QProject.project;
-        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
         QProjectImg qProjectImg = QProjectImg.projectImg;
         // 유저가 프로젝트를 가지고 있는지 체크
         validation.checkUserHasProject(projectId, userId);
         List<Tuple> findedProjectDetails = proejctRepository.findByProjectId(projectId);
         if (findedProjectDetails.isEmpty()) {
-            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+            throw new CustomException(ErrorCode.PORTFOILO_NOT_FOUND);
         }
-        ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject),
-                findedProjectDetails.get(0).get(qTechnicalStack));
+        ProjectDetailDto projectDetailDto = new ProjectDetailDto(findedProjectDetails.get(0).get(qProject));
         // 중복되는 객체들 삭제
         HashSet<ProjectImgDto> projectImgDtos = new HashSet<>();
         HashSet<ProjectDocumentDto> projectDocumentDtos = new HashSet<>();
@@ -162,15 +152,12 @@ public class ProjectServiceImpl implements ProjectService {
     public String createProject(Long portfolioId, String userId, ProjectDetailDto projectDetailDto) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         Project createdProject = proejctRepository.save(Project.toCreateEntity(portfolioId, projectDetailDto));
-        projectTechnicalStackRepository.save(
-                TechnicalStack.toEntity(createdProject.getProjectId(), projectDetailDto.getProejctTechnicalStack()));
         projectDetailDto.getProjectImg().forEach(pImg -> {
             projectImgRepository.save(ProjectImg.toCreateEntity(createdProject.getProjectId(), pImg));
         });
         projectDetailDto.getProjectDocument().forEach(pDoc -> {
             projectDocumentUrlRepository.save(DocumentUrl.toCreateEntity(createdProject.getProjectId(), pDoc));
         });
-        projectDetailDto.setProjectHtml("이건말이여 업데이트 테스트여");
         // TODO: return 수정하기
         return "loginSuccess";
     }
@@ -202,14 +189,50 @@ public class ProjectServiceImpl implements ProjectService {
     public String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto) {
         validation.checkUserHasProject(projectId, userId);
         proejctRepository.save(Project.toUpdateEntity(projectId, projectDetailDto));
-        projectTechnicalStackRepository.save(
-                TechnicalStack.toEntity(projectId, projectDetailDto.getProejctTechnicalStack()));
-        projectDetailDto.getProjectImg().forEach(pImg -> {
+        List<DocumentUrl> findedProejectDocList = projectDocumentUrlRepository.findbyProjectId(projectId);
+        List<ProjectImg> findedProejectImgList = projectImgRepository.findbyProjectId(projectId);
+        // 사라진 요소들 삭제하고
+        for (ProjectImg projectImg : findedProejectImgList) {
+            int flag = -1;
+            for (ProjectImgDto pImg : projectDetailDto.getProjectImg()) {
+                if (pImg.getProjectImgId() == null) {
+                    continue;
+                }
+                if (pImg.getProjectImgId().equals(projectImg.getProjectImgId())) {
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == -1) {
+                projectImgRepository.delete(projectImg);
+            }
+        }
+        // 나머지 생성
+        for (ProjectImgDto pImg : projectDetailDto.getProjectImg()) {
             projectImgRepository.save(ProjectImg.toUpdateEntity(projectId, pImg));
-        });
-        projectDetailDto.getProjectDocument().forEach(pDoc -> {
+        }
+
+        // 사라진 요소들 삭제하고
+        for (DocumentUrl documentUrl : findedProejectDocList) {
+            int flag = -1;
+            for (ProjectDocumentDto pDoc : projectDetailDto.getProjectDocument()) {
+                if (pDoc.getDocuemntUrlId() == null) {
+                    continue;
+                }
+                if (pDoc.getDocuemntUrlId().equals(documentUrl.getDocumentId())) {
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == -1) {
+                projectDocumentUrlRepository.delete(documentUrl);
+            }
+        }
+        // 나머지 생성
+        for (ProjectDocumentDto pDoc : projectDetailDto.getProjectDocument()) {
             projectDocumentUrlRepository.save(DocumentUrl.toUpdateEntity(projectId, pDoc));
-        });
+        }
+
         // TODO: return 수정하기
         return null;
     }
@@ -221,13 +244,13 @@ public class ProjectServiceImpl implements ProjectService {
     public List<ProjectDetailDto> findProjectAll(Long portfolioId) {
         QProject qProject = QProject.project;
         QProjectImg qProjectImg = QProjectImg.projectImg;
-        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
 
         List<ProjectDetailDto> findedProjectList = new ArrayList<>();
-        // 받아온 데이터를 dto로 변환?
         List<Tuple> findedProjectAll = proejctRepository.findProjectAllByPortfolioId(portfolioId);
-
+        if (findedProjectAll.isEmpty()) {
+            return findedProjectList;
+        }
         Long index = findedProjectAll.get(0).get(qProject).getProjectId();
 
         ProjectDetailDto projectDetailDto = new ProjectDetailDto();
@@ -246,7 +269,7 @@ public class ProjectServiceImpl implements ProjectService {
                 projectDocumentDtos.clear();
 
             }
-            projectDetailDto = new ProjectDetailDto(tuple.get(qProject), tuple.get(qTechnicalStack));
+            projectDetailDto = new ProjectDetailDto(tuple.get(qProject));
             projectImgDtos.add(new ProjectImgDto(tuple.get(qProjectImg)));
             projectDocumentDtos.add(new ProjectDocumentDto(tuple.get(qDocumentUrl)));
         }

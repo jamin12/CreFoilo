@@ -1,49 +1,127 @@
 @import url(../mainStyle.css);
+@import "./settingBtnSave.css";
 
 .allOtherSkill {
-    /* background-color: antiquewhite; */
     display: flex;
+    width: 70%;
+    height: 60%;
+    align-items: center;
+    justify-content: start;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    justify-content: space-between;
 }
 
-.FirstOS {
-    /* background-color: aqua; */
-    place-content: center;
-    position: relative;
-    text-align: center;
-    margin: 50px;
 
-}
 
-.SecondOS {
-    /* background-color: cadetblue; */
-    place-content: center;
-    position: relative;
-    text-align: center;
-    margin: 50px;
-}
-
-.skillplusBtn {
-    /* background-color: bisque; */
-    display: inline-block;
-    place-content: center;
-    position: relative;
-    text-align: center;
-    /* margin: 50px; */
+.btn-add-box{
+    display: flex;
     align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+
+    width: 10%;
+    height: 100%;
+
+    border: none;
+    font-size: 3.5rem;
+    color: var(--blue);
+    background-color: var(--gray50);
+
+    transition: .2s;
+}
+.btn-add-box:hover{
+    background-color: lightblue;
+    color: white;
 }
 
-input {
-    background-color: #c9cdd2;
-    margin: 5px;
+.os-wrap{
+    max-width: 90%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: space-around;
+}
+.os-wrap::-webkit-scrollbar{
+    width: 10px;
+    background-color: transparent;
+}
+.os-wrap::-webkit-scrollbar-thumb{
+    background-color: var(--gray200);
+    border-radius: 50px;
 }
 
-.mainOtherSkillplusBtn {
-    width:20px;
-    height:20px;
-    margin-top: 55px;
+/* 
+    other skill box
+*/
+.os-box{
+    height: auto;
+    min-width: 300px;
+    margin: 0 5px 20px 5px;
+}
+input{
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    width: 90%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--gray100);
+}
+input:focus{
+    outline: none;
+    background-color: var(--gray50);
+}
+.main-skill-box{
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+}
+#mainSkill{
+    width: 100%;
+}
+ion-icon[name='close-circle-outline']{
+    position: absolute;
+    font-size: 1.2rem;
+    top:0;
+    right: 0;
+    cursor: pointer;
+    color: var(--red);
+
+    transition: .2s;
+}
+ion-icon[name='close-circle-outline']:hover{
+    color: var(--curcer-red);
+}
+
+.sub-skill-box{
+    width: 90%;
+    position: relative;
+}
+#subSkill{
+    width: 100%;
+}
+
+.btn-subskill-add{
+    font-size: 2rem;
+    background-color: transparent;
+    color: var(--gray700);
+    margin: 10px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: none;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.btn-subskill-add:hover{
+    color: var(--gray600);
+}
+
+input[type="hidden"] {
+    display: none;
 }

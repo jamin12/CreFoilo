@@ -1,5 +1,7 @@
 package emyo.jamin.jej.crefoilo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 
+import emyo.jamin.jej.crefoilo.dto.PortfolioDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
 import emyo.jamin.jej.crefoilo.service.ContactService;
@@ -45,9 +48,7 @@ public class PortfolioController {
     private ContactService contactService;
 
     @GetMapping(value = "/portfolio/{portfolioid}")
-    public String portfolio(@PathVariable Long portfolioid, Model model, String userId) {
-        // model.addAttribute("portfolio",
-        // portfolioListService.findPortfolioHome(portfolioid)); // 실행이 안되서 일단 수정해봄
+    public String portfolio(@PathVariable Long portfolioid, Model model) {
         model.addAttribute("portfolio", portfolioService.findPortfolioHome(portfolioid));
         model.addAttribute("aboutme", aboutmeService.findAboutme(portfolioid));
         model.addAttribute("languageskill", languageskill.findLanguage(portfolioid));
@@ -62,12 +63,24 @@ public class PortfolioController {
     public String deletePortfolio(@PathVariable Long portfolioid) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         if (userIdInSession == null) {
-            // TODO: 로그인을 하세요
-            return null;
+            return "redirect:/";
         }
-
         portfolioService.deletePortfolio(portfolioid, userIdInSession.getUserId());
         return "우와";
+    }
+
+    /**
+     * 포트폴리오 리스트 조회
+     * 
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/myportfolio/list")
+    public String portfolioList(Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        List<PortfolioDto> findedportFolioList = portfolioService.findPortfolioList(userIdInSession.getUserId());
+        model.addAttribute("portfolioList", findedportFolioList);
+        return "portfoliloList";
     }
 
 }

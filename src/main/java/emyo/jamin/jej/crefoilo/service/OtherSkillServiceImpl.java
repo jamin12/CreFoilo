@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import emyo.jamin.jej.crefoilo.dto.OtherSkillBaseList;
 import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
 import emyo.jamin.jej.crefoilo.dto.OtherSkillListDto;
+import emyo.jamin.jej.crefoilo.dto.OtherSkillSubList;
 import emyo.jamin.jej.crefoilo.entity.OtherSkill;
 import emyo.jamin.jej.crefoilo.repository.OtherSkillRepository;
 import emyo.jamin.jej.crefoilo.utils.CustomException;
@@ -75,9 +77,30 @@ public class OtherSkillServiceImpl implements OtherSkillService {
      * @param userId
      */
     @Override
-    public List<OtherSkillListDto> findOtherSkillList(Long portFolioId, String userId) {
+    public List<OtherSkillBaseList> findOtherSkillList(Long portFolioId, String userId) {
         validation.checkUserHasPortfolio(portFolioId, userId);
-        return this.findOtherSkillList(portFolioId);
+        List<OtherSkill> findedOtherSkills = otherSkillRepository.findByPortfolioId(portFolioId);
+        List<OtherSkillBaseList> otherSkillListDtos = new ArrayList<>();
+        for (OtherSkill findOtherSkill : findedOtherSkills) {
+            OtherSkillBaseList otherSkillListDto = new OtherSkillBaseList();
+            List<OtherSkillSubList> subOtherSkillNames = new ArrayList<>();
+
+            if (findOtherSkill.getBaseOtherSkillId() == null) {
+                otherSkillListDto.setOtherSkillBaseId(findOtherSkill.getOtherSkillID());
+                otherSkillListDto.setOtherSkillBaseName(findOtherSkill.getOtherSkillName());
+
+                // subOtherSkillNames을 얻기 위해 중첩 for 사용
+                for (OtherSkill otherSkill : findedOtherSkills) {
+                    if (findOtherSkill.getOtherSkillID() == otherSkill.getBaseOtherSkillId()) {
+                        subOtherSkillNames.add(new OtherSkillSubList(otherSkill));
+                    }
+                }
+                otherSkillListDto.setOtherSkillSubList(subOtherSkillNames);
+
+                otherSkillListDtos.add(otherSkillListDto);
+            }
+        }
+        return otherSkillListDtos;
     }
 
     /**
@@ -125,6 +148,20 @@ public class OtherSkillServiceImpl implements OtherSkillService {
         }
         // TODO: return 바꾸기
         return null;
+    }
+
+    /**
+     * base other skill 생성
+     * 
+     * @param otherSkillDtoList
+     * @param portFolioId
+     * @param userId
+     */
+    @Override
+    public OtherSkillDto createBaseOtherSkill(OtherSkillDto otherSkillDto, Long portFolioId,
+            String userId) {
+        return new OtherSkillDto(
+                otherSkillRepository.save(OtherSkill.createAndUpdateEntity(portFolioId, otherSkillDto)));
     }
 
 }

@@ -1,5 +1,6 @@
 package emyo.jamin.jej.crefoilo.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.List;
 import java.util.Optional;
@@ -18,13 +19,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
+import emyo.jamin.jej.crefoilo.dto.ContactDto;
+import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
+import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
+import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
+import emyo.jamin.jej.crefoilo.service.ContactService;
 import emyo.jamin.jej.crefoilo.service.LanguageService;
+import emyo.jamin.jej.crefoilo.service.OtherSkillService;
+import emyo.jamin.jej.crefoilo.service.PortfolioService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
+import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
+import emyo.jamin.jej.crefoilo.dto.PortfolioHomeDto;
 
 /**
  * 세팅 페이지 컨트롤러
@@ -41,49 +52,186 @@ public class SettingController {
     private AboutmeService aboutmeService;
 
     @Autowired
-    private LanguageService languageService;
+    private LanguageService laguageService;
 
-    @GetMapping(value = "/setting/aboutme")
-    public String settingAboutMe() {
-        return "setting/settingAboutMe";
-    }
+    @Autowired
+    private OtherSkillService otherSkillService;
 
-    @GetMapping(value = "/setting/aboutmet1/{portfolioid}")
-    public String settingAboutMeT1(@PathVariable Long portfolioid, Model model) {
+    @Autowired
+    private PortfolioService portfolioService;
+
+    @Autowired
+    private ContactService contactService;
+
+    /**
+     * home 선택 페이지
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = { "/setting/home", "/setting/home/{portfolioid}" })
+    public String settingHome(@PathVariable Optional<Long> portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
-        model.addAttribute("name", userIdInSession.getSnsName());
-        model.addAttribute("aboutMe", findedAboutme);
+        // 포트폴리오 아이디가 있을 때
+        if (portfolioid.isPresent()) {
+            model.addAttribute("portfolioHome",
+                    portfolioService.findPortfolioHome(portfolioid.get(), userIdInSession.getUserId()));
+            model.addAttribute("portfolioid", portfolioid.get());
+            return "setting/settingHome";
+        }
+        model.addAttribute("portfolioHome", new HomeViewDto());
+        model.addAttribute("portfolioid", null);
 
-        return "setting/settingAboutMeT1";
-    }
-
-    @GetMapping(value = "/setting/aboutmet2/{portfolioid}")
-    public String settingAboutMeT2(@PathVariable Long portfolioid, Model model) {
-        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
-        model.addAttribute("name", userIdInSession.getSnsName());
-        model.addAttribute("aboutMe", findedAboutme);
-
-        return "setting/settingAboutMeT2";
-    }
-
-    @GetMapping(value = "/setting/home")
-    public String settingHome() {
         return "setting/settingHome";
     }
 
-    @GetMapping(value = "/setting/language")
-    public String settingLanguage() {
+    /**
+     * home 생성 수정
+     * 
+     * @param portfolioHomeDto 포트폴리오 홈 데이터
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/home")
+    public Long createHome(@RequestBody PortfolioHomeDto portfolioHomeDto) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        Portfolio Cuportfolio = portfolioService.CUPortfolioHome(portfolioHomeDto, userIdInSession.getUserId());
+        return Cuportfolio.getPortfolioId();
+    }
+
+    /**
+     * aboutme 타입 선택 페이지
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/aboutme/{portfolioid}")
+    public String settingAboutMe(@PathVariable Long portfolioid, Model model) {
+        model.addAttribute("portfolioid", portfolioid);
+        return "setting/settingAboutMe";
+    }
+
+    /**
+     * 자신의 aboutMe 조회
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param type        aboutme 타입
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/aboutme/{portfolioid}/{type}")
+    public String settingAboutMeT(@PathVariable Long portfolioid, @PathVariable Integer type, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        AboutmeDto findedAboutme = aboutmeService.findAboutme(portfolioid, userIdInSession.getUserId());
+        // 새로 만들 때
+        if (findedAboutme == null) {
+            findedAboutme = new AboutmeDto();
+        }
+        // 기존에 있을 때
+        model.addAttribute("portfolioid", portfolioid);
+        model.addAttribute("aboutMe", findedAboutme);
+        if (type == 1) {
+            return "setting/settingAboutMeT1";
+        }
+        return "setting/settingAboutMeT2";
+    }
+
+    /**
+     * aboutme 수정 저장
+     * 
+     * @param portfolioid 포트폴리오 아이디
+     * @param aboutmeDto  전송받을 aboutme 데이터
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/aboutme/{portfolioid}")
+    public String createAboutMe(@PathVariable Long portfolioid, @RequestBody AboutmeDto aboutmeDto) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        aboutmeService.createAboutMe(portfolioid, userIdInSession.getUserId(), aboutmeDto);
+        // 리턴하는 값 : js에 있는ㄷ 데이터
+        return null;
+    }
+
+    /**
+     * 언어기술 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/language/{portfolioid}")
+    public String settingLanguageSkill(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("LanguageSkillList",
+                laguageService.findLanguageList(portfolioid, userIdInSession.getUserId()));
+        model.addAttribute("portfolioid", portfolioid);
         return "setting/settingLanguageSkill";
     }
 
-    @PostMapping(value = "/setting/lang/{portfolioid}")
-    public String settingLanguageT1(
-            @RequestBody List<LanguageSettingDto> languageSettingDtoList,
-            @PathVariable Long portfolioid) {
+    /**
+     * 언어기술 페이지 생성 수정 삭제 작업
+     * 
+     * @param languageSettingDtos
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/language/{portfolioid}")
+    public String createLanguageSkill(@RequestBody List<LanguageSettingDto> languageSettingDtos,
+            @PathVariable Long portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        return languageService.CUDLanguage(languageSettingDtoList, portfolioid, userIdInSession.getUserId());
+        laguageService.CUDLanguage(languageSettingDtos, portfolioid, userIdInSession.getUserId());
+        return "/setting/other/" + portfolioid.toString();
+    }
+
+    /**
+     * Other Skill 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/other/{portfolioid}")
+    public String settingOtherSkill(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("portfolioid", portfolioid);
+        model.addAttribute("otherskilllist",
+                otherSkillService.findOtherSkillList(portfolioid, userIdInSession.getUserId()));
+        return "setting/settingOtherSkill";
+    }
+
+    /**
+     * Other Skill 생성 수정 삭제
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/other/{portfolioid}")
+    public String CUDOtherSkill(@PathVariable Long portfolioid, @RequestBody List<OtherSkillDto> otherSkillDtos,
+            Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        otherSkillService.CUDOtherSkill(otherSkillDtos, portfolioid, userIdInSession.getUserId());
+        return "/setting/project/" + portfolioid.toString();
+    }
+
+    /**
+     * base Other Skill 생성
+     * 
+     * @param portfolioid
+     * @param otherSkillDto
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/baseother/{portfolioid}")
+    public OtherSkillDto createBaseOtherSkill(@PathVariable Long portfolioid,
+            @RequestBody OtherSkillDto otherSkillDto) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        return otherSkillService.createBaseOtherSkill(otherSkillDto, portfolioid, userIdInSession.getUserId());
     }
 
     /**
@@ -96,7 +244,6 @@ public class SettingController {
     @GetMapping(value = "/setting/project/{portfolioid}")
     public String settingProject(@PathVariable Long portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         model.addAttribute("projectDtoList", projectService.findProjectList(portfolioid, userIdInSession.getUserId()));
         model.addAttribute("portfolioid", portfolioid.toString());
         return "setting/settingProject";
@@ -127,7 +274,6 @@ public class SettingController {
     public String settingProjectDetail(@PathVariable Long portfolioid, @PathVariable Optional<Long> projectid,
             Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
             model.addAttribute("projectDetail", ProjectDetailDto.builder().portfolioId(portfolioid).build());
             return "setting/settingProjectDetail";
@@ -149,7 +295,6 @@ public class SettingController {
     public String settingProjectDetailPost(@RequestBody ProjectDetailDto projectDetailDto,
             @PathVariable Long portfolioid, @PathVariable Optional<Long> projectid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        model.addAttribute("name", userIdInSession.getSnsName());
         if (!projectid.isPresent()) {
             projectService.createProject(projectDetailDto.getPortfolioId(), userIdInSession.getUserId(),
                     projectDetailDto);
@@ -158,5 +303,39 @@ public class SettingController {
         projectService.updateProject(projectid.get(), userIdInSession.getUserId(), projectDetailDto);
         return "/setting/project/" + projectDetailDto.getPortfolioId().toString();
     }
+
+    
+    /**
+     * Contact 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/contact/{portfolioid}")
+    public String settingContact(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("portfolioid", portfolioid);
+        model.addAttribute("contactlist",
+            contactService.findContact(portfolioid, userIdInSession.getUserId()));
+        return "setting/settingContact";
+    }
+
+    /**
+     * Contact 생성 수정 삭제
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/contact/{portfolioid}")
+    public String CUDContact(@PathVariable Long portfolioid, @RequestBody List<ContactDto> contactDtos,
+            Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        contactService.CUDContact(portfolioid, userIdInSession.getUserId(), contactDtos);
+        return "/setting/contact/" + portfolioid.toString();
+    }
+
 
 }

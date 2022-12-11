@@ -71,9 +71,6 @@ public class LanguageServiceImpl implements LanguageService {
         validation.checkUserHasPortfolio(portfolioId, userId);
         List<Language> findedLanguages = languageReposirtory.findByPortfolioId(portfolioId);
 
-        // if(findedLanguage == null){
-        // return new LanguageSettingDto();
-        // }
         List<LanguageSettingDto> languageList = new ArrayList<>();
         findedLanguages.forEach((findedLanguage) -> {
             languageList.add(new LanguageSettingDto(findedLanguage));

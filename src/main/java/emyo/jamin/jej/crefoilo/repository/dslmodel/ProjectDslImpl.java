@@ -15,7 +15,6 @@ import emyo.jamin.jej.crefoilo.entity.QDocumentUrl;
 import emyo.jamin.jej.crefoilo.entity.QPortfolio;
 import emyo.jamin.jej.crefoilo.entity.QProject;
 import emyo.jamin.jej.crefoilo.entity.QProjectImg;
-import emyo.jamin.jej.crefoilo.entity.QTechnicalStack;
 
 /**
  * @author 강경민
@@ -49,13 +48,11 @@ public class ProjectDslImpl implements ProjectDsl {
     @Override
     public List<Tuple> findByProjectId(Long projectId) {
         QProject qProject = QProject.project;
-        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
         QProjectImg qProjectImg = QProjectImg.projectImg;
         return jpaQueryFactory
-                .select(qProject, qTechnicalStack, qDocumentUrl, qProjectImg)
+                .select(qProject, qDocumentUrl, qProjectImg)
                 .from(qProject)
-                .leftJoin(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
                 .leftJoin(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
                 .leftJoin(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
                 .where(qProject.projectId.eq(projectId))
@@ -91,13 +88,11 @@ public class ProjectDslImpl implements ProjectDsl {
         // WHERE p.portfolio_id = 1;
         QProject qProject = QProject.project;
         QProjectImg qProjectImg = QProjectImg.projectImg;
-        QTechnicalStack qTechnicalStack = QTechnicalStack.technicalStack;
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
-        return jpaQueryFactory.select(qProject, qProjectImg, qTechnicalStack, qDocumentUrl)
+        return jpaQueryFactory.select(qProject, qProjectImg, qDocumentUrl)
                 .from(qProject)
-                .join(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
-                .join(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
-                .join(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
+                .leftJoin(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
+                .leftJoin(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
                 .where(qProject.portfolioId.eq(portfolioId))
                 .fetch();
     }

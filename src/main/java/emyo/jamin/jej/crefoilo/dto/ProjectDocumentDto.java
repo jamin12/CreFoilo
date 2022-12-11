@@ -15,10 +15,14 @@ public class ProjectDocumentDto {
     private String documentImgUrl;
     private String documentUrl;
 
-    public ProjectDocumentDto(@Nullable DocumentUrl documentUrl) {
-        this.docuemntUrlId = documentUrl.getDocumentId();
-        this.documentImgUrl = documentUrl.getDocumentImgUrl();
-        this.documentUrl = documentUrl.getDocumentUrl();
+    public ProjectDocumentDto(DocumentUrl documentUrl) {
+        this.documentUrl = "";
+        this.documentImgUrl = "";
+        if (documentUrl != null) {
+            this.docuemntUrlId = documentUrl.getDocumentId();
+            this.documentImgUrl = documentUrl.getDocumentImgUrl();
+            this.documentUrl = documentUrl.getDocumentUrl();
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package emyo.jamin.jej.crefoilo.dto;
 
+import emyo.jamin.jej.crefoilo.entity.OtherSkill;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,4 +19,12 @@ public class OtherSkillDto {
 
     private String otherSkillName; // '그 외 스킬 이름',
 
+    public OtherSkillDto(OtherSkill otherSkill) {
+        this.portfolioId = otherSkill.getPortfolioId();
+        this.otherSkillID = otherSkill.getOtherSkillID();
+        this.otherSkillName = otherSkill.getOtherSkillName();
+        if (otherSkill.getBaseOtherSkillId() != null) {
+            this.baseOtherSkillId = otherSkill.getBaseOtherSkillId();
+        }
+    }
 }

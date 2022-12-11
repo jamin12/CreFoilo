@@ -2,39 +2,91 @@
 
 
 .hometpl{
+    width: 1200px;
+    height: 340px;
+
     position: absolute;
-    width: 100%;
     top: 50%;
-    transform: translate(0,-50%);
-    background-color: red;
-}
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-.basic-templates {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     text-align: center;
-    justify-content: space-evenly;
-    margin: 50PX;
-    padding: 50px;
+}
+
+.templet-box{
+    width: 100%;
+    height: 100%;
+    margin: 0 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 }
-.basic-templates > div {
-    display: inline-block;
+
+
+/* 
+    설명 문구
+*/
+.opacity-box{
+    background-color: var(--gray900);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
     align-items: center;
+    opacity: 0;
+
+    transition: .3s;
+}
+.opacity-box > p{
+    z-index: 100;
+    width: 80%;
+    font-size: 1.1rem;
+    color: var(--gray50);
+    word-break: keep-all;
+}
+
+.templet-box > button{
+    width: 100%;
+    height: 80%;
+
+    border: none;
+    background-color: transparent;
+    border-radius: 15px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+
+    position: relative;
+
+    box-shadow: 1px 1px 5px var(--gray500);
+}
+.templet-box > button:hover .opacity-box{
+    opacity: .94;
+}
+
+.btn-img1{
+    background-image: url(../../img/HomeImg1.png);
+}
+.btn-img2{
+    background-image: url(../../img/HomeImg2_run.png);
+}
+.btn-img3{
+    background-image: url(../../img/HomeImg3.png);
 }
 
 
-.add-templates {
-    text-align: center;
-    margin: 50px;
-    padding: 50px;
-}
-.add-templates > div {
-    display: inline-block;
-    align-items: center;
-}
-
-button {
-    width: 400px;
-    height: 200px;
+.templet-box > p{
+    font-size: 1.1rem;
+    font-weight: 700;
 }
