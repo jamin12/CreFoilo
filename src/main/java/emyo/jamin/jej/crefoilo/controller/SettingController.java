@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
+import emyo.jamin.jej.crefoilo.dto.ContactDto;
 import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
 import emyo.jamin.jej.crefoilo.service.AboutmeService;
+import emyo.jamin.jej.crefoilo.service.ContactService;
 import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
@@ -57,6 +59,9 @@ public class SettingController {
 
     @Autowired
     private PortfolioService portfolioService;
+
+    @Autowired
+    private ContactService contactService;
 
     /**
      * home 선택 페이지
@@ -298,5 +303,39 @@ public class SettingController {
         projectService.updateProject(projectid.get(), userIdInSession.getUserId(), projectDetailDto);
         return "/setting/project/" + projectDetailDto.getPortfolioId().toString();
     }
+
+    
+    /**
+     * Contact 페이지 조회
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/setting/contact/{portfolioid}")
+    public String settingContact(@PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("portfolioid", portfolioid);
+        model.addAttribute("contactlist",
+            contactService.findContact(portfolioid, userIdInSession.getUserId()));
+        return "setting/settingContact";
+    }
+
+    /**
+     * Contact 생성 수정 삭제
+     * 
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/contact/{portfolioid}")
+    public String CUDContact(@PathVariable Long portfolioid, @RequestBody List<ContactDto> contactDtos,
+            Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        contactService.CUDContact(portfolioid, userIdInSession.getUserId(), contactDtos);
+        return "/setting/contact/" + portfolioid.toString();
+    }
+
 
 }
