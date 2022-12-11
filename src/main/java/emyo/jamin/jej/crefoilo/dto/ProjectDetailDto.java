@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 import emyo.jamin.jej.crefoilo.entity.Project;
-import emyo.jamin.jej.crefoilo.entity.TechnicalStack;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,12 +28,11 @@ public class ProjectDetailDto {
     private String proejctSubIntro; // '서브 설명',
     private String projectMd; // '프로젝트 md',
     private String projectHtml; // '프로젝트 html',
-    private String proejctTechnicalStack;   // '기술 스텍'
+    private String proejctTechnicalStack; // '기술 스텍'
     private List<ProjectImgDto> projectImg; // '프로젝트 이미지 리스트'
-    private List<ProjectDocumentDto> projectDocument;   // '프로젝트 링크'
+    private List<ProjectDocumentDto> projectDocument; // '프로젝트 링크'
 
-    public ProjectDetailDto(@Nullable Project project,
-            @Nullable TechnicalStack technicalStack) {
+    public ProjectDetailDto(@Nullable Project project) {
         this.projectId = project.getProjectId();
         this.portfolioId = project.getPortfolioId();
         this.projectTitle = project.getProjectTitle();
@@ -46,7 +44,7 @@ public class ProjectDetailDto {
         this.projectEndDate = project.getProjectEndDate();
         this.projectHtml = project.getProjectHtml();
         this.projectMd = project.getProjectMd();
-        this.proejctTechnicalStack = technicalStack.getTechnicalStackName();
+        this.proejctTechnicalStack = project.getTechnicalStackName();
     }
 
 }
