@@ -73,10 +73,14 @@ li > a{
     padding-left: 20px;
 
     transition: .2s;
+    cursor: pointer;
 }
 li > a:hover{
     color: var(--blue);
     background-color: var(--gray100);
+}
+li > a:first-child:hover{
+    background-color: var(--gray50);
 }
 li > a > span{
     display: flex;
@@ -88,39 +92,6 @@ li > a > span{
     font-size: 2rem;
     margin-right: 10px;
 }
-
-
-/* .header-wrap{
-    width: 100%;
-    height: 100vh;
-    background-color: red;
-
-    position: fixed;
-    z-index: 990;
-}
-
-.setting-header{
-    position: fixed;
-    top: 10px;
-    left: 20px;
-    max-width: calc(100% - 40px);
-
-    font-weight: bold;
-    font-size: 2rem;
-    color: var(--gray700);
-    transition: 0.2s;
-
-    z-index: 999;
-    cursor: pointer;
-}
-.setting-header:hover{
-    color: var(--gray600);
-}
-
-.setting-header::before{
-    content: "@";
-} */
-
 
 .background{
     position: fixed;
@@ -139,4 +110,8 @@ li > a > span{
 .background.active{
     display: flex;
     opacity: 1;
+}
+
+li:last-child{
+    margin-top: 5rem;
 }
