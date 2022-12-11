@@ -20,7 +20,7 @@
             <input id="file-img" type="file" onchange="addImgRepresent(this.files)"/>
 
             <label class="btn-change-img" for="file-img" >
-                <img class="img-background" th:src="${aboutMe.aboutMeImg}" />
+                <img class="img-background" th:src="${aboutMe.aboutMeImg}" onerror="this.src='/img/SampleImg.png'"/>
                 <ion-icon name="add-circle"></ion-icon>
             </label>
         </div>

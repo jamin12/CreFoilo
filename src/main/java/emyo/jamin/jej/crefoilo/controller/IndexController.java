@@ -18,7 +18,7 @@ public class IndexController {
     public String index(Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         if (userIdInSession != null) {
-            return "redirect:portfolio/list";
+            return "redirect:myportfolio/list";
         }
         return "login";
     }

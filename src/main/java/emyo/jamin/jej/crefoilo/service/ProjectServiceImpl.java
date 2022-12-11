@@ -225,9 +225,10 @@ public class ProjectServiceImpl implements ProjectService {
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
 
         List<ProjectDetailDto> findedProjectList = new ArrayList<>();
-        // 받아온 데이터를 dto로 변환?
         List<Tuple> findedProjectAll = proejctRepository.findProjectAllByPortfolioId(portfolioId);
-
+        if (findedProjectAll.isEmpty()) {
+            return findedProjectList;
+        }
         Long index = findedProjectAll.get(0).get(qProject).getProjectId();
 
         ProjectDetailDto projectDetailDto = new ProjectDetailDto();

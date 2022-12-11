@@ -24,7 +24,7 @@
                 </button>
                 <a th:href="@{/setting/projectdetail/{portfolioid}/{projectid}(projectid = ${project.projectId}, portfolioid = ${portfolioid})}">
                     <img th:src="${project.projectRepresentativeImgUrl}" alt="porjectImg"
-                    onerror="this.src='https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg';">
+                    onerror="this.src='/img/SampleImg.png'">
                 </a>
                 <h3 id="projectTitle" th:text="${project?.projectTitle}">TESTITLE</h3>
                 <p id="projectAbout" th:text="${project?.projectIntro}">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>

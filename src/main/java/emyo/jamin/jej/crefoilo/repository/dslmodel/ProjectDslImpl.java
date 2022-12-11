@@ -95,9 +95,9 @@ public class ProjectDslImpl implements ProjectDsl {
         QDocumentUrl qDocumentUrl = QDocumentUrl.documentUrl1;
         return jpaQueryFactory.select(qProject, qProjectImg, qTechnicalStack, qDocumentUrl)
                 .from(qProject)
-                .join(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
-                .join(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
-                .join(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
+                .leftJoin(qProjectImg).on(qProject.projectId.eq(qProjectImg.projectId))
+                .leftJoin(qTechnicalStack).on(qProject.projectId.eq(qTechnicalStack.projectId))
+                .leftJoin(qDocumentUrl).on(qProject.projectId.eq(qDocumentUrl.projectId))
                 .where(qProject.portfolioId.eq(portfolioId))
                 .fetch();
     }
