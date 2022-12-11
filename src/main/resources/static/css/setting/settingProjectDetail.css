@@ -1,17 +1,12 @@
 @import url("../mainStyle.css");
-@import url('../setting/settingBtnSave.css');
+/* @import '../setting/settingBtnSave.css'; */
 
 #project {
-    position: absolute;
-    top: 70px;
-    right: 50%;
-    transform: translateX(50%);
     justify-content: space-evenly;
     width: 80%;
     height: 400px;
     display: flex;
-    flex-direction: row;
-    border-radius: 15px;
+    margin: 70px auto 0 auto;
 }
 
 .front,
@@ -31,7 +26,7 @@
 }
 
 
-input[type='file']{
+input[type='file'] {
     display: none;
 }
 
@@ -39,7 +34,7 @@ input[type='file']{
 /* 
     앞면
 */
-label[for='btnInputImg']{
+label[for='btnInputImg'] {
     width: 100%;
     height: 40%;
     border-radius: 10px;
@@ -48,7 +43,8 @@ label[for='btnInputImg']{
 
     transition: .2s;
 }
-label[for='btnInputImg'] ion-icon{
+
+label[for='btnInputImg'] ion-icon {
     font-size: 2rem;
     width: 50%;
     height: 50%;
@@ -60,7 +56,8 @@ label[for='btnInputImg'] ion-icon{
     transform: translate(-50%, -50%);
     color: var(--blue);
 }
-.front .btn-input-img{
+
+.front .btn-input-img {
     width: 100%;
     height: 100%;
 
@@ -72,7 +69,11 @@ label[for='btnInputImg'] ion-icon{
     border-bottom: 2px solid var(--gray400);
 }
 
-input[type="text"], textarea{
+/* 
+    input, textarea 기본 폼 설정
+*/
+input[type="text"],
+textarea {
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
@@ -82,15 +83,38 @@ input[type="text"], textarea{
     width: 100%;
     margin: 5px 0;
 }
-input:focus{
+
+input:focus,
+textarea:focus {
     outline: none;
     background-color: var(--gray200);
+}
+
+/* 날짜 선택 css */
+input[type='date'] {
+    width: 45%;
+    box-sizing: border-box;
+    padding: 3px 5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+
+    background-color: var(--gray50);
+}
+
+/* 
+    날짜 선택 박스
+*/
+.date-pick-box>span {
+    margin: 0 5px;
+    font-weight: bold;
 }
 
 
 .project_intro {
     height: 33%;
 }
+
 .project_title {
     font-weight: bold;
     text-align: center;
@@ -134,53 +158,59 @@ input:focus{
 /**
     기술 스택
 */
-.tactstack-wrap{
+.tactstack-wrap {
     width: 100%;
     height: 40%;
-    background-color: red;
 }
-.tactstack-wrap > .title{
+
+.tactstack-wrap>.title {
     font-weight: bold;
 }
 
-.stack{
+.stack {
     display: flex;
     width: 100%;
-    height: 30%;
+    max-height: 75%;
     overflow-y: scroll;
     overflow-x: hidden;
     flex-wrap: wrap;
 
     align-items: center;
 }
-.stack::-webkit-scrollbar{
+
+.stack::-webkit-scrollbar {
     width: 10px;
-    background-color:transparent;
-  }
-.stack::-webkit-scrollbar-thumb{
+    background-color: transparent;
+}
+
+.stack::-webkit-scrollbar-thumb {
     background-color: var(--gray600);
     border-radius: 50px;
-  }
+}
 
 
-.stack > .btn-add-stact{
+.stack>.btn-add-stact {
     background-color: transparent;
     color: var(--blue);
     font-size: 1.2rem;
     width: 10%;
-    height: 10%;
     border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     margin-right: 10px;
     transition: .3s;
 }
-.stack > .btn-add-stact:hover{
+
+.stack>.btn-add-stact:hover {
     color: var(--curcer-blue);
 }
 
-.stack > span{
+.stack>span {
     min-width: auto;
-    max-width: 100%;
+    max-width: 70%;
     background-color: var(--blue);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -196,61 +226,47 @@ input:focus{
     cursor: pointer;
     transition: .3s;
 }
-.stack > span:hover{
+
+.stack>span:hover {
     background-color: var(--curcer-blue);
 }
-.stack input[type="text"]{
+
+.stack input[type="text"] {
     margin: 0;
     padding: 0;
     background-color: transparent;
     color: var(--gray50);
 }
-.stack input[type="text"]:focus{
-    background-color: var(--curcer-blue);
-}
-.stack input[type="text"]:focus span{
+
+.stack input[type="text"]:focus {
     background-color: var(--curcer-blue);
 }
 
-/**
-    input box 설정
-*/
-/* 
-.technical_stack {
-    height: 9%;
-    width: 90%;
-    border: 2px solid black;
-    border-radius: 1rem;
-    margin: 30px 0 5px 0;
-} */
+.stack input[type="text"]:focus span {
+    background-color: var(--curcer-blue);
+}
+
 
 
 /**
     본문 구분선
 */
 .divline {
-    position: absolute;
+    margin-top: 40px;
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    top: 76%;
-    justify-self: flex-start;
-}
 
-.divline>hr {
-    width: 98%;
-    height: 0.2%;
-    background-color: var(--gray200);
-    border: none;
-    position: relative;
-    top: 2.6%;
 }
 
 .divline>span {
-    margin-left: 40px;
-    width: 15%;
-    display: inline;
-    font-size: 25px;
+    margin: 0 auto;
+    width: 93%;
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    border-bottom: 1px solid var(--gray600);
 }
 
 
@@ -258,108 +274,147 @@ input:focus{
 
 /* 아이콘 */
 .icon-wrap {
-    background-color: yellow;
     width: 100%;
     height: 8%;
-    padding: 5px 0;
-    /* position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
+    padding: 0;
+    padding-top: 8px;
     display: flex;
     align-items: center;
-    border-top: 2px solid var(--gray600); */
+
+    border-top: 2px solid var(--gray400);
 }
 
 .icon-box {
-    max-width: 80%;
+    width: 80%;
+    height: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.icon-box i {
-    padding: 5px;
-    margin: 0 10px;
-    color: var(--gray600);
-    transition: 0.3s;
+.icon-box>button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background-color: transparent;
+    color: var(--gray700);
+    transition: .2s;
 }
 
-.icon-box i:hover {
-    color: var(--gray900);
+.icon-box>button:hover {
+    color: var(--blue);
 }
 
-.icon-box img {
-    width: 10%;
+.icon-box ion-icon {
+    font-size: 1.2rem;
 }
+
 
 /**
     프로젝트 이미지
 */
 .project_imgs {
-    position: absolute;
-    top: 90%;
-    right: 50%;
-    transform: translate(50%, -15%);
-    justify-content: left;
-    width: 94%;
-    height: 30%;
+    width: 93%;
+    margin: 10px auto 0 auto;
     display: flex;
-    flex-direction: row;
-    overflow: scroll;
+    align-items: center;
+    justify-content: start;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
-.project_img_card {
-    width: 400px;
-    height: 100%;
-    border: 1px;
-    margin-right: 25px;
-    display: inline-block;
-    position: relative;
+.project_imgs::-webkit-scrollbar {
+    /* width: 5px; */
+    height: 5px;
+    background-color: transparent;
+}
+
+.project_imgs::-webkit-scrollbar-thumb {
+    background-color: var(--gray200);
+    border-radius: 50px;
+}
+
+/* 이미지 카드 공통 속성 */
+.img-card{
+    min-width: 270px;
+    height: 150px;
+    background-color: var(--gray100);
+    border-radius: 10px;
     overflow: hidden;
-    transition: .5s;
-    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 20px;
+
+    transition: .2s;
 }
 
-.add_project_img_card {
-    width: 230px;
-    height: 100%;
-    border: 1px;
-    margin-right: 40px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    transition: .5s;
-    flex-shrink: 0;
-}
-
-.add_img_btn {
-    width: 230px;
-    height: 100%;
-}
-
-.add_img_btn img{
-    width: 20%;
-    height: 19%;
-    
-
-}
-
-.project_img_card>img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.add_project_img_card label[for="BtnAddImg"]{
     width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 5rem;
+    color: var(--blue);
+    transition: .3s;
+
+    cursor: pointer;
+}
+.add_project_img_card label[for="BtnAddImg"]:hover{
+    background-color: var(--curcer-blue);
+    color: var(--gray50);
+}
+
+/* 추가되는 이미지 카드 */
+.project_img_card>img {
+    width: 270px;
+    height: 150px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+    border: 2px solid var(--gray100);
+    border-radius: 10px;
+
+    margin-right: 10px;
 }
 
 /**
     markdown 에디터
 */
 #editor {
-    position: absolute;
-    width: 100%;
-    top: 130%;
+    margin-top: 10px;
     background-color: white;
+}
+
+
+/* 
+    저장버튼
+*/
+button.btn-save{
+    background-color: var(--blue);
+    color: white;
+
+    border: none;
+    border-radius: 15px;
+    padding: 10px 40px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+button.btn-save:hover{
+    background-color: var(--curcer-blue);
+}
+
+button.btn-position-40-80{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 999;
 }
