@@ -96,7 +96,7 @@ const saveOtherSkill = () => {
       portfolioId: portfolioId
     })
   });
-  
+
   if(flag) {
     return;
   }
@@ -106,9 +106,9 @@ const saveOtherSkill = () => {
     contentType: "application/json; charset=utf-8",
     type: "POST",
     data: JSON.stringify(otherSkillDtos),
-    dataType: 'json',
     async: false,
     success: function (data) {
+      document.location.href = data;
     },
     error: function (error) {
     },

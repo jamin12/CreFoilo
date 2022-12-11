@@ -211,7 +211,7 @@ public class SettingController {
             Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         otherSkillService.CUDOtherSkill(otherSkillDtos, portfolioid, userIdInSession.getUserId());
-        return "setting/settingOtherSkill";
+        return "/setting/project/" + portfolioid.toString();
     }
 
     /**
