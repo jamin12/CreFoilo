@@ -64,30 +64,51 @@ const saveOtherSkill = () => {
   const mainOtherSkills = document.querySelectorAll('.main-skill-box');
   const subOtherSkills = document.querySelectorAll('.sub-skill-box');
   const portfolioId = document.querySelector('#portfolioid').value;
+  let flag = false;
+
+  // 메인 스킬 정보
   mainOtherSkills.forEach(mainOtherSkill => {
+    const mainSkillName = mainOtherSkill.querySelector("#mainSkill").value;
+    if (mainSkillName === "") {
+      alert("빈칸을 채워주세요");
+      flag = true;
+      return;
+    }
     otherSkillDtos.push({
       otherSkillID: mainOtherSkill.querySelector("#mainSkillId")?.value,
       otherSkillName: mainOtherSkill.querySelector("#mainSkill").value,
       portfolioId: portfolioId
     });
   });
+
+  // 서브 스킬 정보
   subOtherSkills.forEach(subOtherSkill => {
+    const subSkillName = subOtherSkill.querySelector("#subSkill").value;
+    if (subSkillName === "") {
+      alert("빈칸을 채워주세요");
+      flag = true;
+      return;
+    }
     otherSkillDtos.push({
-      otherSkillName: subOtherSkill.querySelector("#subSkill").value,
+      otherSkillName: subSkillName,
       otherSkillID: subOtherSkill.querySelector("#subSkillId")?.value,
       baseOtherSkillId: subOtherSkill.querySelector("#baseSkillId").value,
       portfolioId: portfolioId
     })
   });
 
+  if(flag) {
+    return;
+  }
+
   $.ajax({
     url: `/setting/other/${portfolioId}`,
     contentType: "application/json; charset=utf-8",
     type: "POST",
     data: JSON.stringify(otherSkillDtos),
-    dataType: 'json',
     async: false,
     success: function (data) {
+      document.location.href = data;
     },
     error: function (error) {
     },

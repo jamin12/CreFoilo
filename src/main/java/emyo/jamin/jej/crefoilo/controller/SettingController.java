@@ -68,6 +68,7 @@ public class SettingController {
     @GetMapping(value = { "/setting/home", "/setting/home/{portfolioid}" })
     public String settingHome(@PathVariable Optional<Long> portfolioid, Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        // 포트폴리오 아이디가 있을 때
         if (portfolioid.isPresent()) {
             model.addAttribute("portfolioHome",
                     portfolioService.findPortfolioHome(portfolioid.get(), userIdInSession.getUserId()));
@@ -165,6 +166,23 @@ public class SettingController {
     }
 
     /**
+     * 언어기술 페이지 생성 수정 삭제 작업
+     * 
+     * @param languageSettingDtos
+     * @param portfolioid
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/language/{portfolioid}")
+    public String createLanguageSkill(@RequestBody List<LanguageSettingDto> languageSettingDtos,
+            @PathVariable Long portfolioid, Model model) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        laguageService.CUDLanguage(languageSettingDtos, portfolioid, userIdInSession.getUserId());
+        return "/setting/other/" + portfolioid.toString();
+    }
+
+    /**
      * Other Skill 페이지 조회
      * 
      * @param portfolioid
@@ -193,7 +211,7 @@ public class SettingController {
             Model model) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         otherSkillService.CUDOtherSkill(otherSkillDtos, portfolioid, userIdInSession.getUserId());
-        return "setting/settingOtherSkill";
+        return "/setting/project/" + portfolioid.toString();
     }
 
     /**

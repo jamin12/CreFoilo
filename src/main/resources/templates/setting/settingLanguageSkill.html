@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:fragment="~{layout/settingLayout}">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/settingLayout}">
 <th:block layout:fragment="script">
     <!-- ion-icon - 아이콘-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script type="text/javascript" defer th:src="@{/js/LanguageSkill.js}"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" defer th:src="@{/js/LanguageSkill.js}"></script>
 </th:block>
 <th: block layout:fragment="css">
     <link th:href="@{/css/setting/settingLanguageSkill.css}" rel="stylesheet">
-</th:block>
+    </th:block>
 
     <th:block layout:fragment="content">
+        <input type="hidden" th:value="${portfolioid}" id="portfolioid">
         <!-- 전체 LanguageSkill -->
         <section>
-            <div class="item-wrap" >
+            <div class="item-wrap">
                 <div class="btn-add-langbox" onclick="createLanguageBox(this)">
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </div>
-                
+
                 <div class="language-box" th:each="LanguageSkill : ${LanguageSkillList}">
                     <input type="hidden" th:value="${LanguageSkill.langId}" id="langId">
                     <button class="btn-delete" onclick="deleteLanguageBox(this)">
                         <ion-icon name="close-outline"></ion-icon>
                     </button>
 
-                    <input type="text" class="input-langname" th:value="${LanguageSkill.langName}" autofocus/>
+                    <input type="text" class="input-langname" th:value="${LanguageSkill.langName}" autofocus />
                     <div class="progressbar">
-                        <input type="range" th:value="${LanguageSkill.langFrequency}" max="100"/>
+                        <input type="range" id="progressbarInput" th:value="${LanguageSkill.langFrequency}" max="100" />
                     </div>
 
+                    <!-- TODO (경민 -> 이묘): 크기 커지는거, 한글 짤리는거 해결하기-->
                     <div class="lang-framework-box">
                         <button onclick="addLangFramework(this)">
                             <ion-icon name="add-circle"></ion-icon>
@@ -39,24 +41,26 @@
                     <textarea class="lang-textarea">
 
                     </textarea>
-                    <script th:inline = "javascript">
-                        var thLangSkillNameList = [[${LanguageSkill.langSkillName}]].split('/n');
+                    <script th:inline="javascript">
+                        var thLangSkillNameList = [[${ LanguageSkill.langSkillName }]].split('/n');
                         var langFramworkBox = document.querySelectorAll(".lang-framework-box");
                         thLangSkillNameList.forEach(thLangSkillName => {
-                            var spanTag = document.createElement("span");
-                            spanTag.innerText = thLangSkillName
-                            spanTag.onclick = function() {
-                                this.remove();
+                            if(thLangSkillName !== ""){
+                                var spanTag = document.createElement("span");
+                                spanTag.innerText = thLangSkillName
+                                spanTag.onclick = function () {
+                                    this.remove();
+                                }
+                                langFramworkBox[langFramworkBox.length - 1].appendChild(spanTag);
                             }
-                            langFramworkBox[langFramworkBox.length - 1].appendChild(spanTag);
                         });
-                        var thLangDetailList = [[${LanguageSkill.langDetail}]].split('/n');
+                        var thLangDetailList = [[${ LanguageSkill.langDetail }]].split('/n');
                         var langTextArea = document.querySelectorAll(".lang-textarea");
-                        langTextArea[langFramworkBox.length - 1].innerText = thLangDetailList.join('\n');
+                        langTextArea[langFramworkBox.length - 1].innerHTML = thLangDetailList.join('&#10;');
                     </script>
                 </div>
             </div>
-            <button class="btn-save btn-position-60-100" onclick="saveLaguageSkill()">저장</button>
+            <button class="btn-save btn-position-60-100" onclick="createLang()">저장</button>
         </section>
     </th:block>
 
