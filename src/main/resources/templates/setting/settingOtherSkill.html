@@ -5,10 +5,23 @@
 
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/setting/settingOtherSkill.css}">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </th:block>
 
 <th:block layout:fragment="script">
     <script type="text/javascript" defer th:src="@{/js/otherSkill.js}"></script>
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </th:block>
 
 
@@ -16,7 +29,7 @@
 <th:block layout:fragment="content">
     <div class="allOtherSkill">
 
-        <button class="btn-add-box">
+        <button class="btn-add-box" type="button" data-toggle="modal" data-target="#ModalAddMainSkill">
             <ion-icon name="add-circle-outline"></ion-icon>
         </button>
         <input type="hidden" th:value="${portfolioid}" id="portfolioid">
@@ -24,7 +37,8 @@
             <div class="os-box" th:each="otherskill : ${otherskilllist}">
                 <div class="main-skill-box">
                     <ion-icon name="close-circle-outline" onclick="deleteBaseOtherSkill(this)"></ion-icon>
-                    <input id="mainSkill" type="text" name="MainSkill" th:value="${otherskill.otherSkillBaseName}" autofocus><br>
+                    <input id="mainSkill" type="text" name="MainSkill" th:value="${otherskill.otherSkillBaseName}"
+                        autofocus><br>
                     <input id="mainSkillId" type="hidden" name="mainSkillId" th:value="${otherskill.otherSkillBaseId}">
                 </div>
 
@@ -32,7 +46,8 @@
                     <ion-icon name="close-circle-outline" onclick="deleteSubBaseOtherSkill(this)"></ion-icon>
                     <input id="subSkill" type="text" name="Skill" th:value="${subotherskill.otherSkillSubName}"><br>
                     <input id="subSkillId" type="hidden" name="subSkillId" th:value="${subotherskill.otherSkillSubId}">
-                    <input id="baseSkillId" type="hidden" name="baseSkillId" th:value="${subotherskill.otherSkillBaseId}">
+                    <input id="baseSkillId" type="hidden" name="baseSkillId"
+                        th:value="${subotherskill.otherSkillBaseId}">
                 </div>
 
                 <button class="btn-subskill-add" type="button" onclick="addSubOtherSkill(this)">
@@ -41,6 +56,29 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalAddMainSkill" tabindex="-1" role="dialog" aria-labelledby="ModalAddMainSkillLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalAddMainSkillLabel">새 기술 스킬 추가하기</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="ex) Document"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary">적용</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <button class="btn-save btn-position-60-100" onclick="saveOtherSkill()">SAVE</button>
 </th:block>
 
