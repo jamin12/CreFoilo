@@ -42,7 +42,7 @@
 
         <div class="contents">
             <img src="https://images.unsplash.com/photo-1661956602139-ec64991b8b16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60)"
-                alt="사용자 지정 이미지">
+                alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
         </div>
     </section>
 
@@ -92,7 +92,7 @@
             <div class="contents type1" th:if="${aboutme.aboutMeType == 1}">
                 <content class="first-content">
                     <h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
-                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" />
+                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'"/>
                 </content>
                 <content class="second-content">
                     <h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
@@ -111,7 +111,7 @@
 
             <!-- type2 -->
             <div class="contents type2" th:if="${aboutme.aboutMeType == 0}">
-                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}">
+                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'">
                 <div class="text-box">
                     <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
                     <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
@@ -168,8 +168,8 @@
                         <!-- 이미지 캐러셀 -->
                         <th:block th:if="${projectD.projectImg != null}">
                             <div class="project-detail-carousel">
-                                <th:block th:each="img : ${projectD.projectImg}">
-                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지" />
+                                <th:block th:each="img : ${projectD.projectImg}" >
+                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지" onerror="this.src='/img/SampleImg.png'"/>
                                 </th:block>
                             </div>
                         </th:block>
@@ -197,7 +197,7 @@
                         <div class="card">
                             <!-- 앞면 -->
                             <div id="projectCardFront" class="front">
-                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지">
+                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지" onerror="this.src='/img/SampleImg.png'">
                                 <h3 id="projectTitle" th:text="${projectDetail.projectTitle}">TESTITLE</h3>
                                 <p id="projectAbout" th:text="${projectDetail.proejctIntro}">어떠어떠한 프로젝트를 만들었다는
                                     것을 대략적으로
@@ -221,7 +221,7 @@
                                     <div class="icon-box">
                                         <a th:each="document: ${projectDetail.projectDocument}"
                                             th:href="${document.documentUrl}">
-                                            <img th:src="${document.documentImgUrl}">
+                                            <img th:src="${document.documentImgUrl}" onerror="this.src='/img/SampleImg.png'">
                                         </a>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@
             <div class="contents">
                 <div class="contact-item" th:each="contactItem : ${contact}">
                     <img class="icon" th:src="${contactItem.contactImgUrl}"
-                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png" onerror="this.src='/img/SampleImg.png'"/>
                     <span>
                         <!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
                         <a th:href="${contactItem.contactInfo}"
