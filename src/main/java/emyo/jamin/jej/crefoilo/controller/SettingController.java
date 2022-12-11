@@ -215,6 +215,21 @@ public class SettingController {
     }
 
     /**
+     * base Other Skill 생성
+     * 
+     * @param portfolioid
+     * @param otherSkillDto
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "/setting/baseother/{portfolioid}")
+    public OtherSkillDto createBaseOtherSkill(@PathVariable Long portfolioid,
+            @RequestBody OtherSkillDto otherSkillDto) {
+        SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
+        return otherSkillService.createBaseOtherSkill(otherSkillDto, portfolioid, userIdInSession.getUserId());
+    }
+
+    /**
      * 포트폴리오의 프로젝트리스트 페이지 조회
      * 
      * @param portfolioid 포트폴리오 아이디

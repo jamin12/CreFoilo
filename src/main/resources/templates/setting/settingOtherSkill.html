@@ -12,10 +12,6 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript" defer th:src="@{/js/otherSkill.js}"></script>
-    <!-- bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -69,11 +65,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" placeholder="ex) Document"/>
+                    <input type="text" placeholder="ex) Document" id="baseotherskill" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary">적용</button>
+                    <button type="button" class="btn btn-primary" onclick="createBaseOtherSkill()"
+                        data-dismiss="modal">적용</button>
                 </div>
             </div>
         </div>

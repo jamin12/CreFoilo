@@ -12,4 +12,7 @@ public interface OtherSkillService {
     List<OtherSkillBaseList> findOtherSkillList(Long portFolioId, String userId);
 
     List<OtherSkillListDto> CUDOtherSkill(List<OtherSkillDto> otherSkillDtoList, Long portFolioId, String userId);
+
+    OtherSkillDto createBaseOtherSkill(OtherSkillDto otherSkillDto, Long portFolioId,
+            String userId);
 }

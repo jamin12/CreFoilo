@@ -147,4 +147,18 @@ public class OtherSkillServiceImpl implements OtherSkillService {
         return null;
     }
 
+    /**
+     * base other skill 생성
+     * 
+     * @param otherSkillDtoList
+     * @param portFolioId
+     * @param userId
+     */
+    @Override
+    public OtherSkillDto createBaseOtherSkill(OtherSkillDto otherSkillDto, Long portFolioId,
+            String userId) {
+        return new OtherSkillDto(
+                otherSkillRepository.save(OtherSkill.createAndUpdateEntity(portFolioId, otherSkillDto)));
+    }
+
 }

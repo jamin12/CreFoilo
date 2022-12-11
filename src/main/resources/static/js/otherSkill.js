@@ -1,3 +1,44 @@
+const createBaseOtherSkill = () => {
+  const portfolioid = document.querySelector('#portfolioid').value
+  const baseOtherSkillName = document.querySelector("#baseotherskill")
+  const osWrap = document.querySelector('.os-wrap');
+  const data = {
+    portfolioId: portfolioid,
+    otherSkillName: baseOtherSkillName.value,
+  }
+  let createdBaseOtherSKillId = 0
+  let createdBaseOtherSKillName = ""
+  $.ajax({
+    url: `/setting/baseother/${portfolioid}`,
+    contentType: "application/json; charset=utf-8",
+    type: "POST",
+    data: JSON.stringify(data),
+    async: false,
+    success: function (data) {
+      createdBaseOtherSKillId = data.otherSkillID;
+      createdBaseOtherSKillName = data.otherSkillName;
+    },
+    error: function (error) {
+    },
+  })
+
+  const baseOtherSKillEelement = document.createElement('div');
+  const baseOtherSKill_osBox = document.createElement('div');
+  baseOtherSKillEelement.className = "main-skill-box"
+  baseOtherSKill_osBox.className = "os-box"
+
+  baseOtherSKillEelement.innerHTML = `
+      <ion-icon name="close-circle-outline" onclick="deleteBaseOtherSkill(this)"></ion-icon>
+      <input id="mainSkill" type="text" name="MainSkill" value=${createdBaseOtherSKillName} 
+          autofocus><br>
+      <input id="mainSkillId" type="hidden" name="mainSkillId" value=${createdBaseOtherSKillId}>
+  `;
+
+  baseOtherSKill_osBox.appendChild(baseOtherSKillEelement);
+
+  osWrap.appendChild(baseOtherSKill_osBox);
+  baseOtherSkillName.value = "";
+};
 
 /**
  * baseOtherSkill 삭제
@@ -97,7 +138,7 @@ const saveOtherSkill = () => {
     })
   });
 
-  if(flag) {
+  if (flag) {
     return;
   }
 
