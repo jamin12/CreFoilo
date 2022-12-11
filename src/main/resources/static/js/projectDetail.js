@@ -98,15 +98,16 @@ function setProejctContentsInfo() {
     return;
   }
   // 대표 이미지 가져오기
-  let representativeImgUrl = document.querySelector("#projectRepresentativeImgUrl")?.value;
+  let representativeImgUrl = document.querySelector("#representImgtag")?.src;
+
   // 프로젝트 문서 가져오기
-  let projectDoc = document.querySelectorAll(".projectDoc");
+  let projectDocs = document.querySelectorAll(".docInfo");
   let projectDocDto = []
-  projectDoc.forEach(e => {
+  projectDocs.forEach(projectDoc => {
     projectDocDto.push({
-      docuemntUrlId: e.querySelector("#docuemntUrlId").value,
-      documentImgUrl: e.querySelector("#documentImgUrl").value,
-      documentUrl: e.querySelector("#documentUrl").value
+      docuemntUrlId: projectDoc.querySelector("#docId")?.value,
+      documentImgUrl: projectDoc.querySelector("#documentIconUrl").name,
+      documentUrl: projectDoc.querySelector("#docUrl").value
     })
   });
 
@@ -134,40 +135,37 @@ function setProejctContentsInfo() {
     projectDocument: projectDocDto
   }
   // 새로 만들기
-  // if (projectId === '') {
-  //   $.ajax({
-  //     url: `/setting/projectdetail/${portfolioId}`,
-  //     contentType: "application/json; charset=utf-8",
-  //     type: "POST",
-  //     data: JSON.stringify(data),
-  //     dataType: 'json',
-  //     async: false,
-  //     success: function (data) {
-  //       location.href = data.responseText
-  //     },
-  //     // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
-  //     error: function (error) {
-  //       location.href = error.responseText
-  //     },
-  //   })
-  //   // 업데이트
-  // } else {
-  //   data.projectId = projectId;
-  //   $.ajax({
-  //     url: `/setting/projectdetail/${portfolioId}/${projectId}`,
-  //     contentType: "application/json; charset=utf-8",
-  //     type: "POST",
-  //     data: JSON.stringify(data),
-  //     dataType: 'json',
-  //     async: false,
-  //     success: function (data) {
-  //     },
-  //     // 이거 왜 error 이랑 success랑 바껴있는지 이해가 안간다.
-  //     error: function (error) {
-  //       location.href = error.responseText
-  //     },
-  //   })
-  // }
+  if (projectId === '') {
+    $.ajax({
+      url: `/setting/projectdetail/${portfolioId}`,
+      contentType: "application/json; charset=utf-8",
+      type: "POST",
+      data: JSON.stringify(data),
+      dataType: "json",
+      async: false,
+      success: function (data) {
+      },
+      error: function (error) {
+        document.location.href = error.responseText;
+      },
+    })
+    // 업데이트
+  } else {
+    data.projectId = projectId;
+    $.ajax({
+      url: `/setting/projectdetail/${portfolioId}/${projectId}`,
+      contentType: "application/json; charset=utf-8",
+      type: "POST",
+      data: JSON.stringify(data),
+      dataType: "json",
+      async: false,
+      success: function (data) {
+      },
+      error: function (error) {
+        document.location.href = error.responseText;
+      },
+    })
+  }
 }
 
 const addImg = (e) => {
@@ -239,11 +237,8 @@ const addImgRepresent = (e) => {
       // TODO: 에러처리
     }
   });
-  const representImgInput = document.querySelector("#projectRepresentativeImgUrl")
   const representImgtag = document.querySelector("#representImgtag")
   const addRepresentImgBtn = document.querySelector(".add_represent_img_btn")
-
-  representImgInput.value = createUrl("", [imgFile]);
 
   representImgtag.src = createUrl("", [imgFile]);
 
@@ -261,34 +256,31 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var type = button.data('whatever') // Extract info from data-* attributes
   const iconCount = document.getElementById('iconBox')
-  if(iconCount.childElementCount >= 5){
 
-  }
   var modal = $(this)
   if (type === 'addIcon') {
+    if (iconCount.childElementCount > 5) {
+      alert("document Link는 5개이상 입력하지 못합니다.");
+      modal.close();
+    }
     modal.find('.modal-title').text('아이콘 추가하기')
     modal.find('.btn-cancle-icon').css("display", "flex")
     modal.find('.btn-delete-icon').css("display", "none")
-    event.currentTarget.querySelector(".btn-primary").onclick = function (){
-      updateDocLink(event.relatedTarget);
+    event.currentTarget.querySelector(".btn-primary").onclick = function () {
+      createDocLink(event.relatedTarget);
     }
   } else {
     modal.find('.modal-title').text('아이콘 수정하기')
     modal.find('.btn-cancle-icon').css("display", "none")
     modal.find('.btn-delete-icon').css("display", "flex")
-    event.currentTarget.querySelector(".btn-delete-icon").onclick = function (){
+    event.currentTarget.querySelector(".btn-delete-icon").onclick = function () {
       deleteIcon(event.relatedTarget);
     }
-    event.currentTarget.querySelector(".btn-primary").onclick = function (){
+    event.currentTarget.querySelector(".btn-primary").onclick = function () {
       updateDocLink(event.relatedTarget);
     }
   }
 })
-
-$('#exampleModal').on('hidden.bs.modal', function (e) {
-  // e.currentTarget.remove();
-})
-
 
 const modalIconDic = {
   iconName: [
@@ -335,10 +327,12 @@ for (var i = 0; i < modalIconDic.iconName.length; i++) {
  */
 const updateDocLink = (e) => {
   var radiovalue = $('input[name=select-icon]:checked').val();
-  const docUrlText = document.querySelector('#docUrlText').value;
+  const docUrlText = document.querySelector('#docUrlText');
   const docUrlTextInput = e.querySelector('#docUrl');
-  docUrlTextInput.value = docUrlText;
+  docUrlTextInput.value = docUrlText.value;
   e.querySelector("ion-icon").setAttribute("name", radiovalue);
+
+  docUrlText.value = "";
 }
 
 /**
@@ -348,9 +342,22 @@ const updateDocLink = (e) => {
  */
 const createDocLink = (e) => {
   var radiovalue = $('input[name=select-icon]:checked').val();
-  const docUrlText = document.querySelector('#docUrlText').value;
+  const docUrlText = document.querySelector('#docUrlText');
 
-  
+  const iconButton = document.createElement("button");
+
+  iconButton.className = "docInfo";
+  iconButton.setAttribute("data-toggle", "modal")
+  iconButton.setAttribute("data-target", "#exampleModal")
+  iconButton.setAttribute("data-whatever", "icon")
+
+  iconButton.innerHTML = `
+    <ion-icon name="${radiovalue}" id="documentIconUrl"></ion-icon>
+    <input type="hidden" value="${docUrlText.value}" id="docUrl">
+  `;
+
+  e.parentElement.appendChild(iconButton);
+  docUrlText.value = "";
 }
 
 /**
