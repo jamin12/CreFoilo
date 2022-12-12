@@ -35,6 +35,11 @@ const createBaseOtherSkill = () => {
   `;
 
   baseOtherSKill_osBox.appendChild(baseOtherSKillEelement);
+  baseOtherSKill_osBox.innerHTML += `      
+              <button class="btn-subskill-add" type="button" onclick="addSubOtherSkill(this)">
+                <ion-icon name="add-circle"></ion-icon>
+              </button>
+  `;
 
   osWrap.appendChild(baseOtherSKill_osBox);
   baseOtherSkillName.value = "";
@@ -66,7 +71,8 @@ const deleteSubBaseOtherSkill = (e) => {
  * @param {Element} e 
  */
 const addSubOtherSkill = (e) => {
-  const baseOtherSkillId = e.parentElement.childNodes[1].childNodes[6].value;
+  console.log(e)
+  const baseOtherSkillId = e.parentElement.querySelector(".main-skill-box").querySelector("#mainSkillId").value;
   const subOtherSKillDiv = document.createElement('div');
   const subOtherSKillDeleteIcon = document.createElement('ion-icon');
   const subOtherSKillName = document.createElement('input');

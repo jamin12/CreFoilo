@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,10 @@
     <!-- fontawesome - 아이콘 -->
     <script type="text/javascript" defer th:src="@{/js/portfolioList.js}"></script>
     <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
     <header>
         <h1>CreFoilo</h1>
@@ -20,7 +24,7 @@
     <content>
         <div class="content-header">
             <p>내 포트폴리오 목록</p>
-            <a href="#none"><i class="fa-solid fa-file-circle-plus"></i></a>
+            <a href="/setting/home"><i class="fa-solid fa-file-circle-plus"></i></a>
         </div>
 
         <!-- 여기 div클래스를 데이터를 받아와서 돌리면 됨 -->
@@ -28,24 +32,26 @@
             <i class="fa-solid fa-file-lines"></i>
 
             <div class="text-box">
-                <a href="#none" class="portfolio-name" th:text="${pl.portfolioName}">임효현의 포트폴리오</a>
+                <a th:href="@{/portfolio/{portfolioid}(portfolioid = ${pl.portfolioId})}" class="portfolio-name"
+                    th:text="${pl.portfolioName}">임효현의 포트폴리오</a>
                 <p class="date-update">
                     <span th:text="${pl.updatedDate}">2022-10-05 15:06</span>
                     <span>update</span>
                 </p>
             </div>
-            
+
             <div class="button-box">
-                <a href="#refernce">
+                <a th:href="@{/setting/home/{portfolioid}(portfolioid = ${pl.portfolioId})}">
                     <i class="fa-regular fa-pen-to-square"></i>
                     <span class="tooltip">수정</span>
                 </a>
                 <a href="#copy" onclick="copyPortfolioLink(this)">
                     <i class="fa-regular fa-copy"></i>
-                    <input type="hidden" th:value="${pl.portfolioId}"/>
+                    <input type="hidden" th:value="${pl.portfolioId}" />
                     <span class="tooltip">링크복사</span>
                 </a>
-                <a href="#delete">
+                <a href="#delete" onclick="deletePortfolio(this)">
+                    <input type="hidden" id="porfolioid" th:value="${pl.portfolioId}">
                     <i class="fa-regular fa-trash-can"></i>
                     <span class="tooltip">삭제</span>
                 </a>
@@ -53,4 +59,5 @@
         </div>
     </content>
 </body>
+
 </html>

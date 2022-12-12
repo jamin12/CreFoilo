@@ -8,3 +8,24 @@ const copyPortfolioLink = (e) => {
   // TODO: 도메인 적용 시 포트번호 없애기
   navigator.clipboard.writeText(`${document.location.hostname}:${document.location.port}/portfolio/${portfolioId}`)
 }
+
+/**
+ * 포트폴리오 삭제
+ * 
+ * @param {Element} e 
+ */
+const deletePortfolio = (e) => {
+  const portfolioid = e.querySelector("#porfolioid").value;
+  $.ajax({
+    url: `/myportfolio/d/${portfolioid}`,
+    contentType: "application/json; charset=utf-8",
+    method: "DELETE",
+    data: {},
+    async: false,
+    success: function (data) {
+    },
+    error: function (error) {
+    },
+  });
+  e.parentElement.parentElement.remove();
+}

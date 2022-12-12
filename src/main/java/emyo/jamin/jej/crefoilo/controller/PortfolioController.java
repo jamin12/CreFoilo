@@ -2,17 +2,15 @@ package emyo.jamin.jej.crefoilo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.thymeleaf.util.StringUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import emyo.jamin.jej.crefoilo.dto.PortfolioDto;
 import emyo.jamin.jej.crefoilo.security.SessionUser;
@@ -59,12 +57,16 @@ public class PortfolioController {
         return "portfolio";
     }
 
-    @GetMapping(value = "/portfolio/d/{portfolioid}")
+    /**
+     * 포트폴리오 삭제
+     * 
+     * @param portfolioid
+     * @return
+     */
+    @ResponseBody
+    @DeleteMapping(value = "/myportfolio/d/{portfolioid}")
     public String deletePortfolio(@PathVariable Long portfolioid) {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
-        if (userIdInSession == null) {
-            return "redirect:/";
-        }
         portfolioService.deletePortfolio(portfolioid, userIdInSession.getUserId());
         return "우와";
     }
