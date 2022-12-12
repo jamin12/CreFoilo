@@ -6,7 +6,7 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 70%;
-    height: 50%;
+    height: 60%;
     box-sizing: border-box;
     display: grid;;
     grid-template-columns: 1fr 1fr;
@@ -18,7 +18,7 @@
 */
 .section1{
     box-sizing: border-box;
-    padding: 50px;
+    padding: 20px;
 
     display: flex;
     align-items: center;
@@ -35,8 +35,8 @@ input[type=file]{
     justify-content: center;
     z-index: 999;
     
-    width: 400px;
-    height: 270px;
+    width: 500px;
+    height: 370px;
     border: none;
     border-radius: 20px;
     overflow: hidden;
@@ -60,8 +60,8 @@ input[type=file]{
     transition: 0.3s;
 }
 .img-background{
-    width: 400px;
-    height: 270px;
+    width: 500px;
+    height: 370px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -79,7 +79,7 @@ input[type=file]{
     section 2
 */
 .section2{
-    height: 270px;
+    height: 370px;
     width: 100%;
 
     display: flex;
@@ -94,7 +94,7 @@ input, textarea{
     border: none;
     border-left: 2px solid var(--gray200);
     border-right: 2px solid var(--gray200);
-    padding: 5px 10px;
+    padding: 10px;
 }
 
 /* input */
