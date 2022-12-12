@@ -33,24 +33,30 @@ section {
     border-radius: 50px;
 }
 
+/*
+    버튼 공통 속성
+*/
+.main-wrap > button{
+    width: 100%;
+    border-radius: 10px;
+    font-size: 3rem;
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: inherit;
+}
 
 /* 
     아이템 추가 버튼
 */
 .btn-add-item {
-    width: 30%;
     margin: 0 auto;
     border: none;
 
-    background-color: inherit;
     color: var(--blue);
-    font-size: 3rem;
-    border-radius: 50px;
-    transition: .2s;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .btn-add-item:hover {
@@ -62,6 +68,23 @@ section {
 /* 
     새로운 요소
 */
+.item-box
+{
+    border: none;
+    font-size: 1.5rem;
+
+    transition: .2s;
+}
+.item-box:hover
+{
+    color: var(--blue);
+}
+.item-box > span{
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+/* 
 .item-box {
     min-height: 100px;
     display: flex;
@@ -97,9 +120,9 @@ section {
     outline: none;
     background-color: var(--gray50);
 }
+*/
 
 .label-wrap{
-    background-color: red;
     height: 300px;
     overflow-y: scroll;
     overflow-x: hidden;
