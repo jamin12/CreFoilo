@@ -65,7 +65,7 @@
         <!-- 네비게이션 바 -->
         <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50); z-index: 900;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#Home">EMYO님의 포트폴리오</a>
+                <a class="navbar-brand" href="#Home">userName</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -78,6 +78,8 @@
                         <li class="nav-item"><a class="nav-link" href="#otherSkill">Other Skill</a></li>
                         <li class="nav-item"><a class="nav-link" href="#project">Project</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+                        <li class="nav-item"><a class="nav-link" th:href="@{/myportfolio/list}"><ion-icon name="home-outline"></ion-icon></a></li>
                     </ul>
                 </div>
             </div>
