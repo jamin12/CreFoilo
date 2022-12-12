@@ -37,7 +37,6 @@
 <body>
     <!-- 홈화면 -->
     <!-- type1 -->
-    <!-- 이미지와 글자를 넣어줘야함 -->
     <section id="Home" class="type1" th:if="${portfolio.portfolioHomeType == 1}">
         <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
         <h2 class="typing main-title-curcer"></h2>
@@ -46,14 +45,12 @@
     </section>
 
     <!-- type2 -->
-    <!-- 글자만 넣어주면 됨 -->
     <section id="Home" class="type2" th:if="${portfolio.portfolioHomeType == 2}">
         <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
         <h2 class="typing main-title-curcer"></h2>
     </section>
 
     <!-- type3 -->
-    <!-- 글자와 이미지 넣어줘야함 -->
     <section id="Home" class="type3" th:if="${portfolio.portfolioHomeType == 3}">
         <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
         <h2 class="typing main-title-curcer"></h2>
