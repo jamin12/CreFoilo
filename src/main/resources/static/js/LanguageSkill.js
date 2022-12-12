@@ -70,6 +70,7 @@ const createLanguageBox = (e) => {
   // 언어 이름 적는 input
   langNameInput.type = "text";
   langNameInput.className = "input-langname";
+  langNameInput.placeholder = "ex) javaScript";
 
   // 언어 프로그래스바 input
   langProgressInput.type = "range";
@@ -95,6 +96,7 @@ const createLanguageBox = (e) => {
 
   // 언어 상세 설명
   langDetail.className = "lang-textarea";
+  langDetail.placeholder = "상세설명을 적으세요\n \n상세설명을 엔터를 기준으로 구분됩니다.";
 
   // 전체 틀
   langBox.className = "language-box";
