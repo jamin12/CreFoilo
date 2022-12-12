@@ -204,7 +204,7 @@ const addImg = (e) => {
   imgTag.src = createUrl("", [imgFile]);
 
   imgCard.onclick = function () {
-    this.remove();
+    deleteImg(this);
   }
   imgCard.setAttribute("class", "project_img_card img-card")
   imgCard.appendChild(imgTag);
@@ -327,6 +327,10 @@ for (var i = 0; i < modalIconDic.iconName.length; i++) {
  */
 const updateDocLink = (e) => {
   var radiovalue = $('input[name=select-icon]:checked').val();
+  if(radiovalue === undefined){
+    alert("아이콘을 선택해주세요");
+    return;
+  }
   const docUrlText = document.querySelector('#docUrlText');
   const docUrlTextInput = e.querySelector('#docUrl');
   docUrlTextInput.value = docUrlText.value;
@@ -342,6 +346,10 @@ const updateDocLink = (e) => {
  */
 const createDocLink = (e) => {
   var radiovalue = $('input[name=select-icon]:checked').val();
+  if(radiovalue === undefined){
+    alert("아이콘을 선택해주세요");
+    return;
+  }
   const docUrlText = document.querySelector('#docUrlText');
 
   const iconButton = document.createElement("button");
@@ -368,3 +376,14 @@ const createDocLink = (e) => {
 const deleteIcon = (e) => {
   e.remove();
 }
+
+/**
+ * 
+ * @param {Element} e 
+ */
+const deleteImg = (e) => {
+  if(confirm("삭제하시겠습니까?")){
+    e.remove();
+  }
+}
+
