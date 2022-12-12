@@ -9,8 +9,9 @@
     grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(minmax(100px, auto));
     row-gap: 20px;
-    column-gap: 10%;
-    align-content: start;
+    column-gap: 10px;
+    justify-items: stretch;
+    align-items: start;
 
     max-height: 65%;
     overflow-y: scroll;
@@ -26,10 +27,13 @@
 
 .contents > .others{
     background-color: var(--gray100);
+    padding: 20px;
+    border-radius: 10px;
 }
 .others > h2{
-    font-size: 25px;
+    font-size: 1.8rem;
     font-weight: 400;
+    color: var(--gray800);
     position: relative;
     display: flex;
     padding-left: 10px;
@@ -44,6 +48,17 @@
     width: 4px;
     background-color: var(--gray800);
     transform: translateY(-10%);
+}
+
+.others > ul,
+.others > li
+{
+    list-style: none;
+}
+.others > ul{
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--gray600);
 }
 
 
