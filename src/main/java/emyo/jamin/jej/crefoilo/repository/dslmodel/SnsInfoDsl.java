@@ -6,4 +6,6 @@ import emyo.jamin.jej.crefoilo.entity.SnsInfo;
 
 public interface SnsInfoDsl {
     List<SnsInfo> findByEmail(String email);
+
+    SnsInfo findByUserId(String userId);
 }
