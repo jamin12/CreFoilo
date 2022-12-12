@@ -57,6 +57,7 @@ section {
 
 .language-box {
     min-width: 300px;
+    max-width: 300px;
     height: 100%;
     background-color: var(--gray100);
     position: relative;
