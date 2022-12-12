@@ -51,7 +51,7 @@ public class OtherSkillServiceImpl implements OtherSkillService {
 
                 // subOtherSkillNames을 얻기 위해 중첩 for 사용
                 for (OtherSkill otherSkill : findedOtherSkills) {
-                    if (findOtherSkill.getOtherSkillID() == otherSkill.getBaseOtherSkillId()) {
+                    if (findOtherSkill.getOtherSkillID().equals(otherSkill.getBaseOtherSkillId())) {
                         subOtherSkillNames.add(otherSkill.getOtherSkillName());
                     }
                 }
@@ -88,7 +88,7 @@ public class OtherSkillServiceImpl implements OtherSkillService {
 
                 // subOtherSkillNames을 얻기 위해 중첩 for 사용
                 for (OtherSkill otherSkill : findedOtherSkills) {
-                    if (findOtherSkill.getOtherSkillID() == otherSkill.getBaseOtherSkillId()) {
+                    if (findOtherSkill.getOtherSkillID().equals(otherSkill.getBaseOtherSkillId())) {
                         subOtherSkillNames.add(new OtherSkillSubList(otherSkill));
                     }
                 }
@@ -119,7 +119,7 @@ public class OtherSkillServiceImpl implements OtherSkillService {
             int flag = 0;
             for (OtherSkillDto otherSkillDto : otherSkillDtoList) {
                 if (otherSkillDto.getOtherSkillID() != null) {
-                    if (otherSkill.getOtherSkillID() == otherSkillDto.getOtherSkillID()) {
+                    if (otherSkill.getOtherSkillID().equals(otherSkillDto.getOtherSkillID())) {
                         flag = 1;
                         break;
                     }

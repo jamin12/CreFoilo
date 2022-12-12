@@ -71,7 +71,6 @@ const deleteSubBaseOtherSkill = (e) => {
  * @param {Element} e 
  */
 const addSubOtherSkill = (e) => {
-  console.log(e)
   const baseOtherSkillId = e.parentElement.querySelector(".main-skill-box").querySelector("#mainSkillId").value;
   const subOtherSKillDiv = document.createElement('div');
   const subOtherSKillDeleteIcon = document.createElement('ion-icon');
@@ -123,7 +122,7 @@ const saveOtherSkill = () => {
     }
     otherSkillDtos.push({
       otherSkillID: mainOtherSkill.querySelector("#mainSkillId")?.value,
-      otherSkillName: mainOtherSkill.querySelector("#mainSkill").value,
+      otherSkillName: mainSkillName,
       portfolioId: portfolioId
     });
   });
