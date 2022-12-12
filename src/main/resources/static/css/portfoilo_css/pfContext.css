@@ -33,14 +33,7 @@
     justify-content: center;
 }
 .contact-item .icon{
-    width: 50px;
-    margin-right: 15px;
-}
-.contact-item a{
-    font-size: 1.1rem;
-    color: var(--gray600);
-    transition: 0.3s;
-}
-.contact-item a:hover{
-    color: var(--gray800);
+    /* width: 50px; */
+    margin-right: 10px;
+    font-size: 2.5rem;
 }
