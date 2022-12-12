@@ -256,7 +256,13 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var type = button.data('whatever') // Extract info from data-* attributes
   const iconCount = document.getElementById('iconBox')
-
+  const docUrlText = document.querySelector("#docUrlText");
+  let docUrlVal = event.relatedTarget.querySelector("#docUrl")?.value;
+  if(docUrlVal === undefined){
+    docUrlVal = "";
+  }
+  docUrlText.value = docUrlVal;
+  
   var modal = $(this)
   if (type === 'addIcon') {
     if (iconCount.childElementCount > 5) {
