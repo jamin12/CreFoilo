@@ -17,6 +17,8 @@
         crossorigin="anonymous"></script>
     <!-- fontawesome - 아이콘 -->
     <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <!-- 제이쿼리 -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -37,25 +39,23 @@
     <!-- type1 -->
     <!-- 이미지와 글자를 넣어줘야함 -->
     <section id="Home" class="type1" th:if="${portfolio.portfolioHomeType == 1}">
-        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
+        <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
         <h2 class="typing main-title-curcer"></h2>
 
-        <div class="contents">
-            <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
-        </div>
+        <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
     </section>
 
     <!-- type2 -->
     <!-- 글자만 넣어주면 됨 -->
     <section id="Home" class="type2" th:if="${portfolio.portfolioHomeType == 2}">
-        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+        <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
         <h2 class="typing main-title-curcer"></h2>
     </section>
 
     <!-- type3 -->
     <!-- 글자와 이미지 넣어줘야함 -->
     <section id="Home" class="type3" th:if="${portfolio.portfolioHomeType == 3}">
-        <h2 class="typing-txt main-title" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
+        <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
         <h2 class="typing main-title-curcer"></h2>
         <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" oimage.pngnerror="this.src='/img/SampleImg.png'">
     </section>
@@ -73,7 +73,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- TODO(이묘): 요소 클릭하면 네비바 닫히도록 -->
                         <li class="nav-item"><a class="nav-link" href="#aboutMe">About Me</a></li>
                         <li class="nav-item"><a class="nav-link" href="#languageSkill">Language Skill</a></li>
                         <li class="nav-item"><a class="nav-link" href="#otherSkill">Other Skill</a></li>
@@ -224,8 +223,7 @@
                                     <div class="icon-box">
                                         <a th:each="document: ${projectDetail.projectDocument}"
                                             th:href="${document.documentUrl}">
-                                            <img th:src="${document.documentImgUrl}"
-                                                onerror="this.src='/img/SampleImg.png'">
+                                        <ion-icon class="icon" th:name="${document.documentImgUrl}"></ion-icon>
                                         </a>
                                     </div>
                                 </div>
@@ -242,13 +240,10 @@
 
             <div class="contents">
                 <div class="contact-item" th:each="contactItem : ${contact}">
-                    <img class="icon" th:src="${contactItem.contactImgUrl}"
-                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                        onerror="this.src='/img/SampleImg.png'" />
+                    <ion-icon class="icon" th:name="${contactItem.contactImgUrl}"></ion-icon>
                     <span>
                         <!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
-                        <a th:href="${contactItem.contactInfo}"
-                            th:text="${contactItem.contactInfo}">https://github.com/</a>
+                        <span th:text="${contactItem.contactInfo}">https://github.com/</span>
                     </span>
                 </div>
             </div>
@@ -358,8 +353,8 @@
                 autoplaySpeed: 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
                 pauseOnHover: true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
                 vertical: false,        // 세로 방향 슬라이드 옵션
-                prevArrow: "<button type='button' class='slick-prev'>Previous</button>",
-                nextArrow: "<button type='button' class='slick-next'>Next</button>",
+                prevArrow: "<button type='button' class='slick-prev'><ion-icon name='chevron-back-outline'</ion-icon></button>",
+                nextArrow: "<button type='button' class='slick-next'><ion-icon name='chevron-forward-outline'></ion-icon></button>",
                 draggable: true,     //드래그 가능 여부 
                 responsive: [ // 반응형 웹 구현 옵션
                     {
