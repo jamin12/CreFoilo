@@ -52,6 +52,7 @@
 ![KakaoTalk_20221212_185141734_01.png](http://39.120.8.109:3551/file/5ebb5f7e-3977-4c09-ae8e-06b15294a730)
 ### __<span style="color:#ff9933">홈 화면 세팅 페이지</span>__
 ![KakaoTalk_20221212_185141734_08.png](http://39.120.8.109:3551/file/1db75aeb-425d-4cc9-b6cd-1f2afba204bd)
+![화면 캡처 2022-12-13 012428.png](http://39.120.8.109:3551/file/95c3193d-ec23-4bd8-b728-3987dca6301e)
 ### __<span style="color:#ff9933">AboutMe 세팅 페이지</span>__
 ![KakaoTalk_20221212_185141734_03.png](http://39.120.8.109:3551/file/2abc3799-1380-4555-8170-58a18230719c)
 ![KakaoTalk_20221212_185141734_02.png](http://39.120.8.109:3551/file/7f13adbc-3319-4090-a4d3-bcdd25ed80d5)
@@ -63,3 +64,18 @@
 ![KakaoTalk_20221212_185141734_06.png](http://39.120.8.109:3551/file/76bd1ef4-f597-4cb5-b16c-fbf8f9080cb2)
 ### __<span style="color:#ff9933">project Detail세팅 페이지</span>__
 ![KakaoTalk_20221212_185141734_07.png](http://39.120.8.109:3551/file/bd5320e5-4824-4932-9ae9-820e1bb04369)
+### __<span style="color:#ff9933">contact</span>__
+![화면 캡처 2022-12-13 012814.png](http://39.120.8.109:3551/file/4933af30-7ff1-4860-9b94-98c804f60f90)
+### __<span style="color:#ff9933">홈 화면</span>__
+![화면 캡처 2022-12-13 012920.png](http://39.120.8.109:3551/file/4c48eead-7cc3-4986-a101-8ed812c7959b)
+### __<span style="color:#ff9933">홈 화면</span>__
+![image.png](http://39.120.8.109:3551/file/0503d9a2-ae4f-4628-b3c0-c3da1a394a86)
+### __<span style="color:#ff9933">언어 스킬 화</span>__
+![image.png](http://39.120.8.109:3551/file/a23724e7-003d-4a13-8452-28246e1c30d1)
+### __<span style="color:#ff9933">Other Skill 화면</span>__
+![image.png](http://39.120.8.109:3551/file/ccaf420b-c9c6-4f2c-84ee-ef0a2810fe8b)
+### __<span style="color:#ff9933">project 화면</span>__
+![image.png](http://39.120.8.109:3551/file/685aeeef-4c47-44c0-b67e-bd5619a2fded)
+![image.png](http://39.120.8.109:3551/file/0a56e2b9-8fc2-48e2-9d06-73f7555ae6fd)
+### __<span style="color:#ff9933">contact 화면</span>__
+![image.png](http://39.120.8.109:3551/file/1b28fbc4-5198-4a25-88fb-4fcb8d66cd44)
