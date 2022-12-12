@@ -31,7 +31,7 @@ public class AboutmeServiceImpl implements AboutmeService {
     public AboutmeDto findAboutme(Long portfolioId) {
         AboutMe findedAboutMe = aboutmeRepository.findByPortfolioId(portfolioId);
         if (findedAboutMe == null) {
-            throw new CustomException(ErrorCode.ABOUT_NOT_FOUND);
+            return new AboutmeDto();
         }
         return new AboutmeDto(findedAboutMe);
     }
