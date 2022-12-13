@@ -4,9 +4,6 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript" defer th:src="@{/js/contact.js}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -27,18 +24,18 @@
     <input type="hidden" th:value="${portfolioid}" id="portfolioid">
     <section>
         <div class="main-wrap">
-            <button class="btn-add-item" data-toggle="modal" data-target="#exampleModal" data-whatever="addContact">
+            <button class="btn-add-item" data-toggle="modal" data-target="#exampleModal" data-whatever="addContact"
+            >
                 <ion-icon name="add-circle-outline"></ion-icon>
             </button>
 
-            <div class="item-box" th:each="contact : ${contactlist}">
-                <input type="hidden" th:value="${contact.contactId}">
-
-                <button data-toggle="modal" data-target="#exampleModal" data-whatever="updateContact">
-                    <ion-icon th:name="${contact.contactImgUrl}"></ion-icon>
-                </button>
-                <input type="text" th:value="${contact.contactInfo}" />
-            </div>
+            <button data-toggle="modal" data-target="#exampleModal" data-whatever="updateContact"
+            class="item-box" th:each="contact : ${contactlist}" >
+                <input type="hidden" th:value="${contact.contactId}" id="contactId">
+                <input type="hidden" th:value="${contact.contactImgUrl}" id='contactImgUrl'>
+                <ion-icon th:name="${contact.contactImgUrl}"></ion-icon>
+                <span th:text="${contact.contactInfo}" id="contactUrl"></span>
+            </button>
 
         </div>
     </section>
@@ -57,15 +54,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">URL & Inform:</label>
-                        <input type="text" class="form-control" id="recipient-name"
+                        <input type="text" class="form-control" id="contact-name"
                         placeholder="ex) http://~~ & ~~.gamil.com">
                     </div>
                     <div class="label-wrap"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteIcon()">삭제</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">추가</button>
+                    <button type="button" class="btn btn-danger btn-delete-icon" data-dismiss="modal" onclick="deleteIcon()">삭제</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">저장</button>
                 </div>
             </div>
         </div>

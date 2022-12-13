@@ -70,11 +70,12 @@ body {
 
 .card {
     min-width: 300px;
+    max-width: 300px;
     height: 100%;
     display: inline-block;
     position: relative;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 15px;
+    margin-left: 15px;
     transition: .5s;
     flex-shrink: 0;
     border: none;
@@ -137,6 +138,7 @@ body {
 
 .plus {
     min-width: 100px;
+    max-width: 100px;
     height: 100px;
     position: absolute;
     top: 50%;

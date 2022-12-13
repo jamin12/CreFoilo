@@ -27,4 +27,15 @@ public class SnsInfoDslImpl implements SnsInfoDsl {
 
     }
 
+    /**
+     * userID 로 유저 이름 찾기
+     * 
+     * @param userId
+     */
+    @Override
+    public SnsInfo findByUserId(String userId) {
+        QSnsInfo qsnsInfo = QSnsInfo.snsInfo;
+        return jpaQueryFactory.selectFrom(qsnsInfo).where(qsnsInfo.id.eq(userId)).fetchOne();
+    }
+
 }

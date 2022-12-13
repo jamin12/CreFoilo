@@ -99,6 +99,7 @@ ion-icon[name='close-circle-outline']:hover{
 .sub-skill-box{
     width: 90%;
     position: relative;
+    margin-top: 4px;
 }
 #subSkill{
     width: 100%;

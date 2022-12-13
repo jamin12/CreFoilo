@@ -304,7 +304,6 @@ public class SettingController {
         return "/setting/project/" + projectDetailDto.getPortfolioId().toString();
     }
 
-    
     /**
      * Contact 페이지 조회
      * 
@@ -317,7 +316,7 @@ public class SettingController {
         SessionUser userIdInSession = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("portfolioid", portfolioid);
         model.addAttribute("contactlist",
-            contactService.findContact(portfolioid, userIdInSession.getUserId()));
+                contactService.findContact(portfolioid, userIdInSession.getUserId()));
         return "setting/settingContact";
     }
 
@@ -336,6 +335,5 @@ public class SettingController {
         contactService.CUDContact(portfolioid, userIdInSession.getUserId(), contactDtos);
         return "/setting/contact/" + portfolioid.toString();
     }
-
 
 }

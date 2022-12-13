@@ -7,9 +7,11 @@
     padding: 10px 40px;
     font-size: 1rem;
     transition: 0.3s;
+    cursor: pointer;
 }
 .btn-save:hover{
     background-color: var(--curcer-blue);
+    color: white;
 }
 
 .btn-position-60-100{

@@ -18,9 +18,13 @@ section{
 section > .main-title{
     padding-top: 100px;
     padding-bottom: 20px;
+    width: 100%;
     text-align: center;
     font-size: 30px;
     font-weight: 300;
+
+    display: flex;
+    justify-content: center;
 }
 
 section > .contents{
@@ -38,4 +42,18 @@ section > .contents{
 .navbar-brand{
     color: var(--blue);
     font-weight: bold;
+}
+.navbar-brand::after{
+    content: "님의 포트폴리오";
+}
+
+.nav-item:last-child{
+    position: absolute;
+    right: 20px;
+    font-size: 1.5rem;
+}
+.nav-go-setting{
+    position: absolute;
+    right: 60px;
+    font-size: 1.5rem;
 }
