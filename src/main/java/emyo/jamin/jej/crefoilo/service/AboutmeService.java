@@ -7,6 +7,6 @@ public interface AboutmeService {
 
     AboutmeDto findAboutme(Long portfolioId, String userId);
 
-    String createAboutMe(Long portfolioId, String userId, AboutmeDto aboutmeDto);
+    void createAboutMe(Long portfolioId, String userId, AboutmeDto aboutmeDto);
 
 }

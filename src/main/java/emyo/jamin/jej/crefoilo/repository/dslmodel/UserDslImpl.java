@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import emyo.jamin.jej.crefoilo.entity.QSnsInfo;
 import emyo.jamin.jej.crefoilo.entity.QUsers;
 import emyo.jamin.jej.crefoilo.entity.Users;
 

@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.entity.AboutMe;
 import emyo.jamin.jej.crefoilo.repository.AboutmeRepository;
-import emyo.jamin.jej.crefoilo.utils.CustomException;
-import emyo.jamin.jej.crefoilo.utils.ErrorCode;
 import emyo.jamin.jej.crefoilo.utils.Validation;
 
 /**
@@ -65,10 +63,8 @@ public class AboutmeServiceImpl implements AboutmeService {
      */
     @Override
     @Transactional
-    public String createAboutMe(Long portfolioId, String userId, AboutmeDto aboutMeDto) {
+    public void createAboutMe(Long portfolioId, String userId, AboutmeDto aboutMeDto) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         aboutmeRepository.save(AboutMe.toCreateEntity(portfolioId, aboutMeDto));
-        // TODO: return 수정하기
-        return null;
     }
 }

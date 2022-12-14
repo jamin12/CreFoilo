@@ -1,12 +1,10 @@
 package emyo.jamin.jej.crefoilo.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,7 +177,7 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Override
     @Transactional
-    public String createProject(Long portfolioId, String userId, ProjectDetailDto projectDetailDto) {
+    public void createProject(Long portfolioId, String userId, ProjectDetailDto projectDetailDto) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         Project createdProject = proejctRepository.save(Project.toCreateEntity(portfolioId, projectDetailDto));
         projectDetailDto.getProjectImg().forEach(pImg -> {
@@ -188,8 +186,6 @@ public class ProjectServiceImpl implements ProjectService {
         projectDetailDto.getProjectDocument().forEach(pDoc -> {
             projectDocumentUrlRepository.save(DocumentUrl.toCreateEntity(createdProject.getProjectId(), pDoc));
         });
-        // TODO: return 수정하기
-        return "loginSuccess";
     }
 
     /**
@@ -200,12 +196,10 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Override
     @Transactional
-    public String deleteProject(Long projectId, String userId) {
+    public void deleteProject(Long projectId, String userId) {
         validation.checkUserHasProject(projectId, userId);
         proejctRepository.delete(proejctRepository.findById(projectId).orElseThrow(
                 () -> new CustomException(ErrorCode.INTERNAL_ERROR)));
-        // TODO: return 수정하기
-        return null;
     }
 
     /**
@@ -216,7 +210,7 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Override
     @Transactional
-    public String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto) {
+    public void updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto) {
         validation.checkUserHasProject(projectId, userId);
         proejctRepository.save(Project.toUpdateEntity(projectId, projectDetailDto));
         List<DocumentUrl> findedProejectDocList = projectDocumentUrlRepository.findbyProjectId(projectId);
@@ -262,9 +256,6 @@ public class ProjectServiceImpl implements ProjectService {
         for (ProjectDocumentDto pDoc : projectDetailDto.getProjectDocument()) {
             projectDocumentUrlRepository.save(DocumentUrl.toUpdateEntity(projectId, pDoc));
         }
-
-        // TODO: return 수정하기
-        return null;
     }
 
     /**

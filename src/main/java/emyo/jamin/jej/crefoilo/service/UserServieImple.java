@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import emyo.jamin.jej.crefoilo.repository.SnsInfoRepository;
-import emyo.jamin.jej.crefoilo.repository.UserRepository;
 
 @Service
 public class UserServieImple implements UserService {

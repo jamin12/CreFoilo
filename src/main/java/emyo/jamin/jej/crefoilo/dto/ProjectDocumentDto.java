@@ -1,7 +1,5 @@
 package emyo.jamin.jej.crefoilo.dto;
 
-import org.springframework.lang.Nullable;
-
 import emyo.jamin.jej.crefoilo.entity.DocumentUrl;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

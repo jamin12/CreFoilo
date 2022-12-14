@@ -4,13 +4,11 @@ import emyo.jamin.jej.crefoilo.entity.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author 강경민
  */
 @Getter
-// @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectDto {

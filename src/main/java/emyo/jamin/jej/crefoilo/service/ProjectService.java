@@ -10,11 +10,11 @@ public interface ProjectService {
 
     ProjectDetailDto findProjectDetail(Long projectId, String userId);
 
-    String createProject(Long portfolioId, String userId, ProjectDetailDto projectDetailDto);
+    void createProject(Long portfolioId, String userId, ProjectDetailDto projectDetailDto);
 
-    String deleteProject(Long projectId, String userId);
+    void deleteProject(Long projectId, String userId);
 
-    String updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto);
+    void updateProject(Long projectId, String userId, ProjectDetailDto projectDetailDto);
 
     ProjectDetailDto findProjectDetailView(Long projectId);
 

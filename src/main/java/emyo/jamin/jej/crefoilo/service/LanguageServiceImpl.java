@@ -12,8 +12,6 @@ import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 import emyo.jamin.jej.crefoilo.entity.Language;
 import emyo.jamin.jej.crefoilo.repository.LanguageReposirtory;
-import emyo.jamin.jej.crefoilo.utils.CustomException;
-import emyo.jamin.jej.crefoilo.utils.ErrorCode;
 import emyo.jamin.jej.crefoilo.utils.Validation;
 
 /**
@@ -84,7 +82,7 @@ public class LanguageServiceImpl implements LanguageService {
      */
     @Override
     @Transactional
-    public String CUDLanguage(List<LanguageSettingDto> languageSettingDtoList, Long portfolioId, String userId) {
+    public void CUDLanguage(List<LanguageSettingDto> languageSettingDtoList, Long portfolioId, String userId) {
         validation.checkUserHasPortfolio(portfolioId, userId);
         List<Language> findedLanguageSkill = languageReposirtory.findByPortfolioId(portfolioId);
 
@@ -108,7 +106,5 @@ public class LanguageServiceImpl implements LanguageService {
             languageReposirtory.save(Language.toCreateUpdateEntity(portfolioId, languageSettingDto));
         }
 
-        // TODO: 필요할지 안할지 모르겟어서 일단 null처리
-        return null;
     }
 }

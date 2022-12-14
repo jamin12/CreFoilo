@@ -113,7 +113,7 @@ public class OtherSkillServiceImpl implements OtherSkillService {
      */
     @Override
     @Transactional
-    public List<OtherSkillListDto> CUDOtherSkill(List<OtherSkillDto> otherSkillDtoList, Long portFolioId,
+    public void CUDOtherSkill(List<OtherSkillDto> otherSkillDtoList, Long portFolioId,
             String userId) {
         validation.checkUserHasPortfolio(portFolioId, userId);
         List<OtherSkill> findedOtherSkill = otherSkillRepository.findByPortfolioId(portFolioId);
@@ -146,8 +146,6 @@ public class OtherSkillServiceImpl implements OtherSkillService {
             }
             otherSkillRepository.save(OtherSkill.createAndUpdateEntity(portFolioId, otherSkillDto));
         }
-        // TODO: return 바꾸기
-        return null;
     }
 
     /**

@@ -33,18 +33,20 @@ public class ProjectDetailDto {
     private List<ProjectDocumentDto> projectDocument; // '프로젝트 링크'
 
     public ProjectDetailDto(@Nullable Project project) {
-        this.projectId = project.getProjectId();
-        this.portfolioId = project.getPortfolioId();
-        this.projectTitle = project.getProjectTitle();
-        this.projectRepresentativeImgUrl = project.getProjectRepresentativeImgUrl();
-        this.proejctIntro = project.getProejctIntro();
-        this.projectSubTitle = project.getProjectSubTitle();
-        this.proejctSubIntro = project.getProejctSubIntro();
-        this.projectStrDate = project.getProjectStrDate();
-        this.projectEndDate = project.getProjectEndDate();
-        this.projectHtml = project.getProjectHtml();
-        this.projectMd = project.getProjectMd();
-        this.proejctTechnicalStack = project.getTechnicalStackName();
+        if (project != null) {
+            this.projectId = project.getProjectId();
+            this.portfolioId = project.getPortfolioId();
+            this.projectTitle = project.getProjectTitle();
+            this.projectRepresentativeImgUrl = project.getProjectRepresentativeImgUrl();
+            this.proejctIntro = project.getProejctIntro();
+            this.projectSubTitle = project.getProjectSubTitle();
+            this.proejctSubIntro = project.getProejctSubIntro();
+            this.projectStrDate = project.getProjectStrDate();
+            this.projectEndDate = project.getProjectEndDate();
+            this.projectHtml = project.getProjectHtml();
+            this.projectMd = project.getProjectMd();
+            this.proejctTechnicalStack = project.getTechnicalStackName();
+        }
     }
 
 }

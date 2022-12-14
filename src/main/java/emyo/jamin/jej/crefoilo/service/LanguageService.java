@@ -4,12 +4,11 @@ import java.util.List;
 
 import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
-import emyo.jamin.jej.crefoilo.security.SessionUser;
 
 public interface LanguageService {
     List<FindLanguageDto> findLanguage(Long portfolioId);
 
     List<LanguageSettingDto> findLanguageList(Long portfolioId, String userId);
 
-    String CUDLanguage(List<LanguageSettingDto> languageSettingDtoList, Long portfolioId, String userId);
+    void CUDLanguage(List<LanguageSettingDto> languageSettingDtoList, Long portfolioId, String userId);
 }

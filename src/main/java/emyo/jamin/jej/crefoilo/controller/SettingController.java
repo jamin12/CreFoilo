@@ -1,8 +1,6 @@
 package emyo.jamin.jej.crefoilo.controller;
 
 import java.util.List;
-import java.util.Map;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -13,15 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.ContactDto;
-import emyo.jamin.jej.crefoilo.dto.FindLanguageDto;
 import emyo.jamin.jej.crefoilo.dto.HomeViewDto;
 import emyo.jamin.jej.crefoilo.dto.ProjectDetailDto;
 import emyo.jamin.jej.crefoilo.entity.Portfolio;
@@ -32,7 +27,6 @@ import emyo.jamin.jej.crefoilo.service.LanguageService;
 import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
-import emyo.jamin.jej.crefoilo.dto.AboutmeDto;
 import emyo.jamin.jej.crefoilo.dto.LanguageSettingDto;
 import emyo.jamin.jej.crefoilo.dto.OtherSkillDto;
 import emyo.jamin.jej.crefoilo.dto.PortfolioHomeDto;
