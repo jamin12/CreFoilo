@@ -72,7 +72,7 @@ public class ContactServiceImpl implements ContactService {
             int flag = 0;
             for (ContactDto contactDto : contactDtoList) {
                 if (contactDto.getContactId() != null) {
-                    if (findedContact.getContactId() == contactDto.getContactId()) {
+                    if (findedContact.getContactId().equals(contactDto.getContactId())) {
                         flag = 1;
                         break;
                     }

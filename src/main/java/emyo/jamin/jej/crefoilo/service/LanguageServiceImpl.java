@@ -93,7 +93,7 @@ public class LanguageServiceImpl implements LanguageService {
             int flag = 0;
             for (LanguageSettingDto languageSettingDto : languageSettingDtoList) {
                 if (languageSettingDto.getLangId() != null) {
-                    if (language.getLanguageId() == languageSettingDto.getLangId()) {
+                    if (language.getLanguageId().equals(languageSettingDto.getLangId())) {
                         flag = 1;
                         break;
                     }
