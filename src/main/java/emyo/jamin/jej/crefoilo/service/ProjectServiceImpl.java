@@ -74,9 +74,13 @@ public class ProjectServiceImpl implements ProjectService {
             projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
             projectDocumentDtos.add(new ProjectDocumentDto(projectDetail.get(qDocumentUrl)));
         }
-        // stream 문법으로 set -> list 변경
-        projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
-        projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+        // stream 문법으로 set -> list 변경 및 정렬
+        projectDetailDto.setProjectImg(projectImgDtos.stream()
+                .sorted((o1, o2) -> Long.valueOf(o1.getProjectImgId() - o2.getProjectImgId()).intValue())
+                .collect(Collectors.toList()));
+        projectDetailDto.setProjectDocument(projectDocumentDtos.stream()
+                .sorted((o1, o2) -> Long.valueOf(o1.getDocuemntUrlId() - o2.getDocuemntUrlId()).intValue())
+                .collect(Collectors.toList()));
         return projectDetailDto;
     }
 
@@ -134,38 +138,13 @@ public class ProjectServiceImpl implements ProjectService {
             }
             projectImgDtos.add(new ProjectImgDto(projectDetail.get(qProjectImg)));
         }
-        List<ProjectImgDto> projectImgDtosList = projectImgDtos.stream().collect(Collectors.toList());
-        List<ProjectDocumentDto> projectDocumentDtosList = projectDocumentDtos.stream().collect(Collectors.toList());
-        // 거리순으로 정렬(가까운 순 오름차순 ASC)
-        Comparator<ProjectImgDto> projectImgSortCondtion = new Comparator<ProjectImgDto>() {
-            @Override
-            public int compare(ProjectImgDto o1, ProjectImgDto o2) {
-                Long a = o1.getProjectImgId();
-                Long b = o2.getProjectImgId();
-                if (a > b) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
-        };
-        Comparator<ProjectDocumentDto> projectDocSortCondtion = new Comparator<ProjectDocumentDto>() {
-            @Override
-            public int compare(ProjectDocumentDto o1, ProjectDocumentDto o2) {
-                Long a = o1.getDocuemntUrlId();
-                Long b = o2.getDocuemntUrlId();
-                if (a > b) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
-        };
-        Collections.sort(projectImgDtosList, projectImgSortCondtion);
-        Collections.sort(projectDocumentDtosList, projectDocSortCondtion);
-        // stream 문법으로 set -> list 변경
-        projectDetailDto.setProjectImg(projectImgDtosList);
-        projectDetailDto.setProjectDocument(projectDocumentDtosList);
+        // stream 문법으로 set -> list 변경 및 정렬
+        projectDetailDto.setProjectImg(projectImgDtos.stream()
+                .sorted((o1, o2) -> Long.valueOf(o1.getProjectImgId() - o2.getProjectImgId()).intValue())
+                .collect(Collectors.toList()));
+        projectDetailDto.setProjectDocument(projectDocumentDtos.stream()
+                .sorted((o1, o2) -> Long.valueOf(o1.getDocuemntUrlId() - o2.getDocuemntUrlId()).intValue())
+                .collect(Collectors.toList()));
         return projectDetailDto;
     }
 
