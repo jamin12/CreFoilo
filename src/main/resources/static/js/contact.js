@@ -55,9 +55,9 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
   var modal = $(this)
   const contactUrlText = event.relatedTarget.querySelector("#contactUrl")?.innerText;
-  if(contactUrlText === undefined){
+  if (contactUrlText === undefined) {
     document.querySelector(".form-control").value = "";
-  }else{
+  } else {
     document.querySelector(".form-control").value = contactUrlText;
   }
 
@@ -152,9 +152,9 @@ const updateDocLink = (e) => {
  * 링크 삭제
  */
 const deleteIcon = (e) => {
-  if(!confirm("정말 삭제하시겠습니까?")){
+  if (!confirm("정말 삭제하시겠습니까?")) {
     return;
-  }else{
+  } else {
     e.remove();
   }
 }
@@ -164,6 +164,9 @@ const deleteIcon = (e) => {
  * 저장버튼 onClick
  */
 const onClickSave = () => {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
+
   const contactDtos = [];
   const itemBoxs = document.querySelectorAll('button.item-box');
   const contactImgs = document.querySelectorAll('#contactImgUrl');
@@ -179,13 +182,16 @@ const onClickSave = () => {
     })
   })
 
-  
+
   $.ajax({
     url: `/setting/contact/${portfolioId}`,
     contentType: "application/json; charset=utf-8",
     type: "POST",
     data: JSON.stringify(contactDtos),
     async: false,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
     success: function (data) {
       document.location.href = data;
       location.href = `/portfolio/${portfolioId}`

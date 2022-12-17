@@ -45,7 +45,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                // .csrf().disable()
                 .headers().frameOptions().sameOrigin() // X-Frame-Options을 동일 오리진만 사용 가능하도록
                 .and()
                 .authorizeRequests() // 접근 제어 시작

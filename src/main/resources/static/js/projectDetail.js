@@ -58,6 +58,8 @@ const addTectStack = (e) => {
 }
 
 function setProejctContentsInfo() {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
 
   const projectId = document.querySelector("#projectId")?.value;
   const portfolioId = document.querySelector("#portfolioId").value;
@@ -143,6 +145,9 @@ function setProejctContentsInfo() {
       data: JSON.stringify(data),
       dataType: "json",
       async: false,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(header, token);
+      },
       success: function (data) {
       },
       error: function (error) {
@@ -159,6 +164,9 @@ function setProejctContentsInfo() {
       data: JSON.stringify(data),
       dataType: "json",
       async: false,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(header, token);
+      },
       success: function (data) {
       },
       error: function (error) {
@@ -258,11 +266,11 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   const iconCount = document.getElementById('iconBox')
   const docUrlText = document.querySelector("#docUrlText");
   let docUrlVal = event.relatedTarget.querySelector("#docUrl")?.value;
-  if(docUrlVal === undefined){
+  if (docUrlVal === undefined) {
     docUrlVal = "";
   }
   docUrlText.value = docUrlVal;
-  
+
   var modal = $(this)
   if (type === 'addIcon') {
     if (iconCount.childElementCount > 5) {
@@ -333,7 +341,7 @@ for (var i = 0; i < modalIconDic.iconName.length; i++) {
  */
 const updateDocLink = (e) => {
   var radiovalue = $('input[name=select-icon]:checked').val();
-  if(radiovalue === undefined){
+  if (radiovalue === undefined) {
     alert("아이콘을 선택해주세요");
     return;
   }
@@ -352,7 +360,7 @@ const updateDocLink = (e) => {
  */
 const createDocLink = (e) => {
   var radiovalue = $('input[name=select-icon]:checked').val();
-  if(radiovalue === undefined){
+  if (radiovalue === undefined) {
     alert("아이콘을 선택해주세요");
     return;
   }
@@ -388,7 +396,7 @@ const deleteIcon = (e) => {
  * @param {Element} e 
  */
 const deleteImg = (e) => {
-  if(confirm("삭제하시겠습니까?")){
+  if (confirm("삭제하시겠습니까?")) {
     e.remove();
   }
 }

@@ -1,4 +1,7 @@
 const createBaseOtherSkill = () => {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
+
   const portfolioid = document.querySelector('#portfolioid').value
   const baseOtherSkillName = document.querySelector("#baseotherskill")
   const osWrap = document.querySelector('.os-wrap');
@@ -14,6 +17,9 @@ const createBaseOtherSkill = () => {
     type: "POST",
     data: JSON.stringify(data),
     async: false,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
     success: function (data) {
       createdBaseOtherSKillId = data.otherSkillID;
       createdBaseOtherSKillName = data.otherSkillName;
@@ -106,6 +112,9 @@ const addSubOtherSkill = (e) => {
  * other skill 저장기능
  */
 const saveOtherSkill = () => {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
+
   const otherSkillDtos = []
   const mainOtherSkills = document.querySelectorAll('.main-skill-box');
   const subOtherSkills = document.querySelectorAll('.sub-skill-box');
@@ -153,6 +162,9 @@ const saveOtherSkill = () => {
     type: "POST",
     data: JSON.stringify(otherSkillDtos),
     async: false,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
     success: function (data) {
       document.location.href = data;
     },

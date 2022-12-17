@@ -62,6 +62,8 @@ const addImgRepresent = (e) => {
 }
 
 const savePortfolioHome = () => {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
   const data = {
     portfolioName: document.querySelector("#title")?.value,
     portfolioHomeText: document.querySelector("#home-text")?.value,
@@ -69,13 +71,16 @@ const savePortfolioHome = () => {
     portfolioType: document.querySelector("#typeinput").value,
     portfolioId: document.querySelector("#portfolioid")?.value
   }
-
+  
   $.ajax({
     url: `/setting/home`,
     contentType: "application/json; charset=utf-8",
     type: "POST",
     data: JSON.stringify(data),
     dataType: 'json',
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader(header, token);
+    },
     async: false,
     success: function (data) {
       document.location.href = `/setting/aboutme/${data}`

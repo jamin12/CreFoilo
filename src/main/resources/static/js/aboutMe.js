@@ -45,6 +45,8 @@ const addImgRepresent = (e) => {
 
 
 const saveAboutMe = () => {
+    const header = $("meta[name='_csrf_header']").attr('content');
+    const token = $("meta[name='_csrf']").attr('content');
     const aboutMeId = document.querySelector("#aboutMeId")?.value;
     const portfolioId = document.querySelector("#portfolioid").value;
 
@@ -75,7 +77,7 @@ const saveAboutMe = () => {
     // 새로 만들기
     if (aboutMeId !== '') {
         data.aboutMeId = aboutMeId;
-    } 
+    }
 
     $.ajax({
         url: `/setting/aboutme/${portfolioId}`,
@@ -83,6 +85,9 @@ const saveAboutMe = () => {
         type: "POST",
         data: JSON.stringify(data),
         async: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(header, token);
+        },
         success: function (data) {
             document.location.href = `/setting/language/${portfolioId}`
         },

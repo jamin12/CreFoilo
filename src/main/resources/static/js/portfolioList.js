@@ -15,6 +15,9 @@ const copyPortfolioLink = (e) => {
  * @param {Element} e 
  */
 const deletePortfolio = (e) => {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
+
   const portfolioid = e.querySelector("#porfolioid").value;
   $.ajax({
     url: `/myportfolio/d/${portfolioid}`,
@@ -22,6 +25,9 @@ const deletePortfolio = (e) => {
     method: "DELETE",
     data: {},
     async: false,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
     success: function (data) {
     },
     error: function (error) {

@@ -111,6 +111,9 @@ const createLanguageBox = (e) => {
 }
 
 const createLang = () => {
+  const header = $("meta[name='_csrf_header']").attr('content');
+  const token = $("meta[name='_csrf']").attr('content');
+
   const langBox = document.querySelectorAll(".language-box");
   const portfolioid = document.querySelector("#portfolioid").value;
   const data = [];
@@ -140,7 +143,7 @@ const createLang = () => {
       langDetail: langDetail,
     });
   });
-  if(flag){
+  if (flag) {
     return;
   }
   $.ajax({
@@ -149,6 +152,9 @@ const createLang = () => {
     type: "POST",
     data: JSON.stringify(data),
     async: false,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
     success: function (data) {
       document.location.href = data
     },
