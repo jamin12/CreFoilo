@@ -24,12 +24,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("handleCustomException  throw CustomException  : {}", e.getErrorCode());
         // return ErrorResponse.toResponseEntity(e.getErrorCode());
         model.addAttribute("error", e.getErrorCode().getHttpStatus().value());
-        System.out.println(
-            "==================================================="+
-            e.getErrorCode().getHttpStatus().value()
-            +"==================================================="
-        );
-        
         return "error/errorpage";
     }
 
