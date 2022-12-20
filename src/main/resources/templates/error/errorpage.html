@@ -20,7 +20,7 @@
     <!-- 400 -->
     <section th:if="" class="error-400">
         <div class="main-wrap">
-            <img src="https://static.velog.io/static/media/undraw_page_not_found_su7k.7e3de5e9.svg" alt="400 Error"/>
+            <img th:src="${img/error/400}" alt="400 Error"/>
             <h2>BAD REQUEST</h2>
             <h3>요청이 실패하였습니다! 다시 시도해주세요!</h3>
             <a class="btn-home" th:href="@{/myportfolio/list}">
@@ -33,7 +33,7 @@
     <!-- 401 -->
     <!-- <section th:if="" class="error-401">
         <div class="main-wrap">
-            <img src="https://static.velog.io/static/media/undraw_page_not_found_su7k.7e3de5e9.svg" alt="401 Error"/>
+            <img th:src="${img/error/401}" alt="401 Error"/>
             <h2>로그인 후에<br>다시 시도해주세요!</h2>
             <a class="btn-home" th:href="@{/myportfolio/list}">
                 <ion-icon name="home-outline"></ion-icon>
@@ -45,7 +45,7 @@
     <!-- 404 -->
     <!-- <section th:if="" class="error-404">
         <div class="main-wrap">
-            <img src="https://static.velog.io/static/media/undraw_page_not_found_su7k.7e3de5e9.svg" alt="404 Error"/>
+            <img th:src="${img/error/404}" alt="404 Error"/>
             <h2>요청하신 페이지를<br>찾을 수 없습니다!</h2>
             <a class="btn-home" th:href="@{/myportfolio/list}">
                 <ion-icon name="home-outline"></ion-icon>
@@ -57,7 +57,7 @@
     <!-- 500 -->
     <!-- <section th:if="" class="error-500">
         <div class="main-wrap">
-            <img src="https://static.velog.io/static/media/undraw_page_not_found_su7k.7e3de5e9.svg" alt="500 Error"/>
+            <img th:src="${img/error/500}" alt="500 Error"/>
             <h2>서버를 고치고 있습니다!</h2>
             <h3>나중에 다시 시도하여 주세요!</h3>
             <a class="btn-home" th:href="@{/myportfolio/list}">
