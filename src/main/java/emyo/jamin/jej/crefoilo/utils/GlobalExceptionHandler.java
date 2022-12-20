@@ -1,6 +1,7 @@
 package emyo.jamin.jej.crefoilo.utils;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -12,16 +13,24 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { Exception.class })
-    protected ResponseEntity<ErrorResponse> handleDataException(Exception e) {
-        log.error("handleDataException throw Exception : {}", e.getMessage());
-        throw new CustomException(ErrorCode.INTERNAL_ERROR);
+    protected String handleDataException(Exception e, Model model) {
+        model.addAttribute("error", ErrorCode.INTERNAL_ERROR.getHttpStatus().value());
+        return "error/errorpage";
     }
 
     // 커스텀 에러만 받는 함수
     @ExceptionHandler(value = { CustomException.class })
-    protected ResponseEntity<ErrorResponse> handleCustomException(CustomException e) {
+    protected String handleCustomException(CustomException e, Model model) {
         log.error("handleCustomException  throw CustomException  : {}", e.getErrorCode());
-        return ErrorResponse.toResponseEntity(e.getErrorCode());
+        // return ErrorResponse.toResponseEntity(e.getErrorCode());
+        model.addAttribute("error", e.getErrorCode().getHttpStatus().value());
+        System.out.println(
+            "==================================================="+
+            e.getErrorCode().getHttpStatus().value()
+            +"==================================================="
+        );
+        
+        return "error/errorpage";
     }
 
     // @ExceptionHandler({ Exception.class })
