@@ -75,12 +75,12 @@ function setProejctContentsInfo() {
 
   // 타이틀 가져오기
   let projectTitile = document.querySelectorAll(".project_title")[0].value;
-  // 서브타이틀 가져오기
-  let projectSubTitile = document.querySelectorAll(".project_title")[1].value;
+  // // 서브타이틀 가져오기
+  // let projectSubTitile = document.querySelectorAll(".project_title")[1].value;
   // 설명 가져오기
   let projectIntro = document.querySelector(".project_intro").value;
-  // 서브 인트로 가져오기
-  let projectSubIntro = document.querySelector(".project_contribution").value;
+  // // 서브 인트로 가져오기
+  // let projectSubIntro = document.querySelector(".project_contribution").value;
   // 이미지 정보 가져오기
   let imginfo = document.querySelectorAll(".project_img_card");
   // 이미지 정보 삽입
@@ -128,8 +128,8 @@ function setProejctContentsInfo() {
     proejctIntro: projectIntro,
     projectStrDate: startDate,
     projectEndDate: endDate,
-    projectSubTitle: projectSubTitile,
-    proejctSubIntro: projectSubIntro,
+    // projectSubTitle: projectSubTitile,
+    // proejctSubIntro: projectSubIntro,
     projectMd: mdData,
     projectHtml: htmlData,
     proejctTechnicalStack: thchnicalStack,
@@ -198,7 +198,7 @@ const addImg = (e) => {
       // TODO: 에러처리
     }
   });
-  const imgs = document.querySelector(".project_imgs")
+  const imgs = document.querySelector(".project_imgs .project_img_card_box")
   const addImgInputButton = document.querySelector(".add_img_btn")
 
   const imgCard = document.createElement("div")
@@ -221,6 +221,10 @@ const addImg = (e) => {
   imgs.appendChild(imgCard);
 
   addImgInputButton.value = '';
+
+  // 이미지 스크롤 이동
+  const scrollWidth = (document.querySelector('.project_img_card_box').scrollWidth)
+  document.querySelector('.project_img_card_box').scrollTo(scrollWidth, 0);
 }
 
 const addImgRepresent = (e) => {

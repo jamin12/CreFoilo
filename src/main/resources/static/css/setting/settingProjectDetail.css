@@ -2,71 +2,69 @@
 /* @import '../setting/settingBtnSave.css'; */
 
 #project {
-    justify-content: space-evenly;
-    width: 80%;
-    height: 400px;
-    display: flex;
-    margin: 70px auto 0 auto;
+  justify-content: space-evenly;
+  width: 80%;
+  height: 400px;
+  display: flex;
+  margin: 70px auto 0 auto;
 }
 
 .front,
 .back {
-    position: relative;
-    width: 300px;
-    height: 100%;
-    background-color: var(--gray100);
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  position: relative;
+  width: 300px;
+  height: 100%;
+  background-color: var(--gray100);
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 10px;
+  padding: 10px;
 }
 
-
-input[type='file'] {
-    display: none;
+input[type="file"] {
+  display: none;
 }
-
 
 /* 
     앞면
 */
-label[for='btnInputImg'] {
-    width: 100%;
-    height: 40%;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
+label[for="btnInputImg"] {
+  width: 100%;
+  height: 70%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 
-    transition: .2s;
+  transition: 0.2s;
 }
 
-label[for='btnInputImg'] ion-icon {
-    font-size: 2rem;
-    width: 50%;
-    height: 50%;
-    background-color: transparent;
+label[for="btnInputImg"] ion-icon {
+  font-size: 2rem;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--blue);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--blue);
 }
 
 .front .btn-input-img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    background-position: center;
-    background-repeat: no-repeat;
-    object-fit: cover;
-    cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  cursor: pointer;
 
-    border-bottom: 2px solid var(--gray400);
+  border-bottom: 2px solid var(--gray400);
 }
 
 /* 
@@ -74,73 +72,71 @@ label[for='btnInputImg'] ion-icon {
 */
 input[type="text"],
 textarea {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--gray50);
-    resize: none;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--gray50);
+  resize: none;
 
-    width: 100%;
-    margin: 5px 0;
+  width: 100%;
+  margin: 0;
 }
 
 input:focus,
 textarea:focus {
-    outline: none;
-    background-color: var(--gray200);
+  outline: none;
+  background-color: var(--gray200);
 }
 
 /* 날짜 선택 css */
-input[type='date'] {
-    width: 45%;
-    box-sizing: border-box;
-    padding: 3px 5px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
+input[type="date"] {
+  width: 45%;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 
-    background-color: var(--gray50);
+  background-color: var(--gray50);
 }
 
 /* 
     날짜 선택 박스
 */
-.date-pick-box>span {
-    margin: 0 5px;
-    font-weight: bold;
+.date-pick-box > span {
+  margin: 0 5px;
+  font-weight: bold;
 }
 
-
 .project_intro {
-    height: 33%;
+  height: 45%;
+  resize: none;
 }
 
 .project_title {
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.2rem;
-    text-overflow: ellipsis;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2rem;
+  text-overflow: ellipsis;
 }
 
 #projectAbout {
-    width: 80%;
-    font-size: 13px;
-    text-align: center;
-    color: var(--gray800);
-    -webkit-line-clamp: 3;
-    /* 3번째 줄 까지 보이면서 말줄임표 */
+  width: 80%;
+  font-size: 13px;
+  text-align: center;
+  color: var(--gray800);
+  -webkit-line-clamp: 3;
+  /* 3번째 줄 까지 보이면서 말줄임표 */
 }
 
 #projectDate {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    font-size: 12px;
-    text-align: center;
-    color: var(--gray800);
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  color: var(--gray800);
 }
-
-
 
 /**
     나의 기여도
@@ -152,315 +148,318 @@ input[type='date'] {
 } */
 
 .project_contribution {
-    height: 33%;
+  height: 33%;
 }
 
 /**
     기술 스택
 */
 .tactstack-wrap {
-    width: 100%;
-    height: 40%;
+  width: 100%;
+  height: 40%;
 }
 
-.tactstack-wrap>.title {
-    font-weight: bold;
+.tactstack-wrap > .title {
+  font-weight: bold;
 }
 
 .stack {
-    display: flex;
-    width: 100%;
-    max-height: 75%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  max-height: 75%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-wrap: wrap;
 
-    align-items: center;
+  align-items: center;
 }
 
 .stack::-webkit-scrollbar {
-    width: 10px;
-    background-color: transparent;
+  width: 10px;
+  background-color: transparent;
 }
 
 .stack::-webkit-scrollbar-thumb {
-    background-color: var(--gray600);
-    border-radius: 50px;
+  background-color: var(--gray600);
+  border-radius: 50px;
 }
 
+.stack > .btn-add-stact {
+  background-color: transparent;
+  color: var(--blue);
+  font-size: 1.2rem;
+  width: 10%;
+  border: none;
 
-.stack>.btn-add-stact {
-    background-color: transparent;
-    color: var(--blue);
-    font-size: 1.2rem;
-    width: 10%;
-    border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-right: 10px;
-    transition: .3s;
+  margin-right: 10px;
+  transition: 0.3s;
 }
 
-.stack>.btn-add-stact:hover {
-    color: var(--curcer-blue);
+.stack > .btn-add-stact:hover {
+  color: var(--curcer-blue);
 }
 
-.stack>span {
-    min-width: auto;
-    max-width: 70%;
-    background-color: var(--blue);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    padding: 5px 10px;
-    margin: 2px 3px;
+.stack > span {
+  min-width: auto;
+  max-width: 70%;
+  background-color: var(--blue);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  padding: 5px 10px;
+  margin: 2px 3px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    color: var(--gray50);
-    cursor: pointer;
-    transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--gray50);
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.stack>span:hover {
-    background-color: var(--curcer-blue);
+.stack > span:hover {
+  background-color: var(--curcer-blue);
 }
 
 .stack input[type="text"] {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    color: var(--gray50);
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: var(--gray50);
 }
 
 .stack input[type="text"]:focus {
-    background-color: var(--curcer-blue);
+  background-color: var(--curcer-blue);
 }
 
 .stack input[type="text"]:focus span {
-    background-color: var(--curcer-blue);
+  background-color: var(--curcer-blue);
 }
-
-
 
 /**
     본문 구분선
 */
 .divline {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
-.divline>span {
-    margin: 0 auto;
-    width: 93%;
-    font-size: 1.3rem;
-    font-weight: bold;
+.divline > span {
+  margin: 0 auto;
+  width: 93%;
+  font-size: 1.3rem;
+  font-weight: bold;
 
-    border-bottom: 1px solid var(--gray600);
+  border-bottom: 1px solid var(--gray600);
 }
-
-
-
 
 /* 아이콘 */
 .icon-wrap {
-    width: 100%;
-    height: 8%;
-    padding: 0;
-    padding-top: 8px;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  height: 8%;
+  padding: 0;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
 
-    border-top: 2px solid var(--gray400);
+  border-top: 2px solid var(--gray400);
 }
 
 .icon-box {
-    width: 80%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.icon-box>button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.icon-box > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: none;
-    background-color: transparent;
-    color: var(--gray700);
-    transition: .2s;
+  border: none;
+  background-color: transparent;
+  color: var(--gray700);
+  transition: 0.2s;
 }
 
-.icon-box>button:hover {
-    color: var(--blue);
+.icon-box > button:hover {
+  color: var(--blue);
 }
 
 .icon-box ion-icon {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
-
 
 /**
     프로젝트 이미지
 */
 .project_imgs {
-    width: 93%;
-    margin: 10px auto 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
-
-.project_imgs::-webkit-scrollbar {
-    /* width: 5px; */
-    height: 5px;
-    background-color: transparent;
-}
-
-.project_imgs::-webkit-scrollbar-thumb {
-    background-color: var(--gray200);
-    border-radius: 50px;
+  width: 93%;
+  margin: 10px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 /* 이미지 카드 공통 속성 */
-.img-card{
-    min-width: 270px;
-    height: 150px;
-    background-color: var(--gray100);
-    border-radius: 10px;
-    overflow: hidden;
+.img-card {
+  min-width: 270px;
+  max-width: 270px;
+  height: 150px;
+  background-color: var(--gray100);
+  border-radius: 10px;
+  overflow: hidden;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-right: 20px;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 20px;
 
-    transition: .2s;
+  transition: 0.2s;
 }
 
-.add_project_img_card label[for="BtnAddImg"]{
-    width: 100%;
-    height: 100%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    font-size: 5rem;
-    color: var(--blue);
-    transition: .3s;
-
-    cursor: pointer;
+.project_img_card_box {
+  width: clac(90% - 270px);
+  height: 100%;
+  margin: 10px 0 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
-.add_project_img_card label[for="BtnAddImg"]:hover{
-    background-color: var(--curcer-blue);
-    color: var(--gray50);
+.project_img_card_box::-webkit-scrollbar {
+  /* width: 5px; */
+  height: 5px;
+  background-color: transparent;
+}
+
+.project_img_card_box::-webkit-scrollbar-thumb {
+  background-color: var(--gray200);
+  border-radius: 50px;
+}
+/* 이미지 추가 버튼 */
+.project_imgs label[for="BtnAddImg"] {
+  min-width: 270px;
+  max-width: 270px;
+  height: 150px;
+  margin: 5px 0 0px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 5rem;
+  background-color: var(--gray100);
+  border-radius: 10px;
+  color: var(--blue);
+  transition: 0.3s;
+
+  cursor: pointer;
+}
+.project_imgs label[for="BtnAddImg"]:hover {
+  background-color: var(--curcer-blue);
+  color: var(--gray50);
 }
 
 /* 추가되는 이미지 카드 */
-.project_img_card>img {
-    width: 270px;
-    height: 150px;
-    background-repeat: no-repeat;
-    object-fit: cover;
-    background-position: center;
-    border: 2px solid var(--gray100);
-    border-radius: 10px;
+.project_img_card > img {
+  width: 270px;
+  height: 150px;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: center;
+  border: 2px solid var(--gray100);
+  border-radius: 10px;
 
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 /**
     markdown 에디터
 */
 #editor {
-    margin-top: 10px;
-    background-color: white;
+  margin-top: 10px;
+  background-color: white;
 }
-
 
 /* 
     저장버튼
 */
-button.btn-save{
-    background-color: var(--blue);
-    color: white;
+button.btn-save {
+  background-color: var(--blue);
+  color: white;
 
-    border: none;
-    border-radius: 15px;
-    padding: 10px 40px;
-    font-size: 1rem;
-    transition: 0.3s;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 40px;
+  font-size: 1rem;
+  transition: 0.3s;
 }
-button.btn-save:hover{
-    background-color: var(--curcer-blue);
-}
-
-button.btn-position-40-80{
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 999;
+button.btn-save:hover {
+  background-color: var(--curcer-blue);
 }
 
+button.btn-position-40-80 {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 999;
+}
 
 /* 
     모달창 아이콘
 */
-.modal-body{
-    display: flex;
-    flex-direction: column;
+.modal-body {
+  display: flex;
+  flex-direction: column;
 }
-.modal-body .label-wrap{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    align-items: center;
+.modal-body .label-wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: center;
 }
 .modal-body > label {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-label > input[type="radio"]{
-    display: none;
+label > input[type="radio"] {
+  display: none;
 }
-label > input[type="radio"]:checked+.icon-radio-box{
-    background-color: var(--gray100);
-    border-radius: 20px;
-    color: var(--blue);
+label > input[type="radio"]:checked + .icon-radio-box {
+  background-color: var(--gray100);
+  border-radius: 20px;
+  color: var(--blue);
 }
 
-.icon-radio-box{
-    width: 80%;
-    height: 5rem;
+.icon-radio-box {
+  width: 80%;
+  height: 5rem;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.icon-radio-box > ion-icon{
-    font-size: 3rem;
-    margin-top: 10px;
+.icon-radio-box > ion-icon {
+  font-size: 3rem;
+  margin-top: 10px;
 }
-.icon-radio-box > p{
-    font-size: .7rem;
+.icon-radio-box > p {
+  font-size: 0.7rem;
 }

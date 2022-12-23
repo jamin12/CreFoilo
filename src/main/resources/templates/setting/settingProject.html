@@ -10,6 +10,9 @@
     <script type="text/javascript" defer th:src="@{/js/project.js}"></script>
 </th:block>
 <th:block layout:fragment="content">
+
+    <h2 class="content-title">Setting Project</h2>
+    
     <section id="project">
         <a class="btn-add-card" th:href="@{/setting/projectdetail/{portfolioid}(portfolioid = ${portfolioid})}">
             <ion-icon name="add-circle-outline"></ion-icon>
@@ -25,10 +28,10 @@
                 <a th:href="@{/setting/projectdetail/{portfolioid}/{projectid}(projectid = ${project.projectId}, portfolioid = ${portfolioid})}">
                     <img th:src="${project.projectRepresentativeImgUrl}" alt="porjectImg"
                     onerror="this.src='/img/SampleImg.png'">
+                    <h3 id="projectTitle" th:text="${project?.projectTitle}">TESTITLE</h3>
+                    <p id="projectDate" th:text="|${project?.projectStartDate} ~ ${project?.projectEndDate}|">2022.01.01</p>
                 </a>
-                <h3 id="projectTitle" th:text="${project?.projectTitle}">TESTITLE</h3>
-                <p id="projectAbout" th:text="${project?.projectIntro}">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p>
-                <p id="projectDate" th:text="|${project?.projectStartDate} ~ ${project?.projectEndDate}|">2022.01.01</p>
+                <!-- <p id="projectAbout" th:text="${project?.projectIntro}">어떠어떠한 프로젝트를 만들었다는 것을 대략적으로 설명해주기 위해서 있습니다.</p> -->
             </div>
         </div>
     </section>

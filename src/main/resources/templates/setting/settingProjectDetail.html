@@ -35,8 +35,6 @@
             </label>
 
             <input type="text" class="project_title" placeholder="프로젝트 제목" th:field="${projectDetail.projectTitle}" />
-            <textarea class="project_intro" placeholder="프로젝트 한 줄 소개"
-                th:field="${projectDetail.proejctIntro}"></textarea>
             <div class="date-pick-box">
                 <input type="date" class="project_period" th:field="${projectDetail.projectStrDate}">
                 <span>~</span>
@@ -45,10 +43,8 @@
         </div>
         <!-- 뒷면 -->
         <div class="back">
-            <input type="text" class="project_title" name="project_sub_title" placeholder="ex) 프로젝트 기여도"
-                th:field="${projectDetail.projectSubTitle}" />
-            <textarea class="project_contribution" name="project_sub_intro" placeholder="ex) 저는 ...한 일을 했습니다"
-                th:field="${projectDetail.proejctSubIntro}"></textarea>
+            <textarea class="project_intro" placeholder="프로젝트 한 줄 소개"
+            th:field="${projectDetail.proejctIntro}"></textarea>
 
             <div class="tactstack-wrap">
                 <h4 class="title">기술 스텍</h4>
@@ -108,18 +104,18 @@
     <section class="divline">
         <span>프로젝트 상세 설명</span>
         <div class="project_imgs">
-            <div class="add_project_img_card img-card">
-                <!-- TODO: 이미지 추가하기 -->
-                <input id="BtnAddImg" class="add_img_btn" onchange="addImg(this.files)" type="file">
-                <label for="BtnAddImg">
-                    <ion-icon name="add-outline"></ion-icon>
-                </label>
-            </div>
-
-            <div class="project_img_card img-card" th:each="projectimg: ${projectDetail.projectImg}"
-                onclick="deleteImg(this)">
-                <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg" onerror="this.src='/img/SampleImg.png';">
-                <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
+            <!-- TODO: 이미지 추가하기 -->
+            <input id="BtnAddImg" class="add_img_btn" onchange="addImg(this.files)" type="file">
+            <label for="BtnAddImg">
+                <ion-icon name="add-outline"></ion-icon>
+            </label>
+            
+            <div class="project_img_card_box">
+                <div class="project_img_card img-card" th:each="projectimg: ${projectDetail.projectImg}"
+                    onclick="deleteImg(this)">
+                    <img th:src="${projectimg?.projectImgUrl}" alt="porjectImg" onerror="this.src='/img/SampleImg.png';">
+                    <input type="hidden" id="imgId" th:value="${projectimg.projectImgId}">
+                </div>
             </div>
         </div>
     </section>
