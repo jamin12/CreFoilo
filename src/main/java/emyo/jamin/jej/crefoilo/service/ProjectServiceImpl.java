@@ -273,8 +273,12 @@ public class ProjectServiceImpl implements ProjectService {
             projectImgDtos.add(new ProjectImgDto(tuple.get(qProjectImg)));
             projectDocumentDtos.add(new ProjectDocumentDto(tuple.get(qDocumentUrl)));
         }
-        projectDetailDto.setProjectImg(projectImgDtos.stream().collect(Collectors.toList()));
-        projectDetailDto.setProjectDocument(projectDocumentDtos.stream().collect(Collectors.toList()));
+        projectDetailDto.setProjectImg(projectImgDtos.stream()
+                .sorted((o1, o2) -> Long.valueOf(o1.getProjectImgId() - o2.getProjectImgId()).intValue())
+                .collect(Collectors.toList()));
+        projectDetailDto.setProjectDocument(projectDocumentDtos.stream()
+                .sorted((o1, o2) -> Long.valueOf(o1.getDocuemntUrlId() - o2.getDocuemntUrlId()).intValue())
+                .collect(Collectors.toList()));
         findedProjectList.add(projectDetailDto);
 
         return findedProjectList;
