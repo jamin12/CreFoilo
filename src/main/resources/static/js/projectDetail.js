@@ -78,7 +78,7 @@ function setProejctContentsInfo() {
   // // 서브타이틀 가져오기
   // let projectSubTitile = document.querySelectorAll(".project_title")[1].value;
   // 설명 가져오기
-  let projectIntro = document.querySelector(".project_intro").value;
+  let projectIntro = document.querySelector(".project_intro").value.replaceAll(/(\n|\r\n)/g,'<br>');
   // // 서브 인트로 가져오기
   // let projectSubIntro = document.querySelector(".project_contribution").value;
   // 이미지 정보 가져오기
