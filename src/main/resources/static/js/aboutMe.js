@@ -57,7 +57,7 @@ const saveAboutMe = () => {
     let aboutMeIntro1 = document.querySelector("#detail1").value;
     //이미지 가져오기
     let aboutMeImg = document.querySelector(".img-background")?.src;
-
+    aboutMeIntro1 = aboutMeIntro1.replaceAll(/(\n|\r\n)/g,'<br>');
     let data = {
         portfolioId: portfolioId,
         aboutMeType: aboutMeType,
@@ -68,10 +68,10 @@ const saveAboutMe = () => {
     // aboutMeType 1일때
     if (aboutMeType == 2) {
         // 타이틀 1,2,3 가져오기 html에서 타이틀id는intro 맞음!
-        data.aboutMeTitle2 = document.querySelector("#intro2").value;
-        data.aboutMeTitle3 = document.querySelector("#intro3").value;
+        data.aboutMeTitle2 = document.querySelector("#intro2")?.value;
+        data.aboutMeTitle3 = document.querySelector("#intro3")?.value;
         // 인트로 1,2 가져오기 html에서 id는 detail 이다.
-        data.aboutMeIntro2 = document.querySelector("#detail2").value;
+        data.aboutMeIntro2 = document.querySelector("#detail2")?.value.replaceAll(/(\n|\r\n)/g,'<br>');
     }
 
     // 새로 만들기

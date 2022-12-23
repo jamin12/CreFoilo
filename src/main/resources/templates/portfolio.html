@@ -1,417 +1,578 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>나의 포트폴리오</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 포트폴리오</title>
+		<!-- bootstrap -->
+		<!-- CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+			crossorigin="anonymous"
+		/>
+		<!-- JavaScript Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+			crossorigin="anonymous"
+		></script>
+		<!-- fontawesome - 아이콘 -->
+		<script
+			src="https://kit.fontawesome.com/7287207f90.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+		></script>
 
-    <!-- bootstrap -->
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <!-- fontawesome - 아이콘 -->
-    <script src="https://kit.fontawesome.com/7287207f90.js" crossorigin="anonymous"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+		<!-- 제이쿼리 -->
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
 
-    <!-- 제이쿼리 -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<link th:href="@{/css/portfoilo_css/style.css} " rel="stylesheet" />
 
-    <link th:href="@{/css/portfoilo_css/style.css} " rel="stylesheet">
+		<!-- slide slick -->
+		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    <!-- slide slick -->
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+		/>
+	</head>
 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+	<body>
+		<!-- 홈화면 -->
+		<!-- type1 -->
+		<section
+			id="Home"
+			class="type1"
+			th:if="${portfolio.portfolioHomeType == 1}"
+		>
+			<h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">
+				안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!
+			</h2>
+			<h2 class="typing main-title-curcer"></h2>
 
-</head>
+			<img
+				th:src="${portfolio.portfolioHomeImg}"
+				alt="사용자 지정 이미지"
+				onerror="this.src='/img/SampleImg.png'"
+			/>
+		</section>
 
-<body>
-    <!-- 홈화면 -->
-    <!-- type1 -->
-    <section id="Home" class="type1" th:if="${portfolio.portfolioHomeType == 1}">
-        <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요, 프론트엔드 개발자를 꿈꾸는 이묘연입니다!</h2>
-        <h2 class="typing main-title-curcer"></h2>
+		<!-- type2 -->
+		<section
+			id="Home"
+			class="type2"
+			th:if="${portfolio.portfolioHomeType == 2}"
+		>
+			<h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">
+				안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다
+			</h2>
+			<h2 class="typing main-title-curcer"></h2>
+		</section>
 
-        <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" onerror="this.src='/img/SampleImg.png'">
-    </section>
+		<!-- type3 -->
+		<section
+			id="Home"
+			class="type3"
+			th:if="${portfolio.portfolioHomeType == 3}"
+		>
+			<h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">
+				안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다
+			</h2>
+			<h2 class="typing main-title-curcer"></h2>
+			<img
+				th:src="${portfolio.portfolioHomeImg}"
+				alt="사용자 지정 이미지"
+				oimage.pngnerror="this.src='/img/SampleImg.png'"
+			/>
+		</section>
 
-    <!-- type2 -->
-    <section id="Home" class="type2" th:if="${portfolio.portfolioHomeType == 2}">
-        <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
-        <h2 class="typing main-title-curcer"></h2>
-    </section>
+		<!-- 메인 콘텐츠 -->
+		<div class="main-contents">
+			<!-- 네비게이션 바 -->
+			<nav
+				class="navbar sticky-top navbar-expand-lg"
+				style="background-color: var(--gray50); z-index: 900"
+			>
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#Home" th:text="${username}"
+						>userName</a
+					>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div
+						class="collapse navbar-collapse"
+						id="navbarSupportedContent"
+					>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link" href="#aboutMe">About Me</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#languageSkill"
+									>Language Skill</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#otherSkill"
+									>Other Skill</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#project">Project</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#contact">Contact</a>
+							</li>
 
-    <!-- type3 -->
-    <section id="Home" class="type3" th:if="${portfolio.portfolioHomeType == 3}">
-        <h2 class="typing-txt" th:text="${portfolio.portfolioHomeText}">안녕하세요. 프론트앤드 개발자를 꿈꾸는 이묘연입니다</h2>
-        <h2 class="typing main-title-curcer"></h2>
-        <img th:src="${portfolio.portfolioHomeImg}" alt="사용자 지정 이미지" oimage.pngnerror="this.src='/img/SampleImg.png'">
-    </section>
+							<li
+								class="nav-item nav-go-setting position-absolute"
+								th:if="${myfolio == true}"
+							>
+								<a
+									class="nav-link"
+									th:href="@{/setting/home/{portfolioid}(portfolioid = ${portfolioid})}"
+									><ion-icon
+										name="settings-outline"
+									></ion-icon
+								></a>
+							</li>
+							<li class="nav-item position-absolute">
+								<a
+									class="nav-link"
+									th:href="@{/myportfolio/list}"
+									><ion-icon name="home-outline"></ion-icon
+								></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 
-    <!-- 메인 콘텐츠 -->
-    <div class="main-contents">
-        <!-- 네비게이션 바 -->
-        <nav class="navbar sticky-top  navbar-expand-lg" style="background-color: var(--gray50); z-index: 900;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#Home" th:text="${username}">userName</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#aboutMe">About Me</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#languageSkill">Language Skill</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#otherSkill">Other Skill</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#project">Project</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+			<!-- About Me -->
+			<section id="aboutMe">
+				<h2 class="main-title">ABOUT ME</h2>
+				<!-- type1 -->
+				<div
+					class="contents type2"
+					th:if="${aboutme.aboutMeType == 1}"
+					style="background-image: none"
+				>
+					<img
+						alt="about me 이미지"
+						th:src="${aboutme.aboutMeImg}"
+						onerror="this.src='/img/SampleImg.png'"
+					/>
+					<div class="text-box">
+						<h2 th:text="${aboutme.aboutMeTitle1}">
+							안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!
+						</h2>
+						<p id="aboutMeIntro1"></p>
+					</div>
+				</div>
 
-                        <li class="nav-item nav-go-setting position-absolute" th:if="${myfolio == true}"><a
-                                class="nav-link"
-                                th:href="@{/setting/home/{portfolioid}(portfolioid = ${portfolioid})}"><ion-icon
-                                    name="settings-outline"></ion-icon></a></li>
-                        <li class="nav-item position-absolute"><a class="nav-link"
-                                th:href="@{/myportfolio/list}"><ion-icon name="home-outline"></ion-icon></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+				<!-- type2 -->
+				<div class="contents type1" th:if="${aboutme.aboutMeType == 2}">
+					<content class="first-content">
+						<h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
+						<img
+							alt="about me 이미지"
+							th:src="${aboutme.aboutMeImg}"
+							onerror="this.src='/img/SampleImg.png'"
+						/>
+					</content>
+					<content class="second-content">
+						<h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
+						<p id="aboutMeIntro1">						</p>
+					</content>
+					<content class="third-content">
+						<h2 th:text="${aboutme.aboutMeTitle3}">
+							저는 꾸준한 사람입니다.
+						</h2>
+						<p id="aboutMeIntro2"></p>
+					</content>
+				</div>
+			</section>
 
-        <!-- About Me -->
-        <section id="aboutMe">
-            <h2 class="main-title">ABOUT ME</h2>
-            <!-- type1 -->
-            <div class="contents type2" th:if="${aboutme.aboutMeType == 1}" style="background-image: none;">
-                <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'">
-                <div class="text-box">
-                    <h2 th:text="${aboutme.aboutMeTitle1}">안녕하세요! 프론트앤드 개발자를 꿈꾸는 임효현입니다!</h2>
-                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                        etiam pellentesque vitae, curabitur pharetra, nunc, eget. Enim a venenatis volutpat lectus
-                        consequat vulputate in. Quam vitae quisque turpis libero.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Amet etiam pellentesque vitae, curabitur.</p>
-                </div>
-            </div>
+			<!-- 언어 스킬 -->
+			<section
+				id="languageSkill"
+				style="background-color: var(--gray100)"
+			>
+				<h1 class="main-title">LANGUAGE SKILL</h1>
 
-            <!-- type2 -->
-            <div class="contents type1" th:if="${aboutme.aboutMeType == 2}">
-                <content class="first-content">
-                    <h2 th:text="${aboutme.aboutMeTitle1}">titile1</h2>
-                    <img alt="about me 이미지" th:src="${aboutme.aboutMeImg}" onerror="this.src='/img/SampleImg.png'" />
-                </content>
-                <content class="second-content">
-                    <h2 th:text="${aboutme.aboutMeTitle2}">저의 장점은,</h2>
-                    <p th:text="${aboutme.aboutMeIntro1}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                        etiam pellentesque vitae, curabitur
-                        pharetra, nunc, eget. Enim</p>
-                </content>
-                <content class="third-content">
-                    <h2 th:text="${aboutme.aboutMeTitle3}">저는 꾸준한 사람입니다.</h2>
-                    <p th:text="${aboutme.aboutMeIntro2}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
-                        etiam pellentesque vitae, curabitur
-                        pharetra, nunc, eget. Enim</p>
-                </content>
-            </div>
+				<div class="contents">
+					<!-- pie chart-->
+					<div id="dChart"></div>
+
+					<div class="language-info">
+						<h2 id="languageTitle" class="title"></h2>
+
+						<div class="framework-box" id="languageSkillsName">
+							<!-- <p >node JS</p> -->
+						</div>
+
+						<ul class="info-box" id="languageDetail">
+							<!-- <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li> -->
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- 기타 스킬 -->
+			<section id="otherSkill">
+				<h2 class="main-title">OTHER SKILL</h2>
+
+				<div class="contents">
+					<div class="others" th:each="otherskills : ${otherskill}">
+						<h2 th:text="${otherskills.baseOtherSkillName}">
+							Collaboration, Document
+						</h2>
+						<ul
+							th:each="subskill : ${otherskills.subOtherSkillName}"
+						>
+							<li th:text="${subskill}">git</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- project-detail Modal -->
+			<!-- TODO: 아직 연결 안됨 -->
+			<th:block th:each="projectD : ${projectDetail}">
+				<div
+					class="modal fade"
+					th:id="'modal_' + ${projectD.projectId}"
+					tabindex="-1"
+					aria-hidden="true"
+				>
+					<div
+						class="project-modal modal-lg modal-dialog modal-dialog-scrollable modal-dialog-centered"
+						role="document"
+					>
+						<div class="modal-content project-modal">
+							<!-- 이미지 캐러셀 -->
+							<th:block th:if="${projectD.projectImg != null}">
+								<div class="project-detail-carousel">
+									<th:block
+										th:each="img : ${projectD.projectImg}"
+									>
+										<img
+											th:src="${img.projectImgUrl}"
+											alt="프로젝트 이미지"
+											onerror="this.src='/img/SampleImg.png'"
+										/>
+									</th:block>
+								</div>
+							</th:block>
+
+							<!-- md파일 내용 -->
+							<div
+								class="md-content"
+								th:id="'textBox_' + ${projectD.projectId}"
+								th:utext="${projectD.projectHtml}"
+							>
+								Lorem Ipsum is simply dummy떨어지다 text of the
+								printing and typesetting industry. Lorem Ipsum
+								has
+							</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+
+			<!-- 프로젝트 캐러셀 -->
+			<section id="project">
+				<h2 class="main-title">PROJECT</h2>
+				<div class="contents">
+					<div class="carousel">
+						<div
+							class="flip"
+							th:id="${projectDetail.projectId}"
+							th:each="projectDetail : ${projectDetail}"
+							data-bs-toggle="modal"
+							th:attr="data-bs-target='#modal_' + ${projectDetail.projectId}"
+						>
+							<div class="card">
+								<!-- 앞면 -->
+								<div id="projectCardFront" class="front">
+									<img
+										th:src="${projectDetail.projectRepresentativeImgUrl}"
+										alt="프로젝트 샘플 이미지"
+										onerror="this.src='/img/SampleImg.png'"
+									/>
+									<h3
+										id="projectTitle"
+										th:text="${projectDetail.projectTitle}"
+									>
+										TESTITLE
+									</h3>
+									<p
+										id="projectAbout"
+										th:text="${projectDetail.proejctIntro}"
+									>
+										어떠어떠한 프로젝트를 만들었다는 것을
+										대략적으로 설명해주기 위해서 있습니다.
+									</p>
+									<p id="projectDate">
+										<span
+											th:text="${projectDetail.projectStrDate}"
+										></span>
+										~
+										<span
+											th:text="${projectDetail.projectEndDate}"
+										></span>
+									</p>
+								</div>
+								<!-- 뒷면 -->
+								<div class="back">
+									<h4
+										class="title"
+										th:text="${projectDetail.projectSubTitle}"
+									>
+										나의 기여도
+									</h4>
+									<p
+										class="contribution-content"
+										th:text="${projectDetail.proejctSubIntro}"
+									>
+										저는 이런거 했구요 저런 것도 했구요 암튼
+										뭔가 되게 많이 했습니다.
+									</p>
+									<h4 class="title">기술 스텍</h4>
+									<ul class="stack"></ul>
+									<div class="icon-wrap">
+										<div class="icon-box">
+											<a
+												th:each="document: ${projectDetail.projectDocument}"
+												th:href="${document.documentUrl}"
+											>
+												<ion-icon
+													class="icon"
+													th:name="${document.documentImgUrl}"
+												></ion-icon>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- contact -->
+			<div id="contact">
+				<h2 class="main-title">CONTACT</h2>
+
+				<div class="contents">
+					<div
+						class="contact-item"
+						th:each="contactItem : ${contact}"
+					>
+						<ion-icon
+							class="icon"
+							th:name="${contactItem.contactImgUrl}"
+						></ion-icon>
+						<span>
+							<!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
+							<span th:text="${contactItem.contactInfo}"
+								>https://github.com/</span
+							>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			var thLangSkillNameList = [[${ projectDetail }]];
+			var langFramworkBox = document.querySelectorAll("#project");
+			thLangSkillNameList.forEach(thLangSkillName => {
+			    let tectSkillList = thLangSkillName.proejctTechnicalStack.split("/n");
+			    tectSkillList.forEach(tectSkill => {
+			        if(tectSkill !== ""){
+			            var spanTag = document.createElement("li");
+			            spanTag.innerText = tectSkill
+			            langFramworkBox[langFramworkBox.length - 1].querySelector(".stack").appendChild(spanTag);
+			        }
+			    })
+			});
+		</script>
+		<!--Echart-->
+		<script
+			type="text/javascript"
+			src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"
+		></script>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+			var dom = document.getElementById('dChart');
+
+			var myChart = echarts.init(dom, null, {
+			    renderer: 'canvas',
+			    useDirtyRect: false
+			});
+			var app = {};
+
+			var list = [[${ languageskill }]]
+			const chartData = list.map(el => {
+			    // return [el.langName, el.langFrequency]
+			    return { value: el.langFrequency, name: el.langName, id: el.langId, detail: el.langDetail, skills: el.langSkillName }
+			})
+
+			var option = {
+			    legend: {
+			        top: '5%',
+			        left: 'left'
+			    },
+			    series: [
+			        {
+			            name: 'Access From',
+			            type: 'pie',
+			            radius: ['40%', '70%'],
+			            avoidLabelOverlap: false,
+			            itemStyle: {    // 차트 부분마다 있는 라인
+			                borderRadius: 10,
+			                borderColor: '#fff',
+			                borderWidth: 2
+			            },
+			            label: {        // text 미리보기 같은거 같은데 꺼놓는 편이 좋을듯
+			                show: false,
+			                position: 'center'
+			            },
+			            emphasis: {     // 부분에 호버하면 크게 보이는 글씨
+			                label: {
+			                    show: true,
+			                    fontSize: '20',
+			                    fontWeight: 'bold'
+			                }
+			            },
+			            labelLine: {
+			                show: false
+			            },
+			            data: chartData
+			        }
+			    ]
+			};
 
 
+			if (option && typeof option === 'object') {
+			    myChart.setOption(option);
+			}
 
-        </section>
+			window.addEventListener('resize', myChart.resize);
 
-        <!-- 언어 스킬 -->
-        <section id="languageSkill" style="background-color: var(--gray100);">
-            <h1 class="main-title">LANGUAGE SKILL</h1>
+			const title = document.getElementById('languageTitle')
+			const skills = document.getElementById('languageSkillsName')
+			const detail = document.getElementById('languageDetail')
 
-            <div class="contents">
-                <!-- pie chart-->
-                <div id="dChart"></div>
+			myChart.on('click', function (params) {
+			    const titleData = params.data.name
+			    const skillData = params.data.skills
+			    const detailData = params.data.detail
+			    // alert(`${params.data.detail}를 눌렀습니다`)
 
-                <div class="language-info">
-                    <h2 id="languageTitle" class="title"></h2>
+			    title.innerText = titleData;
 
-                    <div class="framework-box" id="languageSkillsName">
-                        <!-- <p >node JS</p> -->
-                    </div>
+			    skills.innerHTML = ""
+			    for (var i = 0; i < skillData.length; i++) {
+			        skills.innerHTML = skills.innerHTML + `<p>${skillData[i]}</p>`
+			    }
 
-                    <ul class="info-box" id="languageDetail">
-                        <!-- <li>react의 생명주기에 대해서 이해하며 코딩시 적용 가능</li> -->
-                    </ul>
-                </div>
-            </div>
-        </section>
+			    detail.innerHTML = ""
+			    for (var i = 0; i < detailData.length; i++) {
+			        detail.innerHTML = detail.innerHTML + `<li>${detailData[i]}</li>`
+			    }
 
-        <!-- 기타 스킬 -->
-        <section id="otherSkill">
-            <h2 class="main-title">OTHER SKILL</h2>
+			})
 
-            <div class="contents">
-                <div class="others" th:each="otherskills : ${otherskill}">
-                    <h2 th:text="${otherskills.baseOtherSkillName}">Collaboration, Document</h2>
-                    <ul th:each="subskill : ${otherskills.subOtherSkillName}">
-                        <li th:text="${subskill}">git</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+			/*]]>*/
+		</script>
 
-        <!-- project-detail Modal -->
-        <!-- TODO: 아직 연결 안됨 -->
-        <th:block th:each="projectD : ${projectDetail}">
-            <div class="modal fade" th:id="'modal_' + ${projectD.projectId}" tabindex="-1" aria-hidden="true">
-                <div class="project-modal modal-lg modal-dialog modal-dialog-scrollable modal-dialog-centered"
-                    role="document">
-                    <div class="modal-content project-modal">
-                        <!-- 이미지 캐러셀 -->
-                        <th:block th:if="${projectD.projectImg != null}">
-                            <div class="project-detail-carousel">
-                                <th:block th:each="img : ${projectD.projectImg}">
-                                    <img th:src="${img.projectImgUrl}" alt="프로젝트 이미지"
-                                        onerror="this.src='/img/SampleImg.png'" />
-                                </th:block>
-                            </div>
-                        </th:block>
+		<script th:inline="javascript">
+			// <!-- project 부분 캐러셀 -->
+			$(function () {
+				$(".carousel").slick({
+					slide: "div", //슬라이드 되어야 할 태그
+					infinite: true, //무한 반복 옵션
+					slidesToShow: 3, // 한 화면에 보여질 컨텐츠 개수
+					slidesToScroll: 3, //스크롤 한번에 움직일 컨텐츠 개수
+					speed: 500, // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+					arrows: true, // 옆으로 이동하는 화살표 표시 여부
+					dots: true, // 스크롤바 아래 점으로 페이지네이션 여부
+					autoplay: false, // 자동 스크롤 사용 여부
+					autoplaySpeed: 2000, // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+					pauseOnHover: true, // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
+					vertical: false, // 세로 방향 슬라이드 옵션
+					prevArrow:
+						"<button type='button' class='slick-prev'><ion-icon name='chevron-back-outline'</ion-icon></button>",
+					nextArrow:
+						"<button type='button' class='slick-next'><ion-icon name='chevron-forward-outline'></ion-icon></button>",
+					draggable: true, //드래그 가능 여부
+					responsive: [
+						// 반응형 웹 구현 옵션
+						{
+							breakpoint: 960, //화면 사이즈 960px
+							settings: {
+								slidesToShow: 3,
+							},
+						},
+						{
+							breakpoint: 768, //화면 사이즈 768px
+							settings: {
+								slidesToShow: 2,
+							},
+						},
+					],
+				});
+			});
 
-                        <!-- md파일 내용 -->
-                        <div class="md-content" th:id="'textBox_' + ${projectD.projectId}"
-                            th:utext="${projectD.projectHtml}">
-                            Lorem Ipsum is simply dummy떨어지다 text of the printing and typesetting industry. Lorem Ipsum
-                            has
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </th:block>
+			// project-detail 부분 캐러셀
+			$(function () {
+				$(".project-detail-carousel").slick({
+					slide: "img", //슬라이드 되어야 할 태그
+					infinite: true, //무한 반복 옵션
+					slidesToShow: 1, // 한 화면에 보여질 컨텐츠 개수
+					slidesToScroll: 1, //스크롤 한번에 움직일 컨텐츠 개수
+					speed: 500, // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+					arrows: false, // 옆으로 이동하는 화살표 표시 여부
+					dots: true, // 스크롤바 아래 점으로 페이지네이션 여부
+					autoplay: true,
+					prevArrow: $("#prev"),
+					nextArrow: $("#next"),
+					draggable: true, //드래그 가능 여부
+					fade: true,
+				});
+			});
+		</script>
 
-
-
-        <!-- 프로젝트 캐러셀 -->
-        <section id="project">
-            <h2 class="main-title">PROJECT</h2>
-            <div class="contents">
-                <div class="carousel">
-                    <div class="flip" th:id="${projectDetail.projectId}" th:each="projectDetail : ${projectDetail}"
-                        data-bs-toggle="modal" th:attr="data-bs-target='#modal_' + ${projectDetail.projectId}">
-                        <div class="card">
-                            <!-- 앞면 -->
-                            <div id="projectCardFront" class="front">
-                                <img th:src="${projectDetail.projectRepresentativeImgUrl}" alt="프로젝트 샘플 이미지"
-                                    onerror="this.src='/img/SampleImg.png'">
-                                <h3 id="projectTitle" th:text="${projectDetail.projectTitle}">TESTITLE</h3>
-                                <p id="projectAbout" th:text="${projectDetail.proejctIntro}">어떠어떠한 프로젝트를 만들었다는
-                                    것을 대략적으로
-                                    설명해주기 위해서 있습니다.</p>
-                                <p id="projectDate"><span th:text="${projectDetail.projectStrDate}"></span> ~
-                                    <span th:text="${projectDetail.projectEndDate}"></span>
-                                </p>
-                            </div>
-                            <!-- 뒷면 -->
-                            <div class="back">
-                                <h4 class="title" th:text="${projectDetail.projectSubTitle}">나의 기여도</h4>
-                                <p class="contribution-content" th:text="${projectDetail.proejctSubIntro}">저는
-                                    이런거 했구요 저런
-                                    것도 했구요 암튼 뭔가 되게 많이 했습니다.</p>
-                                <h4 class="title">기술 스텍</h4>
-                                <ul class="stack">
-
-                                </ul>
-                                <div class="icon-wrap">
-                                    <div class="icon-box">
-                                        <a th:each="document: ${projectDetail.projectDocument}"
-                                            th:href="${document.documentUrl}">
-                                            <ion-icon class="icon" th:name="${document.documentImgUrl}"></ion-icon>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- contact -->
-        <div id="contact">
-            <h2 class="main-title">CONTACT</h2>
-
-            <div class="contents">
-                <div class="contact-item" th:each="contactItem : ${contact}">
-                    <ion-icon class="icon" th:name="${contactItem.contactImgUrl}"></ion-icon>
-                    <span>
-                        <!-- TODO: http라는 문자열이 있는지 확인해서 없으면(전화번호나 메일)은 클릭이 안되도록 설정 -->
-                        <span th:text="${contactItem.contactInfo}">https://github.com/</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script th:inline="javascript">
-        var thLangSkillNameList = [[${ projectDetail }]];
-        var langFramworkBox = document.querySelectorAll("#project");
-        thLangSkillNameList.forEach(thLangSkillName => {
-            let tectSkillList = thLangSkillName.proejctTechnicalStack.split("/n");
-            tectSkillList.forEach(tectSkill => {
-                if(tectSkill !== ""){
-                    var spanTag = document.createElement("li");
-                    spanTag.innerText = tectSkill
-                    langFramworkBox[langFramworkBox.length - 1].querySelector(".stack").appendChild(spanTag);
-                }
-            })
-        });
-    </script>
-    <!--Echart-->
-    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        var dom = document.getElementById('dChart');
-
-        var myChart = echarts.init(dom, null, {
-            renderer: 'canvas',
-            useDirtyRect: false
-        });
-        var app = {};
-
-        var list = [[${ languageskill }]]
-        const chartData = list.map(el => {
-            // return [el.langName, el.langFrequency]
-            return { value: el.langFrequency, name: el.langName, id: el.langId, detail: el.langDetail, skills: el.langSkillName }
-        })
-
-        var option = {
-            legend: {
-                top: '5%',
-                left: 'left'
-            },
-            series: [
-                {
-                    name: 'Access From',
-                    type: 'pie',
-                    radius: ['40%', '70%'],
-                    avoidLabelOverlap: false,
-                    itemStyle: {    // 차트 부분마다 있는 라인
-                        borderRadius: 10,
-                        borderColor: '#fff',
-                        borderWidth: 2
-                    },
-                    label: {        // text 미리보기 같은거 같은데 꺼놓는 편이 좋을듯
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {     // 부분에 호버하면 크게 보이는 글씨
-                        label: {
-                            show: true,
-                            fontSize: '20',
-                            fontWeight: 'bold'
-                        }
-                    },
-                    labelLine: {
-                        show: false
-                    },
-                    data: chartData
-                }
-            ]
-        };
-
-
-        if (option && typeof option === 'object') {
-            myChart.setOption(option);
-        }
-
-        window.addEventListener('resize', myChart.resize);
-
-        const title = document.getElementById('languageTitle')
-        const skills = document.getElementById('languageSkillsName')
-        const detail = document.getElementById('languageDetail')
-
-        myChart.on('click', function (params) {
-            const titleData = params.data.name
-            const skillData = params.data.skills
-            const detailData = params.data.detail
-            // alert(`${params.data.detail}를 눌렀습니다`)
-
-            title.innerText = titleData;
-
-            skills.innerHTML = ""
-            for (var i = 0; i < skillData.length; i++) {
-                skills.innerHTML = skills.innerHTML + `<p>${skillData[i]}</p>`
-            }
-
-            detail.innerHTML = ""
-            for (var i = 0; i < detailData.length; i++) {
-                detail.innerHTML = detail.innerHTML + `<li>${detailData[i]}</li>`
-            }
-
-        })
-
-        /*]]>*/
-    </script>
-
-    <script th:inline="javascript">
-        // <!-- project 부분 캐러셀 -->
-        $(function () {
-            $('.carousel').slick({
-                slide: 'div',        //슬라이드 되어야 할 태그
-                infinite: true,     //무한 반복 옵션     
-                slidesToShow: 3,        // 한 화면에 보여질 컨텐츠 개수
-                slidesToScroll: 3,        //스크롤 한번에 움직일 컨텐츠 개수
-                speed: 500,     // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-                arrows: true,         // 옆으로 이동하는 화살표 표시 여부
-                dots: true,         // 스크롤바 아래 점으로 페이지네이션 여부
-                autoplay: false,            // 자동 스크롤 사용 여부
-                autoplaySpeed: 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-                pauseOnHover: true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
-                vertical: false,        // 세로 방향 슬라이드 옵션
-                prevArrow: "<button type='button' class='slick-prev'><ion-icon name='chevron-back-outline'</ion-icon></button>",
-                nextArrow: "<button type='button' class='slick-next'><ion-icon name='chevron-forward-outline'></ion-icon></button>",
-                draggable: true,     //드래그 가능 여부 
-                responsive: [ // 반응형 웹 구현 옵션
-                    {
-                        breakpoint: 960, //화면 사이즈 960px
-                        settings: {
-                            slidesToShow: 3
-                        }
-                    },
-                    {
-                        breakpoint: 768, //화면 사이즈 768px
-                        settings: {
-                            slidesToShow: 2
-                        }
-                    }
-                ]
-
-            });
-        })
-
-        // project-detail 부분 캐러셀 
-        $(function () {
-            $('.project-detail-carousel').slick({
-                slide: 'img',        //슬라이드 되어야 할 태그
-                infinite: true,     //무한 반복 옵션     
-                slidesToShow: 1,        // 한 화면에 보여질 컨텐츠 개수
-                slidesToScroll: 1,        //스크롤 한번에 움직일 컨텐츠 개수
-                speed: 500,     // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-                arrows: false,         // 옆으로 이동하는 화살표 표시 여부
-                dots: true,         // 스크롤바 아래 점으로 페이지네이션 여부
-                autoplay: true,
-                prevArrow: $('#prev'),
-                nextArrow: $('#next'),
-                draggable: true,     //드래그 가능 여부 
-                fade: true,
-            });
-        })
-    </script>
-
-    <!-- 프로젝트 innerHTML 사용 -->
-    <!-- <script th:inline="javascript">
+		<!-- 프로젝트 innerHTML 사용 -->
+		<!-- <script th:inline="javascript">
         var test = [[${projectDetail}]];
         // alert(test[0].projectHtml.toString())
         test.map(project => {
@@ -420,36 +581,39 @@
         })
     </script> -->
 
-    <!-- Home Type 글자 타이핑 스크립트 -->
-    <script th:inline="javascript">
-        var typingBool = false;
-        var typingIdx = 0;
+		<!-- Home Type 글자 타이핑 스크립트 -->
+		<script th:inline="javascript">
+			var typingBool = false;
+			var typingIdx = 0;
 
-        // 타이핑될 텍스트를 가져온다 
-        var typingTxt = $(".typing-txt").text();
+			// 타이핑될 텍스트를 가져온다
+			var typingTxt = $(".typing-txt").text();
 
-        typingTxt = typingTxt.split(""); // 한글자씩 자른다. 
+			typingTxt = typingTxt.split(""); // 한글자씩 자른다.
 
-        if (typingBool == false) {
-            // 타이핑이 진행되지 않았다면 
-            typingBool = true;
-            var tyInt = setInterval(typing, 100); // 반복동작 
-        }
+			if (typingBool == false) {
+				// 타이핑이 진행되지 않았다면
+				typingBool = true;
+				var tyInt = setInterval(typing, 100); // 반복동작
+			}
 
-        function typing() {
-            if (typingIdx < typingTxt.length) {
-                // 타이핑될 텍스트 길이만큼 반복 
-                $(".typing").append(typingTxt[typingIdx]);
-                // 한글자씩 이어준다. 
-                typingIdx++;
-            } else {
-                //끝나면 반복종료 
-                clearInterval(tyInt);
-            }
-        }  
-    </script>
-
-
-</body>
-
+			function typing() {
+				if (typingIdx < typingTxt.length) {
+					// 타이핑될 텍스트 길이만큼 반복
+					$(".typing").append(typingTxt[typingIdx]);
+					// 한글자씩 이어준다.
+					typingIdx++;
+				} else {
+					//끝나면 반복종료
+					clearInterval(tyInt);
+				}
+			}
+		</script>
+		<script th:inline="javascript">
+            const intro1 = document.querySelector("#aboutMeIntro1");
+			const intro2 = document.querySelector("#aboutMeIntro2");
+			intro1.innerHTML = [[${aboutme.aboutMeIntro1}]];
+			intro2.innerHTML = [[${aboutme.aboutMeIntro2}]];
+		</script>
+	</body>
 </html>
