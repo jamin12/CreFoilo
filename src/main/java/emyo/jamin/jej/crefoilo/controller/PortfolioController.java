@@ -22,8 +22,6 @@ import emyo.jamin.jej.crefoilo.service.OtherSkillService;
 import emyo.jamin.jej.crefoilo.service.PortfolioService;
 import emyo.jamin.jej.crefoilo.service.ProjectService;
 import emyo.jamin.jej.crefoilo.service.UserService;
-import emyo.jamin.jej.crefoilo.utils.CustomException;
-import emyo.jamin.jej.crefoilo.utils.ErrorCode;
 
 @Controller
 public class PortfolioController {
